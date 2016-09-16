@@ -1,29 +1,25 @@
 REM Specify values for the variables in the script. Enter your values for each after the equals sign (=). 
 REM Every line that begins with REM is a comment.
 
-REM Enter your GSA ID. Example: kakronst
-REM SET gsaUserID=kakronst
-SET gsaUserID=
+REM Enter a local directory to store log files.
+REM SET logFileLocation=C:\Users\IBM_ADMIN\Desktop\translationlogs\ActiveDeploy
+SET logFileLocation=C:\Users\IBM_ADMIN\Desktop\translationlogs\objectstorage
 
-REM Enter your GSA password.
-REM SET gsaUserPassword=password
-SET gsaUserPassword=
-
-REM Enter the directory path to your files in IDCMS starting from the /CPS directory. Example: /CPS/CloudOE/Services/ActiveDeploy
-REM SET plugindir=/CPS/CloudOE/Services/ActiveDeploy
-SET plugindir=
-
-REM Enter a comment to include when the changes are checked in.
-REM SET checkInComment="Work item 87654: Translation returns for shipment 5 2016"
-SET checkInComment="Translation returns"
+REM Enter the service directory as it displays in Github without the docs directory. If your content is in docs/services/ActiveDeploy, enter services/ActiveDeploy.
+REM SET localPluginDir=services\ActiveDeploy
+SET localPluginDir=services\ObjectStorage
 
 REM Enter your chargetoID. Example: BM110ABD070
 REM SET chargetoID=BM110ABD070
-SET chargetoID=
+SET chargetoID=BM110ABD099
 
 REM Enter your shipment number. You can find the shipment number in the returned package URL. Example: 5
 REM SET shipmentNumber=5
-SET shipmentNumber=
+SET shipmentNumber=4
+
+REM Enter a comment to include when the changes are checked in.
+REM SET checkInComment="Work item 87654: Translation returns for shipment 5 2016"
+SET checkInComment="Automated translation checkin test %chargetoID% %shipmentNumber% %time%"
 
 REM Enter your project code. Example: BM110
 REM SET projectCode=BM110
@@ -42,3 +38,5 @@ REM SET subdirectory2=
 REM SET subdirectory3=
 REM SET subdirectory4=
 REM SET subdirectory5=
+
+REM The build is running. Check the log file location you specified for updates.
