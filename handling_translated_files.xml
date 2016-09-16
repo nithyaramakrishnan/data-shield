@@ -5,22 +5,12 @@
             <fileset dir="${basedir}/ant.lib/ant-contrib"/>
         </classpath>
     </taskdef>  
-	
-	<target name="init">
-	    <property name="FirstTranslation" value="1" />
-	    <property name="NumberNewFiles" value="0" />
-	</target>
-	
-	<!-- <target name="help">
-        <echo message="Optional args:"/>        
-        <echo message="-DnoPrompt=true //skip the prompts to continue"/>        
-        <echo message="-Dlang=xxxx     //set the language to be processed"/>        
-        <echo message=""/>        
-        <echo message="Example:  ant -f process-translated-files.xml -DnoPrompt=true -Dlang=de"/>        
-	</target>
-	-->
-	
-	<!-- Get the GSA user ID -->
+
+	<!-- Get package URL -->
+    <target name="getPkgURL" unless="pkg.url">
+        <input message="Enter pkg.url"   addproperty="pkg.url" />
+		<echo message="pkg.url # is [${pkg.url}]"/>        
+    </target>
     <target name="getGSAuser" unless="gsa.userid">
         <input message="Enter GSA userid"   addproperty="gsa.userid" />
 		<echo message="GSA userid # is [${gsa.userid}]"/>        
@@ -31,6 +21,18 @@
         <input message="Enter GSA password" addproperty="gsa.password">
 		<echo message="GSA password # is [${gsa.password}]"/>  
        </input>
+    </target>	
+	<!-- Get the Github user ID -->
+    <target name="getGithubUser" unless="github.userid">
+        <input message="Enter github.userid"   addproperty="github.userid" />
+		<echo message="github.userid # is [${github.userid}]"/>        
+    </target>
+	
+	<!-- Get the Github password -->
+	<target name="getGithubPassword" unless="github.password">
+        <input message="Enter github.password" addproperty="github.password">
+       </input>
+	   <echo message="github.password # is [${github.password}]"/>  
     </target>
 	
     <!-- Get the Shipment Number # -->
@@ -42,12 +44,26 @@
     </target>  
 	
 	<!-- Get the plugin directory -->
-    <target name="getPlugindir" unless="plugindir">                                                                         
+    <target name="getLocalPluginDir" unless="localPluginDir">                                                                         
         <input
             message="Enter the plugin directory:"
-            addproperty="plugindir"/>
-        <echo message="Plugin directory is [${plugindir}]"/>        
+            addproperty="localPluginDir"/>
+        <echo message="Plugin directory is [${localPluginDir}]"/>        
     </target>  
+	<!-- Get the install directory -->
+    <target name="getInstallDir" unless="installDir">                                                                         
+        <input
+            message="Enter the installation directory:"
+            addproperty="installDir"/>
+        <echo message="Installation directory is [${installDir}]"/>        
+    </target>  
+		<!-- Get the log file directory -->
+    <target name="getLogFileLocation" unless="logFileLocation">                                                                         
+        <input
+            message="Enter the log file directory:"
+            addproperty="logFileLocation"/>
+        <echo message="Log directory is [${logFileLocation}]"/>        
+    </target> 
 	
     <!-- Get the check in comment -->
     <target name="getCheckInComment" unless="checkInComment">                                                                         
@@ -116,687 +132,130 @@
     <target name="downloadTranslatedPackageFromUrl">
 		<echo message="Start downloading translated package....." />
         <echo message="Lang   ${lang}" />	
-		<echo message="plugindir   ${plugindir}" />	
-		<mkdir dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/translated"/>
+		<echo message="localPluginDir   ${installDir}/docs/${localPluginDir}" />	
+		<mkdir dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
             <property name="langToMatch"  value="${lang}"/>
-            <get dest="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/translated/package.pkg" username="${gsa.userid}" password="${gsa.password}" verbose="true">
+            <get dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.tlpkg" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
+			 <rename src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.tlpkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
  	<!-- Extract the downloaded package --> 	
     <target name="unpack_package" >
         <echo message="${lang}"/>             		
-        <unzip src="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/translated/package.pkg" dest="C:/FileNet/Work/Current/IDCMS1/${plugindir}/nl/${lang}/translated"/>
-        <echo message="Unzipping translated files into ${plugindir}/nl/${lang}"/>
-        <unzip dest="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}">
+        <unzip src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}"/>
+        <echo message="Unzipping translated files into ${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
+        <unzip dest="${installDir}/docs/${localPluginDir}/nl/${lang}">
             <patternset>
-                <include name="**/*.dita"/>
-                <include name="**/*.ditamap"/>
-                <include name="**/images/*.*"/>
+                <include name="*.md"/>
+                <include name="images/*.*"/>
+				<include name="${subdirectory1}/*.md"/>
+                <include name="${subdirectory1}/images/*.*"/>
+				<include name="${subdirectory2}/*.md"/>
+                <include name="${subdirectory2}/images/*.*"/>
+				<include name="${subdirectory3}/*.md"/>
+                <include name="${subdirectory3}/images/*.*"/>
+				<include name="${subdirectory4}/*.md"/>
+                <include name="${subdirectory4}/images/*.*"/>
+				<include name="${subdirectory5}/*.md"/>
+                <include name="${subdirectory5}/images/*.*"/>
             </patternset>
-            <fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/translated">
+            <fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated">
                 <include name="**/*.zip"/>
             </fileset>
-        </unzip>    		
+        </unzip>    
+		<if>
+		  <available file="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}" type="dir" />
+		  <then>
+			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/"/>
+			</copy>
+		  </then>
+		  <else>
+			<echo message="Extra services directory does not exist. Good!" />
+		  </else>
+		</if>		
 	</target>
+
 	
  	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories1" if="subdirectory1">
-		<echo message="Copying the ${plugindir}/nl/${lang}/${subdirectory1} directory to ${plugindir}/${subdirectory1}/nl/${lang}"/>
-		<copy todir="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}">
-			<fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/${subdirectory1}"/>
+		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1} directory to ${installDir}/docs/${localPluginDir}/${subdirectory1}/nl/${lang}"/>
+		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory1}"/>
+			</copy>
+		<copy todir="${localPluginDir}/${subdirectory1}/nl/${lang}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1}"/>
 		</copy>
 	</target>
 	
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories2" if="subdirectory2">
-		<echo message="Copying the ${plugindir}/nl/${lang}/${subdirectory2} directory to ${plugindir}/${subdirectory2}/nl/${lang}"/>
-		<copy todir="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}">
-			<fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/${subdirectory2}"/>
+		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2} directory to ${installDir}/docs/${localPluginDir}/${subdirectory2}/nl/${lang}"/>
+		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory2}"/>
+			</copy>
+		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory2}/nl/${lang}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2}"/>
 		</copy>
 	</target>
 
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories3" if="subdirectory3">
-		<echo message="Copying the ${plugindir}/nl/${lang}/${subdirectory3} directory to ${plugindir}/${subdirectory3}/nl/${lang}"/>
-		<copy todir="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}">
-			<fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/${subdirectory3}"/>
+		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3} directory to ${installDir}/docs/${localPluginDir}/${subdirectory3}/nl/${lang}"/>
+		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory3}"/>
+			</copy>
+		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory3}/nl/${lang}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3}"/>
 		</copy>
 	</target> 	
 	
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories4" if="subdirectory4">
-		<echo message="Copying the ${plugindir}/nl/${lang}/${subdirectory4} directory to ${plugindir}/${subdirectory4}/nl/${lang}"/>
-		<copy todir="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}">
-			<fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/${subdirectory4}"/>
+		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4} directory to ${installDir}/docs/${localPluginDir}/${subdirectory4}/nl/${lang}"/>
+		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory4}"/>
+			</copy>
+		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory4}/nl/${lang}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4}"/>
 		</copy>
 	</target>
 	
 	<!-- Copy the subdirectory package to its rightful place --> 	
 	<target name="rearrange_directories5" if="subdirectory5">
-		<echo message="Copying the ${plugindir}/nl/${lang}/${subdirectory5} directory to ${plugindir}/${subdirectory5}/nl/${lang}"/>
-		<copy todir="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}">
-			<fileset dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/${subdirectory5}"/>
+		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5} directory to ${installDir}/docs/${localPluginDir}/${subdirectory5}/nl/${lang}"/>
+		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory5}"/>
+			</copy>
+		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory5}/nl/${lang}">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5}"/>
 		</copy>
 	</target>
 
 	<!-- Delete the translated directory where the package was downloaded --> 	
 	<target name="delete_local_directories" >
-        <delete dir="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/translated"/>
+        <delete dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
+			<!-- Will have to add each major directory here: services, mobile, whatever -->
+		<delete dir="${installDir}/docs/${localPluginDir}/nl/${lang}/services"/>
+		<delete file="${installDir}/docs/${localPluginDir}/nl/${lang}/.pkgInfo.tpt"/>
 	</target>
 
-	<!-- Check out the root directory and the images directory files --> 	
-    <target name="checkOutFilesInFilenet">
-        <echo message="Checkout folder and files ${plugindir}/nl/${lang}" />
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-    </target>
-	
-	<!-- Check out the subdirectory directory and its images directory files --> 	
-	<target name="checkOutFilesInFilenet_subdirectory1" if="subdirectory1">
-        <echo message="Checkout folder and files ${plugindir}/${subdirectory1}/nl/${lang}" />	
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-   </target>
-	
-	<!-- Check out the subdirectory directory and its images directory files --> 	
-	<target name="checkOutFilesInFilenet_subdirectory2" if="subdirectory2">
-	
-        <echo message="Checkout folder and files ${plugindir}/${subdirectory2}/nl/${lang}" />
-		
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-    </target>
-
-	<!-- Check out the subdirectory directory and its images directory files --> 	
-	<target name="checkOutFilesInFilenet_subdirectory3" if="subdirectory3">
-        <echo message="Checkout folder and files ${plugindir}/${subdirectory3}/nl/${lang}" />
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-    </target>
-	
-	<!-- Check out the subdirectory directory and its images directory files --> 
-	<target name="checkOutFilesInFilenet_subdirectory4" if="subdirectory4">
-        <echo message="Checkout folder and files ${plugindir}/${subdirectory4}/nl/${lang}" />
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-    </target>
-
-	<!-- Check out the subdirectory directory and its images directory files --> 
-	<target name="checkOutFilesInFilenet_subdirectory5" if="subdirectory5">
-        <echo message="Checkout folder and files ${plugindir}/${subdirectory5}/nl/${lang}" />
-	    <switch value="${lang}">
-                             <case value="pt/BR">
-                              
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-						     </case>
-                             <case value="zh/CN">
-                             
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <case value="zh/TW">
-                            
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                              </exec>
-                             </case>
-                             <default>
-                                  <exec executable="\DITATools\IDWB\bin\fnc.bat" >
-                                  <arg value="-cof"/>
-                                  <arg value="${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive"/>			
-                                  </exec>
-                             </default>
-                   </switch>
-    </target>
-	
-	<!-- Check in the root directory files and its images directory files --> 	
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet" >	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}" />	
-        <!-- Add files/folders from ${plugindir}/nl/${lang}/ to the same directory on the server-->
-        <echo message="Upload files into ${plugindir}/nl/${lang}" />
-								
-								  <!-- Add directories and files (runs for first translation package) -->
-							     <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>	
-
-	<!-- Check in the subdirectory files and its images directory files --> 		
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory1"  if="subdirectory1">						 							  
-								  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Check in the subdirectory files and its images directory files --> 		
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory2"  if="subdirectory2">							  
-								  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>	
-
-	<!-- Check in the subdirectory files and its images directory files --> 			
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory3"  if="subdirectory3">							  								  
-								  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>	
-
-	<!-- Check in the subdirectory files and its images directory files --> 			
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory4"  if="subdirectory4">							  								  
-								  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>	
-
-	<!-- Check in the subdirectory files and its images directory files --> 			
-	<target name="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory5"  if="subdirectory5">							 								  
-								  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-
-	</target>
-
-	<!-- Check in the root directory files and its images directory files --> 			
-	<target name="checkin_Files_into_Filenet" >	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}" />	
-        <echo message="Upload files into ${plugindir}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-
-	<!-- Check in the subdirectory files and its images directory files --> 	
-	<target name="checkin_Files_into_Filenet_subdirectory1" if="subdirectory1" >	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory1}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory1}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Check in the root directory files and its images directory files --> 	
-	<target name="checkin_Files_into_Filenet_subdirectory2" if="subdirectory2">	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory2}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory2}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	
-	<!-- Check in the root directory files and its images directory files --> 	
-	<target name="checkin_Files_into_Filenet_subdirectory3" if="subdirectory3">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory3}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory3}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Check in the root directory files and its images directory files --> 		
-	<target name="checkin_Files_into_Filenet_subdirectory4" if="subdirectory4" >
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory4}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory4}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Check in the root directory files and its images directory files --> 		
-	<target name="checkin_Files_into_Filenet_subdirectory5" if="subdirectory5">	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory5}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory5}/nl/${lang}" />
-								      <!-- Update existing files in IDCMS -->
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-cif"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-			                      <arg value="-ct"/>
-                                  <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Find new files in the root directory files and new images --> 
-    <target name="IdentifyUploadNewFiles" >
-	    <echo message="Looking for new files........................."/> 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}" />		
-        <echo message="Upload files into ${plugindir}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/images" />			
-        <echo message="Upload files into ${plugindir}/nl/${lang}/images" />
-								      <!-- Update existing files in IDCMS -->
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>	
-	
-	<!-- Find new files in the subdirectory files and new images --> 
-	<target name="IdentifyUploadNewFiles_subdirectory1" if="subdirectory1">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory1}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory1}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory1}/images" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory1}/nl/${lang}/images" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-	
-	<!-- Find new files in the subdirectory files and new images --> 
-	 <target name="IdentifyUploadNewFiles_subdirectory2" if="subdirectory2">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory2}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory2}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory2}/images" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory2}/nl/${lang}/images" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>				  
-	</target>						  
-
-	<!-- Find new files in the subdirectory files and new images --> 
-	<target name="IdentifyUploadNewFiles_subdirectory3" if="subdirectory3">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory3}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory3}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory3}/images" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory3}/nl/${lang}/images" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>						  
-
-	<!-- Find new files in the subdirectory files and new images --> 
-	<target name="IdentifyUploadNewFiles_subdirectory4" if="subdirectory4">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory4}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory4}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory4}/images" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory4}/nl/${lang}/images" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>						  
-								  
-	<!-- Find new files in the subdirectory files and new images --> 
-	<target name="IdentifyUploadNewFiles_subdirectory5" if="subdirectory5">
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory5}" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory5}/nl/${lang}" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>	 
-        <echo message="${lang}"/>
-        <echo message="${plugindir}/${subdirectory5}/images" />	
-        <echo message="Upload files into ${plugindir}/${subdirectory5}/nl/${lang}/images" />
-                                  <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-af"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}/images"/>
-			                      <arg value="--delta" />
-								  <arg value="-ct" />
-	                              <arg value="${checkInComment}"/>
-                                  </exec>
-	</target>
-
-	<!-- Cancel any files in the root directory and images directory that are still checked out --> 	
-	<target name="cancel_remaining_checkouts" >
-        <echo message="Cancel any remaining files that are checked out" />
-                              <exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-	</target>
-
-	<!-- Cancel any files in the subdirectory and images directory that are still checked out --> 	
-	<target name="cancel_remaining_checkouts_subdirectory1" if="subdirectory1">
-							<exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory1}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-	</target>
-
-	<!-- Cancel any files in the subdirectory and images directory that are still checked out -->		
-	<target name="cancel_remaining_checkouts_subdirectory2" if="subdirectory2">
-								   
-							<exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory2}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-	</target>
-	
-	<!-- Cancel any files in the subdirectory and images directory that are still checked out --> 	
-	<target name="cancel_remaining_checkouts_subdirectory3" if="subdirectory3">
-							<exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory3}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-	</target>
-
-	<!-- Cancel any files in the subdirectory and images directory that are still checked out -->		
-	<target name="cancel_remaining_checkouts_subdirectory4" if="subdirectory4">
-							<exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory4}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-	</target>
-	 
-	<!-- Cancel any files in the subdirectory and images directory that are still checked out --> 	
-	<target name="cancel_remaining_checkouts_subdirectory5" if="subdirectory5">
-							<exec executable="\DITATools\IDWB\bin\fncp.bat" >
-                                  <arg value="-ccf"/>
-                                  <arg value="C:/FileNet/Work/Current/IDCMS1${plugindir}/${subdirectory5}/nl/${lang}"/>
-			                      <arg value="--recursive" />
-                                  </exec>
-    </target>
-	
 	<!-- ######################################################## DEFAULT TARGET ######################################################################### -->
-   <target name="processTranslation" depends="init, getGSAuser, getGSApassword, getLang, getShipmentNumber, getPlugindir, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
+   <target name="processTranslation" depends="getGSAuser, getGSApassword, getPkgURL, getGithubUser, getGithubPassword, getLang, getInstallDir, getLogFileLocation, getShipmentNumber, getLocalPluginDir, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
   
           
 		   
 	       <echo message="*****************************************" />
 	       <echo message="Language: ${lang}"/>
-           <echo message="Directory: ${plugindir}" />	
+           <echo message="Directory: ${installDir}/docs/${localPluginDir}" />	
 		   <echo message="Shipment Number: ${shipmentNumber}" />
 		   <echo message="Check in comment: ${checkInComment}" />
 		   <echo message="*****************************************" />
          
-		   <antcall target="downloadTranslatedPackageFromUrl" />
-		   <antcall target="checkOutFilesInFilenet" />
-		   <antcall target="checkOutFilesInFilenet_subdirectory1" />
-		   <antcall target="checkOutFilesInFilenet_subdirectory2" />
-		   <antcall target="checkOutFilesInFilenet_subdirectory3" />
-		   <antcall target="checkOutFilesInFilenet_subdirectory4" />
-		   <antcall target="checkOutFilesInFilenet_subdirectory5" />	   
+		   <antcall target="downloadTranslatedPackageFromUrl" /> 
 		   <antcall target="unpack_package" />	   
 		   <antcall target="rearrange_directories1" />
 		   <antcall target="rearrange_directories2" />
@@ -805,49 +264,6 @@
 		   <antcall target="rearrange_directories5" />
 		   <antcall target="delete_local_directories" />
 		   
-
-		   	<!-- Choose action based on whether is first time you add translation files or is a new package of existing translation for a product  -->
-		
-
-			<echo message="*****************************************" />
-			<echo message="Choose action" />
-
-			<if>
-				<equals arg1= "${FirstTranslation}"  arg2 = "${shipmentNumber}"  />
-			<then>
-				<echo message="This is the first time you are uploading translation files" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory1" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory2" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory3" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory4" />
-				<antcall target="checkin_Files_For_First_translation_Pkg_into_Filenet_subdirectory5" />
-			</then>
-			<else>
-				<echo message="Check-in updated files that already exist in IDCMS." />
-				<antcall target="checkin_Files_into_Filenet" />
-				<antcall target="checkin_Files_into_Filenet_subdirectory1" />
-				<antcall target="checkin_Files_into_Filenet_subdirectory2" />
-				<antcall target="checkin_Files_into_Filenet_subdirectory3" />
-				<antcall target="checkin_Files_into_Filenet_subdirectory4" />
-				<antcall target="checkin_Files_into_Filenet_subdirectory5" />
-				<antcall target="IdentifyUploadNewFiles" />
-				<antcall target="IdentifyUploadNewFiles_subdirectory1" />
-				<antcall target="IdentifyUploadNewFiles_subdirectory2" />
-				<antcall target="IdentifyUploadNewFiles_subdirectory3" />
-				<antcall target="IdentifyUploadNewFiles_subdirectory4" />
-				<antcall target="IdentifyUploadNewFiles_subdirectory5" />
-			</else>
-			</if>
-  	 
-			<antcall target="cancel_remaining_checkouts" />
-			<antcall target="cancel_remaining_checkouts_subdirectory1" />
-			<antcall target="cancel_remaining_checkouts_subdirectory2" />
-			<antcall target="cancel_remaining_checkouts_subdirectory3" />
-			<antcall target="cancel_remaining_checkouts_subdirectory4" />
-			<antcall target="cancel_remaining_checkouts_subdirectory5" />
 	 
     </target>    
 </project>
-
-
