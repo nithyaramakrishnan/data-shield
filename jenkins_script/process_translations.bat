@@ -1,5 +1,13 @@
+CD "C:\Program Files\Git\usr\bin"
+exec ssh-agent bash
+eval ssh-agent -s
+ssh-agent 
+ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
+ssh -vT git@github.com
+
 CD %installDir%/docs
 GIT init
+GIT checkout master
 
 CD %installDir%
 
@@ -33,12 +41,12 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%\docs
 
-REM GIT add --all
+GIT pull
 
-REM GIT status
+GIT add --all
 
-REM GIT commit -m "%checkInComment%"
+GIT status
 
-REM GIT merge
+GIT commit -m "%checkInComment%"
 
 REM GIT push
