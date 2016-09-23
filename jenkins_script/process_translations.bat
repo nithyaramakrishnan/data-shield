@@ -1,4 +1,4 @@
-CD docs
+CD %installDir%/docs
 GIT init
 
 CD %installDir%
