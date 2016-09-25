@@ -8,6 +8,7 @@ ssh -vT git@github.com
 CD %installDir%/docs
 GIT init
 GIT checkout master
+GIT pull
 
 CD %installDir%
 
