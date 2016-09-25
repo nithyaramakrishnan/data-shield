@@ -50,4 +50,4 @@ GIT status
 
 GIT commit -m "%checkInComment%"
 
-GIT push
+GIT push origin master
