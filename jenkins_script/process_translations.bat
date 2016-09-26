@@ -1,7 +1,7 @@
 CD "C:\Program Files\Git\usr\bin"
 REM exec ssh-agent bash
 REM eval ssh-agent -s
-ssh-agent 
+REM ssh-agent 
 REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
 ssh -vT git@github.com
 
