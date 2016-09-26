@@ -40,7 +40,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/CN -DnoPrompt=true -Dshipmen
 REM zh/TW
 CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -DshipmentNumber=%shipmentNumber% -DlocalPluginDir=%localPluginDir% -DinstallDir=%installDir% -DcheckInComment="%checkInComment%" -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/%projectCode%/%chargetoID%/%chargetoID%_%shipmentName%_%shipmentNumber%_de.tlpkg
 
-CD %installDir%\docs
+CD %installDir%/docs
 
 GIT pull
 
