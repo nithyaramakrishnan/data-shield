@@ -50,6 +50,6 @@ GIT add --all
 
 GIT status
 
-GIT commit -am "%checkInComment%"
+GIT commit -a "%checkInComment%"
 
 GIT push
