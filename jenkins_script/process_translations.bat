@@ -1,8 +1,8 @@
 CD "C:\Program Files\Git\usr\bin"
-exec ssh-agent bash
-eval ssh-agent -s
+REM exec ssh-agent bash
+REM eval ssh-agent -s
 ssh-agent 
-ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
+REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
 ssh -vT git@github.com
 
 CD %installDir%/docs
