@@ -7,6 +7,8 @@ ssh -vT git@github.com
 
 CD %installDir%/docs
 GIT init
+GIT fetch origin
+GIT reset --hard origin/master
 GIT checkout master
 GIT pull
 
