@@ -42,7 +42,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%/docs
 
-GIT pull origin master
+GIT pull
 
 GIT add --all
 
@@ -50,4 +50,4 @@ GIT status
 
 GIT commit -m "%checkInComment%"
 
-GIT push origin master
+GIT push
