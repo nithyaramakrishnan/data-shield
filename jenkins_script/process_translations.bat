@@ -50,4 +50,4 @@ GIT status
 
 GIT commit -m "%checkInComment%"
 
-GIT push
+REM GIT push
