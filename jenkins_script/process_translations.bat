@@ -42,7 +42,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%/docs
 
-GIT pull
+GIT pull origin master
 
 GIT add --all
 
