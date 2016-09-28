@@ -169,7 +169,7 @@
 		<if>
 		  <available file="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}" type="dir" />
 		  <then>
-			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/">
+			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/" overwrite="true">
 			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}/"/>
 			</copy>
 		  </then>
