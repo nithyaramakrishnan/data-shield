@@ -145,8 +145,8 @@
  	<!-- Extract the downloaded package --> 	
     <target name="unpack_package" >
         <echo message="${lang}"/>             		
-        <unzip src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}"/>
-        <echo message="Unzipping translated files into ${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
+        <unzip src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
+        <echo message="Unzipping translated files into ${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
         <unzip dest="${installDir}/docs/${localPluginDir}/nl/${lang}">
             <patternset>
                 <include name="*.md"/>
@@ -167,10 +167,10 @@
             </fileset>
         </unzip>    
 		<if>
-		  <available file="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}" type="dir" />
+		  <available file="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}" type="dir" />
 		  <then>
 			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/"/>
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}/"/>
 			</copy>
 		  </then>
 		  <else>
