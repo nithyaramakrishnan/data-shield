@@ -2,7 +2,7 @@ CALL user_config.bat
 
 RD /S /Q docs
 
-GIT clone https://%githubUserID%:%githubPassword%@github.com/kKronstainBrown/docs.git
+GIT clone https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix/docs.git
 
 GIT init
 CD docs
