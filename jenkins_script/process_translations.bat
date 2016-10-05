@@ -7,7 +7,7 @@ REM ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
 REM ssh -vT git@github.com
 
 CD "C:\Program Files\Git\cmd"
-REM GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
+GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
 GIT init %installDir%/docs
 
 CD %installDir%/docs
