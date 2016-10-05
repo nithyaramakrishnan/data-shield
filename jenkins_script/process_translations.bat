@@ -1,12 +1,12 @@
-CD "C:\Program Files\Git\usr\bin"
-exec ssh-agent bash
-eval ssh-agent -s
-ssh-agent 
-ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
-ssh -vT git@github.com
+REM CD "C:\Program Files\Git\usr\bin"
+REM exec ssh-agent bash
+REM eval ssh-agent -s
+REM ssh-agent 
+REM ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
+REM ssh -vT git@github.com
 
 CD "C:\Program Files\Git\usr\bin"
-GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
+REM GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
 GIT init %installDir%/docs
 
 CD %installDir%/docs
