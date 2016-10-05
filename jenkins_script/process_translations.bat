@@ -5,9 +5,9 @@ REM ssh-agent
 REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
 REM ssh -vT git@github.com
 
-CD %installDir%/docs
+CD "C:\Program Files\Git\usr\bin"
 GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
-GIT init
+GIT init %installDir%/docs
 GIT fetch origin
 GIT reset --hard origin/master
 GIT checkout master
@@ -43,7 +43,8 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/CN -DnoPrompt=true -Dshipmen
 REM zh/TW
 CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -DshipmentNumber=%shipmentNumber% -DlocalPluginDir=%localPluginDir% -DinstallDir=%installDir% -DcheckInComment="%checkInComment%" -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/%projectCode%/%chargetoID%/%chargetoID%_%shipmentName%_%shipmentNumber%_zh-Hant.tpkg
 
-CD %installDir%/docs
+
+CD "C:\Program Files\Git\usr\bin"
 
 GIT pull origin master
 
