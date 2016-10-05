@@ -6,7 +6,7 @@ REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
 REM ssh -vT git@github.com
 
 CD %installDir%/docs
-GIT remote
+git ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
 GIT init
 GIT fetch origin
 GIT reset --hard origin/master
