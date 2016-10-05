@@ -2,7 +2,7 @@ CD "C:\Program Files\Git\usr\bin"
 exec ssh-agent bash
 eval ssh-agent -s
 ssh-agent 
-REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
+ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
 ssh -vT git@github.com
 
 CD "C:\Program Files\Git\usr\bin"
