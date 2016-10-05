@@ -1,4 +1,4 @@
-CD "C:\Program Files\Git\usr\bin"
+REM CD "C:\Program Files\Git\usr\bin"
 REM exec ssh-agent bash
 REM eval ssh-agent -s
 REM ssh-agent 
@@ -6,7 +6,7 @@ REM ssh-add /c/Users/Kristin/.ssh/id_rsa_kristin
 REM ssh -vT git@github.com
 
 CD %installDir%/docs
-git ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
+GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
 GIT init
 GIT fetch origin
 GIT reset --hard origin/master
