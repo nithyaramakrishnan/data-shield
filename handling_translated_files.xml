@@ -175,6 +175,9 @@
 		  </then>
 		  <else>
 			<echo message="Extra services directory does not exist. Good!" />
+			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/" overwrite="true">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/"/>
+			</copy>
 		  </else>
 		</if>		
 	</target>
