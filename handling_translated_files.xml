@@ -147,7 +147,7 @@
         <echo message="${lang}"/>             		
         <unzip src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
         <echo message="Unzipping translated files into ${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
-        <unzip dest="${installDir}/docs/${localPluginDir}/nl/${lang}">
+        <!-- <unzip dest="${installDir}/docs/${localPluginDir}/nl/${lang}"> -->
             <patternset>
                 <include name="*.md"/>
                 <include name="images/*.*"/>
@@ -175,6 +175,9 @@
 		  </then>
 		  <else>
 			<echo message="Extra services directory does not exist. Good!" />
+			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/" overwrite="true">
+			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/"/>
+			</copy>
 		  </else>
 		</if>		
 	</target>
