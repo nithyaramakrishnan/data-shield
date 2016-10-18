@@ -3,23 +3,23 @@ REM Every line that begins with REM is a comment.
 
 REM Enter a local directory to store log files.
 REM SET logFileLocation=C:\Users\IBM_ADMIN\Desktop\translationlogs\ActiveDeploy
-SET logFileLocation=C:\Users\IBM_ADMIN\Desktop\translationlogs\objectstorage
+SET logFileLocation=
 
 REM Enter the service directory as it displays in Github without the docs directory. If your content is in docs/services/ActiveDeploy, enter services/ActiveDeploy.
 REM SET localPluginDir=services\ActiveDeploy
-SET localPluginDir=services\ObjectStorage
+SET localPluginDir=
 
 REM Enter your chargetoID. Example: BM110ABD070
 REM SET chargetoID=BM110ABD070
-SET chargetoID=BM110ABD099
+SET chargetoID=
 
 REM Enter your shipment number. You can find the shipment number in the returned package URL. Example: 5
 REM SET shipmentNumber=5
-SET shipmentNumber=4
+SET shipmentNumber=
 
 REM Enter a comment to include when the changes are checked in.
 REM SET checkInComment="Work item 87654: Translation returns for shipment 5 2016"
-SET checkInComment="Automated translation checkin test %chargetoID% %shipmentNumber% %time%"
+SET checkInComment="Automated translation check-in %chargetoID% %shipmentNumber% %time%"
 
 REM Enter your project code. Example: BM110
 REM SET projectCode=BM110
