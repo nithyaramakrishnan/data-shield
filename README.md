@@ -2,6 +2,8 @@
 
 This script is a handy way for any writer to automate the process of checking files into Github. If you are a member of the CFS Doc Squad, we now use [Jenkins to kick off this script](https://releaseblueprints.ibm.com/display/IDC/Translation), instead of running the script directly. 
 
+Note: The scripts in this repository are available to use as is and were originally produced by the CFS (Alchemy) documentation squad. The CFS squad does not provide any support for the use of these scripts. If additional functionality or help is needed, a pull request or issue can be opened, but its priority will be evaluated against the other work that is assigned to the squad. Hey, we're writers with a limited number of hours in the day after all.
+
 ## Prerequisites:
 
 1. Git must be installed.
