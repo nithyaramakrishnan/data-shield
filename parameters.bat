@@ -30,7 +30,7 @@ REM SET shipmentName=CD_DOC_Ship
 SET shipmentName=CD_DOC_Ship
 
 REM Probably just containers and VMs must set these variables.....
-REM Are there any subdirectories within the main service directory that have dita content in them that build in your service doc but also build somewhere else? For example, does your troubleshooting content display in both your service section and in the Troubleshoot section? If so, include that directory name here. You can list up to five directories. Do not include any images directories that contain graphics. 
+REM Are there any subdirectories within the main service directory that have markdown content in them that build in your directory but also build somewhere else? For example, does your troubleshooting content display in both your service section and in the Troubleshoot section? If so, include that directory name here. You can list up to five directories. Do not include any images directories that contain graphics. 
 REM If you set subdirectories here, you must also remove the comment from the corresponding variables in the process_translations.bat.
 REM SET subdirectory1=troubleshoot
 REM SET subdirectory1=
