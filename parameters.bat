@@ -13,6 +13,10 @@ REM Enter your chargetoID. Example: BM110ABD070
 REM SET chargetoID=BM110ABD070
 SET chargetoID=
 
+REM Sometimes packages come back as .tpkg and sometimes .tlpkg. Enter the file type your package is returned with.
+REM SET packageExtension=.tlpkg
+SET packageExtension=
+
 REM Enter your shipment number. You can find the shipment number in the returned package URL. Example: 5
 REM SET shipmentNumber=5
 SET shipmentNumber=
