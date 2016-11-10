@@ -1,6 +1,8 @@
 # Checking in translation returns, by using the Markdown-translation-processing script
 
-This script is a handy way for any writer to automate the process of checking files into Github. If you are a member of the CFS Doc Squad, we now use [Jenkins to kick off this script](https://releaseblueprints.ibm.com/display/IDC/Translation), instead of running the script directly. 
+This script is a handy way for any writer to automate the process of checking files into Github. If you are a member of the CFS Doc Squad, we now use [Jenkins to kick off this script](https://releaseblueprints.ibm.com/display/IDC/Translation), instead of running the script directly.
+
+The script clones the GitHub docs (production) repository, unpacks the translation returns on GSA, and copies all new nl files to GitHub.
 
 Note: The scripts in this repository are available to use as is and were originally produced by the CFS (Alchemy) documentation squad. The CFS squad does not provide any support for the use of these scripts. If additional functionality or help is needed, a pull request or issue can be opened, but its priority will be evaluated against the other work that is assigned to the squad. Hey, we're writers with a limited number of hours in the day after all.
 
@@ -61,5 +63,5 @@ ADVISORY: As these files contain your username and password, do not share the ed
 3. To be sure that the script is running properly, check the logs in the `transationlogs` folder. The timestamp and size of the log files will indicate which files are being built.
 4. Once the builds finish, open your log files and scroll to the bottom. You should see a message that says **Build successful**. If your build has failed, check the log to fix any issues and run the build again.
 5. Verify in Github that all of the files have been updated.
-6. Request a push to production to complete the process.
+6. Request a production NLV build to complete the process.
 
