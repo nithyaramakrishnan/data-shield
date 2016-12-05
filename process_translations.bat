@@ -105,14 +105,22 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%\docs
 
-GIT add --all
+ECHO GIT pull
+GIT pull
 
+ECHO GIT add --all
+GIT add --all
+ 
+ECHO GIT status
 GIT status
 
+ECHO GIT commit
 GIT commit -m !checkInComment!
 
+ECHO GIT merge
 GIT merge
 
+ECHO GIT push
 GIT push
 
 ENDLOCAL
