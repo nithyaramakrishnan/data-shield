@@ -30,9 +30,6 @@ Note: The scripts in this repository are available to use as is and were origina
 
 ## Script set up:
 
-###### Parameters script:
-
-
 1. Edit the `paremeters.bat` file with the information listed below. You must specify the values for each variable after the equals sign (=).
         Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, or a similar text editor.
   - logFileLocation
