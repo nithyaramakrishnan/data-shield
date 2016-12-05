@@ -26,7 +26,7 @@ Note: The scripts in this repository are available to use as is and were origina
 ## Directory set up:
 
 1. Click **Download ZIP** to download this repository to your system.
-2. Extract the repository. This will create a folder called `markdown-translation-processing-master`.
+2. Extract the repository. This will create a folder called `markdown-translation-processing-master`. Do not copy this directory into a directory that is already being used as a local Git clone. I.e. Do not copy this directory into the docs directory you usually use to update your English production source files.
 
 ## Script set up:
 
@@ -59,7 +59,6 @@ ADVISORY: As these files contain your username and password, do not share the ed
 
 ## Running the script:
 
-1. Sync your local GitHub client with the GitHub docs (production) repository - this avoid errors where Github rejects updates. 
 2. Double-click the `process_translations.bat` file to run the script.
 3. To be sure that the script is running properly, check the logs in the `transationlogs` folder. The timestamp and size of the log files will indicate which files are being built.
 4. Once the builds finish, open your log files and scroll to the bottom. You should see a message that says **Build successful**. If your build has failed, check the log to fix any issues and run the build again.
