@@ -1,14 +1,5 @@
 CALL user_config.bat
 
-RD /S /Q docs
-
-GIT clone https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix/docs.git
-
-GIT init
-CD docs
-GIT init
-
-
 REM For every parameters file that there is in this directory, run the translation processing script for each of them. 
 
 CD %installDir%
@@ -19,6 +10,19 @@ SETLOCAL EnableDelayedExpansion
 
 REM Run the parameters file to set the variables.
 CALL %%G
+
+SET PluginNameShort=!localPluginDir:services\=!
+
+ECHO !PluginNameShort!
+
+RD /S /Q !PluginNameShort!
+
+GIT clone https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+
+GIT init
+CD !PluginNameShort!
+GIT init
+
 
 REM If the subdirectories are set, then set a variable to add an Ant command to transfer that variable into the Ant script.
 IF NOT DEFINED subdirectory1  (
@@ -129,4 +133,4 @@ ENDLOCAL
 
 CD ..
 
-RD /S /Q docs
+RD /S /Q !PluginNameShort!
