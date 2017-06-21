@@ -49,7 +49,14 @@
             message="Enter the plugin directory:"
             addproperty="localPluginDir"/>
         <echo message="Plugin directory is [${localPluginDir}]"/>        
-    </target>  
+    </target> 
+	<!-- Get the short plugin name -->
+    <target name="getPluginNameShort" unless="PluginNameShort">                                                                         
+        <input
+            message="Enter the plugin short name:"
+            addproperty="PluginNameShort"/>
+        <echo message="Plugin directory is [${PluginNameShort}]"/>        
+    </target>
 	<!-- Get the install directory -->
     <target name="getInstallDir" unless="installDir">                                                                         
         <input
@@ -132,22 +139,22 @@
     <target name="downloadTranslatedPackageFromUrl">
 		<echo message="Start downloading translated package....." />
         <echo message="Lang   ${lang}" />	
-		<echo message="localPluginDir   ${installDir}/docs/${localPluginDir}" />	
-		<mkdir dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
+		<echo message="localPluginDir   ${installDir}/${PluginNameShort}" />	
+		<mkdir dir="${installDir}/${PluginNameShort}/nl/${lang}/translated"/>
             <property name="langToMatch"  value="${lang}"/>
-            <get dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.tpkg" username="${gsa.userid}" password="${gsa.password}" verbose="true">
+            <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.tpkg" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
-			 <rename src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.tpkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg"/>
+			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.tpkg" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
  	<!-- Extract the downloaded package --> 	
     <target name="unpack_package" >
         <echo message="${lang}"/>             		
-        <unzip src="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package.pkg" dest="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
-        <echo message="Unzipping translated files into ${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package"/>
-        <unzip dest="${installDir}/docs/${localPluginDir}/nl/${lang}">
+        <unzip src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
+        <echo message="Unzipping translated files into ${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
+        <unzip dest="${installDir}/${PluginNameShort}/nl/${lang}">
             <patternset>
                 <include name="*.md"/>
                 <include name="images/*.*"/>
@@ -162,21 +169,21 @@
 				<include name="${subdirectory5}/*.md"/>
                 <include name="${subdirectory5}/images/*.*"/>
             </patternset>
-            <fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated">
+            <fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated">
                 <include name="**/*.zip"/>
             </fileset>
         </unzip>    
 		<if>
-		  <available file="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}" type="dir" />
+		  <available file="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}" type="dir" />
 		  <then>
-			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/" overwrite="true">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/${localPluginDir}/"/>
+			<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${localPluginDir}/"/>
 			</copy>
 		  </then>
 		  <else>
 			<echo message="Extra services directory does not exist. Good!" />
-			<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/" overwrite="true">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated/package/"/>
+			<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/"/>
 			</copy>
 		  </else>
 		</if>		
@@ -185,65 +192,65 @@
 	
  	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories1" if="subdirectory1">
-		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1} directory to ${installDir}/docs/${localPluginDir}/${subdirectory1}/nl/${lang}"/>
-		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory1}"/>
+		<echo message="Copying the ${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory1} directory to ${installDir}/${PluginNameShort}/${subdirectory1}/nl/${lang}"/>
+		<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory1}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${PluginNameShort}/${subdirectory1}"/>
 			</copy>
-		<copy todir="${localPluginDir}/${subdirectory1}/nl/${lang}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory1}"/>
+		<copy todir="${PluginNameShort}/${subdirectory1}/nl/${lang}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory1}"/>
 		</copy>
 	</target>
 	
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories2" if="subdirectory2">
-		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2} directory to ${installDir}/docs/${localPluginDir}/${subdirectory2}/nl/${lang}"/>
-		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory2}"/>
+		<echo message="Copying the ${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory2} directory to ${installDir}/${PluginNameShort}/${subdirectory2}/nl/${lang}"/>
+		<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory2}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${PluginNameShort}/${subdirectory2}"/>
 			</copy>
-		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory2}/nl/${lang}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory2}"/>
+		<copy todir="${installDir}/${PluginNameShort}/${subdirectory2}/nl/${lang}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory2}"/>
 		</copy>
 	</target>
 
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories3" if="subdirectory3">
-		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3} directory to ${installDir}/docs/${localPluginDir}/${subdirectory3}/nl/${lang}"/>
-		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory3}"/>
+		<echo message="Copying the ${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory3} directory to ${installDir}/${PluginNameShort}/${subdirectory3}/nl/${lang}"/>
+		<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory3}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${PluginNameShort}/${subdirectory3}"/>
 			</copy>
-		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory3}/nl/${lang}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory3}"/>
+		<copy todir="${installDir}/${PluginNameShort}/${subdirectory3}/nl/${lang}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory3}"/>
 		</copy>
 	</target> 	
 	
 	<!-- Copy the subdirectory package to its rightful place --> 		
 	<target name="rearrange_directories4" if="subdirectory4">
-		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4} directory to ${installDir}/docs/${localPluginDir}/${subdirectory4}/nl/${lang}"/>
-		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory4}"/>
+		<echo message="Copying the ${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory4} directory to ${installDir}/${PluginNameShort}/${subdirectory4}/nl/${lang}"/>
+		<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory4}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${PluginNameShort}/${subdirectory4}"/>
 			</copy>
-		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory4}/nl/${lang}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory4}"/>
+		<copy todir="${installDir}/${PluginNameShort}/${subdirectory4}/nl/${lang}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory4}"/>
 		</copy>
 	</target>
 	
 	<!-- Copy the subdirectory package to its rightful place --> 	
 	<target name="rearrange_directories5" if="subdirectory5">
-		<echo message="Copying the ${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5} directory to ${installDir}/docs/${localPluginDir}/${subdirectory5}/nl/${lang}"/>
-		<copy todir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${localPluginDir}/${subdirectory5}"/>
+		<echo message="Copying the ${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory5} directory to ${installDir}/${PluginNameShort}/${subdirectory5}/nl/${lang}"/>
+		<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory5}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${PluginNameShort}/${subdirectory5}"/>
 			</copy>
-		<copy todir="${installDir}/docs/${localPluginDir}/${subdirectory5}/nl/${lang}">
-			<fileset dir="${installDir}/docs/${localPluginDir}/nl/${lang}/${subdirectory5}"/>
+		<copy todir="${installDir}/${PluginNameShort}/${subdirectory5}/nl/${lang}">
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/${subdirectory5}"/>
 		</copy>
 	</target>
 
 	<!-- Delete the translated directory where the package was downloaded --> 	
 	<target name="delete_local_directories" >
-        <delete dir="${installDir}/docs/${localPluginDir}/nl/${lang}/translated"/>
+        <delete dir="${installDir}/${PluginNameShort}/nl/${lang}/translated"/>
 			<!-- Will have to add each major directory here: services, mobile, whatever -->
-		<delete dir="${installDir}/docs/${localPluginDir}/nl/${lang}/services"/>
-		<delete file="${installDir}/docs/${localPluginDir}/nl/${lang}/.pkgInfo.tpt"/>
+		<delete dir="${installDir}//${PluginNameShort}/nl/${lang}/services"/>
+		<delete file="${installDir}/${PluginNameShort}/nl/${lang}/.pkgInfo.tpt"/>
 	</target>
 
 	<!-- ######################################################## DEFAULT TARGET ######################################################################### -->
@@ -253,7 +260,7 @@
 		   
 	       <echo message="*****************************************" />
 	       <echo message="Language: ${lang}"/>
-           <echo message="Directory: ${installDir}/docs/${localPluginDir}" />	
+           <echo message="Directory: ${installDir}/${PluginNameShort}" />	
 		   <echo message="Shipment Number: ${shipmentNumber}" />
 		   <echo message="Check in comment: ${checkInComment}" />
 		   <echo message="*****************************************" />
