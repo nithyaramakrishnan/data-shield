@@ -10,7 +10,7 @@ SET PluginNameShort=%localPluginDir:services\=%
 ECHO %PluginNameShort%
 
 CD %installDir%
-RD /S /Q !PluginNameShort!
+RD /S /Q %PluginNameShort%
 
 CD "C:\Program Files\Git\cmd"
 GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
