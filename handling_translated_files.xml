@@ -177,7 +177,7 @@
 		  <available file="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}" type="dir" />
 		  <then>
 			<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
-			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${localPluginDir}/"/>
+			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}/"/>
 			</copy>
 		  </then>
 		  <else>
@@ -254,7 +254,7 @@
 	</target>
 
 	<!-- ######################################################## DEFAULT TARGET ######################################################################### -->
-   <target name="processTranslation" depends="getGSAuser, getGSApassword, getPkgURL, getGithubUser, getGithubPassword, getLang, getInstallDir, getLogFileLocation, getShipmentNumber, getLocalPluginDir, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
+   <target name="processTranslation" depends="getGSAuser, getGSApassword, getPkgURL, getGithubUser, getGithubPassword, getLang, getInstallDir, getLogFileLocation, getShipmentNumber, getLocalPluginDir, getPluginNameShort, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
   
           
 		   
