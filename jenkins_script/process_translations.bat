@@ -6,11 +6,14 @@ ssh-agent
 ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
 ssh -vT git@github.com
 
-CD "C:\Program Files\Git\cmd"
-GIT ls-remote git@github.com:IBM-Bluemix/docs.git HEAD
-GIT init %installDir%/docs
+SET PluginNameShort=%localPluginDir:services\=%
+ECHO %PluginNameShort%
 
-CD %installDir%/docs
+CD "C:\Program Files\Git\cmd"
+GIT ls-remote git@github.com:IBM-Bluemix-Docs/%PluginNameShort%.git HEAD
+GIT init %installDir%/%PluginNameShort%
+
+CD %installDir%/%PluginNameShort%
 GIT fetch origin
 GIT reset --hard origin/master
 GIT checkout master
@@ -47,7 +50,7 @@ REM zh/TW
 CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -DshipmentNumber=%shipmentNumber% -DlocalPluginDir=%localPluginDir% -DinstallDir=%installDir% -DcheckInComment="%checkInComment%" -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/%projectCode%/%chargetoID%/%chargetoID%_%shipmentName%_%shipmentNumber%_zh-Hant%packageExtension%
 
 
-CD %installDir%/docs
+CD %installDir%/%PluginNameShort%
 
 ECHO GIT pull
 GIT pull origin master
