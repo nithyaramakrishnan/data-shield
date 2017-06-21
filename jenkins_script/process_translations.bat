@@ -1,16 +1,16 @@
-CD "C:\Program Files\Git\usr\bin"
+REM CD "C:\Program Files\Git\usr\bin"
 REM CD "C:\Program Files\Git\cmd\"
-exec ssh-agent bash
-eval ssh-agent -s
-ssh-agent 
-ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
-ssh -vT git@github.com
+REM exec ssh-agent bash
+REM eval ssh-agent -s
+REM ssh-agent 
+REM ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
+REM ssh -vT git@github.com
 
 SET PluginNameShort=%localPluginDir:services\=%
 ECHO %PluginNameShort%
 
 CD "C:\Program Files\Git\cmd"
-GIT ls-remote https://github.com:IBM-Bluemix-Docs/%PluginNameShort%.git HEAD
+GIT clone https://github.com:IBM-Bluemix-Docs/%PluginNameShort%.git HEAD
 GIT init %installDir%/%PluginNameShort%
 
 CD %installDir%/%PluginNameShort%
