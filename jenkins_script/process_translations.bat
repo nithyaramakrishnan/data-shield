@@ -13,7 +13,7 @@ CD %installDir%
 RD /S /Q %PluginNameShort%
 
 CD "C:\Program Files\Git\cmd"
-GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
 GIT init %installDir%/%PluginNameShort%
 
 CD %installDir%/%PluginNameShort%
