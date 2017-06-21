@@ -14,10 +14,10 @@ GIT clone https://github.com:IBM-Bluemix-Docs/%PluginNameShort%.git
 GIT init %installDir%/%PluginNameShort%
 
 CD %installDir%/%PluginNameShort%
-GIT fetch origin
-GIT reset --hard origin/master
-GIT checkout master
-GIT pull
+REM GIT fetch origin
+REM GIT reset --hard origin/master
+REM GIT checkout master
+REM GIT pull
 
 CD %installDir%
 
