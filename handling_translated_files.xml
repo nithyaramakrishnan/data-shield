@@ -157,17 +157,23 @@
         <unzip dest="${installDir}/${PluginNameShort}/nl/${lang}">
             <patternset>
                 <include name="*.md"/>
-                <include name="images/*.*"/>
-				<include name="${subdirectory1}/*.md"/>
-                <include name="${subdirectory1}/images/*.*"/>
-				<include name="${subdirectory2}/*.md"/>
-                <include name="${subdirectory2}/images/*.*"/>
-				<include name="${subdirectory3}/*.md"/>
-                <include name="${subdirectory3}/images/*.*"/>
-				<include name="${subdirectory4}/*.md"/>
-                <include name="${subdirectory4}/images/*.*"/>
-				<include name="${subdirectory5}/*.md"/>
-                <include name="${subdirectory5}/images/*.*"/>
+			<include name="toc.xml"/>
+               		<include name="images/*.*"/>
+		<include name="${subdirectory1}/*.md"/>
+		    	<include name="${subdirectory1}/toc.xml"/>
+                	<include name="${subdirectory1}/images/*.*"/>
+		<include name="${subdirectory2}/*.md"/>
+		    	<include name="${subdirectory2}/toc.xml"/>
+                	<include name="${subdirectory2}/images/*.*"/>
+		<include name="${subdirectory3}/*.md"/>
+		    	<include name="${subdirectory3}/toc.xml"/>
+                	<include name="${subdirectory3}/images/*.*"/>
+		<include name="${subdirectory4}/*.md"/>
+		    	<include name="${subdirectory4}/toc.xml"/>
+                	<include name="${subdirectory4}/images/*.*"/>
+		<include name="${subdirectory5}/*.md"/>
+		    	<include name="${subdirectory5}/toc.xml"/>
+                	<include name="${subdirectory5}/images/*.*"/>
             </patternset>
             <fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated">
                 <include name="**/*.zip"/>
