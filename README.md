@@ -9,11 +9,8 @@ Note: The scripts in this repository are available to use as is and were origina
 ## Prerequisites:
 
 1. Git must be installed.
-2. A Java Runtime Environment must be installed.
-3. Ant must be installed.
-
-    Remember when installing open source software, you must always use the IBM approved version of the product. You can find the IBM version of ANT and JAVA [here](https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/Wae20f867b263_4104_a617_15981cf26055/page/Current%20Listing%20of%20G2O%20Software).
-
+2. [A Java Runtime Environment must be installed](https://www.ibm.com/developerworks/java/jdk/).
+3. [Ant must be installed](https://w3-03.sso.ibm.com/services/practitionerportal/assethub/services/core/display/sgredirect?assetid={6F292C71-CC83-0926-54B0-48D6CBB89EB5}&source=iRAM_REDIRECT).
 4. Your environment variables must be set. If you're working in windows, edit and run the following commands, one at a time, to set your variables.
 
   ```
