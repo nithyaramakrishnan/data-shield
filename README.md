@@ -46,7 +46,7 @@ Note: The scripts in this repository are available to use as is and were origina
   - githubUserID
   - githubPassword
   - installDir
-3. Save your changes.
+4. Save your changes.
 
 ADVISORY: As these files contain your username and password, do not share the edited version of your files. If you do choose to share them, be sure to remove your password first.
 
