@@ -28,7 +28,8 @@ Note: The scripts in this repository are available to use as is and were origina
 ## Script set up:
 
 1. Edit the `paremeters.bat` file with the information listed below. You must specify the values for each variable after the equals sign (=). If you want to upload translation returns for multiple services, duplicate the `parameters.bat` file and update the variables for each service. Name the file `parameters_<service>.bat`.
-        Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, or a similar text editor.
+        
+     Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, Atom, or a similar text editor.
   - logFileLocation
   - localPluginDir
   - Full Charge to ID 
