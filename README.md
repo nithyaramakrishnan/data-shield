@@ -27,7 +27,7 @@ Note: The scripts in this repository are available to use as is and were origina
 
 ## Script set up:
 
-1. Edit the `paremeters.bat` file with the information listed below. You must specify the values for each variable after the equals sign (=).
+1. Edit the `paremeters.bat` file with the information listed below. You must specify the values for each variable after the equals sign (=). If you want to upload translation returns for multiple services, duplicate the `parameters.bat` file and update the variables for each service. Name the file `parameters_<service>.bat`.
         Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, or a similar text editor.
   - logFileLocation
   - localPluginDir
@@ -46,8 +46,6 @@ Note: The scripts in this repository are available to use as is and were origina
   - githubPassword
   - installDir
 3. Save your changes.
-
-NOTE: If you want to upload translation returns for multiple services, duplicate the `parameters.bat` file and update the variables for each service. Name the file `parameters_<service>.bat`.
 
 ADVISORY: As these files contain your username and password, do not share the edited version of your files. If you do choose to share them, be sure to remove your password first.
 
