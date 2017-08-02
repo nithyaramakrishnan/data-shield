@@ -52,9 +52,9 @@ ADVISORY: As these files contain your username and password, do not share the ed
 
 ## Running the script:
 
-2. Double-click the `process_translations.bat` file to run the script.
-3. To be sure that the script is running properly, check the logs in the `transationlogs` folder. The timestamp and size of the log files will indicate which files are being built.
-4. Once the builds finish, open your log files and scroll to the bottom. You should see a message that says **Build successful**. If your build has failed, check the log to fix any issues and run the build again.
-5. Verify in Github that all of the files have been updated.
-6. Request a production NLV build to complete the process.
+1. Double-click the `process_translations.bat` file to run the script.
+2. To be sure that the script is running properly, check the logs in the `transationlogs` folder. The timestamp and size of the log files will indicate which files are being built.
+3. Once the builds finish, open your log files and scroll to the bottom. You should see a message that says **Build successful**. If your build has failed, check the log to fix any issues and run the build again.
+4. Verify in Github that all of the files have been updated.
+5. Request a production NLV build to complete the process.
 
