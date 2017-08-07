@@ -57,7 +57,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 CD %installDir%/%PluginNameShort%
 
 ECHO GIT pull
-GIT pull
+GIT pull https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
 
 ECHO GIT add --all
 GIT add --all
@@ -69,4 +69,4 @@ ECHO GIT commit
 GIT commit -m "%checkInComment%"
 
 ECHO GIT push
-GIT push
+GIT push https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
