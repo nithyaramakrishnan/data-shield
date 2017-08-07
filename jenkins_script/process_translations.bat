@@ -9,15 +9,16 @@ REM ssh -vT git@github.com
 SET PluginNameShort=%localPluginDir:services\=%
 ECHO %PluginNameShort%
 
-CD %installDir%
-RD /S /Q %PluginNameShort%
+REM CD %installDir%
+REM RD /S /Q %PluginNameShort%
 
-CD "C:\Program Files\Git\cmd"
+REM CD "C:\Program Files\Git\cmd"
 REM GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
 REM GIT init %installDir%/%PluginNameShort%
-GIT remote
+
 
 CD %installDir%/%PluginNameShort%
+GIT remote
 REM GIT fetch origin
 REM GIT reset --hard origin/master
 REM GIT checkout master
