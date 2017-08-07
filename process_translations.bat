@@ -124,9 +124,11 @@ GIT commit -m !checkInComment!
 ECHO GIT merge
 GIT merge
 
-ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
-GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+ECHO GIT remote add
+GIT remote add schematics https://github.com/IBM-Bluemix-Docs/schematics.git
 
+ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT push schematics
 ENDLOCAL
 
 )
