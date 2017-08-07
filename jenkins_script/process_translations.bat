@@ -73,6 +73,6 @@ ECHO GIT commit
 GIT commit -m "%checkInComment%"
 
 ECHO GIT push
-GIT push
+GIT push origin
 REM git push --set-upstream https://github.com/IBM-Bluemix-Docs/schematics.git master
 REM git push https://alchemyDocs:Alchemy3Bluemix!@github.com/IBM-Bluemix-Docs/schematics.git --all
