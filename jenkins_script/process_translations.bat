@@ -56,7 +56,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 CD %installDir%/%PluginNameShort%
 
 ECHO GIT pull
-GIT pull
+GIT pull origin
 
 ECHO GIT add --all
 GIT add --all
