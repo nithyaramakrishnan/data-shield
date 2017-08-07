@@ -125,7 +125,7 @@ ECHO GIT merge
 GIT merge
 
 ECHO GIT push
-GIT push
+GIT push origin HEAD
 
 ENDLOCAL
 
