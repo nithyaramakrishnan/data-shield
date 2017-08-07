@@ -109,7 +109,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%\docs
 
-ECHO GIT pull 
+ECHO GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 ECHO GIT add --all
@@ -124,7 +124,7 @@ GIT commit -m !checkInComment!
 ECHO GIT merge
 GIT merge
 
-ECHO GIT push 
+ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 ENDLOCAL
