@@ -58,7 +58,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 CD %installDir%/%PluginNameShort%
 
 ECHO GIT remote
-git remote add origin https://github.com/IBM-Bluemix-Docs/schematics.git
+REM git remote add origin https://github.com/IBM-Bluemix-Docs/schematics.git
 
 ECHO GIT pull
 GIT pull origin master
@@ -73,5 +73,6 @@ ECHO GIT commit
 GIT commit -m "%checkInComment%"
 
 ECHO GIT push
+GIT push
 REM git push --set-upstream https://github.com/IBM-Bluemix-Docs/schematics.git master
 REM git push https://alchemyDocs:Alchemy3Bluemix!@github.com/IBM-Bluemix-Docs/schematics.git --all
