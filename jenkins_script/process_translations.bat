@@ -15,6 +15,7 @@ RD /S /Q %PluginNameShort%
 CD "C:\Program Files\Git\cmd"
 GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
 GIT init %installDir%/%PluginNameShort%
+GIT remote
 
 CD %installDir%/%PluginNameShort%
 REM GIT fetch origin
@@ -56,7 +57,7 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 CD %installDir%/%PluginNameShort%
 
 ECHO GIT pull
-#GIT pull
+GIT pull
 
 ECHO GIT add --all
 GIT add --all
