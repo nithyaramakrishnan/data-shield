@@ -14,7 +14,7 @@ RD /S /Q %PluginNameShort%
 
 CD "C:\Program Files\Git\cmd"
 REM GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
-GIT init %installDir%/%PluginNameShort%
+REM GIT init %installDir%/%PluginNameShort%
 GIT remote
 
 CD %installDir%/%PluginNameShort%
@@ -73,4 +73,4 @@ GIT commit -m "%checkInComment%"
 
 ECHO GIT push
 REM git push --set-upstream https://github.com/IBM-Bluemix-Docs/schematics.git master
-git push https://alchemyDocs:Alchemy3Bluemix!@github.com/IBM-Bluemix-Docs/schematics.git --all
+REM git push https://alchemyDocs:Alchemy3Bluemix!@github.com/IBM-Bluemix-Docs/schematics.git --all
