@@ -2,7 +2,7 @@ CALL user_config.bat
 
 REM For every parameters file that there is in this directory, run the translation processing script for each of them. 
 
-CD %installDir%
+CD "%installDir%"
 
 FOR %%G IN ("parameters*.bat") DO (
 
@@ -17,7 +17,7 @@ ECHO !PluginNameShort!
 
 RD /S /Q !PluginNameShort!
 
-GIT clone https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT clone https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 GIT init
 CD !PluginNameShort!
@@ -79,38 +79,40 @@ IF NOT DEFINED subdirectory5 (
 REM Create the translationlogs directory if it doesn't already exist
 IF NOT EXIST "!logFileLocation!" MKDIR "!logFileLocation!"
 
+CD "%installDir%"
+
 REM Run the script on each language.
 REM de
-CALL ant -f handling_translated_files.xml -Dlang=de -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_de!packageExtension! > !logFileLocation!\de.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=de -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_de!packageExtension! > "!logFileLocation!\de.log"
 
 REM es
-CALL ant -f handling_translated_files.xml -Dlang=es -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_es!packageExtension! > !logFileLocation!\es.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=es -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_es!packageExtension! > "!logFileLocation!\es.log"
 
 REM fr
-CALL ant -f handling_translated_files.xml -Dlang=fr -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_fr!packageExtension! > !logFileLocation!\fr.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=fr -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_fr!packageExtension! > "!logFileLocation!\fr.log"
 
 REM it	
-CALL ant -f handling_translated_files.xml -Dlang=it -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_it!packageExtension! > !logFileLocation!\it.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=it -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_it!packageExtension! > "!logFileLocation!\it.log"
 
 REM ja
-CALL ant -f handling_translated_files.xml -Dlang=ja -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_ja!packageExtension! > !logFileLocation!\ja.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=ja -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_ja!packageExtension! > "!logFileLocation!\ja.log"
 
 REM KO
-CALL ant -f handling_translated_files.xml -Dlang=ko -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_ko!packageExtension! > !logFileLocation!\ko.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=ko -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_ko!packageExtension! > "!logFileLocation!\ko.log"
 
 REM PT/BR
-CALL ant -f handling_translated_files.xml -Dlang=pt/BR -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_pt-BR!packageExtension! > !logFileLocation!\pt_br.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=pt/BR -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_pt-BR!packageExtension! > "!logFileLocation!\pt_br.log"
 
 REM zh/CN
-CALL ant -f handling_translated_files.xml -Dlang=zh/CN -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_zh-Hans!packageExtension! > !logFileLocation!\zh_cn.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=zh/CN -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_zh-Hans!packageExtension! > "!logFileLocation!\zh_cn.log"
 
 REM zh/TW
-CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation=!logFileLocation! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=%PluginNameShort% -DinstallDir=%installDir% -DcheckInComment=!checkInComment! -Dgsa.userid=%gsaUserID% -Dgsa.password=%gsaUserPassword% -Dgithub.userid=%githubUserID% -Dgithub.password=%githubPassword% -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_zh-Hant!packageExtension! > !logFileLocation!\zh_tw.log
+CALL ant -f "!installDir!/handling_translated_files.xml" -Dlang=zh/TW -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlogFileLocation="!logFileLocation!" -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir="!installDir!" -DcheckInComment=!checkInComment! -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dgithub.userid=!githubUserID! -Dgithub.password=!githubPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_zh-Hant!packageExtension! > "!logFileLocation!\zh_tw.log"
 
-CD %installDir%\docs
+CD "!installDir!\!PluginNameShort!"
 
-ECHO GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
-GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+ECHO GIT pull https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT pull https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 ECHO GIT add --all
 GIT add --all
@@ -125,14 +127,14 @@ ECHO GIT merge
 GIT merge
 
 ECHO GIT remote add
-GIT remote add schematics https://github.com/IBM-Bluemix-Docs/schematics.git
+GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
-ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
-GIT push schematics
+ECHO GIT push https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT push !PluginNameShort!
 ENDLOCAL
 
 )
 
-CD ..
+CD "!installDir!"
 
-RD /S /Q !PluginNameShort!
+RD /S /Q "!installDir!\!PluginNameShort!"
