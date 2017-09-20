@@ -27,7 +27,7 @@ SET checkInComment="Automated translation check-in %chargetoID% %shipmentNumber%
 
 REM Enter your project code. Example: BM110
 REM SET projectCode=BM110
-SET projectCode=BM110
+SET projectCode=BM120
 
 REM Enter your shipment name. Example: CD_DOC_Ship
 REM SET shipmentName=CD_DOC_Ship
