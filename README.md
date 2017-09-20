@@ -39,7 +39,7 @@ Note: The scripts in this repository are available to use as is and were origina
   - Shipment name
   - Sudirectories that contain markdown files that also must be checked in and built outside of the service's directory. Generally, this will probably only apply to Containers and VMs.
 2. Save your changes.
-3. Edit the `user_config.bat' file with the information listed below. You must specify the values for each variable after the equals sign (=).
+3. Edit the `user_config.bat` file with the information listed below. You must specify the values for each variable after the equals sign (=).
         Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, or a similar text editor.
   - gsaUserID
   - gsaUserPassword
