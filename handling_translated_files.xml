@@ -11,7 +11,15 @@
         <input message="Enter pkg.url"   addproperty="pkg.url" />
 		<echo message="pkg.url # is [${pkg.url}]"/>        
     </target>
-    <target name="getGSAuser" unless="gsa.userid">
+   
+	<!-- Get package extension -->
+    <target name="getPkgExtension" unless="pkg.extension">
+        <input message="Enter pkg.extension"   addproperty="pkg.extension" />
+		<echo message="pkg.extension # is [${packageExtension}]"/>        
+    </target>
+	
+	<!-- Get the GSA userID -->
+	<target name="getGSAuser" unless="gsa.userid">
         <input message="Enter GSA userid"   addproperty="gsa.userid" />
 		<echo message="GSA userid # is [${gsa.userid}]"/>        
     </target>
@@ -142,10 +150,10 @@
 		<echo message="localPluginDir   ${installDir}/${PluginNameShort}" />	
 		<mkdir dir="${installDir}/${PluginNameShort}/nl/${lang}/translated"/>
             <property name="langToMatch"  value="${lang}"/>
-            <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${pkg.url}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
+            <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${packageExtension}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
-			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${pkg.url}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
+			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
@@ -260,7 +268,7 @@
 	</target>
 
 	<!-- ######################################################## DEFAULT TARGET ######################################################################### -->
-   <target name="processTranslation" depends="getGSAuser, getGSApassword, getPkgURL, getGithubUser, getGithubPassword, getLang, getInstallDir, getLogFileLocation, getShipmentNumber, getLocalPluginDir, getPluginNameShort, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
+   <target name="processTranslation" depends="getGSAuser, getGSApassword, getPkgURL, getPkgExtension, getGithubUser, getGithubPassword, getLang, getInstallDir, getLogFileLocation, getShipmentNumber, getLocalPluginDir, getPluginNameShort, getCheckInComment" unless="getSubdirectory1, getSubdirectory2, getSubdirectory3, getSubdirectory4, getSubdirectory5">  
   
           
 		   
