@@ -76,6 +76,9 @@ IF NOT DEFINED subdirectory5 (
 			)
 
 
+ECHO "See logs directory for the progress of each language:"
+ECHO "!logFileLocation!"
+
 REM Create the translationlogs directory if it doesn't already exist
 IF NOT EXIST "!logFileLocation!" MKDIR "!logFileLocation!"
 
