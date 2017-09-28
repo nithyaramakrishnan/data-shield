@@ -14,7 +14,7 @@
    
 	<!-- Get package extension -->
     <target name="getPkgExtension" unless="pkg.extension">
-        <input message="Enter pkg.extension"   addproperty="pkg.extension" />
+        <input message="Enter pkg.extension"   addproperty="packageExtension" />
 		<echo message="pkg.extension # is [${packageExtension}]"/>        
     </target>
 	
