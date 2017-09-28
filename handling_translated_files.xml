@@ -160,7 +160,7 @@
  	<!-- Extract the downloaded package --> 	
     <target name="unpack_package" >
         <echo message="${lang}"/>             		
-        <unzip src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
+        <unzip src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
         <echo message="Unzipping translated files into ${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
         <unzip dest="${installDir}/${PluginNameShort}/nl/${lang}">
             <patternset>
