@@ -150,10 +150,10 @@
 		<echo message="localPluginDir   ${installDir}/${PluginNameShort}" />	
 		<mkdir dir="${installDir}/${PluginNameShort}/nl/${lang}/translated"/>
             <property name="langToMatch"  value="${lang}"/>
-            <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${packageExtension}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
+            <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
-			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
+			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
