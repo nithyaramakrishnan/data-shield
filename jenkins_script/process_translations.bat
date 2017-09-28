@@ -41,7 +41,7 @@ CD %installDir%/%PluginNameShort%
 
 
 ECHO GIT pull
-GIT pull origin master
+GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
 
 ECHO GIT add --all
 GIT add --all
@@ -52,8 +52,8 @@ GIT status
 ECHO GIT commit
 GIT commit -m "%checkInComment%"
 
-ECHO GIT push
-GIT push origin master
+ECHO GIT merge
+GIT merge
 
 ECHO GIT remote add
 GIT remote add %PluginNameShort% https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
