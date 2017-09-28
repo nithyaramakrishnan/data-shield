@@ -153,14 +153,14 @@
             <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
-			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.pkg"/>
+			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.zip"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
  	<!-- Extract the downloaded package --> 	
     <target name="unpack_package" >
         <echo message="${lang}"/>             		
-        <unzip src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
+        <unzip src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.zip" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
         <echo message="Unzipping translated files into ${installDir}/${PluginNameShort}/nl/${lang}/translated/package"/>
         <unzip dest="${installDir}/${PluginNameShort}/nl/${lang}">
             <patternset>
