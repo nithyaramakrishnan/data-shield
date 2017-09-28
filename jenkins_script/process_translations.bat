@@ -1,9 +1,13 @@
 SET PluginNameShort=%localPluginDir:services\=%
 ECHO %PluginNameShort%
 
-CD %installDir%/%PluginNameShort%
-GIT remote
-GIT checkout master
+RD /S /Q %PluginNameShort%
+
+GIT clone https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+
+GIT init
+CD %PluginNameShort%
+GIT init
 
 
 CD %installDir%
