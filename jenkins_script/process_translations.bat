@@ -1,28 +1,10 @@
-REM CD "C:\Program Files\Git\usr\bin"
-REM CD "C:\Program Files\Git\cmd\"
-REM exec ssh-agent bash
-REM eval ssh-agent -s
-REM ssh-agent 
-REM ssh-add /c/Users/ibmadmin/.ssh/id_rsa_cfsdocs
-REM ssh -vT git@github.com
-
 SET PluginNameShort=%localPluginDir:services\=%
 ECHO %PluginNameShort%
 
-REM CD %installDir%
-REM RD /S /Q %PluginNameShort%
-
-REM CD "C:\Program Files\Git\cmd"
-REM GIT clone https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git %installDir%/%PluginNameShort%
-REM GIT init %installDir%/%PluginNameShort%
-
-
 CD %installDir%/%PluginNameShort%
 GIT remote
-REM GIT fetch origin
-REM GIT reset --hard origin/master
 GIT checkout master
-REM GIT pull
+
 
 CD %installDir%
 
@@ -57,8 +39,6 @@ CALL ant -f handling_translated_files.xml -Dlang=zh/TW -DnoPrompt=true -Dshipmen
 
 CD %installDir%/%PluginNameShort%
 
-ECHO GIT remote
-REM git remote add origin https://github.com/IBM-Bluemix-Docs/schematics.git
 
 ECHO GIT pull
 GIT pull origin master
@@ -74,5 +54,9 @@ GIT commit -m "%checkInComment%"
 
 ECHO GIT push
 GIT push origin master
-REM git push --set-upstream https://github.com/IBM-Bluemix-Docs/schematics.git master
-REM git push https://alchemyDocs:Alchemy3Bluemix!@github.com/IBM-Bluemix-Docs/schematics.git --all
+
+ECHO GIT remote add
+GIT remote add %PluginNameShort% https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+
+ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+GIT push %PluginNameShort%
