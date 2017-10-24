@@ -9,19 +9,19 @@ Note: The scripts in this repository are available to use as is and were origina
 ## Prerequisites:
 
 1. Git must be installed.
-2. Windows only: [A Java Runtime Environment must be installed](https://www.ibm.com/developerworks/java/jdk/).
-3. Windows only: [Ant must be installed](https://w3-03.sso.ibm.com/services/practitionerportal/assethub/services/core/display/sgredirect?assetid={6F292C71-CC83-0926-54B0-48D6CBB89EB5}&source=iRAM_REDIRECT).
-4. Windows only: Set the following environment variables must be set. Edit and run the following commands, one at a time, to set your variables.
-
-  ```
-  set JAVA_HOME=your java directory
-  ```
-  ```
-  set ANT_HOME=the directory where you extracted Ant
-  ```
-  ```
-  set PATH=%ANT_HOME%\bin;%JAVA_HOME%\bin
-  ```
+2. Windows only: 
+   - [A Java Runtime Environment must be installed](https://www.ibm.com/developerworks/java/jdk/).
+   - [Ant must be installed](https://w3-03.sso.ibm.com/services/practitionerportal/assethub/services/core/display/sgredirect?assetid={6F292C71-CC83-0926-54B0-48D6CBB89EB5}&source=iRAM_REDIRECT).
+   - Set the following environment variables must be set. Edit and run the following commands, one at a time, to set your variables.
+     ```
+     set JAVA_HOME=your java directory
+     ```
+     ```
+     set ANT_HOME=the directory where you extracted Ant
+     ```
+     ```
+     set PATH=%ANT_HOME%\bin;%JAVA_HOME%\bin
+     ```
 
 ## Directory set up:
 
@@ -33,22 +33,22 @@ Note: The scripts in this repository are available to use as is and were origina
 1. Edit the `paremeters.bat` (Windows) or `parameters.command` (Macs) file with the information listed below. You must specify the values for each variable after the equals sign (=). If you want to upload translation returns for multiple services, duplicate the `parameters.bat` file and update the variables for each service. Name the file `parameters_<service>.bat` or `parameters_<service>.command`.
         
      Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, Atom, or a similar text editor.
-  - logFileLocation
-  - localPluginDir
-  - Full Charge to ID 
-  - Shipment number (this can be found in the returned emails)
-  - Github commit comment
-  - GSA password
-  - Shipment name
-  - Sudirectories that contain markdown files that also must be checked in and built outside of the service's directory. Generally, this will probably only apply to Containers and VMs.
+   - logFileLocation
+   - localPluginDir
+   - Full Charge to ID 
+   - Shipment number (this can be found in the returned emails)
+   - Github commit comment
+   - GSA password
+   - Shipment name
+   - Sudirectories that contain markdown files that also must be checked in and built outside of the service's directory. Generally, this will probably only apply to Containers and VMs.
 2. Save your changes.
 3. Edit the `user_config.bat` or `user_config.command` file with the information listed below. You must specify the values for each variable after the equals sign (=).
         Tip: Do not use Notepad to edit this file as it will ignore line breaks. Use Wordpad, Notepad++, or a similar text editor.
-  - gsaUserID
-  - gsaUserPassword
-  - githubUserID
-  - githubPassword
-  - installDir
+   - gsaUserID
+   - gsaUserPassword
+   - githubUserID
+   - githubPassword
+   - installDir
 4. Save your changes.
 
 ADVISORY: As these files contain your username and password, do not share the edited version of your files. If you do choose to share them, be sure to remove your password first.
