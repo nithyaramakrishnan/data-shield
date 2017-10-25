@@ -79,9 +79,11 @@ do
 		 
 		#Copy the new translated files 
 		#mkdir "$installDir/$PluginNameShort/nl/$langDir"
-		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" "$installDir/$PluginNameShort/nl/$langDir"
-		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package" ] ; then
+		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir"
+		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" "$installDir/$PluginNameShort/nl/$langDir"
+		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
 			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" "$installDir/$PluginNameShort/nl/$langDir"
 		else
 			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/" "$installDir/$PluginNameShort/nl/$langDir"
