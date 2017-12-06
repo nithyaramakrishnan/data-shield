@@ -10,10 +10,10 @@ do
 	source $f
 	
 	#Get the short name for the repo
-	export PluginNameShort=${localPluginDir//services//}
-	export PluginNameShort=${localPluginDir//runtimes//}
-	export PluginNameShort=${localPluginDir//starters//}
-	export PluginNameShort=${localPluginDir//infrastructure//}
+	PluginNameShort=${localPluginDir//services\//}
+	PluginNameShort=${PluginNameShort//runtimes\//}
+	PluginNameShort=${PluginNameShort//starters\//}
+	PluginNameShort=${PluginNameShort//infrastructure\//}
 
 	echo "------------------------"
 	ECHO $PluginNameShort
