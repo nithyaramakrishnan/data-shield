@@ -47,17 +47,17 @@ do
 	do
 		echo "Language: $lang"
 		if [ "$lang" = "pt_br" ] ; then 
-			export langDownload=pt-BR
-			export langDir=pt/BR
+			langDownload=pt-BR
+			langDir=pt/BR
 		elif [ "$lang" = "zh_cn" ] ; then 
-			export langDownload=zh-Hans
-			export langDir=zh/CN
+			langDownload=zh-Hans
+			langDir=zh/CN
 		elif [ "$lang" = "zh_tw" ] ; then 
-			export langDownload=zh-Hant
-			export langDir=zh/TW
+			langDownload=zh-Hant
+			langDir=zh/TW
 		else
-			export langDownload=$lang
-			export langDir=$lang
+			langDownload=$lang
+			langDir=$lang
 		fi
 		
 		
@@ -82,18 +82,24 @@ do
 		unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 		 
 		#Delete the existing nl directory
-		rm -R "$installDir/$PluginNameShort/nl/$langDir/"
+		#rm -R "$installDir/$PluginNameShort/nl/$langDir/"
 		 
 		#Copy the new translated files 
-		#mkdir "$installDir/$PluginNameShort/nl/$langDir"
+		if [ "$lang" = "pt_br" ] ; then 
+			mkdir "$installDir/$PluginNameShort/nl/pt/"
+		elif [ "$lang" = "zh_cn" ] ; then 
+			mkdir "$installDir/$PluginNameShort/nl/zh/"
+		fi
+
+
 		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" "$installDir/$PluginNameShort/nl/$langDir"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
 			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" "$installDir/$PluginNameShort/nl/$langDir"
 		else
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/" "$installDir/$PluginNameShort/nl/$langDir"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/" "$installDir/$PluginNameShort/nl/$langDir/"
 		fi
      
 		#Clean up
