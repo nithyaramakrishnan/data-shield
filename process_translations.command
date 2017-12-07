@@ -60,10 +60,17 @@ do
 			export langDir=$lang
 		fi
 		
-		export pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
-		 
+		
+		#If the nl directories don't exist, create them 
+		if ! [ -d "$installDir/$PluginNameShort/nl/" ] ; then
+			echo "Creating $installDir/$PluginNameShort/nl/"
+			mkdir "$installDir/$PluginNameShort/nl/"
+		fi 
+
+		pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
 		 
 		echo "Start downloading $lang package....."
+		echo $pkgURL
 		mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 		cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
 		curl -O -u $gsaUserID:$gsaUserPassword $pkgURL 
