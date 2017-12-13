@@ -186,21 +186,32 @@
             <fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated">
                 <include name="**/*.zip"/>
             </fileset>
-        </unzip>    
-		<if>
-		  <available file="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}" type="dir" />
-		  <then>
-			<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
-			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}/"/>
-			</copy>
-		  </then>
-		  <else>
-			<echo message="Extra services directory does not exist. Good!" />
-			<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
-			<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/"/>
-			</copy>
-		  </else>
-		</if>		
+        </unzip> 
+
+			<if>
+			  <available file="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}" type="dir" />
+			  <then>
+				 <if>
+				<equals arg1="${mergeFiles}" arg2="true" />
+					 <then>
+						 <echo message="Merging files." />
+					 </then>
+					 <else>
+						 <echo message="Deleting old files." />
+						 <delete dir="${installDir}//${PluginNameShort}/nl/${lang}/"/>
+					 </else>
+				  </if>
+				<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+				<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}/"/>
+				</copy>
+			  </then>
+			  <else>
+				<echo message="Extra services directory does not exist. Good!" />
+				<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+				<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/"/>
+				</copy>
+			  </else>
+			</if>
 	</target>
 
 	
