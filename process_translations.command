@@ -1,3 +1,5 @@
+#! /bin/sh
+
 cd "`dirname "$0"`"
 source user_config.command
 
@@ -87,13 +89,13 @@ do
 
 	#Copy the new translated files 
 		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir/"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir/"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/*" "$installDir/$PluginNameShort/nl/$langDir"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
 		else
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/*" "$installDir/$PluginNameShort/nl/$langDir/"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		fi
      
 		#Clean up
