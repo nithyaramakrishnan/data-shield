@@ -198,7 +198,14 @@
 					 </then>
 					 <else>
 						 <echo message="Deleting old files." />
+						 <copy todir="${installDir}/${PluginNameShort}/nl/temp" overwrite="true">
+						<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/${PluginNameShort}/"/>
+						</copy>
 						 <delete dir="${installDir}//${PluginNameShort}/nl/${lang}/"/>
+						 <copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+						<fileset dir="${installDir}/${PluginNameShort}/nl/temp/"/>
+						</copy>
+						 <delete dir="${installDir}//${PluginNameShort}/nl/temp/"/>
 					 </else>
 				  </if>
 				<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
@@ -207,6 +214,23 @@
 			  </then>
 			  <else>
 				<echo message="Extra services directory does not exist. Good!" />
+				  <if>
+					<equals arg1="${mergeFiles}" arg2="true" />
+					 <then>
+						 <echo message="Merging files." />
+					 </then>
+					 <else>
+						 <echo message="Deleting old files." />
+						 <copy todir="${installDir}/${PluginNameShort}/nl/temp" overwrite="true">
+						<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/"/>
+						</copy>
+						 <delete dir="${installDir}//${PluginNameShort}/nl/${lang}/"/>
+						 <copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
+						<fileset dir="${installDir}/${PluginNameShort}/nl/temp/"/>
+						</copy>
+						 <delete dir="${installDir}//${PluginNameShort}/nl/temp/"/>
+					 </else>
+				  </if>
 				<copy todir="${installDir}/${PluginNameShort}/nl/${lang}/" overwrite="true">
 				<fileset dir="${installDir}/${PluginNameShort}/nl/${lang}/translated/package/"/>
 				</copy>
