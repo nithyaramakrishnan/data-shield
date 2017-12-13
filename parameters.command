@@ -27,6 +27,11 @@ export shipmentNumber=8
 export checkInComment="Automated translation check-in $chargetoID shipment $shipmentNumber"
 
 
+# Choose whether to merge the new files with the old ones (true) or completely delete the entire directory and copy the new files in (false). Example: true
+# export mergeFiles=true
+export mergeFiles=true
+
+
 # Enter your project code. Example: BM120
 # export projectCode=BM120
 export projectCode=BM120
