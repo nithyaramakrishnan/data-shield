@@ -124,16 +124,16 @@ ECHO GIT status
 GIT status
 
 ECHO GIT commit
-GIT commit -m !checkInComment!
+#GIT commit -m !checkInComment!
 
 ECHO GIT merge
-GIT merge
+#GIT merge
 
 ECHO GIT remote add
-GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+#GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 ECHO GIT push https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
-GIT push !PluginNameShort!
+#GIT push !PluginNameShort!
 ENDLOCAL
 
 )
