@@ -25,6 +25,10 @@ REM Enter a comment to include when the changes are checked in.
 REM SET checkInComment="Work item 87654: Translation returns for shipment 5 2016"
 SET checkInComment="Automated translation check-in %chargetoID% %shipmentNumber% %time%"
 
+REM Choose whether to merge the new files with the old ones (true) or completely delete the entire directory and copy the new files in (false). Example: true
+REM SET mergeFiles=true
+SET mergeFiles=true
+
 REM Enter your project code. Example: BM110
 REM SET projectCode=BM110
 SET projectCode=BM120
