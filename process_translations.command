@@ -31,14 +31,6 @@ do
 	GIT init
 
 
-	#ECHO "See logs directory for the progress of each language:"
-	#ECHO "$logFileLocation"
-	
-	#if [ ! -d "$logFileLocation" ] ; then 
-	#	# If it doesn't exist, create it
-	#	mkdir "$logFileLocation"
-	#fi
-
 	cd "$installDir"
 	
 	languages=( "de" "es" "fr" "it" "ja" "ko" "pt_br" "zh_cn" "zh_tw" )
@@ -66,6 +58,11 @@ do
 			echo "Creating $installDir/$PluginNameShort/nl/"
 			mkdir "$installDir/$PluginNameShort/nl/"
 		fi 
+		
+		if [[ "$mergeFiles" == "false" ]]; then
+			#Delete the existing nl directory
+			rm -R "$installDir/$PluginNameShort/nl/$langDir/"
+		fi
 
 		pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
 		 
@@ -80,26 +77,23 @@ do
 		 
 		#Extract the zip
 		unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
-		 
-		#Delete the existing nl directory
-		#rm -R "$installDir/$PluginNameShort/nl/$langDir/"
-		 
-		#Copy the new translated files 
+		
+	
 		if [ "$lang" = "pt_br" ] ; then 
 			mkdir "$installDir/$PluginNameShort/nl/pt/"
 		elif [ "$lang" = "zh_cn" ] ; then 
 			mkdir "$installDir/$PluginNameShort/nl/zh/"
 		fi
 
-
+	#Copy the new translated files 
 		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" "$installDir/$PluginNameShort/nl/$langDir/"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/*" "$installDir/$PluginNameShort/nl/$langDir/"
 		elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" "$installDir/$PluginNameShort/nl/$langDir"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/*" "$installDir/$PluginNameShort/nl/$langDir"
 		else
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/" "$installDir/$PluginNameShort/nl/$langDir/"
+			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/*" "$installDir/$PluginNameShort/nl/$langDir/"
 		fi
      
 		#Clean up
