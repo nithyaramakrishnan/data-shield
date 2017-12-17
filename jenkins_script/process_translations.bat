@@ -1,11 +1,21 @@
-SET PluginNameShort=%localPluginDir:services\=%
+
+
+CD "C:\Program Files (x86)\Jenkins\jobs\environment-variables\services\build_services"
+
+FOR %%M in ("*.bat") DO (
+CALL %%M
+SET PluginNameShort=%GITHUB_REPO%
+SET localPluginDir=%SERVICE_OUTPUT_DIR%
 ECHO %PluginNameShort%
+ECHO %localPluginDir%
+
+IF DEFINED CHARGEtoID (
 
 CD %installDir%
 
 RD /S /Q %PluginNameShort%
 
-GIT clone https://!githubUserID!:!githubPassword!@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+GIT clone https://%GITHUB_USERNAME%:%GITHUB_TOKEN%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
 
 GIT init
 CD %PluginNameShort%
@@ -47,7 +57,7 @@ CD %installDir%/%PluginNameShort%
 
 
 ECHO GIT pull
-GIT pull https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+GIT pull https://%GITHUB_USERNAME%:%GITHUB_TOKEN%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
 
 ECHO GIT add --all
 GIT add --all
@@ -55,14 +65,17 @@ GIT add --all
 ECHO GIT status
 GIT status
 
-ECHO GIT commit
-GIT commit -m "%checkInComment%"
+REM ECHO GIT commit
+REM GIT commit -m "%checkInComment%"
 
-ECHO GIT merge
-GIT merge
+REM ECHO GIT merge
+REM GIT merge
 
-ECHO GIT remote add
-GIT remote add %PluginNameShort% https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
+REM ECHO GIT remote add
+REM GIT remote add %PluginNameShort% https://github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
 
-ECHO GIT push https://%githubUserID%:%githubPassword%@github.com/IBM-Bluemix-Docs/%PluginNameShort%.git
-GIT push %PluginNameShort%
+REM ECHO GIT push %PluginNameShort%
+REM GIT push %PluginNameShort%
+
+SET CHARGEtoID=
+)
