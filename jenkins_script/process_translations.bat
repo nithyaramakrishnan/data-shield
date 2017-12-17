@@ -79,3 +79,4 @@ REM GIT push %PluginNameShort%
 
 SET CHARGEtoID=
 )
+)
