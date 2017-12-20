@@ -69,17 +69,17 @@ GIT add --all
 ECHO GIT status
 GIT status
 
-REM ECHO GIT commit
-REM GIT commit -m !checkInComment!
+ECHO GIT commit
+GIT commit -m !checkInComment!
 
-REM ECHO GIT merge
-REM GIT merge
+ECHO GIT merge
+GIT merge
 
-REM ECHO GIT remote add
-REM GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+ECHO GIT remote add
+GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
-REM ECHO GIT push !PluginNameShort!
-REM GIT push !PluginNameShort!
+ECHO GIT push !PluginNameShort!
+GIT push !PluginNameShort!
 
 SET CHARGEtoID=
 )
