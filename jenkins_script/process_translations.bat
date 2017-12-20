@@ -24,6 +24,10 @@ GIT init
 
 CD !installDir!
 
+ECHO "This is the command:"
+ECHO CALL ant -f handling_translated_files.xml -Dlang=de -DmergeFiles=!mergeFiles! -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir=!installDir! -DpackageExtension=!packageExtension! -DcheckInComment="!checkInComment!" -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_de!packageExtension! 
+
+
 REM Run the script on each language.
 REM de
 CALL ant -f handling_translated_files.xml -Dlang=de -DmergeFiles=!mergeFiles! -DnoPrompt=true -DshipmentNumber=!shipmentNumber! -DlocalPluginDir=!localPluginDir! -DPluginNameShort=!PluginNameShort! -DinstallDir=!installDir! -DpackageExtension=!packageExtension! -DcheckInComment="!checkInComment!" -Dgsa.userid=!gsaUserID! -Dgsa.password=!gsaUserPassword! -Dpkg.url=https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/!projectCode!/!chargetoID!/!chargetoID!_!shipmentName!_!shipmentNumber!_de!packageExtension! 
