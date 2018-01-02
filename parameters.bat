@@ -9,8 +9,8 @@ REM Enter the service directory as it displays in Github without the docs direct
 REM SET localPluginDir=services\ActiveDeploy
 SET localPluginDir=
 
-REM Enter your chargetoID. Example: BM110ABD070
-REM SET chargetoID=BM110ABD070
+REM Enter your chargetoID. Example: BM130ABD070
+REM SET chargetoID=BM130ABD070
 SET chargetoID=
 
 REM Sometimes packages come back as .tpkg and sometimes .tlpkg. Enter the file type your package is returned with.
@@ -30,8 +30,8 @@ REM SET mergeFiles=true
 SET mergeFiles=true
 
 REM Enter your project code. Example: BM110
-REM SET projectCode=BM110
-SET projectCode=BM120
+REM SET projectCode=BM130
+SET projectCode=BM130
 
 REM Enter your shipment name. Example: CD_DOC_Ship
 REM SET shipmentName=CD_DOC_Ship
