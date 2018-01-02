@@ -4,12 +4,12 @@
 
 # Enter the service directory as it displays in Github without the docs directory. If your content is in https://console.bluemix.net/docs/services/ActiveDeploy, enter services/ActiveDeploy.
 # export localPluginDir=services/ActiveDeploy
-export localPluginDir=containers
+export localPluginDir=
 
 
 # Enter your chargetoID. Example: BM120ABD070
-# export chargetoID=BM120ABD070
-export chargetoID=BM120ABD068
+# export chargetoID=BM130ABD070
+export chargetoID=
 
 
 # Sometimes packages come back as .tpkg or sometimes .tlpkg. Enter the file type your package is returned with.
@@ -19,7 +19,7 @@ export packageExtension=.tlpkg
 
 # Enter your shipment number. You can find the shipment number in the returned package URL. Example: 5
 # export shipmentNumber=5
-export shipmentNumber=8
+export shipmentNumber=
 
 
 # Enter a comment to include when the changes are checked in.
@@ -33,8 +33,8 @@ export mergeFiles=true
 
 
 # Enter your project code. Example: BM120
-# export projectCode=BM120
-export projectCode=BM120
+# export projectCode=BM130
+export projectCode=BM130
 
 
 # Enter your shipment name. Example: CD_DOC_Ship
