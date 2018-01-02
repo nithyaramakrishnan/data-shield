@@ -7,7 +7,7 @@
 export localPluginDir=
 
 
-# Enter your chargetoID. Example: BM120ABD070
+# Enter your chargetoID. Example: BM130ABD070
 # export chargetoID=BM130ABD070
 export chargetoID=
 
