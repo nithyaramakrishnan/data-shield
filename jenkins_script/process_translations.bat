@@ -83,6 +83,9 @@ GIT push !PluginNameShort!
 
 SET CHARGEtoID=
 )
+
+CD "C:\Program Files (x86)\Jenkins\jobs\environment-variables\services\build_services"
+
 )
 
 ENDLOCAL
