@@ -17,7 +17,7 @@ REM Sometimes packages come back as .tpkg and sometimes .tlpkg. Enter the file t
 REM SET packageExtension=.tlpkg
 SET packageExtension=
 
-REM Enter your shipment number. You can find the shipment number in the returned package URL. Example: 5
+REM Enter your shipment number. You can find the shipment number in the returned package file name. Example: If your shipment package is BM130ABD180_CD_DOC_Ship_5_es.tlpkg, the shipment number is 5 
 REM SET shipmentNumber=5
 SET shipmentNumber=
 
@@ -25,7 +25,7 @@ REM Enter a comment to include when the changes are checked in.
 REM SET checkInComment="Work item 87654: Translation returns for shipment 5 2016"
 SET checkInComment="Automated translation check-in %chargetoID% %shipmentNumber% %time%"
 
-REM Choose whether to merge the new files with the old ones (true) or completely delete the entire directory and copy the new files in (false). Example: true
+REM Set your mergeFiles option to true or false. In most cases use true, which replaces the old files with the new files. Use false if you want to delete everything in the nl directories and copy the new files in. Example, if you have renamed or deleted files since your last translation. Do not use false unless all of your languages are returned. It will cause existing translations to be deleted.
 REM SET mergeFiles=true
 SET mergeFiles=true
 
