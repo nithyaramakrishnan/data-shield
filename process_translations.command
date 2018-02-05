@@ -3,6 +3,8 @@
 cd "`dirname "$0"`"
 source user_config.command
 
+installDir="`dirname "$0"`"
+
 # For every parameters file that exists, run the translation processing script for each
 cd "$installDir"
 for f in $(ls $installDir/parameters*.command)
@@ -55,16 +57,30 @@ do
 		fi
 		
 		
+		if [[ "$mergeFiles" == "false" ]]; then
+			#Delete the existing nl directory
+			rm -R "$installDir/$PluginNameShort/nl/$langDir/"
+		fi
+
+
 		#If the nl directories don't exist, create them 
 		if ! [ -d "$installDir/$PluginNameShort/nl/" ] ; then
 			echo "Creating $installDir/$PluginNameShort/nl/"
 			mkdir "$installDir/$PluginNameShort/nl/"
 		fi 
-		
-		if [[ "$mergeFiles" == "false" ]]; then
-			#Delete the existing nl directory
-			rm -R "$installDir/$PluginNameShort/nl/$langDir/"
+
+		if [ "$lang" = "pt_br" ] ; then 
+			mkdir "$installDir/$PluginNameShort/nl/pt/"
+		elif [ "$lang" = "zh_cn" ] ; then 
+			mkdir "$installDir/$PluginNameShort/nl/zh/"
 		fi
+
+		if ! [ -d "$installDir/$PluginNameShort/nl/$lang/" ] ; then
+			echo "Creating $installDir/$PluginNameShort/nl/$lang/"
+			mkdir "$installDir/$PluginNameShort/nl/$langDir/"
+		fi 
+		
+		
 
 		pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
 		 
@@ -72,7 +88,9 @@ do
 		echo $pkgURL
 		mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 		cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
-		curl -O -u $gsaUserID:$gsaUserPassword $pkgURL 
+		curl -O -# -u $gsaUserID:$gsaUserPassword $pkgURL 
+
+		#sleep 30
 		 
 		#Change the package extension to zip
 		mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
@@ -81,11 +99,7 @@ do
 		unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 		
 	
-		if [ "$lang" = "pt_br" ] ; then 
-			mkdir "$installDir/$PluginNameShort/nl/pt/"
-		elif [ "$lang" = "zh_cn" ] ; then 
-			mkdir "$installDir/$PluginNameShort/nl/zh/"
-		fi
+		
 
 	#Copy the new translated files 
 		if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
