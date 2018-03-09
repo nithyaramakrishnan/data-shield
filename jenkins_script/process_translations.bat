@@ -76,7 +76,7 @@ ECHO GIT merge
 GIT merge
 
 ECHO GIT remote add
-GIT remote add !PluginNameShort! https://github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT remote add !PluginNameShort! https://!GITHUB_USERNAME!:!GITHUB_TOKEN!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
 
 ECHO GIT push !PluginNameShort!
 GIT push !PluginNameShort!
