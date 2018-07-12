@@ -86,9 +86,6 @@ do
 			#Extract the zip
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
-
-
-
 		      #Copy the new translated files 
 		      if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
@@ -107,7 +104,8 @@ do
 		      cd "${installDir}/${PluginNameShort}"
 		      rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 	
-	fi
+		done
+	
 
 
     	echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
@@ -132,6 +130,8 @@ do
     	#git push $PluginNameShort
 
     	cd "$installDir/"
+	
+	fi
 
 done
 
