@@ -129,7 +129,7 @@ do
     	git remote add $PluginNameShort https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
     	echo git push $PluginNameShort
-    	git push $PluginNameShort
+    	#git push $PluginNameShort
 
     	cd "$installDir/"
 
