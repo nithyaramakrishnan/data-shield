@@ -52,7 +52,7 @@ do
 
 
 			if [ "$mergeFiles" = "false" ]; then
-				#Delete the existing nl directory
+				echo "Deleting the existing nl directory..."
 				rm -R "$installDir/$PluginNameShort/nl/$langDir/"
 			fi
 
@@ -84,12 +84,15 @@ do
 
 
 			#Change the package extension to zip
+			echo "Renaming ${packageExtension} to zip for extraction..."
 			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "$(basename "${installDir}/${PluginNameShort}/nl/$lang-returns/package" .zip).zip"
 
 			#Extract the zip
+			echo "Extracting the zip..."
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
 		      	#Copy the new translated files 
+			"Copying over new files..."
 			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
@@ -101,6 +104,7 @@ do
 		  	fi
 
 	      		#Clean up
+			echo "Cleaning up unnecessary files that don't need to be checked in..."
 	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
 	      		find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
 	      		find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
@@ -110,7 +114,7 @@ do
 		done
 	
 
-
+		echo "Ready to check files into Github..."
     		echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
     		git pull https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
