@@ -104,8 +104,11 @@ do
 
 	      		#Clean up
 			echo "Cleaning up unnecessary files that don't need to be checked in..."
+			echo ".tpt"
 	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
+			echo ".zip"
 	      		find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
+			echo "aith.xml"
 	      		find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
 	      		cd "${installDir}/${PluginNameShort}"
 	      		rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
