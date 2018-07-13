@@ -142,7 +142,7 @@ do
     		git merge translations
 
     		echo git remote add translations
-    		git remote add translations https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		git remote add translations https://$gh_username:$gh_token@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
     		echo git push translations
     		git push translations
