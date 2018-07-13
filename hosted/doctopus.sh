@@ -1,5 +1,7 @@
 #! /bin/sh
 
+apt-get install xar
+
 for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
 	# Call the properties files to set the variables defined in them
@@ -82,7 +84,7 @@ do
 
 
 			#Change the package extension to zip
-			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
+			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "$(basename "${installDir}/${PluginNameShort}/nl/$lang-returns/package" .zip).zip"
 
 			#Extract the zip
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
