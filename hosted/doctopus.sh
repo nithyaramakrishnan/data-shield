@@ -115,10 +115,16 @@ do
 	
 
 		echo "Ready to check files into Github..."
-    		echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		
+		git config --global push.default matching
+		
+		echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
     		git pull https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
-
-    		echo git add --all
+		
+		echo git checkout -b translations
+    		git checkout -b translations
+		
+		echo git add --all
     		git add --all
 
     		echo git status
@@ -127,11 +133,14 @@ do
     		echo git commit
     		git commit -m "$checkInComment"
 
-    		echo git merge
-    		git merge
+    		echo git checkout master
+		git checkout master
+		
+		echo git merge translations
+    		git merge translations
 
-    		echo git remote add
-    		git remote add $PluginNameShort https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		echo git remote add translations
+    		git remote add translations https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
     		echo git push $PluginNameShort
     		#git push $PluginNameShort
