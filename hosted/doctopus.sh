@@ -59,9 +59,13 @@ do
 			fi 
 
 			if [ "$lang" = "pt_br" ] ; then 
-				mkdir "$installDir/$PluginNameShort/nl/pt/"
+				if ! [ -d "$installDir/$PluginNameShort/nl/pt/" ] ; then
+					mkdir "$installDir/$PluginNameShort/nl/pt/"
+				fi
 			elif [ "$lang" = "zh_cn" ] ; then 
-				mkdir "$installDir/$PluginNameShort/nl/zh/"
+				if ! [ -d "$installDir/$PluginNameShort/nl/pt/" ] ; then
+					mkdir "$installDir/$PluginNameShort/nl/zh/"
+				fi
 			fi
 
 			if ! [ -d "$installDir/$PluginNameShort/nl/$lang/" ] ; then
