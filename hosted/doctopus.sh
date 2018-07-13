@@ -133,7 +133,7 @@ do
     		git status
 
     		echo git commit
-    		git commit -m "$checkInComment"
+    		git commit -m $checkInComment
 
     		echo git checkout master
 		git checkout master
