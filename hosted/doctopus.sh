@@ -63,7 +63,7 @@ do
 					mkdir "$installDir/$PluginNameShort/nl/pt/"
 				fi
 			elif [ "$lang" = "zh_cn" ] ; then 
-				if ! [ -d "$installDir/$PluginNameShort/nl/pt/" ] ; then
+				if ! [ -d "$installDir/$PluginNameShort/nl/zh/" ] ; then
 					mkdir "$installDir/$PluginNameShort/nl/zh/"
 				fi
 			fi
