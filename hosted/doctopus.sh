@@ -28,9 +28,10 @@ do
 
 		cd "$installDir"
 
-		declare -a languages=("de" "es" "fr" "it" "ja" "ko" "pt_br" "zh_cn" "zh_tw")
+		#declare -a languages=("de" "es" "fr" "it" "ja" "ko" "pt_br" "zh_cn" "zh_tw")
 
-		for lang in "${languages[@]}"
+		#for lang in "${languages[@]}"
+		for lang in de es fr it ja ko pt_br zh_cn zh_tw
 		do
 			echo "Language: $lang"
 			if [ "$lang" = "pt_br" ] ; then 
