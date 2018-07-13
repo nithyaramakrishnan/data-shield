@@ -51,7 +51,7 @@ do
 			fi
 
 
-			if [[ "$mergeFiles" == "false" ]]; then
+			if [ "$mergeFiles" == "false" ]; then
 				#Delete the existing nl directory
 				rm -R "$installDir/$PluginNameShort/nl/$langDir/"
 			fi
