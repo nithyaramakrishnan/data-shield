@@ -1,7 +1,5 @@
 #! /bin/sh
 
-apt-get install xar
-
 for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
 	# Call the properties files to set the variables defined in them
@@ -30,9 +28,6 @@ do
 
 		cd "$installDir"
 
-		#declare -a languages=("de" "es" "fr" "it" "ja" "ko" "pt_br" "zh_cn" "zh_tw")
-
-		#for lang in "${languages[@]}"
 		for lang in de es fr it ja ko pt_br zh_cn zh_tw
 		do
 			echo "Language: $lang"
@@ -147,6 +142,8 @@ do
 
     		cd "$installDir/"
 	
+	else
+		echo "Charge to ID is not set in a properties files in $f."
 	fi
 
 done
