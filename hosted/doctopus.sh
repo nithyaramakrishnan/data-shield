@@ -142,7 +142,7 @@ do
     		git remote add translations https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
     		echo git push $PluginNameShort
-    		#git push $PluginNameShort
+    		git push $PluginNameShort
 
     		cd "$installDir/"
 	
