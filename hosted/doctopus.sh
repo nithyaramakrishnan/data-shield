@@ -144,8 +144,8 @@ do
     		echo git remote add translations
     		git remote add translations https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
-    		echo git push $PluginNameShort
-    		git push $PluginNameShort
+    		echo git push translations
+    		git push translations
 
     		cd "$installDir/"
 	
