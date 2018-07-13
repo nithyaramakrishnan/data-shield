@@ -1,0 +1,2 @@
+#Every time an ant script fails because a language is missing, cause an error in the final build.
+error /BUILD FAILED/
