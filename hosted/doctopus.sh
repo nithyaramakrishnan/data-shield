@@ -87,7 +87,7 @@ do
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
 		      	#Copy the new translated files 
-			"Copying over new files..."
+			echo "Copying over new files..."
 			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
