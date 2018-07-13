@@ -149,6 +149,9 @@ do
 
     		cd "$installDir/"
 	
+		# Post to Slack and (above) set variables for that Slack post
+		python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
+	
 	else
 		echo "Charge to ID is not set in a properties files in $f."
 	fi
