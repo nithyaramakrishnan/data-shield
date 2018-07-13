@@ -4,16 +4,16 @@ for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
 	# Call the properties files to set the variables defined in them
 	
-  	echo "------------------------"
-  	echo $f
+	echo "------------------------"
+	echo $f
 	. $f
   
-  	export PluginNameShort=$GITHUB_REPO
-  	export localPluginDir=$SERVICE_OUTPUT_DIR
-  	echo $PluginNameShort
-  	echo $localPluginDir
+	export PluginNameShort=$GITHUB_REPO
+	export localPluginDir=$SERVICE_OUTPUT_DIR
+	echo $PluginNameShort
+	echo $localPluginDir
   
-  	echo "------------------------"
+	echo "------------------------"
 	
 	# Do the repos with custom tagging script enabled first
 	if [ $CHARGEtoID ] ; then 
@@ -48,28 +48,28 @@ do
 			fi
 
 
-		      if [[ "$mergeFiles" == "false" ]]; then
-			#Delete the existing nl directory
-			rm -R "$installDir/$PluginNameShort/nl/$langDir/"
-		      fi
+			if [[ "$mergeFiles" == "false" ]]; then
+				#Delete the existing nl directory
+				rm -R "$installDir/$PluginNameShort/nl/$langDir/"
+			fi
 
 
-		      #If the nl directories don't exist, create them 
-		      if ! [ -d "$installDir/$PluginNameShort/nl/" ] ; then
-			echo "Creating $installDir/$PluginNameShort/nl/"
-			mkdir "$installDir/$PluginNameShort/nl/"
-		      fi 
+		      	#If the nl directories don't exist, create them 
+			if ! [ -d "$installDir/$PluginNameShort/nl/" ] ; then
+				echo "Creating $installDir/$PluginNameShort/nl/"
+				mkdir "$installDir/$PluginNameShort/nl/"
+			fi 
 
-		      if [ "$lang" = "pt_br" ] ; then 
-			mkdir "$installDir/$PluginNameShort/nl/pt/"
-		      elif [ "$lang" = "zh_cn" ] ; then 
-			mkdir "$installDir/$PluginNameShort/nl/zh/"
-		      fi
+			if [ "$lang" = "pt_br" ] ; then 
+				mkdir "$installDir/$PluginNameShort/nl/pt/"
+			elif [ "$lang" = "zh_cn" ] ; then 
+				mkdir "$installDir/$PluginNameShort/nl/zh/"
+			fi
 
-		      if ! [ -d "$installDir/$PluginNameShort/nl/$lang/" ] ; then
-			echo "Creating $installDir/$PluginNameShort/nl/$lang/"
-			mkdir "$installDir/$PluginNameShort/nl/$langDir/"
-		      fi 
+			if ! [ -d "$installDir/$PluginNameShort/nl/$lang/" ] ; then
+				echo "Creating $installDir/$PluginNameShort/nl/$lang/"
+				mkdir "$installDir/$PluginNameShort/nl/$langDir/"
+			fi 
 
 			pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
 
@@ -86,50 +86,50 @@ do
 			#Extract the zip
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
-		      #Copy the new translated files 
-		      if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		      elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		      elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
-		      else
-			cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		      fi
+		      	#Copy the new translated files 
+			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
+				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
+				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
+				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
+		  	else
+				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
+		  	fi
 
-		      #Clean up
-		      find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
-		      find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
-		      find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
-		      cd "${installDir}/${PluginNameShort}"
-		      rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
+	      		#Clean up
+	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
+	      		find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
+	      		find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
+	      		cd "${installDir}/${PluginNameShort}"
+	      		rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 	
 		done
 	
 
 
-    	echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
-    	git pull https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		git pull https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
-    	echo git add --all
-    	git add --all
+    		echo git add --all
+    		git add --all
 
-    	echo git status
-    	git status
+    		echo git status
+    		git status
 
-    	echo git commit
-    	git commit -m "$checkInComment"
+    		echo git commit
+    		git commit -m "$checkInComment"
 
-    	echo git merge
-    	git merge
+    		echo git merge
+    		git merge
 
-    	echo git remote add
-    	git remote add $PluginNameShort https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		echo git remote add
+    		git remote add $PluginNameShort https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
 
-    	echo git push $PluginNameShort
-    	#git push $PluginNameShort
+    		echo git push $PluginNameShort
+    		#git push $PluginNameShort
 
-    	cd "$installDir/"
+    		cd "$installDir/"
 	
 	fi
 
