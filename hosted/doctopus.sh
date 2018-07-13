@@ -74,7 +74,7 @@ do
 				mkdir "$installDir/$PluginNameShort/nl/$langDir/"
 			fi 
 
-			pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${chargetoID}/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
+			pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${CHARGEtoID}/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
 
 			echo "Start downloading $lang package....."
 			echo $pkgURL
@@ -84,7 +84,7 @@ do
 
 
 			#Change the package extension to zip
-			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${chargetoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "$(basename "${installDir}/${PluginNameShort}/nl/$lang-returns/package" .zip).zip"
+			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "$(basename "${installDir}/${PluginNameShort}/nl/$lang-returns/package" .zip).zip"
 
 			#Extract the zip
 			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
