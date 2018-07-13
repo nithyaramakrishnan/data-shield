@@ -69,7 +69,7 @@ do
 			fi
 
 			if ! [ -d "$installDir/$PluginNameShort/nl/$lang/" ] ; then
-				echo "Creating $installDir/$PluginNameShort/nl/$lang/"
+				echo "Creating $installDir/$PluginNameShort/nl/$langDir/"
 				mkdir "$installDir/$PluginNameShort/nl/$langDir/"
 			fi 
 
