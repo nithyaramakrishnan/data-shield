@@ -15,7 +15,7 @@ CD !installDir!
 
 RD /S /Q !PluginNameShort!
 
-GIT clone https://!GITHUB_USERNAME!:!GITHUB_TOKEN!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT clone https://!gh_username!:!gh_token!@!GITHUB_URL_SHORT!/!PluginNameShort!.git
 
 GIT init
 CD !PluginNameShort!
@@ -61,7 +61,7 @@ CD !installDir!/!PluginNameShort!
 
 
 ECHO GIT pull
-GIT pull https://!GITHUB_USERNAME!:!GITHUB_TOKEN!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT pull https://!gh_username:!gh_token!@!GITHUB_URL_SHORT!/!PluginNameShort!.git
 
 ECHO GIT add --all
 GIT add --all
@@ -76,7 +76,7 @@ ECHO GIT merge
 GIT merge
 
 ECHO GIT remote add
-GIT remote add !PluginNameShort! https://!GITHUB_USERNAME!:!GITHUB_TOKEN!@github.com/IBM-Bluemix-Docs/!PluginNameShort!.git
+GIT remote add !PluginNameShort! https://!gh_username!:!gh_token!@!GITHUB_URL_SHORT!/!PluginNameShort!.git
 
 ECHO GIT push !PluginNameShort!
 GIT push !PluginNameShort!
