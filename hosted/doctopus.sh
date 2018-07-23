@@ -22,7 +22,7 @@ do
 		cd "$installDir"
 
 		#Clone the repo
-		git clone https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+		git clone https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 		cd $PluginNameShort
 		git init
 
@@ -120,8 +120,8 @@ do
     		
 		git config --global push.default matching
 		
-		echo git pull https://github.com/IBM-Bluemix-Docs/$PluginNameShort.git
-    		git pull https://$githubUserID:$githubPassword@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+		echo git pull https://$GITHUB_URL_SHORT/$PluginNameShort.git
+    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 		
 		echo git checkout -b translations
     		git checkout -b translations
@@ -135,14 +135,14 @@ do
     		echo git commit
     		git commit -m $checkInComment
 
-    		echo git checkout master
-		git checkout master
+    		echo git checkout $GITHUB_URL_BRANCH
+		git checkout $GITHUB_URL_BRANCH
 		
 		echo git merge translations
     		git merge translations
 
     		echo git remote add translations
-    		git remote add translations https://$gh_username:$gh_token@github.com/IBM-Bluemix-Docs/$PluginNameShort.git
+    		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
     		echo git push translations
     		git push translations
