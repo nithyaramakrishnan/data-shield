@@ -1,0 +1,28 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="data-shield" audience="service" href="/docs/services/data-shield/index.html" path="services/data-shield"}
+IBM Cloud Data Shield
+
+    {: .navgroup id="learn"}
+    index.md
+    about.md
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    install.md
+    access.md
+    convert.md
+    uninstall.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    [Blogs](https://www.ibm.com/blogs/bluemix/?s=Data+shield)
+    [Fortanix](http://fortanix.com/)
+    [Intel SGX](https://software.intel.com/en-us/sgx)
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    faq.md
+    ts-index.md
+    {: .navgroup-end}
