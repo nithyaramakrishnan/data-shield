@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-08"
+lastupdated: "2019-01-10"
 
 ---
 
@@ -32,8 +32,11 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud/download_cli.html#install_use)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [Helm](/docs/containers/cs_integrations.html#helm)
   * [Docker](https://docs.docker.com/install/)
+  * [Helm](/docs/containers/cs_integrations.html#helm)
+
+  You might want to configure Helm to use `--tls` mode. For help enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  {: tip}
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud/extend_cli.html#plug-ins):
 
