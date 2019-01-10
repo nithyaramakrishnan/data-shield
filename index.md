@@ -32,7 +32,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud/download_cli.html#install_use)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [Helm](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/app_center/create_helm_cli.html)
+  * [Helm](/docs/containers/cs_integrations.html#helm)
   * [Docker](https://docs.docker.com/install/)
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud/extend_cli.html#plug-ins):
