@@ -57,16 +57,14 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
 </br>
 
-## Creating a Kube namespace
+## Optional: creating a Kube namespace
 {: #create-namespace}
 
-By default, {{site.data.keyword.datashield_short}} is installed into the `kube-system` namespace. You can use an alternative namespace by creating a new one.
+By default, {{site.data.keyword.datashield_short}} is installed into the `kube-system` namespace. Optionally, you can use an alternative namespace by creating a new one.
 {: shortdesc}
 
-You do not have to create a new namespace. These are optional steps.
-{: tip}
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to finish logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
