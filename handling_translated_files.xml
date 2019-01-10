@@ -153,7 +153,7 @@
             <get dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" username="${gsa.userid}" password="${gsa.password}" verbose="true">
                 <url url="${pkg.url}"/>
              </get>
-			 <rename src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.zip"/>
+			 <move src="${installDir}/${PluginNameShort}/nl/${lang}/translated/package${packageExtension}" dest="${installDir}/${PluginNameShort}/nl/${lang}/translated/package.zip"/>
 		<echo message="Package URL   ${pkg.url}" />
 	</target>
 	
