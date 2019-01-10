@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-08"
+lastupdated: "2019-01-10"
 
 ---
 
@@ -24,24 +24,24 @@ You can install {{site.data.keyword.datashield_full}} by using either the provid
 ## Before you begin
 {: #begin}
 
-Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites:
+Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers/cs_tutorials.html#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud/download_cli.html#install_use)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [Helm](/docs/containers/cs_integrations.html#helm)
   * [Docker](https://docs.docker.com/install/)
+  * [Helm](/docs/containers/cs_integrations.html#helm)
+
+  You might want to configure Helm to use `--tls` mode. For help enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  {: tip}
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud/extend_cli.html#plug-ins):
 
   * Kubernetes Service
   * Container Registry
 
-  For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers/cs_tutorials.html#cs_cluster_tutorial_lesson1).
-  {: tip}
-
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
+* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have a cluster, you can use the following steps to help you get started.
   1. Prepare to [create your cluster](/docs/containers/cs_clusters.html#cluster_prepare).
 
   2. Ensure that you have the [required permissions](/docs/containers/cs_users.html) to create a cluster.
@@ -236,7 +236,7 @@ The Helm chart installs the following components:
   ```
   {: codeblock}
 
-  If you [configured a {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
 
 7. To monitor the startup of your components you can run the following command.
 
