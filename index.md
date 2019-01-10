@@ -26,7 +26,7 @@ For more information about the service and protecting your data in use, you can 
 ## Before you begin
 {: #begin}
 
-Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites:
+Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers/cs_tutorials.html#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
@@ -42,9 +42,6 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   * Kubernetes Service
   * Container Registry
-
-  For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers/cs_tutorials.html#cs_cluster_tutorial_lesson1).
-  {: tip}
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers/cs_clusters.html#cluster_prepare).
