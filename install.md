@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-10"
+lastupdated: "2019-01-11"
 
 ---
 
@@ -57,7 +57,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
 </br>
 
-## Optional: creating a Kube namespace
+## Optional: Creating a Kube namespace
 {: #create-namespace}
 
 By default, {{site.data.keyword.datashield_short}} is installed into the `kube-system` namespace. Optionally, you can use an alternative namespace by creating a new one.
@@ -229,7 +229,14 @@ The Helm chart installs the following components:
   ```
   {: codeblock}
 
-6. Install the chart.
+6. Get the ingress domain for your cluster.
+
+  ```
+  ibmcloud ks cluster-get <cluster_name>
+  ```
+  {: codeblock}
+
+7. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<domain> <converter-registry-option>
@@ -238,7 +245,7 @@ The Helm chart installs the following components:
 
   If you [configured an {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
 
-7. To monitor the startup of your components you can run the following command.
+8. To monitor the startup of your components you can run the following command.
 
   ```
   kubectl get pods

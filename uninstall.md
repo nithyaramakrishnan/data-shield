@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-08"
+lastupdated: "2019-01-11"
 
 ---
 
@@ -24,7 +24,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
 1. Delete the service.
 
   ```
-  helm delete datashield -purge
+  helm del --purge datashield
   ```
   {: codeblock}
 
@@ -50,8 +50,7 @@ If you installed {{site.data.keyword.datashield_short}} by using the beta instal
 To uninstall {{site.data.keyword.datashield_short}}, run the following command:
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer
-  unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
   ```
   {: codeblock}
 
