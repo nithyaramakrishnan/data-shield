@@ -229,14 +229,7 @@ The Helm chart installs the following components:
   ```
   {: codeblock}
 
-6. Get the ingress domain for your cluster.
-
-  ```
-  ibmcloud ks cluster-get <cluster_name>
-  ```
-  {: codeblock}
-
-7. Install the chart.
+6. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<domain> <converter-registry-option>
@@ -245,7 +238,7 @@ The Helm chart installs the following components:
 
   If you [configured an {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
 
-8. To monitor the startup of your components you can run the following command.
+7. To monitor the startup of your components you can run the following command.
 
   ```
   kubectl get pods
