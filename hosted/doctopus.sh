@@ -126,26 +126,29 @@ do
 		echo git checkout -b translations
     		git checkout -b translations
 		
-		echo git add --all
-    		git add --all
-
-    		echo git status
-    		git status
-
-    		echo git commit
-    		git commit -m $checkInComment
-
-    		echo git checkout $GITHUB_URL_BRANCH
-		git checkout $GITHUB_URL_BRANCH
+		#echo git add --all
+    		#git add --all
 		
-		echo git merge translations
-    		git merge translations
+		echo test commit git add -n --all
+		git add -n --all
 
-    		echo git remote add translations
-    		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+    		#echo git status
+    		#git status
 
-    		echo git push translations
-    		git push translations
+    		#echo git commit
+    		#git commit -m $checkInComment
+
+    		#echo git checkout $GITHUB_URL_BRANCH
+		#git checkout $GITHUB_URL_BRANCH
+		
+		#echo git merge translations
+    		#git merge translations
+
+    		#echo git remote add translations
+    		#git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+
+    		#echo git push translations
+    		#git push translations
 
     		cd "$installDir/"
 	
