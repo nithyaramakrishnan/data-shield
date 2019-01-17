@@ -135,8 +135,8 @@ do
     		echo git status
     		git status
 
-    		echo git commit
-    		git commit -m $checkInComment
+    		echo git commit -m "$checkInComment"
+    		git commit -m "$checkInComment"
 
     		echo git checkout $GITHUB_URL_BRANCH
 		git checkout $GITHUB_URL_BRANCH
