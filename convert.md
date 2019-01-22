@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-08"
+lastupdated: "2019-01-21"
 
 ---
 
@@ -56,14 +56,14 @@ You can allow all users of the converter to obtain input images from and push ou
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
 2. Obtain an authentication token for your {{site.data.keyword.cloud_notm}} Container Registry.
 
   ```
-  bx cr token-add --non-expiring --readwrite --description 'EnclaveOS Container Converter'
+  ibmcloud cr token-add --non-expiring --readwrite --description 'EnclaveOS Container Converter'
   ```
   {: codeblock}
 
@@ -79,7 +79,7 @@ You can allow all users of the converter to obtain input images from and push ou
 
 **Configuring credentials for another registry**
 
-If you already have a `~/.docker/config.json` file that authenticates to the registry you wish to use, then run only the following command.
+If you already have a `~/.docker/config.json` file that authenticates to the registry you wish to use, then log in to the `ibmcloud` CLI and then run the following command.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
@@ -91,7 +91,7 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 ## Accessing the converter through the Enclave Manager API
 {: #accessing}
 
-You can use the Enclave Manager API to access the converter.
+You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
@@ -120,7 +120,7 @@ You can use the Enclave Manager API to access the converter.
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
@@ -153,19 +153,28 @@ You can use the Enclave Manager API to access the converter.
 5. Access the converter.
 
   ```
-  curl -H "Authorization: Basic $token" https://enclave-manager.<cluster ingress subdomian>/api/v1/tools/converter/convert-app
+  curl -H "Authorization: Basic $token" https://enclave-manager.<cluster ingress subdomain>/api/v1/tools/converter/convert-app
   ```
   {: codeblock}
 
 6. Convert your image.
 
   ```
-  curl -k -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<ingeress-domain>/api/v1/tools/converter/convert-app
+  curl -k -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
   ```
   {: codeblock}
 
   If you are using the default, self-signed, certificate in the conversion service, the `-k` option is required. For production deployments, be sure that you use a trusted certificate and eliminate the `-k` option for security reasons.
-  {: tip}
+  {: important}
+
+7. The converted application Docker image is now capable of running inside Intel SGX. You can whitelist the converted images on the Enclave Manager. The converter return contains the information that was used to create the whitelist request. To make a request, you can use your information as the variables in the following template.
+
+  ```
+  curl -k -X POST https://enclave-manager.<Ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json'
+  ```
+  {: codeblock}
+
+8. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.
 
 ## Requesting an application certificate
 {: #request-cert}
@@ -177,33 +186,36 @@ Check out the following example to see how to configure a request to generate an
 
 1. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
 
-   ```json
-   {
-         "inputImageName": "your-registry-server/your-app",
-         "outputImageName": "your-registry-server/your-app-sgx",
-         "certificates": [
-           {
-             "issuer": "Enclave Manager",
-             "subject": "SGX-Application",
-             "keyType": "rsa",
-             "keyParam": {
-               "size": 2048
-             },
-             "keyPath": "/appkey.pem",
-             "certPath": "/appcert.pem",
-             "chainPath": "none"
-           }
-         ]
-   }
-   ```
-   {: codeblock}
+ ```json
+ {
+       "inputImageName": "your-registry-server/your-app",
+       "outputImageName": "your-registry-server/your-app-sgx",
+       "certificates": [
+         {
+           "issuer": "Enclave Manager",
+           "subject": "SGX-Application",
+           "keyType": "rsa",
+           "keyParam": {
+             "size": 2048
+           },
+           "keyPath": "/appkey.pem",
+           "certPath": "/appcert.pem",
+           "chainPath": "none"
+         }
+       ]
+ }
+ ```
+ {: codeblock}
 
-2. Run the following command.
+2. Input your variables and run the following command.
 
-   ```
-   curl -k -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<ingeress-domain>/api/v1/tools/converter/convert-app
-   ```
-   {: codeblock}
+ ```
+ curl -k -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
+ ```
+ {: codeblock}
+
+ If you are using the default, self-signed, certificate in the conversion service, the `-k` option is required. For production deployments, be sure that you use a trusted certificate and eliminate the `-k` option for security reasons.
+ {: important}
 
 </br>
 
@@ -211,41 +223,42 @@ Check out the following example to see how to configure a request to generate an
 {: #containers}
 
 After you convert your images, you must redeploy your {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster.
+{: shortdesc}
 
 When you deploy {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster, the container specification must include volume mounts. This allows the SGX devices and the AESM socket to be available in the container.
 
 1. Save the following pod specification as a template.
 
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-   name: your-app-sgx
-   labels:
-   app: your-app-sgx
-   spec:
-   containers:
-   - name: your-app-sgx
-     image: your-registry-server/your-app-sgx
-     volumeMounts:
-     - mountPath: /dev/isgx
-       name: isgx
-     - mountPath: /dev/gsgx
-       name: gsgx
-     - mountPath: /var/run/aesmd/aesm.socket
-       name: aesm-socket
-   volumes:
-   - name: isgx
-     hostPath:
-       path: /dev/isgx
-   - name: gsgx
-     hostPath:
-       path: /dev/gsgx
-   - name: aesm-socket
-     hostPath:
-       path: /var/run/aesmd/aesm.socket
-   ```
-   {: codeblock}
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: app-sgx
+      labels:
+        app: app-sgx
+    spec:
+      containers:
+      - name: app-sgx
+        image: registry.ng.bluemix.net/datashield-core/app-sgx    
+        volumeMounts:
+        - mountPath: /dev/isgx
+          name: isgx
+        - mountPath: /dev/gsgx
+          name: gsgx
+        - mountPath: /var/run/aesmd/aesm.socket
+          name: aesm-socket
+      volumes:
+      - name: isgx
+        hostPath:
+          path: /dev/isgx
+      - name: gsgx
+        hostPath:
+          path: /dev/gsgx
+      - name: aesm-socket
+        hostPath:
+          path: /var/run/aesmd/aesm.socket
+    ```
+    {: screen}
 
 2. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
 

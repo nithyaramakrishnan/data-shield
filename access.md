@@ -20,7 +20,7 @@ You can control access to the {{site.data.keyword.datashield_full}} Enclave Mana
 {: shortdesc}
 
 
-## Using IAM API keys to log in to the console
+## Using an IAM API key to log in to the console
 {: #iam}
 
 In the Enclave Manager console, you can view the nodes in your cluster and their attestation status. You can also view tasks and an audit logs of cluster events.
@@ -51,34 +51,59 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
-2. Obtain your ingress subdomain.
+2. Set the context for your cluster.
+
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copy the output and paste it into your terminal.
+
+3. Check to see that all your service is running by confirming that all of your pods are in a *running* state.
+
+  ```
+  kubectl get pods
+  ```
+  {: codeblock}
+
+4. Look up the frontend URL for your Enclave Manager by running the following command.
+
+  ```
+  kubectl get svc datashield-enclaveos-frontend
+  ```
+  {: codeblock}
+
+5. Obtain your Ingress subdomain.
 
   ```
   ibmcloud ks cluster-get <your-cluster-name>
   ```
   {: codeblock}
 
-3. In a browser enter the ingress subdomain where your Enclave Manager is available.
+6. In a browser enter the Ingress subdomain where your Enclave Manager is available.
 
   ```
   enclave-manager.<cluster-ingress-subdomain>
   ```
   {: codeblock}
 
-3. In terminal, get your IAM token.
+7. In terminal, get your IAM token.
 
   ```
   ibmcloud iam oauth-tokens
   ```
   {: codeblock}
 
-4. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
+8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
 
-5. Click **Sign in**.
+9. Click **Sign in**.
 
 
 </br>
