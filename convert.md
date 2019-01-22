@@ -153,7 +153,7 @@ You can use the Enclave Manager API to connect to the converter.
 5. Access the converter.
 
   ```
-  `-H "Authorization: Basic $token" https://enclave-manager.<cluster ingress subdomain>/api/v1/tools/converter/convert-app`
+  curl -H "Authorization: Basic $token" https://enclave-manager.<cluster ingress subdomain>/api/v1/tools/converter/convert-app
   ```
   {: codeblock}
 
