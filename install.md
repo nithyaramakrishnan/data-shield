@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-14"
+lastupdated: "2019-01-21"
 
 ---
 
@@ -48,10 +48,10 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   3. Create the [cluster](/docs/containers/cs_clusters.html).
 
-* An instance of the Certificate Manager service version 0.4.1. To install the instance by using Helm, you can run the following command.
+* An instance of the Certificate Manager service version 0.4. To install the instance by using Helm, you can run the following command.
 
   ```
-  helm repo update && helm install --version 0.4.1 stable/cert-manager
+  helm repo update && helm install --version 0.4 stable/cert-manager
   ```
   {: codeblock}
 
@@ -90,7 +90,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
@@ -193,18 +193,11 @@ The Helm chart installs the following components:
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
-2. Get the name and ingress domain of your cluster.
-
-  ```
-  ibmcloud ks cluster-get <your-cluster-name>
-  ```
-  {: codeblock}
-
-3. Set the context for your cluster.
+2. Set the context for your cluster.
 
   1. Get the command to set the environment variable and download the Kubernetes configuration files.
 
@@ -215,24 +208,31 @@ The Helm chart installs the following components:
 
   2. Beginning with `export`, copy the output and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-4. Add the `ibm` repository.
+3. Add the `ibm` repository.
 
   ```
   helm repo add ibm https://registry.bluemix.net/helm/ibm
   ```
   {: codeblock}
 
-5. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
+4. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
   {: codeblock}
 
+5. Get the Ingress subdomain for your cluster.
+
+  ```
+  ibmcloud ks cluster-get <cluster_name>
+  ```
+  {: codeblock}
+
 6. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<domain> <converter-registry-option>
+  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's Ingress subdomain> <converter-registry-option>
   ```
   {: codeblock}
 
@@ -279,7 +279,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 

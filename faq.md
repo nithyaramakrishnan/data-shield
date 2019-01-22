@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-06"
+lastupdated: "2019-01-21"
 
 ---
 
@@ -52,7 +52,7 @@ Log in to your Enclave Manager account and navigate to the **Apps** tab. **Apps*
 
 </br>
 
-##	What is the performance impact of running the application on {{site.data.keyword.datashield_short}}?
+## What is the performance impact of running the application on {{site.data.keyword.datashield_short}}?
 {: #impact}
 {: faq}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-14"
+lastupdated: "2019-01-21"
 
 ---
 
@@ -21,7 +21,7 @@ lastupdated: "2019-01-14"
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
 
-For more information about the service and protecting your data in use, you can learn [about the service](about.html).
+For more information about the service and what it means to protect your data in use, you can learn [about the service](about.html).
 
 ## Before you begin
 {: #begin}
@@ -50,7 +50,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   3. Create the [cluster](/docs/containers/cs_clusters.html).
 
-* An instance of the Certificate Manager service version 0.4.1 To install the instance by using Helm, you can run the following command.
+* An instance of the Certificate Manager service version 0.4.1. To install the instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.4.1 stable/cert-manager
@@ -104,18 +104,11 @@ When you install a Helm chart, there are several options and parameters that all
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
-2. Get the name and ingress domain of your cluster.
-
-  ```
-  ibmcloud ks cluster-get <your-cluster-name>
-  ```
-  {: codeblock}
-
-3. Set the context for your cluster.
+2. Set the context for your cluster.
 
   1. Get the command to set the environment variable and download the Kubernetes configuration files.
 
@@ -126,24 +119,31 @@ When you install a Helm chart, there are several options and parameters that all
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-4. Add the `ibm` repository.
+3. Add the `ibm` repository.
 
   ```
   helm repo add ibm https://registry.bluemix.net/helm/ibm
   ```
   {: codeblock}
 
-5. Optional: IF you don't know the email associated with the administrator or the admin account ID, run the following command.
+4. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
   {: codeblock}
 
+5. Get the Ingress subdomain for your cluster.
+
+  ```
+  ibmcloud ks cluster-get <cluster_name>
+  ```
+  {: codeblock}
+
 6. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<domain> <converter-registry-option>
+  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress subdomain>
   ```
   {: codeblock}
 
@@ -162,29 +162,6 @@ When you install a Helm chart, there are several options and parameters that all
 {: #console}
 
 In the Enclave Manager console, you can view the nodes in your cluster and the nodes’ attestation status. You can also view tasks and an audit log of cluster events.
-
-1. Check to see that all your service is running by confirming that all of your pods are in a *running* state.
-
-  ```
-  kubectl get pods
-  ```
-  {: codeblock}
-
-2. Look up the frontend URL for your Enclave Manager by running the following command.
-
-  ```
-  kubectl get svc datashield-enclaveos-frontend
-  ```
-  {: codeblock}
-
-3. Get the name and ingress domain of your cluster and paste it into a browser.
-
-  ```
-  ibmcloud ks cluster-get <your-cluster-name>
-  ```
-  {: codeblock}
-
-</br>
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
 
@@ -212,34 +189,59 @@ In the Enclave Manager console, you can view the nodes in your cluster and the n
     </tr>
     <tr>
       <td>US South</td>
-      <td><code>ng</code></td>
+      <td><code>us-south</code></td>
     </tr>
   </table>
 
-2. Obtain your ingress subdomain.
+2. Set the context for your cluster.
+
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copy the output and paste it into your terminal.
+
+3. Check to see that all your service is running by confirming that all of your pods are in a *running* state.
+
+  ```
+  kubectl get pods
+  ```
+  {: codeblock}
+
+4. Look up the frontend URL for your Enclave Manager by running the following command.
+
+  ```
+  kubectl get svc datashield-enclaveos-frontend
+  ```
+  {: codeblock}
+
+5. Obtain your Ingress subdomain.
 
   ```
   ibmcloud ks cluster-get <your-cluster-name>
   ```
   {: codeblock}
 
-3. In a browser enter the ingress subdomain where your Enclave Manager is available.
+6. In a browser enter the Ingress subdomain where your Enclave Manager is available.
 
   ```
   enclave-manager.<cluster-ingress-subdomain>
   ```
   {: codeblock}
 
-3. In terminal, get your IAM token.
+7. In terminal, get your IAM token.
 
   ```
   ibmcloud iam oauth-tokens
   ```
   {: codeblock}
 
-4. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
+8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
 
-5. Click **Sign in**.
+9. Click **Sign in**.
 
 </br>
 
