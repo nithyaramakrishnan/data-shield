@@ -78,7 +78,7 @@ When you install a Helm chart, there are several options and parameters that all
 
 </br>
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net

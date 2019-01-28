@@ -21,7 +21,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
 
 ## Uninstalling with Helm
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
@@ -96,7 +96,7 @@ You might also wish to delete the Certificate Manager instance and the Docker co
 
 If you installed {{site.data.keyword.datashield_short}} by using the beta installer, you can also uninstall the service with the installer.
 
-To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI and run the following command:
+To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI, target your cluster, and run the following command:
 
   ```
   docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision

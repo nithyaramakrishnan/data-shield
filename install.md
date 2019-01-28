@@ -167,7 +167,7 @@ The Helm chart installs the following components:
 
 </br>
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
@@ -253,7 +253,7 @@ The Helm chart installs the following components:
 You can use the installer to quickly install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 {: shortdesc}
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net

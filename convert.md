@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-21"
+lastupdated: "2019-01-23"
 
 ---
 
@@ -88,13 +88,13 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 
 </br>
 
-## Accessing the converter through the Enclave Manager API
-{: #accessing}
+## Converting your images
+{: #converting}
 
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
@@ -135,29 +135,15 @@ You can use the Enclave Manager API to connect to the converter.
 
   2. Copy the output and paste it into your terminal.
 
-3. Obtain an {{site.data.keyword.cloud_notm}} authentication token.
+4. Obtain and export an IAM token.
 
   ```
-  ibmcloud iam oauth-tokens
-  ```
-  {: codeblock}
-
-4. Export the token.
-
-  ```
-  ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'
+  export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
   echo $token
   ```
   {: codeblock}
 
-5. Access the converter.
-
-  ```
-  curl -H "Authorization: Basic $token" https://enclave-manager.<cluster ingress subdomain>/api/v1/tools/converter/convert-app
-  ```
-  {: codeblock}
-
-6. Convert your image.
+5. Convert your image.
 
   ```
   curl -k -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
@@ -167,14 +153,14 @@ You can use the Enclave Manager API to connect to the converter.
   If you are using the default, self-signed, certificate in the conversion service, the `-k` option is required. For production deployments, be sure that you use a trusted certificate and eliminate the `-k` option for security reasons.
   {: important}
 
-7. The converted application Docker image is now capable of running inside Intel SGX. You can whitelist the converted images on the Enclave Manager. The converter return contains the information that was used to create the whitelist request. To make a request, you can use your information as the variables in the following template.
+6. The converted application Docker image is now capable of running inside Intel SGX. You can whitelist the converted images on the Enclave Manager. The converter return contains the information that was used to create the whitelist request. To make a request, you can use your information as the variables in the following template.
 
   ```
   curl -k -X POST https://enclave-manager.<Ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json'
   ```
   {: codeblock}
 
-8. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.
+7. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.
 
 ## Requesting an application certificate
 {: #request-cert}
