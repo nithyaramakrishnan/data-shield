@@ -28,7 +28,7 @@ You can get help by searching for information or by asking questions through a f
   * If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com/search?q=ibm-data-shield" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
   * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/answers/topics/data-shield/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> forum. Include the `data-shield` tag.
 
-For more information about getting support, see [How do I get the support that I need](/docs/get-support/howtogetsupport.html#getting-customer-support).
+For more information about getting support, see [How do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
 
 </br>
 

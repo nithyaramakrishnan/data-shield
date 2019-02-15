@@ -114,7 +114,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 {{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}
 
-Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers/cs_users.html#users).
+Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers?topic=containers-users#users).
 {: tip}
 
 Check out the following table to see which roles are supported and some example actions that can be taken by each user:
