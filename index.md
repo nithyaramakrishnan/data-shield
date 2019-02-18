@@ -26,29 +26,29 @@ For more information about the service and what it means to protect your data in
 ## Before you begin
 {: #begin}
 
-Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers/cs_tutorials.html#cs_cluster_tutorial_lesson1).
+Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud/download_cli.html#install_use)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install_use#install_use)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
-  * [Helm](/docs/containers/cs_integrations.html#helm)
+  * [Helm](/docs/containers?topic=containers-integrations#helm)
 
   You might want to configure Helm to use `--tls` mode. For help enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
-* The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud/extend_cli.html#plug-ins):
+* The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
 
   * Kubernetes Service
   * Container Registry
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
-  1. Prepare to [create your cluster](/docs/containers/cs_clusters.html#cluster_prepare).
+  1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Ensure that you have the [required permissions](/docs/containers/cs_users.html) to create a cluster.
+  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
 
-  3. Create the [cluster](/docs/containers/cs_clusters.html).
+  3. Create the [cluster](/docs/containers?topic=containers-clusters).
 
 * An instance of the Certificate Manager service version 0.4.1. To install the instance by using Helm, you can run the following command.
 
