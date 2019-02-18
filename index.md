@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-21"
+lastupdated: "2019-02-15"
 
 ---
 
@@ -21,16 +21,16 @@ lastupdated: "2019-01-21"
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
 
-For more information about the service and what it means to protect your data in use, you can learn [about the service](about.html).
+For more information about the service and what it means to protect your data in use, you can learn [about the service](/docs/services/data-shield?topic=data-shield-about#about).
 
 ## Before you begin
-{: #begin}
+{: #gs-begin}
 
 Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install_use#install_use)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
   * [Helm](/docs/containers?topic=containers-integrations#helm)
@@ -55,14 +55,11 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
   ```
   helm repo update && helm install --version 0.4.1 stable/cert-manager
   ```
-  {: codeblock}
+  {: pre}
 
-
-
-</br>
 
 ## Installing with a Helm chart
-{: #install-chart}
+{: #gs-install-chart}
 
 You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 {: shortdesc}
@@ -73,7 +70,7 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
 *	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-When you install a Helm chart, there are several options and parameters that allow you to customize your installation. The following tutorial walks you through the most basic, default installation of the chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](install.html).
+When you install a Helm chart, there are several options and parameters that allow you to customize your installation. The following tutorial walks you through the most basic, default installation of the chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield?topic=data-shield-deploying).
 {: tip}
 
 </br>
@@ -88,23 +85,38 @@ When you install a Helm chart, there are several options and parameters that all
   <table>
     <tr>
       <th>Region</th>
-      <th>Endpoint</th>
+      <th>IBM Cloud Endpoint</th>
+      <th>Kubernetes Service region</th>
     </tr>
     <tr>
-      <td>Germany</td>
+      <td>Dallas</td>
+      <td><code>us-south</code></td>
+      <td>US South</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
       <td><code>eu-de</code></td>
+      <td>EU Central</td>
     </tr>
     <tr>
       <td>Sydney</td>
       <td><code>au-syd</code></td>
+      <td>AP South</td>
     </tr>
     <tr>
-      <td>United Kingdom</td>
+      <td>London</td>
       <td><code>eu-gb</code></td>
+      <td>UK South</td>
     </tr>
     <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
+      <td>Tokyo</td>
+      <td><code>jp-tok</code></td>
+      <td>AP North</td>
+    </tr>
+    <tr>
+      <td>Washington DC</td>
+      <td><code>us-east</code></td>
+      <td>US East</td>
     </tr>
   </table>
 
@@ -115,7 +127,7 @@ When you install a Helm chart, there are several options and parameters that all
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: codeblock}
+    {: pre}
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
@@ -124,28 +136,28 @@ When you install a Helm chart, there are several options and parameters that all
   ```
   helm repo add ibm https://registry.bluemix.net/helm/ibm
   ```
-  {: codeblock}
+  {: pre}
 
 4. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
-  {: codeblock}
+  {: pre}
 
 5. Get the Ingress subdomain for your cluster.
 
   ```
   ibmcloud ks cluster-get <cluster_name>
   ```
-  {: codeblock}
+  {: pre}
 
 6. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress subdomain>
   ```
-  {: codeblock}
+  {: pre}
 
   If you [configured a {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
 
@@ -154,12 +166,11 @@ When you install a Helm chart, there are several options and parameters that all
   ```
   kubectl get pods
   ```
-  {: codeblock}
+  {: pre}
 
-</br>
 
 ## Getting to the Enclave Manager console
-{: #console}
+{: #gs-console}
 
 In the Enclave Manager console, you can view the nodes in your cluster and the nodes’ attestation status. You can also view tasks and an audit log of cluster events.
 
@@ -168,30 +179,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and the n
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
   ```
-  {: codeblock}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>Endpoint</th>
-    </tr>
-    <tr>
-      <td>Germany</td>
-      <td><code>eu-de</code></td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-    </tr>
-    <tr>
-      <td>United Kingdom</td>
-      <td><code>eu-gb</code></td>
-    </tr>
-    <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
-    </tr>
-  </table>
+  {: pre}
 
 2. Set the context for your cluster.
 
@@ -200,7 +188,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and the n
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: codeblock}
+    {: pre}
 
   2. Copy the output and paste it into your terminal.
 
@@ -223,35 +211,32 @@ In the Enclave Manager console, you can view the nodes in your cluster and the n
   ```
   ibmcloud ks cluster-get <your-cluster-name>
   ```
-  {: codeblock}
+  {: pre}
 
 6. In a browser enter the Ingress subdomain where your Enclave Manager is available.
 
   ```
   enclave-manager.<cluster-ingress-subdomain>
   ```
-  {: codeblock}
+  {: pre}
 
 7. In terminal, get your IAM token.
 
   ```
   ibmcloud iam oauth-tokens
   ```
-  {: codeblock}
+  {: pre}
 
 8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
 
 9. Click **Sign in**.
 
-</br>
+
 
 ## Next steps
-{: #next}
+{: #gs-next}
 
 Great job! Now that {{site.data.keyword.datashield_short}} is installed, try walking through some sample apps:
 
 * [{{site.data.keyword.datashield_short}} Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet)
 * MariaDB or NGINX in {{site.data.keyword.cloud_notm}} Container Registry
-
-</br>
-</br>
