@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-08"
+lastupdated: "2019-02-15"
 
 ---
 
@@ -14,14 +14,14 @@ lastupdated: "2019-01-08"
 {:pre: .pre}
 
 # Managing access
-{: #about}
+{: #access}
 
-You can control access to the {{site.data.keyword.datashield_full}} Enclave Manager. This access control is separate from the typical Identity and Access Management (IAM) roles that you would see when working with {{site.data.keyword.cloud_notm}}.
+You can control access to the {{site.data.keyword.datashield_full}} Enclave Manager. This access control is separate from the typical Identity and Access Management (IAM) roles that you use when working with {{site.data.keyword.cloud_notm}}.
 {: shortdesc}
 
 
 ## Using an IAM API key to log in to the console
-{: #iam}
+{: #access-iam}
 
 In the Enclave Manager console, you can view the nodes in your cluster and their attestation status. You can also view tasks and an audit logs of cluster events.
 
@@ -35,23 +35,38 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
   <table>
     <tr>
       <th>Region</th>
-      <th>Endpoint</th>
+      <th>IBM Cloud Endpoint</th>
+      <th>Kubernetes Service region</th>
     </tr>
     <tr>
-      <td>Germany</td>
+      <td>Dallas</td>
+      <td><code>us-south</code></td>
+      <td>US South</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
       <td><code>eu-de</code></td>
+      <td>EU Central</td>
     </tr>
     <tr>
       <td>Sydney</td>
       <td><code>au-syd</code></td>
+      <td>AP South</td>
     </tr>
     <tr>
-      <td>United Kingdom</td>
+      <td>London</td>
       <td><code>eu-gb</code></td>
+      <td>UK South</td>
     </tr>
     <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
+      <td>Tokyo</td>
+      <td><code>jp-tok</code></td>
+      <td>AP North</td>
+    </tr>
+    <tr>
+      <td>Washington DC</td>
+      <td><code>us-east</code></td>
+      <td>US East</td>
     </tr>
   </table>
 
@@ -106,15 +121,13 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 9. Click **Sign in**.
 
 
-</br>
-
 ## Setting roles for Enclave Manager users
-{: #enclave}
+{: #enclave-roles}
 
 {{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}
 
-Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers?topic=containers-users#users).
+Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers/cs_users.html#users).
 {: tip}
 
 Check out the following table to see which roles are supported and some example actions that can be taken by each user:
@@ -148,13 +161,8 @@ Check out the following table to see which roles are supported and some example 
 You can set or update the user roles for your console manager.
 {: shortdesc}
 
-1. Navigate to the [Enclave Manager UI](#iam).
+1. Navigate to the [Enclave Manager UI](/docs/services/data-shield/access.html#access-iam).
 2. From the dropdown menu, open the user management screen.
 3. Select **Settings**. Review the list of users or add a new user from this screen.
 4. To edit a users permissions, hover over a user until the pencil icon displays.
 5. Click the pencil icon to change their permissions. Any changes to a users permissions take immediate effect.
-
-
-
-</br>
-</br>
