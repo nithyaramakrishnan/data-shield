@@ -48,10 +48,10 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
   3. Create the [cluster](/docs/containers?topic=containers-clusters).
 
-* An instance of the Certificate Manager service version 0.4.1 To install the instance by using Helm, you can run the following command.
+* An instance of the Certificate Manager service version 0.5.0. To install the instance by using Helm, you can run the following command.
 
   ```
-  helm repo update && helm install --version 0.4.1 stable/cert-manager
+  helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
   {: pre}
 
