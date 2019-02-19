@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-21"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -26,28 +26,43 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
   ```
-  {: codeblock}
+  {: pre}
 
   <table>
     <tr>
       <th>Region</th>
-      <th>Endpoint</th>
+      <th>IBM Cloud Endpoint</th>
+      <th>Kubernetes Service region</th>
     </tr>
     <tr>
-      <td>Germany</td>
+      <td>Dallas</td>
+      <td><code>us-south</code></td>
+      <td>US South</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
       <td><code>eu-de</code></td>
+      <td>EU Central</td>
     </tr>
     <tr>
       <td>Sydney</td>
       <td><code>au-syd</code></td>
+      <td>AP South</td>
     </tr>
     <tr>
-      <td>United Kingdom</td>
+      <td>London</td>
       <td><code>eu-gb</code></td>
+      <td>UK South</td>
     </tr>
     <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
+      <td>Tokyo</td>
+      <td><code>jp-tok</code></td>
+      <td>AP North</td>
+    </tr>
+    <tr>
+      <td>Washington DC</td>
+      <td><code>us-east</code></td>
+      <td>US East</td>
     </tr>
   </table>
 
@@ -58,7 +73,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: codeblock}
+    {: pre}
 
   2. Copy the output and paste it into your terminal.
 
@@ -67,7 +82,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   ```
   helm del --purge datashield
   ```
-  {: codeblock}
+  {: pre}
 
 4. Delete the TLS certificates by running each of the following commands.
 
@@ -76,7 +91,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   kubectl delete secret datashield-enclaveos-frontend-tls
   kubectl delete secret datashield-enclaveos-manager-main-tls
   ```
-  {: codeblock}
+  {: pre}
 
 5. The uninstall process uses Helm "hooks" to run an uninstaller. You can delete the uninstaller after it runs.
 
@@ -84,12 +99,12 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: codeblock}
+  {: pre}
 
 You might also wish to delete the Certificate Manager instance and the Docker config secret if you created one.
 {: tip}
 
-</br>
+
 
 ## Uninstalling with the beta installer
 {: #uninstall-installer}
@@ -101,7 +116,4 @@ To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CL
   ```
   docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
   ```
-  {: codeblock}
-
-</br>
-</br>
+  {: pre}

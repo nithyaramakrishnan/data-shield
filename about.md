@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-21"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -25,7 +25,6 @@ When it comes to protecting your data, encryption is one of the most popular and
 
 With {{site.data.keyword.datashield_short}} your {{site.data.keyword.cloud_notm}} container workload code and data are protected in use. The app code and data run in CPU-hardened enclaves, which are trusted areas of memory on the worker node that protect critical aspects of the app. The enclaves help to keep the code and data confidential and unmodified. If you or your company require data sensitivity due to internal policies, government regulations, or industry compliance requirements, this solution might help you to move to the cloud. Example use cases include financial and healthcare institutions, or countries with government policies that require on-premises cloud solutions.
 
-</br>
 
 ## Integrations
 {: #integrations}
@@ -44,6 +43,3 @@ To provide the most seamless experience for you, {{site.data.keyword.datashield_
   <dt>{{site.data.keyword.loganalysislong}}</dt>
     <dd>You can create a [logging configuration](/docs/containers?topic=containers-health#health) through the {{site.data.keyword.containerlong_notm}} that forwards your logs to [{{site.data.keyword.loganalysislong}}](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-getting-started-with-cla). You can expand your log collection, log retention, and log search abilities in {{site.data.keyword.cloud_notm}}. Empower your DevOps team with features such as aggregation of application and environment logs for consolidated application or environment insights, encryption of logs, retention of log data for as long as it is needed, and quick detection and troubleshooting of issues.</dd>
 </dl>
-
-</br>
-</br>

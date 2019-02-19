@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-21"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -40,4 +40,4 @@ To see all of the commands and more help information, you can run the following 
 ```
 docker run registry.bluemix.net/ibm/datashield-installer help
 ```
-{: codeblock}
+{: pre}

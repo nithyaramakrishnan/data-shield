@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-23"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -28,35 +28,51 @@ You can convert your images to run in an EnclaveOS® environment by using the Da
 You can allow all users of the converter to obtain input images from and push output images to the configured private registries by configuring the converter with registry credentials.
 {: shortdesc}
 
-**Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials**
+### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
+{: #configure-ibm-registry}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
 
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
   ```
-  {: codeblock}
+  {: pre}
 
   <table>
     <tr>
       <th>Region</th>
-      <th>Endpoint</th>
+      <th>IBM Cloud Endpoint</th>
+      <th>Kubernetes Service region</th>
     </tr>
     <tr>
-      <td>Germany</td>
+      <td>Dallas</td>
+      <td><code>us-south</code></td>
+      <td>US South</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
       <td><code>eu-de</code></td>
+      <td>EU Central</td>
     </tr>
     <tr>
       <td>Sydney</td>
       <td><code>au-syd</code></td>
+      <td>AP South</td>
     </tr>
     <tr>
-      <td>United Kingdom</td>
+      <td>London</td>
       <td><code>eu-gb</code></td>
+      <td>UK South</td>
     </tr>
     <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
+      <td>Tokyo</td>
+      <td><code>jp-tok</code></td>
+      <td>AP North</td>
+    </tr>
+    <tr>
+      <td>Washington DC</td>
+      <td><code>us-east</code></td>
+      <td>US East</td>
     </tr>
   </table>
 
@@ -65,7 +81,7 @@ You can allow all users of the converter to obtain input images from and push ou
   ```
   ibmcloud cr token-add --non-expiring --readwrite --description 'EnclaveOS Container Converter'
   ```
-  {: codeblock}
+  {: pre}
 
 3. Create a JSON configuration file. Replace <token> in the following command with the token that you created in the previous step. If you don't have `openssl`, you can use any CLI base64 encoder with the appropriate options.
 
@@ -77,19 +93,20 @@ You can allow all users of the converter to obtain input images from and push ou
   ```
   {: codeblock}
 
-**Configuring credentials for another registry**
+### Configuring credentials for another registry
+{: #configure-other-registry}
 
 If you already have a `~/.docker/config.json` file that authenticates to the registry you wish to use, then log in to the `ibmcloud` CLI and then run the following command.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
-  {: codeblock}
+  {: pre}
 
 </br>
 
 ## Converting your images
-{: #converting}
+{: #converting-images}
 
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
@@ -99,30 +116,7 @@ You can use the Enclave Manager API to connect to the converter.
   ```
   ibmcloud login -a https://api.<region>.bluemix.net
   ```
-  {: codeblock}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>Endpoint</th>
-    </tr>
-    <tr>
-      <td>Germany</td>
-      <td><code>eu-de</code></td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-    </tr>
-    <tr>
-      <td>United Kingdom</td>
-      <td><code>eu-gb</code></td>
-    </tr>
-    <tr>
-      <td>US South</td>
-      <td><code>us-south</code></td>
-    </tr>
-  </table>
+  {: pre}
 
 2. Set the context for your cluster.
 
@@ -131,7 +125,7 @@ You can use the Enclave Manager API to connect to the converter.
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: codeblock}
+    {: pre}
 
   2. Copy the output and paste it into your terminal.
 
@@ -141,14 +135,14 @@ You can use the Enclave Manager API to connect to the converter.
   export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
   echo $token
   ```
-  {: codeblock}
+  {: pre}
 
 5. Convert your image.
 
   ```
   curl -k -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
   ```
-  {: codeblock}
+  {: pre}
 
   If you are using the default, self-signed, certificate in the conversion service, the `-k` option is required. For production deployments, be sure that you use a trusted certificate and eliminate the `-k` option for security reasons.
   {: important}
@@ -158,7 +152,7 @@ You can use the Enclave Manager API to connect to the converter.
   ```
   curl -k -X POST https://enclave-manager.<Ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json'
   ```
-  {: codeblock}
+  {: pre}
 
 7. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.
 
@@ -191,14 +185,14 @@ Check out the following example to see how to configure a request to generate an
        ]
  }
  ```
- {: codeblock}
+ {: screen}
 
 2. Input your variables and run the following command.
 
  ```
  curl -k -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
  ```
- {: codeblock}
+ {: pre}
 
  If you are using the default, self-signed, certificate in the conversion service, the `-k` option is required. For production deployments, be sure that you use a trusted certificate and eliminate the `-k` option for security reasons.
  {: important}
@@ -206,7 +200,7 @@ Check out the following example to see how to configure a request to generate an
 </br>
 
 ## Deploying {{site.data.keyword.datashield_short}} containers
-{: #containers}
+{: #deploy-containers}
 
 After you convert your images, you must redeploy your {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster.
 {: shortdesc}
@@ -253,8 +247,4 @@ When you deploy {{site.data.keyword.datashield_short}} containers to your Kubern
    ```
    kubectl create -f template.yml
    ```
-  {: codeblock}
-
-
-</br>
-</br>
+  {: pre}
