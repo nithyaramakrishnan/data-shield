@@ -93,8 +93,8 @@ do
 			ls ${installDir}/${PluginNameShort}/nl/$lang-returns/
 			#Extract the zip
 			echo "Extracting the zip..."
-			#unzip -t "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
-			tar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
+			unzip package.zip
+			#tar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
 			#jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 			ls "${installDir}/${PluginNameShort}/nl/$lang-returns/"
 
