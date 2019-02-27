@@ -83,7 +83,7 @@ do
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
 			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL 
-
+			sleep 5
 
 			#Change the package extension to zip
 			echo "Renaming ${packageExtension} to zip for extraction..."
@@ -94,8 +94,9 @@ do
 			ls ${installDir}/${PluginNameShort}/nl/$lang-returns/
 			#Extract the zip
 			echo "Extracting the zip..."
-			#unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
-			jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			#jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			ls "${installDir}/${PluginNameShort}/nl/$lang-returns/"
 
 		      	#Copy the new translated files 
 			echo "Copying over new files..."
