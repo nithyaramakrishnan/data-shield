@@ -83,6 +83,7 @@ do
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
 			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL 
+			sleep 30
 
 			#Change the package extension to zip
 			echo "Renaming ${packageExtension} to zip for extraction..."
