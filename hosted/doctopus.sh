@@ -89,11 +89,12 @@ do
 			echo "Original name: ${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}"
 			echo "New name: ${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			ls ${installDir}/${PluginNameShort}/nl/${lang}-returns/
-			#mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
+			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			ls ${installDir}/${PluginNameShort}/nl/$lang-returns/
 			#Extract the zip
 			echo "Extracting the zip..."
-			unzip -t "${installDir}/${PluginNameShort}/nl/$lang-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}"   
+			#unzip -t "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
+			tar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
 			#jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 			ls "${installDir}/${PluginNameShort}/nl/$lang-returns/"
 
@@ -160,7 +161,7 @@ do
     		cd "$installDir/"
 	
 		# Post to Slack and (above) set variables for that Slack post
-		python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
+		#python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
 	
 	else
 		echo "Charge to ID is not set in a properties files in $f."
