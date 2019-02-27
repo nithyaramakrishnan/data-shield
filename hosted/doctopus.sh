@@ -90,10 +90,11 @@ do
 			echo "New name: ${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			ls 
 			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
+			sleep 5
 			ls 
 			#Extract the zip
 			echo "Extracting the zip..."
-			unzip -a package.zip
+			unzip package.zip
 			#tar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" 
 			#jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 			ls 
