@@ -87,7 +87,7 @@ do
 
 			#Change the package extension to zip
 			echo "Renaming ${packageExtension} to zip for extraction..."
-			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "$(basename "${installDir}/${PluginNameShort}/nl/$lang-returns/package" .zip).zip"
+			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 
 			#Extract the zip
 			echo "Extracting the zip..."
