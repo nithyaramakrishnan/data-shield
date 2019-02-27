@@ -94,7 +94,8 @@ do
 			ls ${installDir}/${PluginNameShort}/nl/$lang-returns/
 			#Extract the zip
 			echo "Extracting the zip..."
-			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			#unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
 		      	#Copy the new translated files 
 			echo "Copying over new files..."
