@@ -83,18 +83,17 @@ do
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
 			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL 
-			sleep 5
 
 			#Change the package extension to zip
 			echo "Renaming ${packageExtension} to zip for extraction..."
 			echo "Original name: ${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}"
 			echo "New name: ${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			ls ${installDir}/${PluginNameShort}/nl/${lang}-returns/
-			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
+			#mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			ls ${installDir}/${PluginNameShort}/nl/$lang-returns/
 			#Extract the zip
 			echo "Extracting the zip..."
-			unzip -t "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			unzip -t "${installDir}/${PluginNameShort}/nl/$lang-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}"   
 			#jar xvf "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 			ls "${installDir}/${PluginNameShort}/nl/$lang-returns/"
 
