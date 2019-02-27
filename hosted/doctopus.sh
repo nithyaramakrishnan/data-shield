@@ -57,11 +57,14 @@ do
 				echo "Creating $installDir/$PluginNameShort/nl/"
 				mkdir "$installDir/$PluginNameShort/nl/"
 			fi 
-
+			
+			# If the pt_br directory doesn't exist, create it
 			if [ "$lang" = "pt_br" ] ; then 
 				if ! [ -d "$installDir/$PluginNameShort/nl/pt/" ] ; then
 					mkdir "$installDir/$PluginNameShort/nl/pt/"
 				fi
+			
+			# If the zh directory doesn't exist, create it
 			elif [ "$lang" = "zh_cn" ] ; then 
 				if ! [ -d "$installDir/$PluginNameShort/nl/zh/" ] ; then
 					mkdir "$installDir/$PluginNameShort/nl/zh/"
@@ -79,7 +82,7 @@ do
 			echo $pkgURL
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
-			curl -O -# -u $gsaUserID:$gsaUserPassword $pkgURL 
+			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL 
 
 
 			#Change the package extension to zip
