@@ -91,7 +91,7 @@ do
 
 			#Extract the zip
 			echo "Extracting the zip..."
-			/usr/bin/unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
+			unzip "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"   
 
 		      	#Copy the new translated files 
 			echo "Copying over new files..."
