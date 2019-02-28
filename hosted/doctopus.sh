@@ -105,6 +105,12 @@ do
 
 	      		#Clean up
 			echo "Cleaning up unnecessary files that don't need to be checked in..."
+			echo ".pkg"
+	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.pkg' -delete
+			echo ".tlpkg"
+	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tlpkg' -delete
+			echo ".tpkg"
+	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpkg' -delete
 			echo ".tpt"
 	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
 			echo ".zip"
