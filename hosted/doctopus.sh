@@ -140,8 +140,8 @@ do
 		echo git checkout -b translations
     git checkout -b translations
 
-		echo git add --all
-    git add --all
+		echo git add --all :/
+    git add --all :/
 
 		#echo test commit git add -n --all
 		#git add -n --all
