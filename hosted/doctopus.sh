@@ -3,20 +3,20 @@
 for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
 	# Call the properties files to set the variables defined in them
-	
+
 	echo "------------------------"
 	echo $f
 	. $f
-  
+
 	export PluginNameShort=$GITHUB_REPO
 	export localPluginDir=$SERVICE_OUTPUT_DIR
 	echo $PluginNameShort
 	echo $localPluginDir
-  
+
 	echo "------------------------"
-	
+
 	# Do the repos with custom tagging script enabled first
-	if [ $CHARGEtoID ] ; then 
+	if [ $CHARGEtoID ] ; then
 
 		# For every service, run the translation processing script for each
 		cd "$installDir"
@@ -31,13 +31,13 @@ do
 		for lang in de es fr it ja ko pt_br zh_cn zh_tw
 		do
 			echo "Language: $lang"
-			if [ "$lang" = "pt_br" ] ; then 
+			if [ "$lang" = "pt_br" ] ; then
 				langDownload=pt-BR
 				langDir=pt/BR
-			elif [ "$lang" = "zh_cn" ] ; then 
+			elif [ "$lang" = "zh_cn" ] ; then
 				langDownload=zh-Hans
 				langDir=zh/CN
-			elif [ "$lang" = "zh_tw" ] ; then 
+			elif [ "$lang" = "zh_tw" ] ; then
 				langDownload=zh-Hant
 				langDir=zh/TW
 			else
@@ -52,20 +52,20 @@ do
 			fi
 
 
-		      	#If the nl directories don't exist, create them 
+		      	#If the nl directories don't exist, create them
 			if ! [ -d "$installDir/$PluginNameShort/nl/" ] ; then
 				echo "Creating $installDir/$PluginNameShort/nl/"
 				mkdir "$installDir/$PluginNameShort/nl/"
-			fi 
-			
+			fi
+
 			# If the pt_br directory doesn't exist, create it
-			if [ "$lang" = "pt_br" ] ; then 
+			if [ "$lang" = "pt_br" ] ; then
 				if ! [ -d "$installDir/$PluginNameShort/nl/pt/" ] ; then
 					mkdir "$installDir/$PluginNameShort/nl/pt/"
 				fi
-			
+
 			# If the zh directory doesn't exist, create it
-			elif [ "$lang" = "zh_cn" ] ; then 
+			elif [ "$lang" = "zh_cn" ] ; then
 				if ! [ -d "$installDir/$PluginNameShort/nl/zh/" ] ; then
 					mkdir "$installDir/$PluginNameShort/nl/zh/"
 				fi
@@ -74,15 +74,15 @@ do
 			if ! [ -d "$installDir/$PluginNameShort/nl/$langDir/" ] ; then
 				echo "Creating $installDir/$PluginNameShort/nl/$langDir/"
 				mkdir "$installDir/$PluginNameShort/nl/$langDir/"
-			fi 
+			fi
 
-			pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${CHARGEtoID}/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" 
+			pkgURL="https://rtpgsa.ibm.com/projects/c/cfm/CentralNLV/${projectCode}/${CHARGEtoID}/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}"
 
 			echo "Start downloading $lang package....."
 			echo $pkgURL
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
-			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL 
+			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL
 
 			#Change the package extension to zip
 			echo "Renaming ${packageExtension} to zip for extraction..."
@@ -91,7 +91,7 @@ do
 			echo "Extracting the zip..."
 			unzip package.zip
 
-		      	#Copy the new translated files 
+		      	#Copy the new translated files
 			echo "Copying over new files..."
 			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
@@ -119,23 +119,23 @@ do
 	      		find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
 	      		cd "${installDir}/${PluginNameShort}"
 	      		rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
-	
+
 		done
-	
+
 
 		echo "Ready to check files into Github..."
-    		
+
 		git config --global push.default matching
-		
+
 		echo git pull https://$GITHUB_URL_SHORT/$PluginNameShort.git
     		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
-		
+
 		echo git checkout -b translations
     		git checkout -b translations
-		
+
 		echo git add --all
     		git add --all
-		
+
 		#echo test commit git add -n --all
 		#git add -n --all
 
@@ -147,7 +147,7 @@ do
 
     		echo git checkout $GITHUB_URL_BRANCH
 		git checkout $GITHUB_URL_BRANCH
-		
+
 		echo git merge translations
     		git merge translations
 
@@ -158,14 +158,125 @@ do
     		git push translations
 
     		cd "$installDir/"
-	
+
 		# Post to Slack and (above) set variables for that Slack post
 		python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
-	
+
+		if [ $CLI_REPO ] ; then
+
+			# For every service, run the translation processing script for each
+			cd "$installDir"
+
+			#Clone the repo
+			git clone https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git $WORKSPACE/markdown-translation-processing/$CLI_REPO
+			cd $WORKSPACE/markdown-translation-processing/$CLI_REPO
+			git init
+
+			cd "$installDir"
+
+			for lang in de es fr it ja ko pt_br zh_cn zh_tw
+			do
+				echo "Language: $lang"
+				if [ "$lang" = "pt_br" ] ; then
+					langDownload=pt-BR
+					langDir=pt/BR
+				elif [ "$lang" = "zh_cn" ] ; then
+					langDownload=zh-Hans
+					langDir=zh/CN
+				elif [ "$lang" = "zh_tw" ] ; then
+					langDownload=zh-Hant
+					langDir=zh/TW
+				else
+					langDownload=$lang
+					langDir=$lang
+				fi
+
+
+				if [ "$mergeFiles" = "false" ]; then
+					echo "Deleting the existing nl directory..."
+					rm -R "$installDir/$CLI_REPO/nl/$langDir/"
+				fi
+
+
+			      	#If the nl directories don't exist, create them
+				if ! [ -d "$installDir/$CLI_REPO/nl/" ] ; then
+					echo "Creating $installDir/$CLI_REPO/nl/"
+					mkdir "$installDir/$CLI_REPO/nl/"
+				fi
+
+				# If the pt_br directory doesn't exist, create it
+				if [ "$lang" = "pt_br" ] ; then
+					if ! [ -d "$installDir/$CLI_REPO/nl/pt/" ] ; then
+						mkdir "$installDir/$CLI_REPO/nl/pt/"
+					fi
+
+				# If the zh directory doesn't exist, create it
+				elif [ "$lang" = "zh_cn" ] ; then
+					if ! [ -d "$installDir/$CLI_REPO/nl/zh/" ] ; then
+						mkdir "$installDir/$CLI_REPO/nl/zh/"
+					fi
+				fi
+
+				if ! [ -d "$installDir/$CLI_REPO/nl/$langDir/" ] ; then
+					echo "Creating $installDir/$CLI_REPO/nl/$langDir/"
+					mkdir "$installDir/$CLI_REPO/nl/$langDir/"
+				fi
+
+
+				mkdir "$installDir/$CLI_REPO/nl/$lang-returns"
+				cd "${installDir}/${CLI_REPO}/nl/${lang}-returns"
+
+				#Change the package extension to zip
+				#Both must be in the root directory right now
+				echo "Copying the CLI reference file over"
+				cp "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$lang-returns/${CLI_REPO_FILE}"
+
+			done
+
+
+			echo "Ready to check files into Github..."
+
+			git config --global push.default matching
+
+			echo git pull https://$GITHUB_URL_SHORT/$CLI_REPO.git
+	    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+
+			echo git checkout -b translations-cli
+	    		git checkout -b translations-cli
+
+			echo git add --all
+	    		git add --all
+
+			#echo test commit git add -n --all
+			#git add -n --all
+
+	    		echo git status
+	    		git status
+
+	    		echo git commit -m "$checkInComment"
+	    		git commit -m "$checkInComment"
+
+	    		echo git checkout $GITHUB_URL_BRANCH
+			git checkout $GITHUB_URL_BRANCH
+
+			echo git merge translations-cli
+	    		git merge translations-cli
+
+	    		echo git remote add translations-cli
+	    		git remote add translations-cli https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+
+	    		echo git push translations-cli
+	    		git push translations-cli
+
+	    		cd "$installDir/"
+
+			# Post to Slack and (above) set variables for that Slack post
+			export Service="$Service CLI"
+			export GITHUB_REPO=$CLI_REPO
+			python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
+
 	else
 		echo "Charge to ID is not set in a properties files in $f."
 	fi
 
 done
-
-
