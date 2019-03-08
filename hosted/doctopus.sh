@@ -128,41 +128,43 @@ do
 		git config --global push.default matching
 
 		echo git pull https://$GITHUB_URL_SHORT/$PluginNameShort.git
-    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+    git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
 		echo git checkout -b translations
-    		git checkout -b translations
+    git checkout -b translations
 
 		echo git add --all
-    		git add --all
+    git add --all
 
 		#echo test commit git add -n --all
 		#git add -n --all
 
-    		echo git status
-    		git status
+		echo git status
+		git status
 
-    		echo git commit -m "$checkInComment"
-    		git commit -m "$checkInComment"
+		echo git commit -m "$checkInComment"
+		git commit -m "$checkInComment"
 
-    		echo git checkout $GITHUB_URL_BRANCH
+		echo git checkout $GITHUB_URL_BRANCH
 		git checkout $GITHUB_URL_BRANCH
 
 		echo git merge translations
-    		git merge translations
+		git merge translations
 
-    		echo git remote add translations
-    		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+		echo git remote add translations
+		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
-    		echo git push translations
-    		git push translations
+		echo git push translations
+		git push translations
 
-    		cd "$installDir/"
+		cd "$installDir/"
 
 		# Post to Slack and (above) set variables for that Slack post
 		python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
 
-		if [ $CLI_REPO ] ; then
+
+
+	if [ $CLI_REPO ] ; then
 
 			# For every service, run the translation processing script for each
 			cd "$installDir"
@@ -239,36 +241,36 @@ do
 			git config --global push.default matching
 
 			echo git pull https://$GITHUB_URL_SHORT/$CLI_REPO.git
-	    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+	    git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
 
 			echo git checkout -b translations-cli
-	    		git checkout -b translations-cli
+	    git checkout -b translations-cli
 
 			echo git add --all
-	    		git add --all
+	    git add --all
 
 			#echo test commit git add -n --all
 			#git add -n --all
 
-	    		echo git status
-	    		git status
+  		echo git status
+  		git status
 
-	    		echo git commit -m "$checkInComment"
-	    		git commit -m "$checkInComment"
+  		echo git commit -m "$checkInComment"
+  		git commit -m "$checkInComment"
 
-	    		echo git checkout $GITHUB_URL_BRANCH
+  		echo git checkout $GITHUB_URL_BRANCH
 			git checkout $GITHUB_URL_BRANCH
 
 			echo git merge translations-cli
-	    		git merge translations-cli
+  		git merge translations-cli
 
-	    		echo git remote add translations-cli
-	    		git remote add translations-cli https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+  		echo git remote add translations-cli
+  		git remote add translations-cli https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
 
-	    		echo git push translations-cli
-	    		git push translations-cli
+  		echo git push translations-cli
+  		git push translations-cli
 
-	    		cd "$installDir/"
+  		cd "$installDir/"
 
 			# Post to Slack and (above) set variables for that Slack post
 			export Service="$Service CLI"
