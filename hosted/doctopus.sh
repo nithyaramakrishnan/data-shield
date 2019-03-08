@@ -248,7 +248,7 @@ do
 				#Change the package extension to zip
 				#Both must be in the root directory right now
 				echo "Copying the CLI reference file over"
-				cp "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$lang-returns/${CLI_REPO_FILE}"
+				cp "${installDir}/${PluginNameShort}/nl/${lang}/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$lang/${CLI_REPO_FILE}"
 
 			done
 
