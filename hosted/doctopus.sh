@@ -247,8 +247,8 @@ do
 
 				#Change the package extension to zip
 				#Both must be in the root directory right now
-				echo "Copying the CLI reference file over"
-				cp "${installDir}/${PluginNameShort}/nl/${lang}/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$lang/${CLI_REPO_FILE}"
+				echo "Copying the CLI reference file"
+				cp "${installDir}/${PluginNameShort}/nl/$langDir/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$langDir/${CLI_REPO_FILE}"
 
 			done
 
@@ -267,8 +267,8 @@ do
 			echo git checkout -b translations-cli
 	    git checkout -b translations-cli
 
-			echo git add --all
-	    git add --all
+			echo git add --all :/
+	    git add --all :/
 
 			#echo test commit git add -n --all
 			#git add -n --all
