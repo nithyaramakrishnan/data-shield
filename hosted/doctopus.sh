@@ -30,7 +30,9 @@ do
 
 		for lang in de es fr it ja ko pt_br zh_cn zh_tw
 		do
+			printf "\n\n\n---------------------------------------\n"
 			echo "Language: $lang"
+			printf "\n---------------------------------------\n"
 			if [ "$lang" = "pt_br" ] ; then
 				langDownload=pt-BR
 				langDir=pt/BR
@@ -85,14 +87,14 @@ do
 			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL
 
 			#Change the package extension to zip
-			echo "Renaming ${packageExtension} to zip for extraction..."
+			echo "Renaming $lang ${packageExtension} to zip for extraction..."
 			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 			#Extract the zip
-			echo "Extracting the zip..."
+			echo "Extracting the $lang zip..."
 			unzip package.zip
 
 		      	#Copy the new translated files
-			echo "Copying over new files..."
+			echo "Copying over new files into the nl directory..."
 			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
 		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
@@ -120,10 +122,15 @@ do
 	      		cd "${installDir}/${PluginNameShort}"
 	      		rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
-		done
+			echo "Done moving files around for $lang. Moving on..."
+
+	done
 
 
-		echo "Ready to check files into Github..."
+		printf "\n\n---------------------------------------\n"
+		echo "CHECKING FILES IN"
+		printf "\n---------------------------------------\n"
+		echo "Ready to check files for all languages into Github..."
 
 		git config --global push.default matching
 
@@ -168,6 +175,10 @@ do
 
 	if [ $CLI_REPO ] ; then
 
+			echo "------------------------"
+			echo $CLI_REPO
+			echo "------------------------"
+
 			# For every service, run the translation processing script for each
 			cd "$installDir"
 
@@ -180,7 +191,11 @@ do
 
 			for lang in de es fr it ja ko pt_br zh_cn zh_tw
 			do
-				echo "Language: $lang"
+
+				printf "\n\n\n---------------------------------------\n"
+				echo "CLI Language: $lang"
+				printf "\n---------------------------------------\n"
+
 				if [ "$lang" = "pt_br" ] ; then
 					langDownload=pt-BR
 					langDir=pt/BR
@@ -236,6 +251,10 @@ do
 				cp "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$lang-returns/${CLI_REPO_FILE}"
 
 			done
+
+			printf "\n\n---------------------------------------\n"
+			echo "CHECKING CLI FILES IN"
+			printf "\n---------------------------------------\n"
 
 
 			echo "Ready to check files into Github..."
