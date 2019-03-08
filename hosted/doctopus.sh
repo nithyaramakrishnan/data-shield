@@ -162,6 +162,8 @@ do
 		# Post to Slack and (above) set variables for that Slack post
 		python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
 
+	fi
+
 
 
 	if [ $CLI_REPO ] ; then
