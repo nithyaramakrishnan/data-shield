@@ -2,18 +2,27 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-03-13"
+
+keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:tip: .tip}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
 
-# Uninstalling {{site.data.keyword.datashield_short}}
+# Uninstalling
 {: #uninstall}
 
 If you no longer have a need to use {{site.data.keyword.datashield_full}}, you can delete the service and the TLS certificates that were created.
@@ -80,7 +89,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
 3. Delete the service.
 
   ```
-  helm del --purge datashield
+  helm delete datashield --purge
   ```
   {: pre}
 
@@ -101,7 +110,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   ```
   {: pre}
 
-You might also wish to delete the Certificate Manager instance and the Docker config secret if you created one.
+You might also want to delete the `cert-manager` instance and the Docker config secret if you created one.
 {: tip}
 
 

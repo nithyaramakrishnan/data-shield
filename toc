@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" audience="service" href="/docs/services/data-shield/index.html" path="services/data-shield"}
+{: .toc subcollection="data-shield" audience="service" href="/docs/services/data-shield?topic=data-shield-gettingstarted#gettingstarted" path="services/data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
@@ -13,6 +13,15 @@ IBM Cloud Data Shield
     install.md
     access.md
     convert.md
+    deploy.md
+
+    {: .topicgroup}
+    Prepackaged shielded images
+        [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
+        [Mysql image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter)
+        [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
+        [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
+
     uninstall.md
     {: .navgroup-end}
 

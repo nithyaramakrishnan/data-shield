@@ -2,16 +2,25 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-03-13"
+
+keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:tip: .tip}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
 
 # Managing access
 {: #access}
@@ -25,12 +34,11 @@ You can control access to the {{site.data.keyword.datashield_full}} Enclave Mana
 
 In the Enclave Manager console, you can view the nodes in your cluster and their attestation status. You can also view tasks and an audit logs of cluster events.
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
+1. Log in to the IBM Cloud CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: codeblock}
 
   <table>
     <tr>
@@ -77,9 +85,8 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: codeblock}
 
-  2. Copy the output and paste it into your terminal.
+  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
 3. Check to see that all your service is running by confirming that all of your pods are in a *running* state.
 
@@ -109,14 +116,14 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
   ```
   {: codeblock}
 
-7. In terminal, get your IAM token.
+8. In terminal, get your IAM token.
 
   ```
   ibmcloud iam oauth-tokens
   ```
   {: codeblock}
 
-8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
+7. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
 
 9. Click **Sign in**.
 
@@ -127,7 +134,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 {{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}
 
-Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers/cs_users.html#users).
+Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [Assigning cluster access](/docs/containers?topic=containers-users#users).
 {: tip}
 
 Check out the following table to see which roles are supported and some example actions that can be taken by each user:
@@ -161,8 +168,8 @@ Check out the following table to see which roles are supported and some example 
 You can set or update the user roles for your console manager.
 {: shortdesc}
 
-1. Navigate to the [Enclave Manager UI](/docs/services/data-shield/access.html#access-iam).
-2. From the dropdown menu, open the user management screen.
+1. Navigate to the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-access#access-iam).
+2. From the drop-down menu, open the user management screen.
 3. Select **Settings**. Review the list of users or add a new user from this screen.
 4. To edit a users permissions, hover over a user until the pencil icon displays.
 5. Click the pencil icon to change their permissions. Any changes to a users permissions take immediate effect.

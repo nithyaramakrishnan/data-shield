@@ -2,21 +2,28 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-03-13"
+
+keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
-{:important: .important}
 {:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
 
 # Getting started tutorial
-{: #gettingstarted}
+{: #getting-started}
 
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
@@ -30,7 +37,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
   * [Helm](/docs/containers?topic=containers-integrations#helm)
@@ -44,13 +51,13 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
   * Container Registry
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
-  1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
+  1. Prepare to [create your cluster](https://cloud.ibm.com/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
+  2. Ensure that you have the [required permissions](https://cloud.ibm.com/docs/containers?topic=containers-users#users) to create a cluster.
 
-  3. Create the [cluster](/docs/containers?topic=containers-clusters).
+  3. Create the [cluster](https://cloud.ibm.com/docs/containers?topic=containers-clusters#clusters).
 
-* An instance of the Certificate Manager service version 0.5.0. To install the instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
@@ -73,14 +80,14 @@ The Helm chart installs the following components:
 When you install a Helm chart, there are several options and parameters that allow you to customize your installation. The following tutorial walks you through the most basic, default installation of the chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield?topic=data-shield-deploying).
 {: tip}
 
-</br>
+To install Data Shield onto your cluster:
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: codeblock}
+  {: pre}
 
   <table>
     <tr>
@@ -131,14 +138,14 @@ When you install a Helm chart, there are several options and parameters that all
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. Add the `ibm` repository.
+3. If you haven't already, add the `ibm` repository.
 
   ```
   helm repo add ibm https://registry.bluemix.net/helm/ibm
   ```
   {: pre}
 
-4. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
+4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
@@ -155,11 +162,12 @@ When you install a Helm chart, there are several options and parameters that all
 6. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress subdomain>
+  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: pre}
 
-  If you [configured a {{site.data.keyword.cloud_notm}} Container Registry for your converter](convert.html) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  {: note}
 
 7. To monitor the startup of your components you can run the following command.
 
@@ -169,74 +177,14 @@ When you install a Helm chart, there are several options and parameters that all
   {: pre}
 
 
-## Getting to the Enclave Manager console
-{: #gs-console}
-
-In the Enclave Manager console, you can view the nodes in your cluster and the nodes’ attestation status. You can also view tasks and an audit log of cluster events.
-
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
-
-  ```
-  ibmcloud login -a https://api.<region>.bluemix.net
-  ```
-  {: pre}
-
-2. Set the context for your cluster.
-
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: pre}
-
-  2. Copy the output and paste it into your terminal.
-
-3. Check to see that all your service is running by confirming that all of your pods are in a *running* state.
-
-  ```
-  kubectl get pods
-  ```
-  {: codeblock}
-
-4. Look up the frontend URL for your Enclave Manager by running the following command.
-
-  ```
-  kubectl get svc datashield-enclaveos-frontend
-  ```
-  {: codeblock}
-
-5. Obtain your Ingress subdomain.
-
-  ```
-  ibmcloud ks cluster-get <your-cluster-name>
-  ```
-  {: pre}
-
-6. In a browser enter the Ingress subdomain where your Enclave Manager is available.
-
-  ```
-  enclave-manager.<cluster-ingress-subdomain>
-  ```
-  {: pre}
-
-7. In terminal, get your IAM token.
-
-  ```
-  ibmcloud iam oauth-tokens
-  ```
-  {: pre}
-
-8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
-
-9. Click **Sign in**.
-
-
-
 ## Next steps
 {: #gs-next}
 
-Great job! Now that {{site.data.keyword.datashield_short}} is installed, try walking through some sample apps:
+Great job! Now that the service is installed on your cluster you can run your apps in the {{site.data.keyword.datashield_short}} environment. 
+
+To run your apps in a {{site.data.keyword.datashield_short}} environment, you must [convert](/docs/services/data-shield?topic=data-shield-convert#convert), [whitelist](/docs/services/data-shield?topic=data-shield-convert#convert-whitelist), and then [deploy](https://test.cloud.ibm.com/docs/services/data-shield?topic=data-shield-deploy-containers#deploy-containers) your container image.
+
+If you don't have your own image to deploy, try using one of the sample "datashield" images:
 
 * [{{site.data.keyword.datashield_short}} Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet)
 * MariaDB or NGINX in {{site.data.keyword.cloud_notm}} Container Registry
