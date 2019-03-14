@@ -2,20 +2,27 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-03-13"
+
+keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
-{:important: .important}
 {:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
 
-# Installing {{site.data.keyword.datashield_short}}
+# Installing
 {: #deploying}
 
 You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. There is no benefit to using one over the other, so you can work with the commands that you feel most comfortable with.
@@ -28,7 +35,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
   * [Helm](/docs/containers?topic=containers-integrations#helm)
@@ -41,14 +48,14 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
   * Kubernetes Service
   * Container Registry
 
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have a cluster, you can use the following steps to help you get started.
+* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
+  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users#users) to create a cluster.
 
-  3. Create the [cluster](/docs/containers?topic=containers-clusters).
+  3. Create the [cluster](/docs/containers?topic=containers-clusters#clusters).
 
-* An instance of the Certificate Manager service version 0.5.0. To install the instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
@@ -165,7 +172,6 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
 
 Excellent! Now you're ready to install {{site.data.keyword.datashield_short}} into your new namespace. From this point on, be sure to add `--tiller-namespace <namespace_name>` to any Helm command that you run.
 
-</br>
 
 ## Installing with a Helm chart
 {: #install-chart}
@@ -177,16 +183,55 @@ The Helm chart installs the following components:
 
 *	The supporting software for SGX, which is installed on the bare metal hosts by a privileged container.
 *	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
-*	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
+*	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-</br>
+
+To install Data Shield onto your cluster:
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
   {: pre}
+
+  <table>
+    <tr>
+      <th>Region</th>
+      <th>IBM Cloud Endpoint</th>
+      <th>Kubernetes Service region</th>
+    </tr>
+    <tr>
+      <td>Dallas</td>
+      <td><code>us-south</code></td>
+      <td>US South</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
+      <td><code>eu-de</code></td>
+      <td>EU Central</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td><code>au-syd</code></td>
+      <td>AP South</td>
+    </tr>
+    <tr>
+      <td>London</td>
+      <td><code>eu-gb</code></td>
+      <td>UK South</td>
+    </tr>
+    <tr>
+      <td>Tokyo</td>
+      <td><code>jp-tok</code></td>
+      <td>AP North</td>
+    </tr>
+    <tr>
+      <td>Washington DC</td>
+      <td><code>us-east</code></td>
+      <td>US East</td>
+    </tr>
+  </table>
 
 2. Set the context for your cluster.
 
@@ -197,16 +242,16 @@ The Helm chart installs the following components:
     ```
     {: pre}
 
-  2. Beginning with `export`, copy the output and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. Add the `ibm` repository.
+3. If you haven't already, add the `ibm` repository.
 
   ```
   helm repo add ibm https://registry.bluemix.net/helm/ibm
   ```
   {: pre}
 
-4. Optional: If you don't know the email associated with the administrator or the admin account ID, run the following command.
+4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
@@ -223,11 +268,12 @@ The Helm chart installs the following components:
 6. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's Ingress subdomain> <converter-registry-option>
+  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: pre}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry for your converter](/docs/services/data-shield?topic=data-shield-convert) you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  {: note}
 
 7. To monitor the startup of your components you can run the following command.
 
@@ -236,7 +282,7 @@ The Helm chart installs the following components:
   ```
   {: pre}
 
-</br>
+
 
 ## Installing with the {{site.data.keyword.datashield_short}} installer
 {: #installer}
@@ -247,7 +293,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
   {: pre}
 
@@ -287,7 +333,6 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
 
   To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
 
-</br>
 
 ## Updating the service
 {: #update}
@@ -301,7 +346,6 @@ To upgrade to the latest version with the Helm chart, run the following command.
   ```
   {: pre}
 
-</br>
 
 To upgrade to the latest version with the installer, run the following command:
 
@@ -314,5 +358,3 @@ To upgrade to the latest version with the installer, run the following command:
 
   To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
 
-</br>
-</br>
