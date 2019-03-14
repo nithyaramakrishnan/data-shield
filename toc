@@ -16,7 +16,7 @@ IBM Cloud Data Shield
     deploy.md
 
     {: .topicgroup}
-    Using a prepackaged sample
+    Prepackaged shielded images
         [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
         [Mysql image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter)
         [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
