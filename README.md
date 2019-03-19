@@ -53,7 +53,7 @@ Important: As these files contain your username and password, do not share the e
 
 ## Running the script:
 
-1. Double-click the `process_translations.bat` (Windows) or `process_translations.command` (OS X) file to run the script.
+1. Double-click the `process_translations.bat` (Windows) or `process_translations.command` (OS X) file to run the script. Note: Do not call the script by running it in bash, i.e. `./process_translations.command`
 2. Windows only: To be sure that the script is running properly, check the logs in the `transationlogs` folder. The timestamp and size of the log files will indicate which files are being built.
 3. Windows only: After the script finishes, open your log files and scroll to the bottom. You should see a message that says **Build successful**. If your build has failed, check the log to fix any issues and run the build again.
 4. Verify in Github that all of the files have been updated.
