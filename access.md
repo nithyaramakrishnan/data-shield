@@ -25,7 +25,7 @@ subcollection: data-shield
 # Managing access
 {: #access}
 
-You can control access to the {{site.data.keyword.datashield_full}} Enclave Manager. This access control is separate from the typical Identity and Access Management (IAM) roles that you use when working with {{site.data.keyword.cloud_notm}}.
+You can control access to the {{site.data.keyword.datashield_full}} Enclave Manager. This access control is separate from the typical Identity and Access Management (IAM) roles that you use when you are working with {{site.data.keyword.cloud_notm}}.
 {: shortdesc}
 
 
@@ -109,7 +109,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
   ```
   {: codeblock}
 
-6. In a browser enter the Ingress subdomain where your Enclave Manager is available.
+6. In a browser, enter the Ingress subdomain where your Enclave Manager is available.
 
   ```
   enclave-manager.<cluster-ingress-subdomain>
@@ -170,6 +170,6 @@ You can set or update the user roles for your console manager.
 
 1. Navigate to the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-access#access-iam).
 2. From the drop-down menu, open the user management screen.
-3. Select **Settings**. Review the list of users or add a new user from this screen.
-4. To edit a users permissions, hover over a user until the pencil icon displays.
-5. Click the pencil icon to change their permissions. Any changes to a users permissions take immediate effect.
+3. Select **Settings**. You can review the list of users or add a user from this screen.
+4. To edit user permissions, hover over a user until the pencil icon is displayed.
+5. Click the pencil icon to change their permissions. Any changes to a user's permissions take immediate effect.

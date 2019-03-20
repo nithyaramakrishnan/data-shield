@@ -90,7 +90,7 @@ You can allow all users of the converter to obtain input images from and push ou
   ```
   {: pre}
 
-3. Create a JSON configuration file by using the token that you just created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command line base64 encoder with appropriate options. Be sure that there aren't any new lines in the middle or at the end of the encoded string.
+3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that there are no new lines in the middle or at the end of the encoded string.
 
   ```
   (echo -n '{"auths":{"registry.ng.bluemix.net":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
@@ -193,10 +193,10 @@ Check out the following example to see how to configure a request to generate an
 ## Whitelisting applications
 {: #convert-whitelist}
 
-When a Docker image is converted to run inside of Intel SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allows the application to run on the cluster where Data Shield is installed.
+When a Docker image is converted to run inside of Intel® SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allow the application to run on the cluster where Data Shield is installed.
 {: shortdesc}
 
-1. Make a whitelist request to the Enclave Manager. Be sure to fill in your information when running the following command.
+1. Make a whitelist request to the Enclave Manager. Be sure to fill in your information when you run the following command.
 
   ```
   curl -k -X POST https://enclave-manager.<ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json'

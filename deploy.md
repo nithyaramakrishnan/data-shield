@@ -29,9 +29,9 @@ subcollection: data-shield
 After you convert your images, you must redeploy your {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster.
 {: shortdesc}
 
-When you deploy {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster, the container specification must include volume mounts. This allows the SGX devices and the AESM socket to be available in the container.
+When you deploy {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster, the container specification must include volume mounts. The volume mounts allow the SGX devices and the AESM socket to be available in the container.
 
-Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the ["datashield" images](/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter) in the IBM Container Registry can be used as a sample.
+Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [Data Shield images](/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter) in the IBM Container Registry can be used as a sample.
 {: tip}
 
 1. Save the following pod specification as a template.

@@ -25,13 +25,13 @@ subcollection: data-shield
 # Installing
 {: #deploying}
 
-You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. There is no benefit to using one over the other, so you can work with the commands that you feel most comfortable with.
+You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. You can work with the install commands that you feel most comfortable with.
 {: shortdesc}
 
 ## Before you begin
 {: #begin}
 
-Before you can begin using {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help getting the CLIs and plug-ins downloaded and your Kubernetes Service environment configured, check out the tutorial [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
@@ -40,7 +40,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
   * [Docker](https://docs.docker.com/install/)
   * [Helm](/docs/containers?topic=containers-integrations#helm)
 
-  You might want to configure Helm to use `--tls` mode. For help enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
@@ -63,7 +63,7 @@ Before you can begin using {{site.data.keyword.datashield_short}}, you must have
   {: pre}
 
 
-## Optional: Creating a Kube namespace
+## Optional: Creating a Kubernetes namespace
 {: #create-namespace}
 
 By default, {{site.data.keyword.datashield_short}} is installed into the `kube-system` namespace. Optionally, you can use an alternative namespace by creating a new one.
@@ -126,7 +126,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
 
   2. Copy the output and paste it into your terminal.
 
-3. Create a new namespace.
+3. Create a namespace.
 
   ```
   kubectl create namespace <namespace_name>
@@ -272,10 +272,10 @@ To install Data Shield onto your cluster:
   ```
   {: pre}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
-7. To monitor the startup of your components you can run the following command.
+7. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
@@ -337,9 +337,9 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
 ## Updating the service
 {: #update}
 
-After you have {{site.data.keyword.datashield_short}} installed on your cluster, you can upgrade at any time.
+When {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
 
-To upgrade to the latest version with the Helm chart, run the following command.
+To update to the latest version with the Helm chart, run the following command.
 
   ```
   helm repo update && helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<>  --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.Registry=registry.ng.bluemix.net/<your-registry>
@@ -347,7 +347,7 @@ To upgrade to the latest version with the Helm chart, run the following command.
   {: pre}
 
 
-To upgrade to the latest version with the installer, run the following command:
+To update to the latest version with the installer, run the following command:
 
   ```
   docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.bluemix.net/ibm/datashield-installer upgrade

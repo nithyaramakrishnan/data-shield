@@ -5,7 +5,7 @@
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
-    index.md
+    getting-started.md
     about.md
     {: .navgroup-end}
 
@@ -18,7 +18,7 @@ IBM Cloud Data Shield
     {: .topicgroup}
     Prepackaged shielded images
         [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-        [Mysql image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter)
+        [MariaDB image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mysql_starter#datashield-mysql_starter)
         [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
         [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
 
