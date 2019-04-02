@@ -51,13 +51,13 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   * Container Registry
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
-  1. Prepare to [create your cluster](https://cloud.ibm.com/docs/containers?topic=containers-clusters#cluster_prepare).
+  1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Ensure that you have the [required permissions](https://cloud.ibm.com/docs/containers?topic=containers-users#users) to create a cluster.
+  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users#users) to create a cluster.
 
-  3. Create the [cluster](https://cloud.ibm.com/docs/containers?topic=containers-clusters#clusters).
+  3. Create the [cluster](/docs/containers?topic=containers-clusters#clusters).
 
-* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. The default installation uses <code>cert-manager</code> to set up [TLS certificates](/docs/services/data-shield?topic=data-shield-tls-certificates#tls-certificates) for internal communication between Data Shield services. To install an instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager

@@ -22,6 +22,7 @@ IBM Cloud Data Shield
         [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
         [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
 
+    tls-cert.md
     uninstall.md
     {: .navgroup-end}
 
