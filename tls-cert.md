@@ -25,7 +25,7 @@ subcollection: data-shield
 
 
 # Managing TLS certificates
-{: tls-certificates}
+{: #tls-certificates}
 
 {{site.data.keyword.datashield_full}} uses TLS certificates both in frontend and backend apps. The Enclave Manager web frontend uses an IBM-provided "Let's Encrypt" certificate by default. In the backend, TLS is used for internal communication among backend services.
 {: shortdesc}
