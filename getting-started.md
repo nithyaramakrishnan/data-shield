@@ -28,7 +28,7 @@ subcollection: data-shield
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
 
-For more information about Data Shield, and what it means to protect your data in use you can learn [about the service](/docs/services/data-shield?topic=data-shield-about#about).
+For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use you can learn [about the service](/docs/services/data-shield?topic=data-shield-about#about).
 
 ## Before you begin
 {: #gs-begin}
@@ -57,7 +57,7 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 
   3. Create the [cluster](/docs/containers?topic=containers-clusters#clusters).
 
-* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. The default installation uses <code>cert-manager</code> to set up [TLS certificates](/docs/services/data-shield?topic=data-shield-tls-certificates#tls-certificates) for internal communication between Data Shield services. To install an instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. The default installation uses <code>cert-manager</code> to set up [TLS certificates](/docs/services/data-shield?topic=data-shield-tls-certificates#tls-certificates) for internal communication between {{site.data.keyword.datashield_short}} services. To install an instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
@@ -80,7 +80,7 @@ The Helm chart installs the following components:
 When you install a Helm chart, you have several options and parameters to customize your installation. The following tutorial walks you through the most basic, default installation of the chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield?topic=data-shield-deploying).
 {: tip}
 
-To install Data Shield onto your cluster:
+To install {{site.data.keyword.datashield_short}} onto your cluster:
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 
@@ -182,9 +182,9 @@ To install Data Shield onto your cluster:
 
 Great job! Now that the service is installed on your cluster you can run your apps in the {{site.data.keyword.datashield_short}} environment. 
 
-To run your apps in a Data Shield environment, you must [convert](/docs/services/data-shield?topic=data-shield-convert#convert), [whitelist](/docs/services/data-shield?topic=data-shield-convert#convert-whitelist), and then [deploy](/docs/services/data-shield?topic=data-shield-deploy-containers#deploy-containers) your container image.
+To run your apps in an {{site.data.keyword.datashield_short}} environment, you must [convert](/docs/services/data-shield?topic=data-shield-convert#convert), [whitelist](/docs/services/data-shield?topic=data-shield-convert#convert-whitelist), and then [deploy](/docs/services/data-shield?topic=data-shield-deploy-containers#deploy-containers) your container image.
 
-If you don't have your own image to deploy, try deploying one of the prepackaged Data Shield images:
+If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images:
 
 * [{{site.data.keyword.datashield_short}} Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet)
 * MariaDB or NGINX in {{site.data.keyword.cloud_notm}} Container Registry

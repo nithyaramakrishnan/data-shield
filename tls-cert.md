@@ -27,11 +27,11 @@ subcollection: data-shield
 # Managing TLS certificates
 {: #tls-certificates}
 
-{{site.data.keyword.datashield_full}} uses TLS certificates both in frontend and backend apps. The Enclave Manager web frontend uses an IBM-provided "Let's Encrypt" certificate by default. In the backend, TLS is used for internal communication among backend services.
+{{site.data.keyword.datashield_full}} uses TLS certificates both in front-end and backend apps. The Enclave Manager web front end uses an IBM-provided "Let's Encrypt" certificate by default. In the backend, TLS is used for internal communication among backend services.
 {: shortdesc}
 
 
-## Frontend use
+## Front end use
 {: #tls-frontend}
 
 You can choose to use the default or use your own TLS certificate by the way you define the Helm chart.
@@ -57,10 +57,10 @@ That's it! You're ready to use your own certificate from your own issuer.
 ## Backend use
 {: #tls-backend}
 
-The Data Shield service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you should not need to do anything with these certificates.
+The {{site.data.keyword.datashield_short}} service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you should not need to do anything with these certificates.
 {: shortdesc}
 
-Check out the following table for contextual information about how Data Shield creates the specific `cert-manager` resources.
+Check out the following table for contextual information about how {{site.data.keyword.datashield_short}} creates the specific `cert-manager` resources.
 
 <table>
     <tr>
@@ -69,15 +69,15 @@ Check out the following table for contextual information about how Data Shield c
     </tr>
     <tr>
         <td><code>datashield-ca-issuer</code></td>
-        <td>A self-signed <code>cert-manager</code> issuer that is used to generate the <code>datashield-enclaveos-ca</code> certificate authority that issues TLS certificates for the Data Shield components.</td>
+        <td>A self-signed <code>cert-manager</code> issuer that is used to generate the <code>datashield-enclaveos-ca</code> certificate authority that issues TLS certificates for the {{site.data.keyword.datashield_short}} components.</td>
     </tr>
     <tr>
         <td><code>datashield-issuer</code></td>
-        <td>The issuer of TLS certificates that are used in Data Shield components. The certificates are created by using the <code>datashield-enclaveos-ca</code> certificate authority.</td>
+        <td>The issuer of TLS certificates that are used in {{site.data.keyword.datashield_short}} components. The certificates are created by using the <code>datashield-enclaveos-ca</code> certificate authority.</td>
     </tr>
     <tr>
         <td><code>datashield-enclaveos-ca</code></td>
-        <td>The <code>cert-manager</code> resource that is both a certificate and a private certificate authority. As a certificate authority, it issues TLS certificates to the Data Shield backend services. The certificate is mounted as a Kubernetes secret in various services, which then trusts clients if they have a certificate that is signed by <code>datashield-enclaveos-ca</code> CA.</td>
+        <td>The <code>cert-manager</code> resource that is both a certificate and a private certificate authority. As a certificate authority, it issues TLS certificates to the {{site.data.keyword.datashield_short}} backend services. The certificate is mounted as a Kubernetes secret in various services, which then trusts clients if they have a certificate that is signed by <code>datashield-enclaveos-ca</code> CA.</td>
     </tr>
     <tr>
         <td><code>datashield-enclaveos-converter</code></td>
@@ -85,7 +85,7 @@ Check out the following table for contextual information about how Data Shield c
     </tr>
     <tr>
         <td><code>datashield-enclaveos-frontend</code></td>
-        <td>The certificate that is used by the container that serves the Enclave Manager frontend. It is used to authenticate to the Ingress proxy. Note: This is not the same certificate that you would switch to use your own.</td>
+        <td>The certificate that is used by the container that serves the Enclave Manager front end. It is used to authenticate to the Ingress proxy. Note: This is not the same certificate that you would switch to use your own.</td>
     </tr>
     <tr>
         <td><code>datashield-enclaveos-manager-main</code></td>

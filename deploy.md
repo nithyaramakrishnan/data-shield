@@ -23,7 +23,7 @@ subcollection: data-shield
 {:download: .download}
 
 
-# Deploying Data Shield containers
+# Deploying images
 {: #deploy-containers}
 
 After you convert your images, you must redeploy your {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster.
@@ -31,7 +31,7 @@ After you convert your images, you must redeploy your {{site.data.keyword.datash
 
 When you deploy {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster, the container specification must include volume mounts. The volume mounts allow the SGX devices and the AESM socket to be available in the container.
 
-Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [Data Shield images](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
+Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
 {: tip}
 
 1. Save the following pod specification as a template.
