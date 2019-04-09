@@ -141,26 +141,38 @@ On MacOS, if the OSX Keychain is used in your config.json file the container con
 {: tsResolve}
 To resolve the issue you can use the following steps:
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+1. Disable OSX keychain on your local system. Go to **System preferences > iCloud** and uncheck the box for **Keychain**.
+
+2. Delete the secret that you created. Be sure that you're logged in to IBM Cloud and have targeted your cluster before you run the following command.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
-  ```
-  {: pre}
-
-2. Obtain and export an IAM token.
-
-  ```
-  export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
-  echo $token
+  kubectl delete secret converter-docker-config
   ```
   {: pre}
 
-3. Create a JSON file to configure your registry credentials.
+3. In your `$HOME/.docker/config.json` file, delete the line `"credsStore": "osxkeychain"`.
 
-4. Convert your image. Be sure to replace the variables with the information for your application.
+4. Log in to your registry.
+
+5. Create a new secret.
 
   ```
-  curl -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<ingress-domain>/api/v1/tools/converter/convert-app
+  kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
   {: pre}
+
+6. List your pods and make a note of the pod with `enclaveos-converter` in the name.
+
+  ```
+  kubectl get pods
+  ```
+  {: pre}
+
+7. Delete the pod.
+
+  ```
+  kubectl delete pod <pod name>
+  ```
+  {: pre}
+
+8. Convert your image.
