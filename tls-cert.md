@@ -37,7 +37,7 @@ subcollection: data-shield
 You can choose to use the default or use your own TLS certificate by the way you define the Helm chart.
 {: shortdesc}
 
-For more information about IBM-provided certificates, see the [Kubernetes Service documentation](https://cloud.ibm.com/docs/containers?topic=containers-ingress#ingress_expose_public).
+For more information about IBM-provided certificates, see the [Kubernetes Service documentation](/docs/containers?topic=containers-ingress#ingress_expose_public).
 {: note}
 
 To use your own issuer:
