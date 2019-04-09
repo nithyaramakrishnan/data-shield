@@ -77,7 +77,7 @@ You attempt to run the container converter and receive an error: `Forbidden`.
 You might not be able to access the converter if your IAM or Bearer token is missing or expired.
 
 {: tsResolve}
-To resolve the issue, you should verify that you are using either an IBM IAM OAauth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
+To resolve the issue, you should verify that you are using either an IBM IAM OAuth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
 
 * IAM: `Authentication: Basic <IBM IAM Token>`
 * Enclave Manager: `Authentication: Bearer <E.M. Token>`
@@ -112,7 +112,7 @@ To resolve the issue, you can follow these steps:
 {: #ts-problem-mounting-device}
 
 {: tsSymptoms}
-You encounter issues while trying to mount Data Shield containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
+You encounter issues while trying to mount {{site.data.keyword.datashield_short}} containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
 
 {: tsCauses}
 Mounting can fail due to issues with the configuration of the host.
@@ -120,5 +120,47 @@ Mounting can fail due to issues with the configuration of the host.
 {: tsResolve}
 To resolve the issue, verify both:
 
-* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the Data Shield software, and perform the installation steps again. 
+* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the {{site.data.keyword.datashield_short}} software, and perform the installation steps again. 
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
+
+
+## Error when converting containers
+{: #ts-container-convert-fails}
+
+{: tsSymptoms}
+You encounter the following error when you try to convert your container.
+
+```
+{"errorType":"Processing Failure","reason":"Credentials store error: StoreError('docker-credential-osxkeychain not installed or not available in PATH',)"}
+```
+{: pre}
+
+{: tsCauses}
+On MacOS, if the OSX Keychain is used in your config.json file the container converter fails. 
+
+{: tsResolve}
+To resolve the issue you can use the following steps:
+
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+
+  ```
+  ibmcloud login -a cloud.ibm.com -r <region>
+  ```
+  {: pre}
+
+2. Obtain and export an IAM token.
+
+  ```
+  export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
+  echo $token
+  ```
+  {: pre}
+
+3. Create a JSON file to configure your registry credentials.
+
+4. Convert your image. Be sure to replace the variables with the information for your application.
+
+  ```
+  curl -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<ingress-domain>/api/v1/tools/converter/convert-app
+  ```
+  {: pre}

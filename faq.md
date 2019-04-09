@@ -59,4 +59,5 @@ The service extends SGX language support from C and C++ to Python and Java. It a
 {: #impact}
 {: faq}
 
-Performance overhead depends on the nature of the workload. For CPU intensive workload, the performance overhead is minimal. For memory and IO intensive applications, the overhead is caused due to paging and context switching. The amount of overhead generally depends on the size of the memory footprint of an application in relation to the SGX enclave page cache.
+
+The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that {{site.data.keyword.datashield_short}} has on your app is minimal. But, if you have memory or IO intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine {{site.data.keyword.datashield_short}}'s impact.

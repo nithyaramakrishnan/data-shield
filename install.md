@@ -186,7 +186,7 @@ The Helm chart installs the following components:
 *	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
 
-To install Data Shield onto your cluster:
+To install {{site.data.keyword.datashield_short}} onto your cluster:
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
 

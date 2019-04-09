@@ -25,7 +25,7 @@ subcollection: data-shield
 # Converting images
 {: #convert}
 
-You can convert your images to run in an EnclaveOS® environment by using the Data Shield Container Converter. After your images are converted, you can deploy to your SGX capable Kubernetes cluster.
+You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
 
@@ -190,7 +190,7 @@ Check out the following example to see how to configure a request to generate an
 ## Whitelisting your applications
 {: #convert-whitelist}
 
-When a Docker image is converted to run inside of Intel® SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allow the application to run on the cluster where Data Shield is installed.
+When a Docker image is converted to run inside of Intel® SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allow the application to run on the cluster where {{site.data.keyword.datashield_short}} is installed.
 {: shortdesc}
 
 1. Obtain an Enclave Manager access token using the IAM authentication token, using the following curl request:
