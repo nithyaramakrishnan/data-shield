@@ -136,8 +136,8 @@ do
 					summary="$summary \n$lang\: \:x\: Package could not be downloaded."
 				fi
 			else
-				echo "Package could not be downloaded. $lang check in cannot be completed."
-				summary="$summary \n$lang\: \:x\: Package could not be downloaded."
+				echo "Package could not be downloaded. $lang check in cannot be completed. Check GSA credentials."
+				summary="$summary \n$lang\: \:x\: Package could not be downloaded. Check GSA credentials."
 			fi
 
 	done
