@@ -97,6 +97,7 @@ do
 				#Extract the zip
 				echo "Extracting the $lang zip..."
 				OUTPUT="$(unzip package.zip)"
+				echo "$OUTPUT"
 				if [ "$OUTPUT" != *"cannot"* ]; then
 					
 					#Copy the new translated files
