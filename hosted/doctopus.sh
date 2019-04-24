@@ -97,7 +97,7 @@ do
 				echo "Extracting the $lang zip..."
 				if [ "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" ] ; then
 					unzip package.zip
-					if  -e ${installDir}/${PluginNameShort}/nl/$lang-returns/*.md ; then
+					if [ -f "${installDir}/${PluginNameShort}/nl/$lang-returns/*.md" ] ; then
 
 						#Copy the new translated files
 						echo "Copying over new files into the nl directory..."
@@ -129,18 +129,18 @@ do
 						rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
 						echo "Done moving files around for $lang. Moving on..."
-						summary="$summary\\n$lang: :checkyes:"
+						summary="$summary\\n:checkyes: $lang"
 					else
 						echo "Package could not be unzipped. $lang check in cannot be completed."
-						summary="$summary\\n$lang: :x: Package could not be unzipped. The package might be corrupt."
+						summary="$summary\\n:x: $lang: Package could not be unzipped. The package might be corrupt."
 					fi
 				else
 					echo "Package could not be renamed. $lang check in cannot be completed."
-					summary="$summary\\n$lang: :x: Package could not be renamed. Contact Kristin."
+					summary="$summary\\n:x:$lang: Package could not be renamed. Contact Kristin."
 				fi
 			else
 				echo "Package could not be downloaded. $lang check in cannot be completed. Check GSA credentials."
-				summary="$summary\\n$lang: :x: Package could not be downloaded. Check GSA credentials."
+				summary="$summary\\n:x:$lang: Package could not be downloaded. Check GSA credentials."
 			fi
 
 	done
