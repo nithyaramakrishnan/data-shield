@@ -96,9 +96,9 @@ do
 				mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 				#Extract the zip
 				echo "Extracting the $lang zip..."
+				unzip package.zip || continue=false
 				if continue=true; then
-					unzip package.zip || continue=false
-
+					
 					#Copy the new translated files
 					echo "Copying over new files into the nl directory..."
 					if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
