@@ -8,7 +8,8 @@ summary = os.environ.get('summary')
 GITHUB_REPO = os.environ.get('GITHUB_REPO')
 SLACK_INCOMING_USER = os.environ.get('SLACK_INCOMING_USER')  # Slack Bot display name 
 SLACK_ICON = os.environ.get('SLACK_ICON')  # Slack Bot icon
-SLACK_INCOMING_WEB_HOOK = "https://hooks.slack.com/services/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"
+#SLACK_INCOMING_WEB_HOOK = "https://hooks.slack.com/services/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"
+SLACK_INCOMING_WEB_HOOK = "https://hooks.slack.com/services/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"
 SLACK_INCOMING_CHANNEL = "#doctopus-test"  # Slack Channel
 
 print "Service:" + Service
