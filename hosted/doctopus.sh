@@ -97,7 +97,7 @@ do
 				echo "Extracting the $lang zip..."
 				if [ "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" ] ; then
 					unzip package.zip
-					if [ -f "${installDir}/${PluginNameShort}/nl/$lang-returns/*.md" ] ; then
+					if [ -f ${installDir}/${PluginNameShort}/nl/$lang-returns/*.md ] ; then
 
 						#Copy the new translated files
 						echo "Copying over new files into the nl directory..."
