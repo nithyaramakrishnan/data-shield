@@ -23,6 +23,9 @@ if ':x:' in summary:
   color = "#ff4500"
 else:
   color = "#228B22"
+
+if '\\n' in summary:
+  summary = summary.replace('\\n','\n')
   
 payload = {"channel":SLACK_INCOMING_CHANNEL,"username":SLACK_INCOMING_USER,"text":"The translation return build is complete for " + Service + "! Verify the returns in the prod repo https://github.com/IBM-Bluemix-Docs/" + GITHUB_REPO + "/tree/master/nl.","attachments":[{"color":color,"text":summary}],"icon_emoji":SLACK_ICON}
 print payload
