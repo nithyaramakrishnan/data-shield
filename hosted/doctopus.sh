@@ -131,16 +131,16 @@ do
 						echo "Done moving files around for $lang. Moving on..."
 						summary="$summary\\n$LANG_SUCCESS $lang"
 					else
-						echo "Package could not be unzipped. $lang check in cannot be completed."
-						summary="$summary\\n$LANG_FAIL $lang: Package could not be unzipped. The package might be corrupt."
+						echo "Package could not be unzipped. $lang check-in was not completed."
+						summary="$summary\\n$LANG_FAIL $lang: Package could not be unzipped. The package might be corrupt. $lang check-in was not completed."
 					fi
 				else
-					echo "Package could not be renamed. $lang check in cannot be completed."
-					summary="$summary\\n$LANG_FAIL$lang: Package could not be renamed. Contact Kristin."
+					echo "Package could not be renamed. $lang check-in was not completed."
+					summary="$summary\\n$LANG_FAIL$lang: Package could not be renamed. Contact Kristin. $lang check-in was not completed."
 				fi
 			else
-				echo "Package could not be downloaded. $lang check in cannot be completed. Check GSA credentials."
-				summary="$summary\\n$LANG_FAIL$lang: Package could not be downloaded. Check GSA credentials."
+				echo "Package could not be downloaded. Check that the package has been returned and that the GSA credentials are up to date. $lang check-in was not completed. "
+				summary="$summary\\n$LANG_FAIL$lang: Package could not be downloaded. Check GSA credentials. $lang check-in was not completed."
 			fi
 
 	done
