@@ -30,6 +30,7 @@ do
 
 		for lang in de es fr it ja ko pt_br zh_cn zh_tw
 		do
+			continue=true
 			printf "\n\n\n---------------------------------------\n"
 			echo "Language: $lang"
 			printf "\n---------------------------------------\n"
@@ -84,45 +85,50 @@ do
 			echo $pkgURL
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
-			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL
+			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL || echo "Package could not be downloaded. $lang check in cannot be completed." && continue=false
+			
+			if continue=true; then
 
-			#Change the package extension to zip
-			echo "Renaming $lang ${packageExtension} to zip for extraction..."
-			mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
-			#Extract the zip
-			echo "Extracting the $lang zip..."
-			unzip package.zip
+				#Change the package extension to zip
+				echo "Renaming $lang ${packageExtension} to zip for extraction..."
+				mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
+				#Extract the zip
+				echo "Extracting the $lang zip..."
+				if continue=true; then
+					unzip package.zip || echo "Package could not be unzipped. $lang check in cannot be completed." && continue=false
 
-		      	#Copy the new translated files
-			echo "Copying over new files into the nl directory..."
-			if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
-				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
-				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		  	elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
-				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
-		  	else
-				cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
-		  	fi
+					#Copy the new translated files
+					echo "Copying over new files into the nl directory..."
+					if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
+						cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+					elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
+						cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+					elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
+						cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
+					else
+						cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
+					fi
 
-	      		#Clean up
-			echo "Cleaning up unnecessary files that don't need to be checked in..."
-			echo ".pkg"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.pkg' -delete
-			echo ".tlpkg"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tlpkg' -delete
-			echo ".tpkg"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpkg' -delete
-			echo ".tpt"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
-			echo ".zip"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
-			echo "aith.xml"
-	      		find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
-	      		cd "${installDir}/${PluginNameShort}"
-	      		rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
+					#Clean up
+					echo "Cleaning up unnecessary files that don't need to be checked in..."
+					echo ".pkg"
+					find $installDir/$PluginNameShort/nl/$langDir -name '*.pkg' -delete
+					echo ".tlpkg"
+					find $installDir/$PluginNameShort/nl/$langDir -name '*.tlpkg' -delete
+					echo ".tpkg"
+					find $installDir/$PluginNameShort/nl/$langDir -name '*.tpkg' -delete
+					echo ".tpt"
+					find $installDir/$PluginNameShort/nl/$langDir -name '*.tpt' -delete
+					echo ".zip"
+					find $installDir/$PluginNameShort/nl/$langDir -name 'package.zip' -delete
+					echo "aith.xml"
+					find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
+					cd "${installDir}/${PluginNameShort}"
+					rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
-			echo "Done moving files around for $lang. Moving on..."
+					echo "Done moving files around for $lang. Moving on..."
+				fi
+			fi
 
 	done
 
