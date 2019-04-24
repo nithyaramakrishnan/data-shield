@@ -96,8 +96,9 @@ do
 				mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 				#Extract the zip
 				echo "Extracting the $lang zip..."
-				unzip package.zip || continue=false
-				if continue=true; then
+				 || continue=false
+				OUTPUT="$(unzip package.zip)"
+				if [ $OUTPUT != *"cannot"* ]; then
 					
 					#Copy the new translated files
 					echo "Copying over new files into the nl directory..."
@@ -180,6 +181,9 @@ do
 		git push translations
 
 		cd "$installDir/"
+		
+		echo "$summary"
+		export summary="$summary"
 
 		# Post to Slack and (above) set variables for that Slack post
 		python $WORKSPACE/markdown-translation-processing/hosted/slack.py
@@ -189,6 +193,8 @@ do
 
 
 	if [ $CLI_REPO ] ; then
+	
+			summary="Summary:"
 
 			echo "------------------------"
 			echo $CLI_REPO
@@ -264,6 +270,8 @@ do
 				#Both must be in the root directory right now
 				echo "Copying the CLI reference file"
 				cp "${installDir}/${PluginNameShort}/nl/$langDir/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$langDir/${CLI_REPO_FILE}"
+				
+				summary="$summary \n$lang\: \:checkyes\:"
 
 			done
 
@@ -311,12 +319,13 @@ do
 			# Post to Slack and (above) set variables for that Slack post
 			export Service="$Service CLI"
 			export GITHUB_REPO=$CLI_REPO
+			echo "$summary"
+			export summary="$summary"
 			python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "Charge to ID is not set in a properties files in $f."
 	fi
-	echo "$summary"
-	export summary="$summary"
+	
 
 done
