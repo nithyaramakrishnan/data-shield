@@ -129,14 +129,14 @@ do
 					rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
 					echo "Done moving files around for $lang. Moving on..."
-					summary="$summary \n$lang: :checkyes:"
+					summary="$summary \n$lang\: \:checkyes\:"
 				else
 					echo "Package could not be unzipped. $lang check in cannot be completed."
-					summary="$summary \n$lang: :x: Package could not be downloaded."
+					summary="$summary \n$lang\: \:x\: Package could not be downloaded."
 				fi
 			else
 				echo "Package could not be downloaded. $lang check in cannot be completed."
-				summary="$summary \n$lang: :x: Package could not be downloaded."
+				summary="$summary \n$lang\: \:x\: Package could not be downloaded."
 			fi
 
 	done
@@ -311,7 +311,7 @@ do
 			# Post to Slack and (above) set variables for that Slack post
 			export Service="$Service CLI"
 			export GITHUB_REPO=$CLI_REPO
-			python $WORKSPACE/markdown-translation-processing/jenkins_script/slack.py
+			python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "Charge to ID is not set in a properties files in $f."
