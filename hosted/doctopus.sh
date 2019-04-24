@@ -96,8 +96,8 @@ do
 				mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 				#Extract the zip
 				echo "Extracting the $lang zip..."
-				OUTPUT="$(unzip package.zip)"
-				echo "$OUTPUT"
+				OUTPUT=$(unzip package.zip)
+				echo "This is the output: $OUTPUT"
 				if [ "$OUTPUT" != *"cannot"* ]; then
 					
 					#Copy the new translated files
