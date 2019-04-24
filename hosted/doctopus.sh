@@ -96,7 +96,6 @@ do
 				mv "${installDir}/${PluginNameShort}/nl/${lang}-returns/${CHARGEtoID}_${shipmentName}_${shipmentNumber}_${langDownload}${packageExtension}" "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip"
 				#Extract the zip
 				echo "Extracting the $lang zip..."
-				 || continue=false
 				OUTPUT="$(unzip package.zip)"
 				if [ $OUTPUT != *"cannot"* ]; then
 					
