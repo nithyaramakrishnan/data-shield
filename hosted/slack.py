@@ -3,6 +3,7 @@ import json
 import requests
 
 
+LANG_FAIL = os.environ.get('LANG_FAIL')
 Service = os.environ.get('Service')
 summary = os.environ.get('summary')
 GITHUB_REPO = os.environ.get('GITHUB_REPO')
@@ -19,7 +20,7 @@ print "SLACK_ICON: " + SLACK_ICON
 print "SLACK_INCOMING_WEB_HOOK: " + SLACK_INCOMING_WEB_HOOK
 print "SLACK_INCOMING_CHANNEL: " + SLACK_INCOMING_CHANNEL
 
-if ':x:' in summary:
+if LANG_FAIL in summary:
   color = "#ff4500"
 else:
   color = "#228B22"
