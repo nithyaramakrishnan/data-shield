@@ -129,18 +129,18 @@ do
 						rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
 						echo "Done moving files around for $lang. Moving on..."
-						summary="$summary\\n:checkyes: $lang"
+						summary="$summary\\n:green-light: $lang"
 					else
 						echo "Package could not be unzipped. $lang check in cannot be completed."
-						summary="$summary\\n:x: $lang: Package could not be unzipped. The package might be corrupt."
+						summary="$summary\\n:red-light: $lang: Package could not be unzipped. The package might be corrupt."
 					fi
 				else
 					echo "Package could not be renamed. $lang check in cannot be completed."
-					summary="$summary\\n:x:$lang: Package could not be renamed. Contact Kristin."
+					summary="$summary\\n:red-light:$lang: Package could not be renamed. Contact Kristin."
 				fi
 			else
 				echo "Package could not be downloaded. $lang check in cannot be completed. Check GSA credentials."
-				summary="$summary\\n:x:$lang: Package could not be downloaded. Check GSA credentials."
+				summary="$summary\\n:red-light:$lang: Package could not be downloaded. Check GSA credentials."
 			fi
 
 	done
@@ -274,7 +274,7 @@ do
 				echo "Copying the CLI reference file"
 				cp "${installDir}/${PluginNameShort}/nl/$langDir/${CLI_SOURCE_FILE}" "${installDir}/${CLI_REPO}/nl/$langDir/${CLI_REPO_FILE}"
 				
-				summary="$summary \n$lang: :checkyes:"
+				summary="$summary \n$lang: :green-light:"
 
 			done
 
