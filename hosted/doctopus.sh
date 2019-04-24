@@ -132,7 +132,7 @@ do
 						summary="$summary \n$lang: :checkyes:"
 					else
 						echo "Package could not be unzipped. $lang check in cannot be completed."
-						summary="$summary \n$lang: :x: Package could not be downloaded."
+						summary="$summary \n$lang: :x: Package could not be unzipped. The package might be corrupt."
 					fi
 				else
 					echo "Package could not be renamed. $lang check in cannot be completed."
