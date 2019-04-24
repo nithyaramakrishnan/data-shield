@@ -85,7 +85,7 @@ do
 			echo $pkgURL
 			mkdir "$installDir/$PluginNameShort/nl/$lang-returns"
 			cd "${installDir}/${PluginNameShort}/nl/${lang}-returns"
-			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL || echo "Package could not be downloaded. $lang check in cannot be completed." && continue=false
+			curl -O --progress-bar -u $gsaUserID:$gsaUserPassword $pkgURL || continue=false
 			
 			if continue=true; then
 
@@ -95,7 +95,7 @@ do
 				#Extract the zip
 				echo "Extracting the $lang zip..."
 				if continue=true; then
-					unzip package.zip || echo "Package could not be unzipped. $lang check in cannot be completed." && continue=false
+					unzip package.zip || continue=false
 
 					#Copy the new translated files
 					echo "Copying over new files into the nl directory..."
@@ -127,7 +127,11 @@ do
 					rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 
 					echo "Done moving files around for $lang. Moving on..."
+				else
+					echo "Package could not be unzipped. $lang check in cannot be completed."
 				fi
+			else
+				echo "Package could not be downloaded. $lang check in cannot be completed." &&
 			fi
 
 	done
