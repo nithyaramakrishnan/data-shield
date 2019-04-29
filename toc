@@ -11,18 +11,12 @@ IBM Cloud Data Shield
 
     {: .navgroup id="howto"}
     install.md
+    backup-restore.md
     access.md
     convert.md
     deploy.md
-
-    {: .topicgroup}
-    Prepackaged shielded images
-        [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-        [MariaDB image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
-        [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
-        [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
-
     tls-cert.md
+    update.md
     uninstall.md
     {: .navgroup-end}
 
@@ -30,6 +24,13 @@ IBM Cloud Data Shield
     [Blogs](https://www.ibm.com/blogs/bluemix/?s=Data+shield)
     [Fortanix](http://fortanix.com/)
     [Intel SGX](https://software.intel.com/en-us/sgx)
+
+    {: .topicgroup}
+    Prepackaged shielded images
+        [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
+        [MariaDB image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
+        [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
+        [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
     {: .navgroup-end}
 
     {: .navgroup id="help"}

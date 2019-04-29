@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-04-29"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -34,22 +34,13 @@ If you have problems while you're working with {{site.data.keyword.datashield_fu
 ## Getting help and support
 {: #gettinghelp}
 
-For help, you can search for information in the documentation or by askquestions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.Bluemix_notm}} development team.
+For help, you can search for information in the documentation or by askquestions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development team.
   * If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com/search?q=ibm-data-shield" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
   * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/answers/topics/data-shield/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> forum. Include the `data-shield` tag.
 
 For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
 
 
-## I don't know the options that I can use with the installer
-{: #options}
-
-To see all of the commands and more help information, you can run the following command and review the output.
-
-```
-docker run registry.bluemix.net/ibm/datashield-installer help
-```
-{: pre}
 
 ## I can't log in to the Enclave Manager UI
 {: #ts-log-in}

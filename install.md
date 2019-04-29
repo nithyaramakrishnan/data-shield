@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-04-29"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -22,8 +22,8 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Installing
-{: #deploying}
+# Installing the service
+{: #install}
 
 You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. You can work with the install commands that you feel most comfortable with.
 {: shortdesc}
@@ -38,15 +38,15 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
-  * [Helm](/docs/containers?topic=containers-integrations#helm)
+  * [Helm](/docs/containers?topic=containers-helm#helm)
 
   You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
 
-  * Kubernetes Service
-  * Container Registry
+  * {{site.data.keyword.containershort_notm}}
+  * {{site.data.keyword.registryshort_notm}}
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
@@ -70,50 +70,12 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
 {: shortdesc}
 
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to finish logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login
   ```
   {: pre}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>IBM Cloud Endpoint</th>
-      <th>Kubernetes Service region</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>US South</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>EU Central</td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-      <td>AP South</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td><code>eu-gb</code></td>
-      <td>UK South</td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>jp-tok</code></td>
-      <td>AP North</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>US East</td>
-    </tr>
-  </table>
 
 2. Set the context for your cluster.
 
@@ -173,7 +135,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
 Excellent! Now you're ready to install {{site.data.keyword.datashield_short}} into your new namespace. From this point on, be sure to add `--tiller-namespace <namespace_name>` to any Helm command that you run.
 
 
-## Installing with a Helm chart
+## Installing with Helm
 {: #install-chart}
 
 You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
@@ -188,50 +150,12 @@ The Helm chart installs the following components:
 
 To install {{site.data.keyword.datashield_short}} onto your cluster:
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
   {: pre}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>IBM Cloud Endpoint</th>
-      <th>Kubernetes Service region</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>US South</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>EU Central</td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-      <td>AP South</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td><code>eu-gb</code></td>
-      <td>UK South</td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>jp-tok</code></td>
-      <td>AP North</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>US East</td>
-    </tr>
-  </table>
 
 2. Set the context for your cluster.
 
@@ -244,10 +168,10 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. If you haven't already, add the `ibm` repository.
+3. If you haven't already, add the helm chart repository.
 
   ```
-  helm repo add ibm https://registry.bluemix.net/helm/ibm
+  helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
   {: pre}
 
@@ -265,7 +189,9 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: pre}
 
-6. Install the chart.
+6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore#backup-restore). 
+
+7. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
@@ -275,7 +201,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
-7. To monitor the startup of your components, you can run the following command.
+8. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
@@ -318,14 +244,14 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
 4. Pull the image to your local machine.
 
   ```
-  docker pull registry.bluemix.net/ibm/datashield-installer
+  docker pull icr.io/ibm/datashield-installer
   ```
   {: pre}
 
 5. Install {{site.data.keyword.datashield_short}} by running the following command.
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.bluemix.net/ibm/datashield-installer provision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/ibm/datashield-installer provision
   --adminEmail <ADMIN_EMAIL> --accountId <ACCOUNT_ID> --ingressSubdomain <INGRESS_SUBDOMAIN>
   [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
   ```
@@ -338,11 +264,12 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
 {: #update}
 
 When {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
+{: shortdesc}
 
 To update to the latest version with the Helm chart, run the following command.
 
   ```
-  helm repo update && helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<>  --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.Registry=registry.ng.bluemix.net/<your-registry>
+  helm repo update && helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<>  --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.Registry=icr.io/<your-registry>
   ```
   {: pre}
 
@@ -350,11 +277,12 @@ To update to the latest version with the Helm chart, run the following command.
 To update to the latest version with the installer, run the following command:
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.bluemix.net/ibm/datashield-installer upgrade
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/ibm/datashield-installer upgrade
   [ --adminEmail <ADMIN_EMAIL> ] [ --accountId <ACCOUNT_ID> ] [ --ingressSubdomain <INGRESS_SUBDOMAIN> ]
   [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
   ```
   {: pre}
 
   To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
+
 
