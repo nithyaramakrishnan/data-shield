@@ -200,7 +200,7 @@ do
 
 	if [ $CLI_REPO ] ; then
 	
-			summary="Summary:"
+			summary="Summary:\nNote: Success indicates that the last updated file was copied over from the main repo. Check the results for the main repo to make sure that the package for that language was successfully processed."
 
 			echo "------------------------"
 			echo $CLI_REPO
@@ -309,9 +309,9 @@ do
   		git commit -m "$checkInComment"
 
   		echo git checkout $GITHUB_URL_BRANCH
-			git checkout $GITHUB_URL_BRANCH
+		git checkout $GITHUB_URL_BRANCH
 
-			echo git merge translations-cli
+		echo git merge translations-cli
   		git merge translations-cli
 
   		echo git remote add translations-cli
