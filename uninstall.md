@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-04-29"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -30,18 +30,18 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
 
 ## Uninstalling with Helm
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
   {: pre}
 
   <table>
     <tr>
       <th>Region</th>
-      <th>IBM Cloud Endpoint</th>
-      <th>Kubernetes Service region</th>
+      <th>{{site.data.keyword.cloud_notm}} Endpoint</th>
+      <th>{{site.data.keyword.containershort_notm}} region</th>
     </tr>
     <tr>
       <td>Dallas</td>
@@ -114,7 +114,6 @@ You might also want to delete the `cert-manager` instance and the Docker config 
 {: tip}
 
 
-
 ## Uninstalling with the beta installer
 {: #uninstall-installer}
 
@@ -123,6 +122,9 @@ If you installed {{site.data.keyword.datashield_short}} by using the beta instal
 To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI, target your cluster, and run the following command:
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/datashield-core/datashield-beta-installer unprovision
   ```
   {: pre}
+
+
+

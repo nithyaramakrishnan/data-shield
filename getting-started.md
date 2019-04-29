@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-04-29"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -25,7 +25,7 @@ subcollection: data-shield
 # Getting started tutorial
 {: #getting-started}
 
-With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
+With {{site.data.keyword.datashield_full}} (Beta), powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
 
 For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use you can learn [about the service](/docs/services/data-shield?topic=data-shield-about#about).
@@ -33,22 +33,22 @@ For more information about {{site.data.keyword.datashield_short}}, and what it m
 ## Before you begin
 {: #gs-begin}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort}} environment, check out the tutorial [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 * The following CLIs:
 
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [Docker](https://docs.docker.com/install/)
-  * [Helm](/docs/containers?topic=containers-integrations#helm)
+  * [Helm](/docs/containers?topic=containers-helm#helm)
 
   You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
-* The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
+* The following [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
 
-  * Kubernetes Service
-  * Container Registry
+  * {{site.data.keyword.containershort}}
+  * {{site.data.keyword.registryshort_notm}}
 
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
@@ -65,8 +65,8 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   {: pre}
 
 
-## Installing with a Helm chart
-{: #gs-install-chart}
+## Installing the service
+{: #gs-install}
 
 You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 {: shortdesc}
@@ -77,55 +77,15 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
 *	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-When you install a Helm chart, you have several options and parameters to customize your installation. The following tutorial walks you through the most basic, default installation of the chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield?topic=data-shield-deploying).
-{: tip}
 
 To install {{site.data.keyword.datashield_short}} onto your cluster:
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
   {: pre}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>IBM Cloud Endpoint</th>
-      <th>Kubernetes Service region</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>US South</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>EU Central</td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-      <td>AP South</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td><code>eu-gb</code></td>
-      <td>UK South</td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>jp-tok</code></td>
-      <td>AP North</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>US East</td>
-    </tr>
-  </table>
 
 2. Set the context for your cluster.
 
@@ -138,10 +98,10 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. If you haven't already, add the `ibm` repository.
+3. If you haven't already, add the helm chart repository.
 
   ```
-  helm repo add ibm https://registry.bluemix.net/helm/ibm
+  helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
   {: pre}
 
@@ -159,32 +119,33 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: pre}
 
-6. Install the chart.
+6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore#backup-restore). 
+
+7. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: pre}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you can add the following option: `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
-7. To monitor the startup of your components, you can run the following command.
+8. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
   ```
   {: pre}
 
-
 ## Next steps
 {: #gs-next}
 
-Great job! Now that the service is installed on your cluster you can run your apps in the {{site.data.keyword.datashield_short}} environment. 
-
-To run your apps in an {{site.data.keyword.datashield_short}} environment, you must [convert](/docs/services/data-shield?topic=data-shield-convert#convert), [whitelist](/docs/services/data-shield?topic=data-shield-convert#convert-whitelist), and then [deploy](/docs/services/data-shield?topic=data-shield-deploy-containers#deploy-containers) your container image.
+Now that you have the service installed on your cluster, you can start protecting your data! Next, you can try [converting](/docs/services/data-shield?topic=data-shield-convert#convert), [deploying](/docs/services/data-shield?topic=data-shield-deploying#deploying) your applications. 
 
 If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images:
 
-* [{{site.data.keyword.datashield_short}} Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet)
-* MariaDB or NGINX in {{site.data.keyword.cloud_notm}} Container Registry
+* [Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet)
+* Container Registry: [Barbican image](/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter), [MariaDB image](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter), [NGINX image](/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter),[Vault image](/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
+
+

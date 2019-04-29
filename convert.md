@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-04-29"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -38,50 +38,13 @@ You can allow all users of the converter to obtain input images from and push ou
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
 {: #configure-ibm-registry}
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
   {: pre}
-
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>IBM Cloud Endpoint</th>
-      <th>Kubernetes Service region</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>US South</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>EU Central</td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-      <td>AP South</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td><code>eu-gb</code></td>
-      <td>UK South</td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>jp-tok</code></td>
-      <td>AP North</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>US East</td>
-    </tr>
-  </table>
 
 2. Obtain an authentication token for your {{site.data.keyword.cloud_notm}} Container Registry.
 
@@ -93,7 +56,7 @@ You can allow all users of the converter to obtain input images from and push ou
 3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that there are no new lines in the middle or at the end of the encoded string.
 
   ```
-  (echo -n '{"auths":{"registry.ng.bluemix.net":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
+  (echo -n '{"auths":{"icr.io":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
   ```
   {: pre}
 
@@ -102,10 +65,10 @@ You can allow all users of the converter to obtain input images from and push ou
 
 If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file.
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
   {: pre}
 
@@ -124,10 +87,10 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
   {: pre}
 
@@ -179,7 +142,7 @@ Check out the following example to see how to configure a request to generate an
  ```
  {: screen}
 
-2. Input your variables and run the following command to run the converter again with your certificate information.
+2. Enter your variables and run the following command to run the converter again with your certificate information.
 
  ```
  curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
