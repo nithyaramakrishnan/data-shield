@@ -133,14 +133,17 @@ do
 					else
 						echo "Package could not be unzipped. The package might not have been returned yet or it might be corrupt. $lang check-in was not completed."
 						summary="$summary\\n$LANG_FAIL $lang: Package could not be unzipped. The package might not have been returned yet or it might be corrupt. $lang check-in was not completed: $pkgURL"
+						rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 					fi
 				else
 					echo "Package could not be renamed. $lang check-in was not completed."
 					summary="$summary\\n$LANG_FAIL$lang: Package could not be renamed. Contact Kristin. $lang check-in was not completed."
+					rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 				fi
 			else
 				echo "Package could not be downloaded. Check that the package has been returned and that the GSA credentials are up to date. $lang check-in was not completed. "
 				summary="$summary\\n$LANG_FAIL$lang: Package could not be downloaded. Check GSA credentials. $lang check-in was not completed."
+				rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
 			fi
 
 	done
