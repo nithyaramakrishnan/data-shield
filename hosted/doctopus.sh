@@ -97,7 +97,7 @@ do
 				echo "Extracting the $lang zip..."
 				if [ "${installDir}/${PluginNameShort}/nl/$lang-returns/package.zip" ] ; then
 					unzip package.zip
-					if ls -R *.md ; then
+					if find . | grep "\.md$" ; then
 
 						#Copy the new translated files
 						echo "Copying over new files into the nl directory..."
