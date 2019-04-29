@@ -132,7 +132,7 @@ do
 						summary="$summary\\n$LANG_SUCCESS $lang"
 					else
 						echo "Package could not be unzipped. The package might not have been returned yet or it might be corrupt. $lang check-in was not completed."
-						summary="$summary\\n$LANG_FAIL $lang: Package could not be unzipped. The package might not have been returned yet or it might be corrupt. $lang check-in was not completed."
+						summary="$summary\\n$LANG_FAIL $lang: Package could not be unzipped. The package might not have been returned yet or it might be corrupt. $lang check-in was not completed: $pkgURL"
 					fi
 				else
 					echo "Package could not be renamed. $lang check-in was not completed."
