@@ -184,7 +184,11 @@ do
 		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
 		echo git push translations
-		git push translations
+		pushResult=$(git push translations)
+
+		if [ $pushResult == fatal* ] ; then
+			summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
+		fi
 
 		cd "$installDir/"
 		
@@ -291,43 +295,47 @@ do
 			git config --global push.default matching
 
 			echo git pull https://$GITHUB_URL_SHORT/$CLI_REPO.git
-	    git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+	    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
 
 			echo git checkout -b translations-cli
-	    git checkout -b translations-cli
+	    		git checkout -b translations-cli
 
 			echo git add --all :/
-	    git add --all :/
+	    		git add --all :/
 
 			#echo test commit git add -n --all
 			#git add -n --all
 
-  		echo git status
-  		git status
+			echo git status
+			git status
 
-  		echo git commit -m "$checkInComment"
-  		git commit -m "$checkInComment"
+			echo git commit -m "$checkInComment"
+			git commit -m "$checkInComment"
 
-  		echo git checkout $GITHUB_URL_BRANCH
-		git checkout $GITHUB_URL_BRANCH
+			echo git checkout $GITHUB_URL_BRANCH
+			git checkout $GITHUB_URL_BRANCH
 
-		echo git merge translations-cli
-  		git merge translations-cli
+			echo git merge translations-cli
+			git merge translations-cli
 
-  		echo git remote add translations-cli
-  		git remote add translations-cli https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
+			echo git remote add translations-cli
+			git remote add translations-cli https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$CLI_REPO.git
 
-  		echo git push translations-cli
-  		git push translations-cli
+			echo git push translations-cli
+			pushResult=$(git push translations-cli)
 
-  		cd "$installDir/"
+			if [ $pushResult == fatal* ] ; then
+				summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
+			fi
 
-			# Post to Slack and (above) set variables for that Slack post
-			export Service="$Service CLI"
-			export GITHUB_REPO=$CLI_REPO
-			echo "$summary"
-			export summary="$summary"
-			python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+			cd "$installDir/"
+
+				# Post to Slack and (above) set variables for that Slack post
+				export Service="$Service CLI"
+				export GITHUB_REPO=$CLI_REPO
+				echo "$summary"
+				export summary="$summary"
+				python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "Charge to ID is not set in a properties files in $f."
