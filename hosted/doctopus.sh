@@ -191,7 +191,7 @@ do
 		fatal="fatal"
 		echo $fatal
 		if [ "$pushResult"=*"$fatal"* ] ; then
-			summary = ":failed-6474: The commit to the Github repository failed with the following error: $pushResult"
+			summary=":failed-6474: The commit to the Github repository failed with the following error: $pushResult"
 		fi
 
 		cd "$installDir/"
