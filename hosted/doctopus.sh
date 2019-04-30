@@ -188,7 +188,7 @@ do
 		echo "Push result: $pushResult"
 		fatal="fatal"
 		if [ "$pushResult"=*"$fatal"* ] ; then
-			summary=":failed-6474: The commit to the Github repository failed with the following error: $pushResult"
+			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
 
 		cd "$installDir/"
@@ -327,7 +327,7 @@ do
 			echo "Push result: $pushResult"
 			fatal="fatal"
 			if [ "$pushResult"=*"$fatal"* ] ; then
-				summary=":failed-6474: The commit to the Github repository failed with the following error: $pushResult"
+				summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 			fi
 
 			cd "$installDir/"
