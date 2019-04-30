@@ -184,12 +184,12 @@ do
 		git remote add translations https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
 		echo git push translations
-		pushResult=`git push translations`
+		pushResult=$( git push translations )
 		
 		echo "Push result: $pushResult"
 
-		if [ "$pushResult" = "fatal*" ] ; then
-			summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
+		if [ "$pushResult" = "*fatal*" ] ; then
+			summary = ":failed-6474: The commit to the Github repository failed with the following error: $pushResult"
 		fi
 
 		cd "$installDir/"
