@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-04-30"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -22,7 +22,7 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-## Updating
+# Updating
 {: #update}
 
 After {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
