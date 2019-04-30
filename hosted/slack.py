@@ -27,6 +27,13 @@ else:
 if '\\n' in summary:
   summary = summary.replace('\\n','\n')
   
-payload = {"channel":SLACK_INCOMING_CHANNEL,"username":SLACK_INCOMING_USER,"text":"The translation return build is complete for " + Service + "! Verify the returns in the prod repo https://github.com/IBM-Bluemix-Docs/" + GITHUB_REPO + "/tree/master/nl.","attachments":[{"color":color,"text":summary}],"icon_emoji":SLACK_ICON}
+if ':failed-6474:' in summary:
+  color = "#ff4500"
+  resultText = "The translation return build is not complete for " + Service + ". <@W466XJC77|kristin>"
+else:
+  resultText = "The translation return build is complete for " + Service + "! Verify the returns in the prod repo https://github.com/IBM-Bluemix-Docs/" + GITHUB_REPO + "/tree/master/nl."
+  
+  
+payload = {"channel":SLACK_INCOMING_CHANNEL,"username":SLACK_INCOMING_USER,"text":resultText,"attachments":[{"color":color,"text":summary}],"icon_emoji":SLACK_ICON}
 print payload
 requests.post(SLACK_INCOMING_WEB_HOOK, json.dumps(payload), headers={'content-type': 'application/json'})
