@@ -188,7 +188,7 @@ do
 		
 		echo "Push result: $pushResult"
 
-		if [ "$pushResult" == "fatal*" ] ; then
+		if [ "$pushResult" = "fatal*" ] ; then
 			summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
 		fi
 
@@ -326,7 +326,7 @@ do
 			echo git push translations-cli
 			pushResult=$(git push translations-cli)
 
-			if [ "$pushResult" == "fatal*" ] ; then
+			if [ "$pushResult" = "fatal*" ] ; then
 				summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
 			fi
 
