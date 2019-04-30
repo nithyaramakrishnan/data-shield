@@ -185,8 +185,10 @@ do
 
 		echo git push translations
 		pushResult=$(git push translations)
+		
+		echo "Push result: $pushResult"
 
-		if [ $pushResult == fatal* ] ; then
+		if [ "$pushResult" == "fatal*" ] ; then
 			summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
 		fi
 
@@ -196,7 +198,7 @@ do
 		export summary="$summary"
 
 		# Post to Slack and (above) set variables for that Slack post
-		python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+		#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	fi
 
@@ -324,7 +326,7 @@ do
 			echo git push translations-cli
 			pushResult=$(git push translations-cli)
 
-			if [ $pushResult == fatal* ] ; then
+			if [ "$pushResult" == "fatal*" ] ; then
 				summary = ":failed-6474: The commit to the Github repository failed. Verify that alchemyDocs has administrator permissions in the repository."
 			fi
 
@@ -335,7 +337,7 @@ do
 				export GITHUB_REPO=$CLI_REPO
 				echo "$summary"
 				export summary="$summary"
-				python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+				#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "Charge to ID is not set in a properties files in $f."
