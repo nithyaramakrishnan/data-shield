@@ -188,8 +188,12 @@ do
 		export fatal=fatal
 		echo $pushResult
 		echo $fatal
-		s=${pushResult//$fatal}
-		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
+		removeEndPushResult=${pushResult%fatal*}
+		echo "removeEndPushResult: $removeEndPushResult"
+		removeBeginningPushResult=${removeEndPushResult#*fatal}
+		echo "removeBeginningPushResult: $removeBeginningPushResult"
+		#s=${pushResult//$fatal}
+		count="$(((${#pushResult} - ${#removeEndPushResult} - ${#removeBeginningPushResult}) / ${#fatal}))"
 		if [ $count > 0 ] ;then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
