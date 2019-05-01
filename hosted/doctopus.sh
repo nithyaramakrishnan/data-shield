@@ -185,12 +185,10 @@ do
 
 		echo git push translations
 		pushResult=$(git push translations 2>&1)
-		echo "Push result: $pushResult \n"
-		removeEndPushResult=${pushResult%fatal*}
-		echo "removeEndPushResult: $removeEndPushResult"
-		removeBeginningPushResult=${removeEndPushResult#*fatal}
-		echo "removeBeginningPushResult: $removeBeginningPushResult"
-		if [ "$removeBeginningPushResult" = "fatal" ] ; then
+		fatal=fatal
+		s=${pushResult//"$fatal"}
+		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
+		if [ $count > 0 ] ;then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
 
@@ -330,11 +328,10 @@ do
 
 			echo git push translations-cli
 			pushResult=$(git push translations-cli  2>&1)
-			echo "Push result: $pushResult\n"
-			removeEndPushResult=${pushResult%fatal*}
-			removeBeginningPushResult = ${removeEndPushResult#*fatal}
-			echo "removeBeginningPushResult: $removeBeginningPushResult"
-			if [ "$removeBeginningPushResult"="fatal" ] ; then
+			fatal=fatal
+			s=${pushResult//"$fatal"}
+			count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
+			if [ $count > 0 ] ;then
 				summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 			fi
 
