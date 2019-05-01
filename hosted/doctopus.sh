@@ -206,7 +206,7 @@ do
 		export summary="$summary"
 
 		# Post to Slack and (above) set variables for that Slack post
-		#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+		python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "A charge-to-ID is not set in the properties file $f."
@@ -356,7 +356,7 @@ do
 				export GITHUB_REPO=$CLI_REPO
 				echo "$summary"
 				export summary="$summary"
-				#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+				python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "A CLI repo is not set in the properties file $f."
