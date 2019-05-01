@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
