@@ -202,6 +202,9 @@ do
 		# Post to Slack and (above) set variables for that Slack post
 		#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
+	else
+		echo "A charge-to-ID is not set in the properties file $f."
+	
 	fi
 
 
@@ -345,7 +348,7 @@ do
 				#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
-		echo "Charge to ID is not set in a properties files in $f."
+		echo "A CLI repo is not set in the properties file $f."
 	fi
 	
 
