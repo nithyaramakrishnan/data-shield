@@ -188,7 +188,7 @@ do
 		echo "Push result: $pushResult \n"
 		export fatal=fatal
 		echo $fatal
-		if [ "$pushResult" = *"fatal"* ] ; then
+		if [ $pushResult = *fatal* ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
 
