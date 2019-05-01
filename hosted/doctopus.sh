@@ -196,7 +196,7 @@ do
 		echo $s
 		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
 		echo $count
-		if [ $count > 0 ] ; then
+		if [ $count -gt 0 ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
 
@@ -345,7 +345,7 @@ do
 			echo $s
 			count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
 			echo $count
-			if [ $count > 0 ] ; then
+			if [ $count -gt 0 ] ; then
 				summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 			fi
 
