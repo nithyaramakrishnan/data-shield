@@ -187,7 +187,7 @@ do
 		pushResult=$(git push translations 2>&1)
 		echo "Push result: $pushResult"
 		fatal=fatal
-		if [ $pushResult = *$fatal* ] ; then
+		if [ "$pushResult" = *"$fatal"* ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
 
@@ -326,7 +326,7 @@ do
 			pushResult=$(git push translations-cli  2>&1)
 			echo "Push result: $pushResult"
 			fatal=fatal
-			if [ $pushResult = *$fatal* ] ; then
+			if [ "$pushResult" = *"$fatal"* ] ; then
 				summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 			fi
 
