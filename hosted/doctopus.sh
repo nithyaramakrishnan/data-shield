@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 
 for f in $(ls "$BUILD_SERVICES_DIR"/*.sh)
 do
@@ -185,7 +185,9 @@ do
 
 		echo git push translations
 		pushResult=$(git push translations 2>&1)
-		fatal=fatal
+		export fatal=fatal
+		echo $pushResult
+		echo $fatal
 		s=${pushResult//"$fatal"}
 		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
 		if [ $count > 0 ] ;then
