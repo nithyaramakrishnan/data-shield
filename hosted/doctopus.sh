@@ -187,7 +187,7 @@ do
 		pushResult=$(git push translations 2>&1)
 		echo "Push result: $pushResult \n"
 		removeEndPushResult=${pushResult%fatal*}
-		echo "removeBeginningPushResult: $removeBeginningPushResult"
+		echo "removeEndPushResult: $removeEndPushResult"
 		removeBeginningPushResult=${removeEndPushResult#*fatal}
 		echo "removeBeginningPushResult: $removeBeginningPushResult"
 		if [ "$removeBeginningPushResult" = "fatal" ] ; then
