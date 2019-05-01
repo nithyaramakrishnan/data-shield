@@ -153,17 +153,18 @@ do
 		echo "CHECKING FILES IN"
 		printf "\n---------------------------------------\n"
 		echo "Ready to check files for all languages into Github..."
+		cd "$installDir"
 
 		git config --global push.default matching
 
 		echo git pull https://$GITHUB_URL_SHORT/$PluginNameShort.git
-    git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+    		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
 
 		echo git checkout -b translations
-    git checkout -b translations
+    		git checkout -b translations
 
 		echo git add --all :/
-    git add --all :/
+    		git add --all :/
 
 		#echo test commit git add -n --all
 		#git add -n --all
@@ -300,6 +301,7 @@ do
 
 
 			echo "Ready to check files into Github..."
+			cd "$installDir"
 
 			git config --global push.default matching
 
