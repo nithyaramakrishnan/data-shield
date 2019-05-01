@@ -187,8 +187,9 @@ do
 		pushResult=$(git push translations 2>&1)
 		echo "Push result: $pushResult \n"
 		removeEndPushResult=${pushResult%fatal*}
+		echo "removeBeginningPushResult: $removeBeginningPushResult"
 		removeBeginningPushResult=${removeEndPushResult#*fatal}
-		echo $removeBeginningPushResult
+		echo "removeBeginningPushResult: $removeBeginningPushResult"
 		if [ "$removeBeginningPushResult" = "fatal" ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 		fi
@@ -329,7 +330,7 @@ do
 			echo "Push result: $pushResult\n"
 			removeEndPushResult=${pushResult%fatal*}
 			removeBeginningPushResult = ${removeEndPushResult#*fatal}
-			echo $removeBeginningPushResult
+			echo "removeBeginningPushResult: $removeBeginningPushResult"
 			if [ "$removeBeginningPushResult"="fatal" ] ; then
 				summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
 			fi
