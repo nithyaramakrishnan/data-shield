@@ -188,10 +188,6 @@ do
 		export fatal=fatal
 		echo $pushResult
 		echo $fatal
-		#removeEndPushResult=${pushResult%fatal*}
-		#echo "removeEndPushResult: $removeEndPushResult"
-		#removeBeginningPushResult=${removeEndPushResult#*fatal}
-		#echo "removeBeginningPushResult: $removeBeginningPushResult"
 		s=${pushResult//$fatal}
 		echo $s
 		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
@@ -337,10 +333,6 @@ do
 			echo git push translations-cli
 			pushResult=$(git push translations-cli  2>&1)
 			fatal=fatal
-			#removeEndPushResult=${pushResult%fatal*}
-			#echo "removeEndPushResult: $removeEndPushResult"
-			#removeBeginningPushResult=${removeEndPushResult#*fatal}
-			#echo "removeBeginningPushResult: $removeBeginningPushResult"
 			s=${pushResult//$fatal}
 			echo $s
 			count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
