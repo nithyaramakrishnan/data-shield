@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Checking in translation returns, by using the Markdown-translation-processing script
 
 Any writer can automate the process of checking files into Github. The script clones one or more production repositories, unpacks the translation returns on GSA, and commits all new nl files to GitHub.
@@ -66,3 +67,15 @@ Important: As these files contain your username and password, do not share the e
 - Jun 30, 2017: Added check-in of toc files
 - Jun 21, 2017: Updated paths to new prod docs repos
 - Sep 15, 2016: Created Windows batch files
+=======
+# IBM Cloud Data Shield
+
+Welcome to the source repository for Data Shield! Feedback and updates are always welcome.
+
+To suggest changes:
+
+1. Create a fork of this repo and make the updates in your fork.
+2. When you're ready for review, make a PR to the master branch and tag Shawna Guilianelli (`smguilia`) for review.
+3. Shawna will review your suggestions with the Data Shield development team and make any necessary adjustments to your PR.
+4. Shawna will merge the content into the repo.
+>>>>>>> e2bd2947b47462cb469640e67deef51af08fa554
