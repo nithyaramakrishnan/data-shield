@@ -103,12 +103,16 @@ do
 						echo "Copying over new files into the nl directory..."
 						if [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/" ]; then
 							cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+							echo "Copying ${installDir}/${PluginNameShort}/nl/$lang-returns/package/${PluginNameShort}/* to $installDir/$PluginNameShort/nl/$langDir/"
 						elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/" ] ; then
 							cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}"/* "$installDir/$PluginNameShort/nl/$langDir/"
+							echo "Copying ${installDir}/${PluginNameShort}/nl/$lang-returns/${PluginNameShort}/* to $installDir/$PluginNameShort/nl/$langDir/"
 						elif [ -d "${installDir}/${PluginNameShort}/nl/$lang-returns/package/" ] ; then
 							cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns/package"/* "$installDir/$PluginNameShort/nl/$langDir"
+							echo "Copying ${installDir}/${PluginNameShort}/nl/$lang-returns/package/* to $installDir/$PluginNameShort/nl/$langDir/"
 						else
 							cp -fR "${installDir}/${PluginNameShort}/nl/$lang-returns"/* "$installDir/$PluginNameShort/nl/$langDir/"
+							echo "Copying ${installDir}/${PluginNameShort}/nl/$lang-returns/* to $installDir/$PluginNameShort/nl/$langDir/"
 						fi
 
 						#Clean up
