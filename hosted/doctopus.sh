@@ -197,7 +197,7 @@ do
 		echo $r
 		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
 		countR="$(((${#pushResult} - ${#r}) / ${#reject}))"
-		count=$count+$countR
+		count=$(( ${$count} + ${$countR} ))
 		echo $count
 		if [ $count -gt 0 ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
