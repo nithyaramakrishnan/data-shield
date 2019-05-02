@@ -25,6 +25,8 @@ do
 
 		#Clone the repo
 		git clone https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
+		echo git checkout -b translations
+    		git checkout -b translations
 		cd $PluginNameShort
 		git init
 
@@ -168,10 +170,7 @@ do
 
 		echo git pull https://$GITHUB_URL_SHORT/$PluginNameShort.git
     		git pull https://$gh_username:$gh_token@$GITHUB_URL_SHORT/$PluginNameShort.git
-
-		echo git checkout -b translations
-    		git checkout -b translations
-
+		
 		echo git add --all :/
     		git add --all :/
 
