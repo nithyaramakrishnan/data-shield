@@ -127,6 +127,9 @@ do
 						find $installDir/$PluginNameShort/nl/$langDir -name 'AITH*.xml' -delete
 						cd "${installDir}/${PluginNameShort}"
 						rm -rf "$installDir/$PluginNameShort/nl/$lang-returns/"
+						if ! [ -d "$installDir/$PluginNameShort/nl/$PluginNameShort" ] ; then
+							rm -rf "$installDir/$PluginNameShort/nl/$PluginNameShort"
+						fi
 
 						echo "Done moving files around for $lang. Moving on..."
 						summary="$summary\\n$LANG_SUCCESS $lang"
