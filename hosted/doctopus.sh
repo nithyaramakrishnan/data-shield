@@ -186,12 +186,18 @@ do
 
 		echo git push translations
 		pushResult=$(git push translations 2>&1)
-		export fatal=fatal
 		echo $pushResult
+		export fatal=fatal
 		echo $fatal
 		s=${pushResult//$fatal}
 		echo $s
+		export reject=reject
+		echo $reject
+		r=${pushResult//$reject}
+		echo $r
 		count="$(((${#pushResult} - ${#s}) / ${#fatal}))"
+		countR="$(((${#pushResult} - ${#r}) / ${#reject}))"
+		count=$count+$countR
 		echo $count
 		if [ $count -gt 0 ] ; then
 			summary=":failed-6474:  The commit to the Github repository failed with the following error: \n$pushResult"
@@ -203,7 +209,7 @@ do
 		export summary="$summary"
 
 		# Post to Slack and (above) set variables for that Slack post
-		python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+		#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "A charge-to-ID is not set in the properties file $f."
@@ -350,7 +356,7 @@ do
 				export GITHUB_REPO=$CLI_REPO
 				echo "$summary"
 				export summary="$summary"
-				python $WORKSPACE/markdown-translation-processing/hosted/slack.py
+				#python $WORKSPACE/markdown-translation-processing/hosted/slack.py
 
 	else
 		echo "A CLI repo is not set in the properties file $f."
