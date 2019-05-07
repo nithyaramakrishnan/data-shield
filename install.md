@@ -260,29 +260,4 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
   To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
 
 
-## Updating the service
-{: #update}
-
-When {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
-{: shortdesc}
-
-To update to the latest version with the Helm chart, run the following command.
-
-  ```
-  helm repo update && helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<>  --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.Registry=icr.io/<your-registry>
-  ```
-  {: pre}
-
-
-To update to the latest version with the installer, run the following command:
-
-  ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/ibm/datashield-installer upgrade
-  [ --adminEmail <ADMIN_EMAIL> ] [ --accountId <ACCOUNT_ID> ] [ --ingressSubdomain <INGRESS_SUBDOMAIN> ]
-  [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
-  ```
-  {: pre}
-
-  To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
-
 
