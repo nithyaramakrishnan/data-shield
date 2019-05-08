@@ -41,7 +41,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 
 1. Create a [service ID](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation. 
 
-2. Create HMAC credentials. The credentials and ID allow the backup job to authenticate to {{site.data.keyword.cos_short}. For more information about credentials, see [Using HMAC credentials](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac#hmac).
+2. Create HMAC credentials. The credentials and ID allow the backup job to authenticate to {{site.data.keyword.cos_short}}. For more information about credentials, see [Using HMAC credentials](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac#hmac).
 
 3. Create a Kubernetes secret with the credentials to authenticate to {{site.data.keyword.cos_short}}.
     
