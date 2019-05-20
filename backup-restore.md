@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-05-13"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -48,7 +48,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
     ```
     kubectl create secret generic enclave-manager-backup-credentials --from-literal=AWS_ACCESS_KEY_ID=<key id> --from-literal=AWS_SECRET_ACCESS_KEY=<secret>
     ```
-    {: pre}
+    {: codeblock}
 
 4. In the Helm chart, set the following values before you deploy.
     
@@ -58,7 +58,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
     enclaveos-chart.Manager.backup.cos-bucket=<orgname>-enclave-manager-backups
     enclaveos-chart.Manager.backup.cos-hmac-secret=enclave-manager-backup-credentials
     ```
-    {: pre}
+    {: codeblock}
 
     Optionally, you can also set `enclaveos-chart.Manager.backup.cos-prefix` to a path within the {{site.data.keyword.cos_short}} bucket where you want to store the backup. By default, backups are prefixed with the cluster name.
     {: tip}
@@ -77,14 +77,14 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
     ```
     enclaveos-chart.Manager.ReplicaCount=0
     ```
-    {: pre}
+    {: codeblock}
 
 3. After the Enclave Manager is deployed, create a shell in the database container.
 
     ```
     kubectl exec -it <release>-enclaveos-cockroachdb-0 bash
     ```
-    {: pre}
+    {: codeblock}
 
 4. Copy the backup to the machine.
 
@@ -95,7 +95,7 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
         ```
         cockroach sql --insecure
         ```
-        {: pre}
+        {: codeblock}
     
     2. When prompted by SQL run the following commands.
 
@@ -103,14 +103,14 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
         drop database malbork cascade;
         create database malbork;
         ```
-        {: pre}
+        {: codeblock}
     
     3. Exit and run the following command.
 
         ```
         cockroach sql --insecure -d malbork <your backup>.sql
         ```
-        {: pre}
+        {: codeblock}
 
 6. Scale the Enclave Manager deployment up by running `helm upgrade` without the `enclaveos-chart.Manager.ReplicaCount` value.
 

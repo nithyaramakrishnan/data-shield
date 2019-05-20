@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-15"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -62,8 +62,10 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
-  {: pre}
+  {: codeblock}
 
+Want to see logging information for Data Shield? Set up a {{site.data.keyword.la_full_notm}} instance for your cluster.
+{: tip}
 
 ## Installing the service
 {: #gs-install}
@@ -85,7 +87,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Set the context for your cluster.
 
@@ -94,49 +96,47 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. If you haven't already, add the helm chart repository.
+3. If you haven't already, add the `iks-charts` repository.
 
   ```
   helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
-  {: pre}
+  {: codeblock}
 
 4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
-  {: pre}
+  {: codeblock}
 
 5. Get the Ingress subdomain for your cluster.
 
   ```
   ibmcloud ks cluster-get <cluster_name>
   ```
-  {: pre}
+  {: codeblock}
 
-6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore#backup-restore). 
-
-7. Install the chart.
+6. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
-  {: pre}
+  {: codeblock}
 
   If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
-8. To monitor the startup of your components, you can run the following command.
+7. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 ## Next steps
 {: #gs-next}

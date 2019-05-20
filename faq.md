@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-13"
 
 ---
 
@@ -51,7 +51,7 @@ The service extends SGX language support from C and C++ to Python and Java. It a
 {: #running-app}
 {: faq}
 
-[Log in](/docs/services/data-shield?topic=data-shield-access#access-iam) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab you can see information about the Intel SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
+[Log in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab you can see information about the Intel SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
 
 
 
@@ -60,4 +60,4 @@ The service extends SGX language support from C and C++ to Python and Java. It a
 {: faq}
 
 
-The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that {{site.data.keyword.datashield_short}} has on your app is minimal. But, if you have memory or IO intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine {{site.data.keyword.datashield_short}}'s impact.
+The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that {{site.data.keyword.datashield_short}} has on your app is minimal. But, if you have memory or I/O intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine {{site.data.keyword.datashield_short}}'s impact.

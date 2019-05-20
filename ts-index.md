@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-13"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -35,8 +35,8 @@ If you have problems while you're working with {{site.data.keyword.datashield_fu
 {: #gettinghelp}
 
 For help, you can search for information in the documentation or by askquestions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development team.
-  * If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com/search?q=ibm-data-shield" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
-  * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/answers/topics/data-shield/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> forum. Include the `data-shield` tag.
+  * If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
+  * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> forum. Include the `data-shield` tag.
 
 For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
 
@@ -94,7 +94,7 @@ To resolve the issue, you can follow these steps:
   ```
   kubectl get secret -oyaml converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. Use a Base64 decoder to decode the secret content of `.dockerconfigjson` and verify that it is correct.
 
@@ -124,22 +124,22 @@ You encounter the following error when you try to convert your container.
 ```
 {"errorType":"Processing Failure","reason":"Credentials store error: StoreError('docker-credential-osxkeychain not installed or not available in PATH',)"}
 ```
-{: pre}
+{: codeblock}
 
 {: tsCauses}
-On MacOS, if the OSX Keychain is used in your config.json file the container converter fails. 
+On macOS, if the OS X Keychain is used in your config.json file the container converter fails. 
 
 {: tsResolve}
 To resolve the issue you can use the following steps:
 
-1. Disable OSX keychain on your local system. Go to **System preferences > iCloud** and uncheck the box for **Keychain**.
+1. Disable OS X keychain on your local system. Go to **System preferences > iCloud** and clear the box for **Keychain**.
 
 2. Delete the secret that you created. Be sure that you're logged in to IBM Cloud and have targeted your cluster before you run the following command.
 
   ```
   kubectl delete secret converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. In your `$HOME/.docker/config.json` file, delete the line `"credsStore": "osxkeychain"`.
 
@@ -150,20 +150,20 @@ To resolve the issue you can use the following steps:
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
-  {: pre}
+  {: codeblock}
 
 6. List your pods and make a note of the pod with `enclaveos-converter` in the name.
 
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 7. Delete the pod.
 
   ```
   kubectl delete pod <pod name>
   ```
-  {: pre}
+  {: codeblock}
 
 8. Convert your image.

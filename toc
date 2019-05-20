@@ -15,14 +15,15 @@ IBM Cloud Data Shield
     access.md
     convert.md
     deploy.md
+    manage.md
     tls-cert.md
     update.md
     uninstall.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [Blogs](https://www.ibm.com/blogs/bluemix/?s=Data+shield)
-    [Fortanix](http://fortanix.com/)
+    [Blogs](https://www.ibm.com/cloud/blog)
+    [Fortanix](https://fortanix.com/)
     [Intel SGX](https://software.intel.com/en-us/sgx)
 
     {: .topicgroup}
