@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-13"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -44,21 +44,21 @@ You can allow all users of the converter to obtain input images from and push ou
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Obtain an authentication token for your {{site.data.keyword.cloud_notm}} Container Registry.
 
   ```
   ibmcloud cr token-add --non-expiring --readwrite --description 'EnclaveOS Container Converter'
   ```
-  {: pre}
+  {: codeblock}
 
 3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that there are no new lines in the middle or at the end of the encoded string.
 
   ```
-  (echo -n '{"auths":{"icr.io":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
+  (echo -n '{"auths":{"<region>.icr.io":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
   ```
-  {: pre}
+  {: codeblock}
 
 ### Configuring credentials for another registry
 {: #configure-other-registry}
@@ -70,14 +70,14 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Run the following command.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
-  {: pre}
+  {: codeblock}
 
 
 
@@ -92,7 +92,7 @@ You can use the Enclave Manager API to connect to the converter.
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Obtain and export an IAM token.
 
@@ -100,14 +100,14 @@ You can use the Enclave Manager API to connect to the converter.
   export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
   echo $token
   ```
-  {: pre}
+  {: codeblock}
 
 3. Convert your image. Be sure to replace the variables with the information for your application.
 
   ```
   curl -H 'Content-Type: application/json' -d '{"inputImageName": "your-registry-server/your-app", "outputImageName": "your-registry-server/your-app-sgx"}'  -H "Authorization: Basic $token"  https://enclave-manager.<ingress-domain>/api/v1/tools/converter/convert-app
   ```
-  {: pre}
+  {: codeblock}
 
 
 
@@ -147,7 +147,7 @@ Check out the following example to see how to configure a request to generate an
  ```
  curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
  ```
- {: pre}
+ {: codeblock}
 
 
 ## Whitelisting your applications
@@ -162,13 +162,13 @@ When a Docker image is converted to run inside of Intel® SGX, it can be whiteli
   export em_token=`curl -X POST https://enclave-manager.<ingress-domain>/api/v1/sys/auth/token -H "Authorization: Basic $token" | jq -r '.access_token'`
   echo $em_token
   ```
-  {: pre}
+  {: codeblock}
 
 2. Make a whitelist request to the Enclave Manager. Be sure to enter your information when you run the following command.
 
   ```
   curl -X POST https://enclave-manager.<ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json'
   ```
-  {: pre}
+  {: codeblock}
 
 3. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.

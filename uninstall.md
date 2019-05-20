@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-13"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -35,7 +35,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   ```
   ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
   <table>
     <tr>
@@ -82,7 +82,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copy the output and paste it into your terminal.
 
@@ -91,7 +91,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   ```
   helm delete datashield --purge
   ```
-  {: pre}
+  {: codeblock}
 
 4. Delete the TLS certificates by running each of the following commands.
 
@@ -100,7 +100,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   kubectl delete secret datashield-enclaveos-frontend-tls
   kubectl delete secret datashield-enclaveos-manager-main-tls
   ```
-  {: pre}
+  {: codeblock}
 
 5. The uninstall process uses Helm "hooks" to run an uninstaller. You can delete the uninstaller after it runs.
 
@@ -108,7 +108,7 @@ If you no longer have a need to use {{site.data.keyword.datashield_full}}, you c
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: pre}
+  {: codeblock}
 
 You might also want to delete the `cert-manager` instance and the Docker config secret if you created one.
 {: tip}
@@ -122,9 +122,9 @@ If you installed {{site.data.keyword.datashield_short}} by using the beta instal
 To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI, target your cluster, and run the following command:
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
-  {: pre}
+  {: codeblock}
 
 
 

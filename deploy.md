@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-13"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -84,5 +84,5 @@ Don't have an application to try the service? No problem. We offer several sampl
    ```
    kubectl create -f template.yml
    ```
-  {: pre}
+  {: codeblock}
 

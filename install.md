@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-15"
 
 keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
 
@@ -60,7 +60,10 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
-  {: pre}
+  {: codeblock}
+
+Want to see logging information for Data Shield? Set up a {{site.data.keyword.la_full_notm}} instance for your cluster.
+{: tip}
 
 
 ## Optional: Creating a Kubernetes namespace
@@ -75,7 +78,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Set the context for your cluster.
 
@@ -84,7 +87,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copy the output and paste it into your terminal.
 
@@ -93,7 +96,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
   ```
   kubectl create namespace <namespace_name>
   ```
-  {: pre}
+  {: codeblock}
 
 4. Copy any relevant secrets from the default namespace to your new namespace.
 
@@ -102,7 +105,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
     ```
     kubectl get secrets
     ```
-    {: pre}
+    {: codeblock}
 
     Any secrets that start with `bluemix*` must be copied.
     {: tip}
@@ -113,14 +116,14 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
     kubectl get secret <secret_name> --namespace=default --export -o yaml |\
     kubectl apply --namespace=<namespace_name> -f -
     ```
-    {: pre}
+    {: codeblock}
 
   3. Verify that your secrets were copied over.
 
     ```
     kubectl get secrets --namespace <namespace_name>
     ```
-    {: pre}
+    {: codeblock}
 
 5. Create a service account. To see all of your customization options, check out the [RBAC page in the Helm GitHub repository](https://github.com/helm/helm/blob/master/docs/rbac.md).
 
@@ -128,7 +131,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
   kubectl create serviceaccount --namespace <namespace_name> <service_account_name>
   kubectl create clusterrolebinding <role_name> --clusterrole=cluster-admin --serviceaccount=<namespace_name>:<service_account_name>
   ```
-  {: pre}
+  {: codeblock}
 
 6. Generate certificates and enable Helm with TLS by following the instructions found in the [Tiller SSL GitHub repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). Be sure to specify the namespace that you created.
 
@@ -155,7 +158,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   ibmcloud login
   ```
-  {: pre}
+  {: codeblock}
 
 2. Set the context for your cluster.
 
@@ -164,30 +167,30 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. If you haven't already, add the helm chart repository.
+3. If you haven't already, add the `iks-charts` repository.
 
   ```
   helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
-  {: pre}
+  {: codeblock}
 
 4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
-  {: pre}
+  {: codeblock}
 
 5. Get the Ingress subdomain for your cluster.
 
   ```
   ibmcloud ks cluster-get <cluster_name>
   ```
-  {: pre}
+  {: codeblock}
 
 6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore#backup-restore). 
 
@@ -196,7 +199,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
-  {: pre}
+  {: codeblock}
 
   If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
@@ -206,7 +209,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 
 
@@ -221,7 +224,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
   ```
   ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
 2. Set the context for your cluster.
 
@@ -230,7 +233,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copy the output and paste it into your terminal.
 
@@ -239,25 +242,23 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
   ```
   ibmcloud cr login
   ```
-  {: pre}
+  {: codeblock}
 
 4. Pull the image to your local machine.
 
   ```
-  docker pull icr.io/ibm/datashield-installer
+  docker pull <region>.icr.io/ibm/datashield-installer
   ```
-  {: pre}
+  {: codeblock}
 
 5. Install {{site.data.keyword.datashield_short}} by running the following command.
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config icr.io/ibm/datashield-installer provision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/ibm/datashield-installer provision
   --adminEmail <ADMIN_EMAIL> --accountId <ACCOUNT_ID> --ingressSubdomain <INGRESS_SUBDOMAIN>
   [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
   ```
-  {: pre}
+  {: codeblock}
 
   To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
-
-
 
