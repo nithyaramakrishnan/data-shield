@@ -40,28 +40,26 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 {: tip}
 
 
-1. Create a [service ID](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation. 
+1. Create a [service ID](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation, and selecting the option to include HMAC credentials. The backup job uses the HMAC credentials to authenticate to {{site.data.keyword.cos_short}}.
 
-2. Create HMAC credentials. The credentials and ID allow the backup job to authenticate to {{site.data.keyword.cos_short}}. For more information about credentials, see [Using HMAC credentials](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac).
-
-3. Create a Kubernetes secret with the credentials to authenticate to {{site.data.keyword.cos_short}}.
+2. Create a Kubernetes secret with the credentials to authenticate to {{site.data.keyword.cos_short}}.
     
     ```
     kubectl create secret generic enclave-manager-backup-credentials --from-literal=AWS_ACCESS_KEY_ID=<key id> --from-literal=AWS_SECRET_ACCESS_KEY=<secret>
     ```
     {: codeblock}
 
-4. In the Helm chart, set the following values before you deploy.
+3. Add the following options to your `helm install` command when installing Data Shield, or to your `helm upgrade` command when upgrading an existing Data Shield instance. Modify the values appropriately for your environment.
     
     ```
-    enclaveos-chart.Manager.backup.cron-schedule=0 0 * * *
-    enclaveos-chart.Manager.backup.cos-endpoint=https://s3.us.cloud-object-storage.appdomain.cloud
-    enclaveos-chart.Manager.backup.cos-bucket=<orgname>-enclave-manager-backups
-    enclaveos-chart.Manager.backup.cos-hmac-secret=enclave-manager-backup-credentials
+    --set enclaveos-chart.Backup.CronSchedule="0 0 * * *"
+    --set global.S3.Endpoint=https://s3.us.cloud-object-storage.appdomain.cloud
+    --set global.S3.Bucket=<orgname>-enclave-manager-backups
+    --set global.S3.HmacSecretName=enclave-manager-backup-credentials
     ```
     {: codeblock}
 
-    Optionally, you can also set `enclaveos-chart.Manager.backup.cos-prefix` to a path within the {{site.data.keyword.cos_short}} bucket where you want to store the backup. By default, backups are prefixed with the cluster name.
+    Optionally, you can also set `enclaveos-chart.Backup.S3Prefix` to a path within the {{site.data.keyword.cos_short}} bucket where you want to store the backup. By default, backups are stored at the bucket root.
     {: tip}
 
 
@@ -71,7 +69,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 
 If you configured your Helm chart to create a backup of the Enclave Manager before you deployed, you can restore it if you encounter any issues.
 
-1. Ensure that you're running on a node that was previously running in the Enclave Manager.
+1. Ensure that you're running on a node that was previously running in the Enclave Manager. This is necessary because the Enclave Manager data is encrypted using SGX sealing keys, and can only be decrypted on the same hardware.
 
 2. Deploy the Enclave Manager with 0 instances of the backend server by setting the following Helm value.
 
@@ -80,14 +78,19 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
     ```
     {: codeblock}
 
-3. After the Enclave Manager is deployed, create a shell in the database container.
+3. After the Enclave Manager is deployed, copy the backup to the database container.
+
+    ```
+    kubectl cp <local path to backup> <release>-enclaveos-cockroachdb-0:/cockroach
+    ```
+    {: codeblock}
+
+4. Create a shell in the database container.
 
     ```
     kubectl exec -it <release>-enclaveos-cockroachdb-0 bash
     ```
     {: codeblock}
-
-4. Copy the backup to the machine.
 
 5. Prepare the database to restore from your backup.
 
@@ -109,9 +112,9 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
     3. Exit and run the following command.
 
         ```
-        cockroach sql --insecure -d malbork <your backup>.sql
+        cockroach sql --insecure -d malbork < <your backup>.sql
         ```
         {: codeblock}
 
-6. Scale the Enclave Manager deployment up by running `helm upgrade` without the `enclaveos-chart.Manager.ReplicaCount` value.
+6. Scale the Enclave Manager deployment up by running `helm upgrade` without setting the `enclaveos-chart.Manager.ReplicaCount` value.
 
