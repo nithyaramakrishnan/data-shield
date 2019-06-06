@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -25,10 +25,11 @@ subcollection: data-shield
 # Uninstalling
 {: #uninstall}
 
-If you no longer have a need to use {{site.data.keyword.datashield_full}}, you can delete the service and the TLS certificates that were created.
+If you no longer need to use {{site.data.keyword.datashield_full}}, you can delete the service and the TLS certificates that were created.
 
 
 ## Uninstalling with Helm
+{: #uninstall-helm}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 

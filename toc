@@ -10,15 +10,24 @@ IBM Cloud Data Shield
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    install.md
-    backup-restore.md
-    access.md
-    convert.md
-    deploy.md
+    {: .topicgroup}
+    Managing the service
+        install.md
+        update.md
+        uninstall.md
+    
+    {: .topicgroup}
+    Configuring the Enclave Manager
+        access.md
+        backup-restore.md
+        tls-cert.md
+
     manage.md
-    tls-cert.md
-    update.md
-    uninstall.md
+
+    {: .topicgroup}
+    Deploying apps to Data Shield
+        convert.md
+        deploy.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

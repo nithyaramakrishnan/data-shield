@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -53,7 +53,7 @@ You can allow all users of the converter to obtain input images from and push ou
   ```
   {: codeblock}
 
-3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that there are no new lines in the middle or at the end of the encoded string.
+3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that no new lines in the middle or at the end of the encoded string exist.
 
   ```
   (echo -n '{"auths":{"<region>.icr.io":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
@@ -150,13 +150,14 @@ Check out the following example to see how to configure a request to generate an
  {: codeblock}
 
 
-## Whitelisting your applications
+## Whitelisting applications
 {: #convert-whitelist}
 
 When a Docker image is converted to run inside of Intel® SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allow the application to run on the cluster where {{site.data.keyword.datashield_short}} is installed.
 {: shortdesc}
 
-1. Obtain an Enclave Manager access token using the IAM authentication token, using the following curl request:
+
+1. Obtain an Enclave Manager access token by using the IAM authentication token:
 
   ```
   export em_token=`curl -X POST https://enclave-manager.<ingress-domain>/api/v1/sys/auth/token -H "Authorization: Basic $token" | jq -r '.access_token'`
@@ -171,4 +172,5 @@ When a Docker image is converted to run inside of Intel® SGX, it can be whiteli
   ```
   {: codeblock}
 
-3. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Builds** section of the GUI.
+3. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
+

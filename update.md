@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -28,6 +28,48 @@ subcollection: data-shield
 
 After {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
 {: shortdesc}
+
+## Setting cluster context
+{: #update-context}
+
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
+
+2. Set the context for your cluster.
+
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copy the output and paste it into your terminal.
+
+3. If you haven't already, add the `iks-charts` repository.
+
+  ```
+  helm repo add iks-charts https://icr.io/helm/iks-charts
+  ```
+  {: codeblock}
+
+4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
+
+  ```
+  ibmcloud account show
+  ```
+  {: codeblock}
+
+5. Get the Ingress subdomain for your cluster.
+
+  ```
+  ibmcloud ks cluster-get <cluster_name>
+  ```
+  {: codeblock}
 
 ## Updating with Helm
 {: #update-helm}

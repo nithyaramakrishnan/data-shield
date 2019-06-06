@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -29,14 +29,35 @@ You can control access to the {{site.data.keyword.datashield_full}} Enclave Mana
 {: shortdesc}
 
 
+## Assigning cluster access
+{: #access-cluster}
+
+Before you can sign in to the Enclave Manager, you must have access to the cluster that the Enclave Manager is running on.
+{: shortdesc}
+
+1. Sign in to the account that hosts the cluster that you want to sign in to.
+
+2. Navigate to **Manage > Access (IAM) > Users**.
+
+3. Click **Invite users**.
+
+4. Provide the email addresses for the user's that you want to add.
+
+5. From the **Assign access to** drop down, select **Resource**.
+
+6. From the **Services** drop down, select **Kubernetes Service**.
+
+7. Select a **Region**, **Cluster**, and **Namespace**.
+
+8. Using the Kubernetes Service documentation on [assigning cluster access](/docs/containers?topic=containers-users) as a guide, assign the access that the user needs to complete their tasks.
+
+9. Click **Save**.
+
 ## Setting roles for Enclave Manager users
 {: #enclave-roles}
 
 {{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}
-
-Keep in mind that these roles are different from the platform IAM roles that are used to control access to {{site.data.keyword.cloud_notm}} services. For more information about configuring access for the {{site.data.keyword.containerlong_notm}}, see [assigning cluster access](/docs/containers?topic=containers-users#users).
-{: tip}
 
 Check out the following table to see which roles are supported and some example actions that can be taken by each user:
 
@@ -63,14 +84,43 @@ Check out the following table to see which roles are supported and some example 
   </tr>
 </table>
 
-### Setting user roles
+
+### Adding a user
 {: #set-roles}
 
-You can set or update the user roles for your console manager.
+By using the Enclave Manager GUI, you can give new user's access to the information.
 {: shortdesc}
 
-1. Sign in to the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-managing#managing).
-2. From the drop-down menu, open the user management screen.
-3. Select **Settings**. You can review the list of users or add a user from this screen.
-4. To edit user permissions, hover over a user until the pencil icon is displayed.
-5. Click the pencil icon to change their permissions. Any changes to a user's permissions take immediate effect.
+1. Sign in to the Enclave Manager.
+
+2. Click **Your name > Settings**.
+
+3. Click **Add user**.
+
+4. Enter an email and a name for the user. Select a role from the **Role** drop down.
+
+5. Click **Save**.
+
+
+
+### Updating a user
+{: #update-roles}
+
+You can update the roles that are assigned to your users and their name.
+{: shortdesc}
+
+1. Sign in to the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin).
+
+2. Click **Your name > Settings**.
+
+3. Hover over the user whose permissions you want to edit. A pencil icon displays.
+
+4. Click the pencil icon. The edit user screen opens.
+
+5. From the **Role** drop down, select the roles that you want to assign.
+
+6. Update the user's name.
+
+7. Click **Save**. Any changes to a user's permissions take immediate effect.
+
+

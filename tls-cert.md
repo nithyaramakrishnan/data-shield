@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -31,7 +31,7 @@ subcollection: data-shield
 {: shortdesc}
 
 
-## Front end use
+## Front-end use
 {: #tls-frontend}
 
 You can choose to use the default or use your own TLS certificate by the way you define the Helm chart.
@@ -57,7 +57,7 @@ That's it! You're ready to use your own certificate from your own issuer.
 ## Backend use
 {: #tls-backend}
 
-The {{site.data.keyword.datashield_short}} service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you should not need to do anything with these certificates.
+The {{site.data.keyword.datashield_short}} service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you do not need to do anything with these certificates.
 {: shortdesc}
 
 Check out the following table for contextual information about how {{site.data.keyword.datashield_short}} creates the specific `cert-manager` resources.
@@ -65,7 +65,7 @@ Check out the following table for contextual information about how {{site.data.k
 <table>
     <tr>
         <th>Resource</th>
-        <th>How it's created</th>
+        <th>Creation</th>
     </tr>
     <tr>
         <td><code>datashield-ca-issuer</code></td>
@@ -85,7 +85,7 @@ Check out the following table for contextual information about how {{site.data.k
     </tr>
     <tr>
         <td><code>datashield-enclaveos-frontend</code></td>
-        <td>The certificate that is used by the container that serves the Enclave Manager front end. It is used to authenticate to the Ingress proxy. Note: This is not the same certificate that you would switch to use your own.</td>
+        <td>The certificate that is used by the container that serves the Enclave Manager front end. It is used to authenticate to the Ingress proxy. Note: This certificate is different than the one that you would switch to use your own.</td>
     </tr>
     <tr>
         <td><code>datashield-enclaveos-manager-main</code></td>
