@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -34,11 +34,11 @@ If you have problems while you're working with {{site.data.keyword.datashield_fu
 ## Getting help and support
 {: #gettinghelp}
 
-For help, you can search for information in the documentation or by askquestions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development team.
+For help, you can search for information in the documentation or by asking questions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development team.
   * If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
   * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> forum. Include the `data-shield` tag.
 
-For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
+For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support).
 
 
 
@@ -55,7 +55,7 @@ Sign-in might fail for the following reasons:
 * The token that you're using might be expired.
 
 {: tsResolve}
-To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the right permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`.
+To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the right permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`. If you have multiple IBM Cloud accounts, verify that the account you are logged in to the CLI with the correct account for the Enclave Manager cluster.
 
 
 ## The container converter API returns a forbidden error
