@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -22,10 +22,10 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Installing the service
+# Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. You can work with the install commands that you feel most comfortable with.
+You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. You can work with the installation commands that you feel most comfortable with.
 {: shortdesc}
 
 ## Before you begin
@@ -35,12 +35,12 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
-  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [Docker](https://docs.docker.com/install/)
-  * [Helm](/docs/containers?topic=containers-helm#helm)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli)
+  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
+  * [Docker](https://docs.docker.com/install/){: external}
+  * [Helm](/docs/containers?topic=containers-helm)
 
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
 * The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
@@ -51,18 +51,18 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 * An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users#users) to create a cluster.
+  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
 
-  3. Create the [cluster](/docs/containers?topic=containers-clusters#clusters).
+  3. Create the [cluster](/docs/containers?topic=containers-clusters).
 
-* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/) service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/){: external} service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
   {: codeblock}
 
-Want to see logging information for Data Shield? Set up a {{site.data.keyword.la_full_notm}} instance for your cluster.
+Want to see logging information for Data Shield? Set up an {{site.data.keyword.la_full_notm}} instance for your cluster.
 {: tip}
 
 
@@ -125,7 +125,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
     ```
     {: codeblock}
 
-5. Create a service account. To see all of your customization options, check out the [RBAC page in the Helm GitHub repository](https://github.com/helm/helm/blob/master/docs/rbac.md).
+5. Create a service account. To see all of your customization options, check out the [RBAC page in the Helm GitHub repository](https://github.com/helm/helm/blob/master/docs/rbac.md){: external}.
 
   ```
   kubectl create serviceaccount --namespace <namespace_name> <service_account_name>
@@ -133,7 +133,7 @@ By default, {{site.data.keyword.datashield_short}} is installed into the `kube-s
   ```
   {: codeblock}
 
-6. Generate certificates and enable Helm with TLS by following the instructions found in the [Tiller SSL GitHub repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). Be sure to specify the namespace that you created.
+6. Generate certificates and enable Helm with TLS by following the instructions found in the [Tiller SSL GitHub repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. Be sure to specify the namespace that you created.
 
 Excellent! Now you're ready to install {{site.data.keyword.datashield_short}} into your new namespace. From this point on, be sure to add `--tiller-namespace <namespace_name>` to any Helm command that you run.
 
@@ -192,16 +192,16 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: codeblock}
 
-6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore#backup-restore). 
+6. Set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore). 
 
 7. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
+  helm install ibm/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: codeblock}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
+  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
 8. To monitor the startup of your components, you can run the following command.
