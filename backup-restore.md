@@ -49,7 +49,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
     ```
     {: codeblock}
 
-3. Add the following options to your `helm install` command when installing Data Shield, or to your `helm upgrade` command when upgrading an existing Data Shield instance. Modify the values appropriately for your environment.
+3. Add the following options to your `helm install` command when you install Data Shield, or to your `helm upgrade` command when you upgrade an existing {{site.data.keyword.datashield_full}} instance. Modify the values appropriately for your environment.
     
     ```
     --set enclaveos-chart.Backup.CronSchedule="0 0 * * *"
