@@ -69,7 +69,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 
 If you configured your Helm chart to create a backup of the Enclave Manager before you deployed, you can restore it if you encounter any issues.
 
-1. Ensure that you're running on a node that was previously running in the Enclave Manager. This is necessary because the Enclave Manager data is encrypted using SGX sealing keys, and can only be decrypted on the same hardware.
+1. Ensure that you're running on a node that was previously running in the Enclave Manager. This is necessary because the Enclave Manager data is encrypted by using SGX sealing keys, and can only be decrypted on the same hardware.
 
 2. Deploy the Enclave Manager with 0 instances of the backend server by setting the following Helm value.
 
