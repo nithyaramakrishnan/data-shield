@@ -34,7 +34,9 @@ When you deploy {{site.data.keyword.datashield_short}} containers to your Kubern
 Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
 {: tip}
 
-1. Save the following pod specification as a template.
+1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
+
+2. Save the following pod specification as a template.
 
     ```
     apiVersion: v1
@@ -77,9 +79,9 @@ Don't have an application to try the service? No problem. We offer several sampl
     ```
     {: screen}
 
-2. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
+3. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
 
-3. Create the Kubernetes pod.
+4. Create the Kubernetes pod.
 
    ```
    kubectl create -f template.yml

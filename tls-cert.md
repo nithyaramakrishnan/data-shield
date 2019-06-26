@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -68,27 +68,27 @@ Check out the following table for contextual information about how {{site.data.k
         <th>Creation</th>
     </tr>
     <tr>
-        <td><code>datashield-ca-issuer</code></td>
+        <td><code>&lt;chartname&gt;-ca-issuer</code></td>
         <td>A self-signed <code>cert-manager</code> issuer that is used to generate the <code>datashield-enclaveos-ca</code> certificate authority that issues TLS certificates for the {{site.data.keyword.datashield_short}} components.</td>
     </tr>
     <tr>
-        <td><code>datashield-issuer</code></td>
+        <td><code>&lt;chartname&gt;-issuer</code></td>
         <td>The issuer of TLS certificates that are used in {{site.data.keyword.datashield_short}} components. The certificates are created by using the <code>datashield-enclaveos-ca</code> certificate authority.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-ca</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-ca</code></td>
         <td>The <code>cert-manager</code> resource that is both a certificate and a private certificate authority. As a certificate authority, it issues TLS certificates to the {{site.data.keyword.datashield_short}} backend services. The certificate is mounted as a Kubernetes secret in various services, which then trusts clients if they have a certificate that is signed by <code>datashield-enclaveos-ca</code> CA.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-converter</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-converter</code></td>
         <td>The certificate that is used by the EnclaveOS container converter.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-frontend</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-frontend</code></td>
         <td>The certificate that is used by the container that serves the Enclave Manager front end. It is used to authenticate to the Ingress proxy. Note: This certificate is different than the one that you would switch to use your own.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-manager-main</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-manager-main</code></td>
         <td>The certificate used by the Enclave Manager backend application.</td>
     </tr>
 </table>

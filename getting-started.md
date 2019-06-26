@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-21"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -42,9 +42,6 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
   * [Docker](https://docs.docker.com/install/){: external}
   * [Helm](/docs/containers?topic=containers-helm)
-
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-  {: tip}
 
 * The following [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins):
 
@@ -122,7 +119,33 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: codeblock}
 
-6. Install the chart.
+6. Initialize Helm by creating a rolebinding policy for Tiller. 
+
+  1. Create a service account for Tiller.
+  
+    ```
+    kubectl --namespace kube-system create serviceaccount tiller
+    ```
+    {: codeblock}
+
+  2. Create the rolebinding to assign Tiller admin access in the cluster.
+
+    ```
+    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+    ```
+    {: codeblock}
+
+  3. Initialize Helm.
+
+    ```
+    helm init --service-account tiller --upgrade
+    ```
+    {: codeblock}
+
+  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run. For more information about using Helm with IBM Cloud Kubernetes Service, see [Adding services by using Helm Charts](/docs/containers?topic=containers-helm#public_helm_install).
+  {: tip}
+
+7. Install the chart.
 
   ```
   helm install ibm/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>

@@ -90,16 +90,16 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 3. Delete the service.
 
   ```
-  helm delete datashield --purge
+  helm delete <chart-name> --purge
   ```
   {: codeblock}
 
 4. Delete the TLS certificates by running each of the following commands.
 
   ```
-  kubectl delete secret datashield-enclaveos-converter-tls
-  kubectl delete secret datashield-enclaveos-frontend-tls
-  kubectl delete secret datashield-enclaveos-manager-main-tls
+  kubectl delete secret <chart-name>-enclaveos-converter-tls
+  kubectl delete secret <chart-name>-enclaveos-frontend-tls
+  kubectl delete secret <chart-name>-enclaveos-manager-main-tls
   ```
   {: codeblock}
 
@@ -115,7 +115,7 @@ You might also want to delete the `cert-manager` instance and the Docker config 
 {: tip}
 
 
-## Uninstalling with the beta installer
+## Uninstalling with the installer
 {: #uninstall-installer}
 
 If you installed {{site.data.keyword.datashield_short}} by using the beta installer, you can also uninstall the service with the installer.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -25,21 +25,38 @@ subcollection: data-shield
 # Converting images
 {: #convert}
 
-You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy to your SGX capable Kubernetes cluster.
+You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
+
+You can convert your applications without making any changes to your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not actually encrypt your application. Only data that is generated at runtime - after the application is launched within an SGX Enclave is protected by IBM Cloud Data Shield. 
+
+The conversion process does not encrypt your application.
+{: important}
+
+
+## Before you begin
+{: #convert-before}
+
+Before you convert your applications, there are a few things that you should keep in mind. Ensure that you fully understand the following considerations before making the conversion.
+{: shortdesc}
+
+* For security reasons, secrets should be provided at runtime not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the applicaton is running in an enclave before you provide any secrets.
+
+* The container guest must run as the container's root user.
+
+* Testing included containers that are based on Debian, Ubuntu, and Java with varying results. Other environments might work, but have not been tested.
 
 
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the converter to obtain input images from and push output images to the configured private registries by configuring the converter with registry credentials.
+You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials.
 {: shortdesc}
 
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
 {: #configure-ibm-registry}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
-
 
   ```
   ibmcloud login
@@ -63,16 +80,18 @@ You can allow all users of the converter to obtain input images from and push ou
 ### Configuring credentials for another registry
 {: #configure-other-registry}
 
-If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file.
+If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file. Files on OS X are not supported at this time.
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
+
+2. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
   ibmcloud login
   ```
   {: codeblock}
 
-2. Run the following command.
+3. Run the following command.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
@@ -86,6 +105,9 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
+
+You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/services/data-shield?topic=enclave-manager#em-apps).
+{: tip}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -109,7 +131,53 @@ You can use the Enclave Manager API to connect to the converter.
   ```
   {: codeblock}
 
+### Converting Java applications
+{: #convert-java}
 
+When you convert Java based applications, there are a few extra requirements and limitations. When you convert Java applications by using the Enclave Manager UI, you can select `Java-Mode`. To convert Java apps by using the API, keep the following limitations and options in mind.
+
+**Limitations**
+
+* The recommended maximum enclave size for Java apps is 4GB. Larger enclaves might work but can experience degraded performance.
+* The recommended heap size is SG: HOW MUCH?? less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
+* The following Java libraries have been tested:
+  - MySQL Java Connector
+  - Crypto (JCA)
+  - Messaging (JMS)
+  - Hibernate (JPA)
+
+  If you're working with another library, contact our team by using forums or by clicking the feedback button on this page. Be sure to include your contact information and the library that you're interested in working with.
+
+
+**Options**
+
+To use the `Java-Mode` conversion, modify your Docker file to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in this section. 
+
+
+* Set the environment variable MALLOC_ARENA_MAX equal to 1.
+
+  ```
+  MALLOC_ARENA_MAX=1
+  ```
+  {: codeblock}
+
+* If you're using the OpenJDK JVM, set the following JVM options.
+
+  ```
+  -XX:CompressedClassSpaceSize=16m 
+  -XX:ReservedCodeCacheSize=16m 
+  -XX:-UseCompiler 
+  -XX:+UseSerialGC 
+  ```
+  {: codeblock}
+
+* If you're using the OpenJ9 JVM, set the following JVM options.
+
+  ```
+  -Xnojit
+  –Xnoaot
+  ```
+  {: codeblock}
 
 ## Requesting an application certificate
 {: #request-cert}
