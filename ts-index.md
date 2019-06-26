@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-21"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -40,6 +40,36 @@ For help, you can search for information in the documentation or by asking quest
 
 For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support).
 
+
+## Obtaining logs
+{: #ts-logs}
+
+When you open a support ticket for IBM Cloud Data Shield, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
+
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
+
+2. Set the context for your cluster.
+
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+
+3. Run the following command to obtain your logs.
+
+  ```
+  kubectl logs --all-containers=true --selector release=$(helm list | grep 'data-shield' | awk {'print $1'}) > logs
+  ```
+  {: codeblock}
 
 
 ## I can't log in to the Enclave Manager UI
