@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" category="security" audience="service" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
+{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
@@ -25,22 +25,16 @@ IBM Cloud Data Shield
     manage.md
 
     {: .topicgroup}
-    Deploying apps to Data Shield
+    Deploying apps with the API
         convert.md
         deploy.md
+        curated-apps.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
     [Blogs](https://www.ibm.com/cloud/blog)
     [Fortanix](https://fortanix.com/)
     [Intel SGX](https://software.intel.com/en-us/sgx)
-
-    {: .topicgroup}
-    Prepackaged shielded images
-        [Barbican image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-        [MariaDB image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
-        [NGINX image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
-        [Vault image](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
     {: .navgroup-end}
 
     {: .navgroup id="help"}
