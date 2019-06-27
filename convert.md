@@ -172,7 +172,8 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
 * If you're using the OpenJDK JVM, set the following JVM options.
 
   ```
-  -XX:CompressedClassSpaceSize=16m 
+  -XX:CompressedClassSpaceSize=16m
+  -XX:-UsePerfData 
   -XX:ReservedCodeCacheSize=16m 
   -XX:-UseCompiler 
   -XX:+UseSerialGC 
