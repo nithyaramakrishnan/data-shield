@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-26"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -50,7 +50,7 @@ Before you convert your applications, there are a few things that you should kee
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials.
+You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you started using the Container Registry before 4 October 2018, you may wish to [enable IAM access policy enforcement for your container registry](https://cloud.ibm.com/docs/services/Registry?topic=registry-user#existing_users).
 {: shortdesc}
 
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
@@ -63,17 +63,25 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
   ```
   {: codeblock}
 
-2. Obtain an authentication token for your {{site.data.keyword.cloud_notm}} Container Registry.
+2. Create a service ID and a service ID API key for the {{site.data.keyword.datashield_short}} container converter.
 
   ```
-  ibmcloud cr token-add --non-expiring --readwrite --description 'EnclaveOS Container Converter'
+  ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
+  ibmcloud iam service-api-key-create 'Data Shield Container Converter' data-shield-container-converter
   ```
   {: codeblock}
 
-3. Create a JSON configuration file by using the token that you created. Replace the `<token>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that no new lines in the middle or at the end of the encoded string exist.
+3. Grant the service ID permission to access your container registry.
 
   ```
-  (echo -n '{"auths":{"<region>.icr.io":{"auth":"'; echo -n 'token:<token>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
+  ibmcloud iam service-policy-create data-shield-container-converter --roles Reader,Writer --service-name container-registry
+  ```
+  {: codeblock}
+
+4. Create a JSON configuration file by using the API key that you created. Replace the `<api key>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that no new lines in the middle or at the end of the encoded string exist.
+
+  ```
+  (echo -n '{"auths":{"<region>.icr.io":{"auth":"'; echo -n 'iamapikey:<api key>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
   ```
   {: codeblock}
 
