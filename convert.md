@@ -50,7 +50,7 @@ Before you convert your applications, there are a few things that you should kee
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you started using the Container Registry before 4 October 2018, you may wish to [enable IAM access policy enforcement for your container registry](https://cloud.ibm.com/docs/services/Registry?topic=registry-user#existing_users).
+You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you started using the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/services/Registry?topic=registry-user#existing_users).
 {: shortdesc}
 
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
