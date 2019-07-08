@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -34,7 +34,7 @@ Want to try IBM Cloud Data Shield but don't have a containerized app ready to go
 ## Accessing public IBM images
 {: #curated-access}
 
-You can access the public IBM images by using the command line.
+You can access the public IBM images by using the CLI.
 {: shortdesc}
 
 

@@ -186,7 +186,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
     ```
     {: codeblock}
 
-  2. Copy the output and paste it into your terminal.
+  2. Copy the output and paste it into your console.
 
 3. Sign in to the Container Registry CLI.
 
@@ -195,7 +195,7 @@ You can use the installer to quickly install {{site.data.keyword.datashield_shor
   ```
   {: codeblock}
 
-4. Pull the image to your local machine.
+4. Pull the image to your local system.
 
   ```
   docker pull <region>.icr.io/ibm/datashield-installer

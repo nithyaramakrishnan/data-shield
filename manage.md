@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -162,7 +162,7 @@ You can edit an application after you add it to your list.
 
 3. Click **Edit application**.
 
-4. Update the configuration that you want to make. Be sure to that you understand the way that changing the advanced settings affects your application before making any advanced change.
+4. Update the configuration that you want to make. Be sure that you understand the way that changing the advanced settings affects your application before you make any change.
 
 5. Click **Edit application**.
 
@@ -205,7 +205,7 @@ You can audit your Enclave manager instance for several different types of activ
 {: shortdesc}
 
 1. Navigate to the **Audit log** tab of the Enclave Manager UI.
-2. Filter the logging results to narrow your search. You can choose to filter by time frame or by any of the following types.
+2. Filter the logging results to narrow your search. You can choose to filter by timeframe or by any of the following types.
 
   * App status: Activity that pertains to your application such as whitelist requests and new builds.
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.

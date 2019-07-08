@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-21"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -98,7 +98,7 @@ You attempt to run the container converter and receive an error: `Forbidden`.
 You might not be able to access the converter if your IAM or Bearer token is missing or expired.
 
 {: tsResolve}
-To resolve the issue, you should verify that you are using either an IBM IAM OAuth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
+To resolve the issue, verify that you are using either an IBM IAM OAuth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
 
 * IAM: `Authentication: Basic <IBM IAM Token>`
 * Enclave Manager: `Authentication: Bearer <E.M. Token>`
@@ -145,7 +145,7 @@ To resolve the issue, verify both:
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
 
 
-## Error when converting containers
+## Error: Converting containers
 {: #ts-container-convert-fails}
 
 {: tsSymptoms}
@@ -164,7 +164,7 @@ To resolve the issue you can use the following steps:
 
 1. Disable OS X keychain on your local system. Go to **System preferences > iCloud** and clear the box for **Keychain**.
 
-2. Delete the secret that you created. Be sure that you're logged in to IBM Cloud and have targeted your cluster before you run the following command.
+2. Delete the secret that you created. Be sure that you're logged in to IBM Cloud and are targeted to your cluster before you run the following command.
 
   ```
   kubectl delete secret converter-docker-config
@@ -175,7 +175,7 @@ To resolve the issue you can use the following steps:
 
 4. Log in to your registry.
 
-5. Create a new secret.
+5. Create a secret.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json

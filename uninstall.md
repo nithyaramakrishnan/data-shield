@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -85,7 +85,7 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
     ```
     {: codeblock}
 
-  2. Copy the output and paste it into your terminal.
+  2. Copy the output and paste it into your console.
 
 3. Delete the service.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -48,7 +48,7 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
     ```
     {: codeblock}
 
-  2. Copy the output and paste it into your terminal.
+  2. Copy the output and paste it into your console.
 
 3. If you haven't already, add the `iks-charts` repository.
 
