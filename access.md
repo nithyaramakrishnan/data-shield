@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -37,7 +37,7 @@ Before you can sign in to the Enclave Manager, you must have access to the clust
 
 1. Sign in to the account that hosts the cluster that you want to sign in to.
 
-2. Navigate to **Manage > Access (IAM) > Users**.
+2. Go to **Manage > Access (IAM) > Users**.
 
 3. Click **Invite users**.
 
@@ -74,7 +74,7 @@ Check out the following table to see which roles are supported and some example 
   </tr>
   <tr>
     <td>Writer</td>
-    <td>Can perform the actions that a Reader can perform and more including deactivating and renewing node attestation, adding a build, approving or denying any action or tasks.</td>
+    <td>Can perform the actions that a Reader can perform and more; including deactivating and renewing node attestation, adding a build, and approving or denying any action or tasks.</td>
     <td>Certifying an application.</td>
   </tr>
   <tr>

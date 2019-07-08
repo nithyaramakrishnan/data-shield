@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-21"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -34,11 +34,14 @@ For more information about {{site.data.keyword.datashield_short}}, and what it m
 ## Before you begin
 {: #gs-begin}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort}} environment, check out the tutorial on how to [create Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites.
+
+For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out the tutorial [Creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+{: tip}
 
 * The following CLIs:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli)
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
   * [Docker](https://docs.docker.com/install/){: external}
   * [Helm](/docs/containers?topic=containers-helm)
@@ -78,7 +81,7 @@ The Helm chart installs the following components:
 *	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
 
-To install {{site.data.keyword.datashield_short}} onto your cluster:
+To install {{site.data.keyword.datashield_short}} onto your cluster, complete the following steps.
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -96,7 +99,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
     ```
     {: codeblock}
 
-  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  2. Copy the output beginning with `export` and paste it into your console to set the `KUBECONFIG` environment variable.
 
 3. If you haven't already, add the `iks-charts` repository.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-24"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -49,7 +49,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
     ```
     {: codeblock}
 
-3. Add the following options to your `helm install` command when you install Data Shield, or to your `helm upgrade` command when you upgrade an existing {{site.data.keyword.datashield_full}} instance. Modify the values appropriately for your environment. `enclaveos-chart.Backup.CronSchedule` is your backup schedule, specified in cron syntax. For example, `0 0 * * *` will perform a backup every day at midnight UTC. `global.S3.Endpoint` should correspond to the location of the {{site.data.keyword.cos_short}} bucket you created, which you can look up in the [table of endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
+3. Add the following options to your `helm install` command when you install Data Shield, or to your `helm upgrade` command when you upgrade an existing {{site.data.keyword.datashield_full}} instance. Modify the following values for your environment. `enclaveos-chart.Backup.CronSchedule` is your backup schedule, which is specified in cron syntax. For example, `0 0 * * *` performs a backup every day at midnight Coordinated Universal Time. `global.S3.Endpoint` corresponds to the location of the {{site.data.keyword.cos_short}} bucket you created, which you can look up in the [table of endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
     
     ```
     --set enclaveos-chart.Backup.CronSchedule="<backup schedule>"
@@ -69,7 +69,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 
 If you configured your Helm chart to create a backup of the Enclave Manager before you deployed, you can restore it if you encounter any issues.
 
-1. Ensure that you're running on a node that was previously running in the Enclave Manager. This is necessary because the Enclave Manager data is encrypted by using SGX sealing keys, and can only be decrypted on the same hardware.
+1. Ensure that you're running on a node that was previously running in the Enclave Manager. The Enclave Manager data is encrypted by using SGX sealing keys, and can be decrypted only on the same hardware.
 
 2. Deploy the Enclave Manager with 0 instances of the backend server by setting the following Helm value.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-07-08"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -28,7 +28,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without making any changes to your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not actually encrypt your application. Only data that is generated at runtime - after the application is launched within an SGX Enclave is protected by IBM Cloud Data Shield. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time - after the application is invoked within an SGX Enclave is protected by IBM Cloud Data Shield. 
 
 The conversion process does not encrypt your application.
 {: important}
@@ -37,10 +37,10 @@ The conversion process does not encrypt your application.
 ## Before you begin
 {: #convert-before}
 
-Before you convert your applications, there are a few things that you should keep in mind. Ensure that you fully understand the following considerations before making the conversion.
+Before you convert your applications, there are a few things that you should keep in mind. Ensure that you fully understand the following considerations before you make the conversion.
 {: shortdesc}
 
-* For security reasons, secrets should be provided at runtime not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the applicaton is running in an enclave before you provide any secrets.
+* For security reasons, secrets must be provided at runtime - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
 
 * The container guest must run as the container's root user.
 
@@ -50,7 +50,7 @@ Before you convert your applications, there are a few things that you should kee
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you started using the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/services/Registry?topic=registry-user#existing_users).
+You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you used the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/services/Registry?topic=registry-user#existing_users).
 {: shortdesc}
 
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
@@ -147,7 +147,7 @@ When you convert Java based applications, there are a few extra requirements and
 **Limitations**
 
 * The recommended maximum enclave size for Java apps is 4GB. Larger enclaves might work but can experience degraded performance.
-* The recommended heap size is SG: HOW MUCH?? less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
+* The recommended heap size is less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
 * The following Java libraries have been tested:
   - MySQL Java Connector
   - Crypto (JCA)
