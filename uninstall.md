@@ -118,7 +118,7 @@ You might also want to delete the `cert-manager` instance and the Docker config 
 ## Uninstalling with the installer
 {: #uninstall-installer}
 
-If you installed {{site.data.keyword.datashield_short}} by using the beta installer, you can also uninstall the service with the installer.
+If you installed {{site.data.keyword.datashield_short}} by using the installer, you can also uninstall the service with the installer.
 
 To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI, target your cluster, and run the following command:
 
@@ -126,6 +126,4 @@ To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CL
   docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
   {: codeblock}
-
-
 

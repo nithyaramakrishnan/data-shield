@@ -28,7 +28,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time - after the application is invoked within an SGX Enclave is protected by IBM Cloud Data Shield. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time - after the application is started within an SGX Enclave is protected by IBM Cloud Data Shield. 
 
 The conversion process does not encrypt your application.
 {: important}
@@ -40,7 +40,7 @@ The conversion process does not encrypt your application.
 Before you convert your applications, there are a few things that you should keep in mind. Ensure that you fully understand the following considerations before you make the conversion.
 {: shortdesc}
 
-* For security reasons, secrets must be provided at runtime - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
+* For security reasons, secrets must be provided at run time - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
 
 * The container guest must run as the container's root user.
 
@@ -88,7 +88,7 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
 ### Configuring credentials for another registry
 {: #configure-other-registry}
 
-If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file. Files on OS X are not supported at this time.
+If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file. Files on OS X are not supported currently.
 
 1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
 
@@ -142,11 +142,11 @@ You can also convert your containers when you build your apps through the [Encla
 ### Converting Java applications
 {: #convert-java}
 
-When you convert Java based applications, there are a few extra requirements and limitations. When you convert Java applications by using the Enclave Manager UI, you can select `Java-Mode`. To convert Java apps by using the API, keep the following limitations and options in mind.
+When you convert Java-based applications, there are a few extra requirements and limitations. When you convert Java applications by using the Enclave Manager UI, you can select `Java-Mode`. To convert Java apps by using the API, keep the following limitations and options in mind.
 
 **Limitations**
 
-* The recommended maximum enclave size for Java apps is 4GB. Larger enclaves might work but can experience degraded performance.
+* The recommended maximum enclave size for Java apps is 4 GB. Larger enclaves might work but can experience degraded performance.
 * The recommended heap size is less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
 * The following Java libraries have been tested:
   - MySQL Java Connector
@@ -194,7 +194,7 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
 A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager Certificate Authority and include Intel's remote attestation report for your app's SGX enclave.
 {: shortdesc}
 
-Check out the following example to see how to configure a request to generate an RSA private key and generate the certificate for the key. The key is kept on the root of the application container. If you don't want an ephemeral key/certificate, you can customize the `keyPath` and `certPath` for your apps and store them on a persistent volume.
+Check out the following example to see how to configure a request to generate an RSA private key and generate the certificate for the key. The key is kept on the root of the application container. If you don't want an ephemeral key or certificate, you can customize the `keyPath` and `certPath` for your apps and store them on a persistent volume.
 
 1. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
 
