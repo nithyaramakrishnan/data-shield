@@ -26,7 +26,7 @@ subcollection: data-shield
 # Getting started tutorial
 {: #getting-started}
 
-With {{site.data.keyword.datashield_full}} (Beta), powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
+With {{site.data.keyword.datashield_full}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
 {: shortdesc}
 
 For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use you can learn [about the service](/docs/services/data-shield?topic=data-shield-about).
