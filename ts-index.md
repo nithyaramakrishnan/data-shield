@@ -157,7 +157,7 @@ You encounter the following error when you try to convert your container.
 {: codeblock}
 
 {: tsCauses}
-On macOS, if the OS X Keychain is used in your config.json file the container converter fails. 
+On macOS, if the OS X Keychain is used in your `config.json` file the container converter fails. 
 
 {: tsResolve}
 To resolve the issue you can use the following steps:

@@ -150,9 +150,9 @@ When you convert Java-based applications, there are a few extra requirements and
 * The recommended heap size is less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
 * The following Java libraries have been tested:
   - MySQL Java Connector
-  - Crypto (JCA)
-  - Messaging (JMS)
-  - Hibernate (JPA)
+  - Crypto (`JCA`)
+  - Messaging (`JMS`)
+  - Hibernate (`JPA`)
 
   If you're working with another library, contact our team by using forums or by clicking the feedback button on this page. Be sure to include your contact information and the library that you're interested in working with.
 
@@ -169,7 +169,7 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
   ```
   {: codeblock}
 
-* If you're using the OpenJDK JVM, set the following JVM options.
+* If you're using the `OpenJDK JVM`, set the following options.
 
   ```
   -XX:CompressedClassSpaceSize=16m
@@ -180,7 +180,7 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
   ```
   {: codeblock}
 
-* If you're using the OpenJ9 JVM, set the following JVM options.
+* If you're using the `OpenJ9 JVM`, set the following options.
 
   ```
   -Xnojit
