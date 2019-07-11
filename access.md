@@ -79,7 +79,7 @@ Check out the following table to see which roles are supported and some example 
   </tr>
   <tr>
     <td>Manager</td>
-    <td>Can perform the actions that a Writer can perform and more including updating user names and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
+    <td>Can perform the actions that a Writer can perform and more; including updating user names and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
     <td>Updating a user role.</td>
   </tr>
 </table>

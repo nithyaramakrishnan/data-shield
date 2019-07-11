@@ -37,7 +37,7 @@ The conversion process does not encrypt your application.
 ## Before you begin
 {: #convert-before}
 
-Before you convert your applications, there are a few things that you should keep in mind. Ensure that you fully understand the following considerations before you make the conversion.
+Before you convert your applications, you should ensure that you fully understand the following considerations.
 {: shortdesc}
 
 * For security reasons, secrets must be provided at run time - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
