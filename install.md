@@ -119,7 +119,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
 
 6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. Initialize Helm by creating a rolebinding policy for Tiller. 
+7. Initialize Helm by creating a role binding policy for Tiller. 
 
   1. Create a service account for Tiller.
   
@@ -128,7 +128,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
     ```
     {: codeblock}
 
-  2. Create the rolebinding to assign Tiller admin access in the cluster.
+  2. Create the role binding to assign Tiller admin access in the cluster.
 
     ```
     kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
