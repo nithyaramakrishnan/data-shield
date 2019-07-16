@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-07-16"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -114,7 +114,7 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/services/data-shield?topic=enclave-manager#em-apps).
+You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-enclave-manager#em-apps).
 {: tip}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
