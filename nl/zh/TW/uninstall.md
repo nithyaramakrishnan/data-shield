@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -25,24 +25,24 @@ subcollection: data-shield
 # 解除安裝
 {: #uninstall}
 
-如果您不再需要使用 {{site.data.keyword.datashield_full}}，則可以刪除服務及已建立的 TLS 憑證。
+如果您不再需要使用 {{site.data.keyword.datashield_full}}，可以刪除已建立的服務和 TLS 憑證。
 
 
 ## 使用 Helm 解除安裝
+{: #uninstall-helm}
 
-1. 登入 {{site.data.keyword.cloud_notm}} CLI。
-    遵循 CLI 中的提示，完成登入。
+1. 登入 {{site.data.keyword.cloud_notm}} CLI。遵循 CLI 中的提示，完成登入。如果您有聯合 ID，請在指令尾端附加 `--sso` 選項。
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
   <table>
     <tr>
       <th>地區 (Region)</th>
-      <th>IBM Cloud 端點</th>
-      <th>Kubernetes 服務區域</th>
+      <th>{{site.data.keyword.cloud_notm}} 端點</th>
+      <th>{{site.data.keyword.containershort_notm}} 地區</th>
     </tr>
     <tr>
       <td>達拉斯</td>
@@ -83,25 +83,25 @@ subcollection: data-shield
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
-  2. 複製輸出，並貼到您的終端機中。
+  2. 複製輸出，並貼到您的主控台中。
 
 3. 刪除服務。
 
   ```
-  helm delete datashield --purge
+  helm delete <chart-name> --purge
   ```
-  {: pre}
+  {: codeblock}
 
 4. 執行下列每個指令，以刪除 TLS 憑證。
 
   ```
-  kubectl delete secret datashield-enclaveos-converter-tls
-  kubectl delete secret datashield-enclaveos-frontend-tls
-  kubectl delete secret datashield-enclaveos-manager-main-tls
+  kubectl delete secret <chart-name>-enclaveos-converter-tls
+  kubectl delete secret <chart-name>-enclaveos-frontend-tls
+  kubectl delete secret <chart-name>-enclaveos-manager-main-tls
   ```
-  {: pre}
+  {: codeblock}
 
 5. 解除安裝處理程序使用 Helm「連結鉤」來執行解除安裝程式。在執行解除安裝程式之後，您可以將它刪除。
 
@@ -109,21 +109,21 @@ subcollection: data-shield
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: pre}
+  {: codeblock}
 
 如果已經建立 `cert-manager` 實例，您還可能想要刪除該實例以及 Docker 配置密碼。
 {: tip}
 
 
-
-## 使用測試版安裝程式解除安裝
+## 使用安裝程式進行卸載
 {: #uninstall-installer}
 
-如果您使用測試版安裝程式來安裝{{site.data.keyword.datashield_short}}，還可以使用該安裝程式來解除安裝服務。
+如果您使用安裝程式來安裝{{site.data.keyword.datashield_short}}，還可以使用該安裝程式來解除安裝服務。
 
 若要解除安裝 {{site.data.keyword.datashield_short}}，請登入 `ibmcloud` CLI，並將您的叢集設為目標，然後執行下列指令：
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
-  {: pre}
+  {: codeblock}
+

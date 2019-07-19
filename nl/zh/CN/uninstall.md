@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -29,19 +29,20 @@ subcollection: data-shield
 
 
 ## 使用 Helm 卸载
+{: #uninstall-helm}
 
-1. 登录到 {{site.data.keyword.cloud_notm}} CLI。遵循 CLI 中的提示完成登录。
+1. 登录到 {{site.data.keyword.cloud_notm}} CLI。遵循 CLI 中的提示完成登录。如果您具有联合标识，请将 `--sso` 选项附加到命令末尾。
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
   <table>
     <tr>
       <th>区域</th>
-      <th>IBM Cloud 端点</th>
-      <th>Kubernetes Service 区域</th>
+      <th>{{site.data.keyword.cloud_notm}} 端点</th>
+      <th>{{site.data.keyword.containershort_notm}} 区域</th>
     </tr>
     <tr>
       <td>达拉斯</td>
@@ -82,25 +83,25 @@ subcollection: data-shield
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
-  2. 复制输出并将其粘贴到终端中。
+  2. 复制输出并将其粘贴到控制台中。
 
 3. 删除服务。
 
   ```
-  helm delete datashield --purge
+  helm delete <chart-name> --purge
   ```
-  {: pre}
+  {: codeblock}
 
 4. 通过运行以下每个命令来删除 TLS 证书。
 
   ```
-  kubectl delete secret datashield-enclaveos-converter-tls
-  kubectl delete secret datashield-enclaveos-frontend-tls
-  kubectl delete secret datashield-enclaveos-manager-main-tls
+  kubectl delete secret <chart-name>-enclaveos-converter-tls
+  kubectl delete secret <chart-name>-enclaveos-frontend-tls
+  kubectl delete secret <chart-name>-enclaveos-manager-main-tls
   ```
-  {: pre}
+  {: codeblock}
 
 5. 卸载过程使用 Helm“挂钩”运行卸载程序。您可以在卸载程序运行后删除卸载程序。
 
@@ -108,21 +109,21 @@ subcollection: data-shield
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: pre}
+  {: codeblock}
 
 您可能还希望删除 `cert-manager` 实例和 Docker 配置私钥（如果已创建）。
 {: tip}
 
 
-
-## 使用安装程序测试版卸载
+## 使用安装程序进行卸载
 {: #uninstall-installer}
 
-如果通过使用安装程序测试版安装了 {{site.data.keyword.datashield_short}}，那么还可以使用安装程序来卸载该服务。
+如果通过使用安装程序安装了 {{site.data.keyword.datashield_short}}，那么还可以使用安装程序来卸载该服务。
 
 要卸载 {{site.data.keyword.datashield_short}}，请登录到 `ibmcloud` CLI，将您的集群设置为目标，然后运行以下命令：
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
-  {: pre}
+  {: codeblock}
+

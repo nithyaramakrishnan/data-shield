@@ -165,7 +165,7 @@ Sugerencia: ¿Se almacenan sus imágenes en un registro privado? Puede utilizar 
 
 ## Ejecución de las apps en el entorno de IBM Cloud Data Shield
 
-Para ejecutar sus aplicaciones en el entorno de IBM Cloud Data Shield, debe convertir la aplicación de contenedor, incluirl en una lista blanca y, a continuación, desplegarla.
+Para ejecutar sus aplicaciones en el entorno de IBM Cloud Data Shield, debe convertir la aplicación de contenedor, incluirla en una lista blanca y, a continuación, desplegarla.
 
 ### Conversión de las imágenes
 {: #converting-images}

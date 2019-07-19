@@ -310,7 +310,7 @@ Gehen Sie wie folgt vor, um die grafische Benutzerschnittstelle aufzurufen:
 
 7. Kopieren Sie das Token, und fügen Sie es in die grafische Benutzerschnittstelle von Enclave Manager ein. Sie müssen den Abschnitt `Bearer` des gedruckten Tokens nicht kopieren.
 
-8. Klicken Sie auf **Melden Sie sich an**.
+8. Klicken Sie auf **Anmelden**.
 
 Informationen zu den Rollen, die ein Benutzer für verschiedene Aktionen ausführen muss, finden Sie im Abschnitt [Rollen für Enclave Manager-Benutzer festlegen](https://cloud.ibm.com/docs/services/data-shield?topic=data-shield-access#enclave-roles).
 

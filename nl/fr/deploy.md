@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -24,17 +24,19 @@ subcollection: data-shield
 
 
 # Déploiement d'images
-{: #deploy-containers}
+{: #deploying}
 
-Après avoir converti vos images, vous devez redéployer vos conteneurs {{site.data.data.keyword.datashield_short}} sur votre cluster Kubernetes.
+Après avoir converti vos images, vous devez déployer vos conteneurs {{site.data.keyword.datashield_short}} sur votre cluster Kubernetes.
 {: shortdesc}
 
-Lorsque vous déployez des conteneurs {{site.data.data.keyword.datashield_short}} sur votre cluster Kubernetes, la spécification du conteneur doit inclure des montages de volumes. Les montages de volumes permettent aux dispositifs SGX et au socket AESM d'être disponibles dans le conteneur. 
+Lorsque vous déployez {{site.data.keyword.datashield_short}}, la spécification de conteneur doit inclure les montages de volume qui aux unités SGX et au socket AESM d'être disponibles. 
 
-Vous n'avez pas d'application pour tester le service ? Pas de problème. Nous offrons plusieurs exemples d'applications que vous pouvez tester, notamment MariaDB et NGINX. N'importe quelle [image {{site.data.keyword.datashield_short}}](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter) dans IBM Container Registry peut être utilisée comme exemple.
+Vous n'avez pas d'application pour tester le service ? Pas de problème. Nous offrons plusieurs exemples d'applications que vous pouvez tester, notamment MariaDB et NGINX. Toute [image {{site.data.keyword.datashield_short}}](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter) dans IBM Container Registry peut être utilisée en tant qu'exemple.
 {: tip}
 
-1. Enregistrez la spécification de pod suivante en tant que modèle.
+1. Configurez des [secrets d'extraction](/docs/containers?topic=containers-images#other).
+
+2. Enregistrez la spécification de pod suivante en tant que modèle.
 
     ```
     apiVersion: v1
@@ -77,12 +79,12 @@ Vous n'avez pas d'application pour tester le service ? Pas de problème. Nous of
     ```
     {: screen}
 
-2. Modifiez les zones `your-app-sgx` et `your-registry-server` en spécifiant votre application et votre serveur.
+3. Modifiez les zones `your-app-sgx` et `your-registry-server` en spécifiant votre application et votre serveur.
 
-3. Créez le pod Kubernetes.
+4. Créez le pod Kubernetes.
 
    ```
    kubectl create -f template.yml
    ```
-  {: pre}
+  {: codeblock}
 

@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -22,123 +22,42 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Gestión del acceso
+# Asignación de acceso
 {: #access}
 
-Puede controlar el acceso a Enclave Manager de {{site.data.keyword.datashield_full}}. Este control de acceso es independiente a los roles típicos de Identity and Access Management (IAM) que se utilizan al trabajar con {{site.data.keyword.cloud_notm}}.
+Puede controlar el acceso a Enclave Manager de {{site.data.keyword.datashield_full}}. Este tipo de control de acceso es independiente a los roles típicos de Identity and Access Management (IAM) que se utilizan al trabajar con {{site.data.keyword.cloud_notm}}.
 {: shortdesc}
 
 
-## Utilización de una clave de API de IAM para iniciar sesión en la consola
-{: #access-iam}
+## Asignación de acceso al clúster
+{: #access-cluster}
 
-En la consola de Enclave Manager, puede ver los nodos del clúster y su estado de testificación. También puede ver tareas y registros de auditoría de los sucesos del clúster.
+Para poder iniciar una sesión en Enclave Manager, debe tener acceso al clúster en el que se ejecuta Enclave Manager.
+{: shortdesc}
 
-1. Inicie sesión en la CLI de IBM Cloud. Siga las indicaciones de la CLI para completar el inicio de sesión.
+1. Inicie una sesión en la cuenta que aloja el clúster en el que desea iniciar la sesión.
 
-  ```
-  ibmcloud login -a cloud.ibm.com -r <region>
-  ```
+2. Vaya a **Gestionar > Acceso (IAM) > Usuarios**.
 
-  <table>
-    <tr>
-      <th>Región</th>
-      <th>Punto final de IBM Cloud</th>
-      <th>Región del servicio Kubernetes</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>EE.UU. sur</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>UE central</td>
-    </tr>
-    <tr>
-      <td>Sídney</td>
-      <td><code>au-syd</code></td>
-      <td>AP sur</td>
-    </tr>
-    <tr>
-      <td>Londres</td>
-      <td><code>eu-gb</code></td>
-      <td>RU sur</td>
-    </tr>
-    <tr>
-      <td>Tokio</td>
-      <td><code>jp-tok</code></td>
-      <td>AP norte</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>EE.UU. este</td>
-    </tr>
-  </table>
+3. Pulse **Invitar a usuarios**.
 
-2. Establezca el contexto del clúster.
+4. Especifique las direcciones de correo electrónico de los usuarios que desea añadir.
 
-  1. Obtenga el mandato para establecer la variable de entorno y descargar los archivos de configuración de Kubernetes.
+5. En el menú desplegable **Asignar acceso a**, seleccione **Recurso**.
 
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
+6. En el menú desplegable **Servicios**, seleccione **Servicio de Kubernetes**.
 
-  2. Copie la salida a partir de `export` y péguela en el terminal para establecer la variable de entorno
-`KUBECONFIG`.
+7. Seleccione una **Región**, un **Clúster** y un **Espacio de nombres**.
 
-3. Compruebe si todos los servicios están en ejecución confirmando que todos los pods están en el estado *en ejecución*.
+8. Utilizando como guía la documentación del servicio Kubernetes sobre [asignación de acceso a un clúster](/docs/containers?topic=containers-users), asigne el acceso que necesita el usuario para llevar a cabo sus tareas.
 
-  ```
-  kubectl get pods
-  ```
-  {: codeblock}
-
-4. Busque el URL de programa de usuario de Enclave Manager ejecutando el mandato siguiente.
-
-  ```
-  kubectl get svc datashield-enclaveos-frontend
-  ```
-  {: codeblock}
-
-5. Obtenga el subdominio Ingress.
-
-  ```
-  ibmcloud ks cluster-get <your-cluster-name>
-  ```
-  {: codeblock}
-
-6. En un navegador, especifique el subdominio Ingress donde esté disponible Enclave Manager.
-
-  ```
-  enclave-manager.<cluster-ingress-subdomain>
-  ```
-  {: codeblock}
-
-8. En el terminal, obtenga la señal de IAM.
-
-  ```
-  ibmcloud iam oauth-tokens
-  ```
-  {: codeblock}
-
-7. Copie la señal y péguela en la GUI de Enclave Manager. No es necesario que copie la parte de `Bearer` de la señal impresa.
-
-9. Pulse **Iniciar sesión**.
-
+9. Pulse **Guardar**.
 
 ## Establecimiento de roles para usuarios de Enclave Manager
 {: #enclave-roles}
 
 La administración de {{site.data.keyword.datashield_short}} se lleva a cabo en Enclave Manager. Como administrador, se le asignará automáticamente el rol *manager* (gestor), pero también podrá asignar roles a otros usuarios.
 {: shortdesc}
-
-Tenga en cuenta que estos roles son distintos a los roles de IAM que se utilizan para controlar el acceso a los servicios de
-{{site.data.keyword.cloud_notm}}. Para obtener más información sobre la configuración del acceso para
-{{site.data.keyword.containerlong_notm}}, consulte [Asignación del acceso al clúster](/docs/containers?topic=containers-users#users).
-{: tip}
 
 Consulte la tabla siguiente para ver qué roles se admiten y algunas acciones de ejemplo que puede llevar a cabo cada usuario:
 
@@ -155,24 +74,53 @@ Consulte la tabla siguiente para ver qué roles se admiten y algunas acciones de
   </tr>
   <tr>
     <td>Escritor</td>
-    <td>Puede realizar las acciones que puede realizar un Lector y algunas más, incluyendo la desactivación y renovación de la testificación de nodo, la adición de una compilación, la aprobación o denegación de cualquier acción o tarea.</td>
+    <td>Puede realizar las acciones que puede realizar un Lector y algunas más, que incluyen la desactivación y renovación de la certificación de nodo, la adición de una compilación y la aprobación o denegación de cualquier acción o tarea.</td>
     <td>Certificación de una aplicación.</td>
   </tr>
   <tr>
     <td>Gestor</td>
-    <td>Puede realizar las acciones que puede realizar un Escritor y algunas más, incluyendo la actualización de nombres de usuario y roles, la adición de usuarios a un clúster, la actualización de valores del clúster y otras acciones con privilegios.</td>
+    <td>Puede realizar las acciones que puede realizar un Escritor y algunas más, que incluyen la actualización de nombres de usuario y roles, la adición de usuarios a un clúster, la actualización de valores del clúster y otras acciones con privilegios.</td>
     <td>Actualización de un rol de usuario.</td>
   </tr>
 </table>
 
-### Establecimiento de roles de usuario
+
+### Adición de un usuario
 {: #set-roles}
 
-Puede establecer o actualizar los roles de usuario para el gestor de la consola.
+Mediante la GUI de Enclave Manager, puede otorgar a un nuevo usuario acceso a la información.
 {: shortdesc}
 
-1. Acceda a la [interfaz de usuario de Enclave Manager](/docs/services/data-shield?topic=data-shield-access#access-iam).
-2. En el menú desplegable, abra la pantalla de gestión de usuarios.
-3. Seleccione **Valores**. Puede revisar la lista de usuarios o añadir un usuario en esta pantalla.
-4. Para editar permisos de usuario, pase el puntero del ratón sobre un usuario hasta que aparezca el icono de lápiz.
-5. Pulse el icono de lápiz para cambiar los permisos. Los cambios en los permisos de un usuario entrarán en vigor de inmediato.
+1. Inicie una sesión en Enclave Manager.
+
+2. Pulse **Su nombre > Valores**.
+
+3. Pulse **Añadir usuario**.
+
+4. Especifique un correo electrónico y un nombre para el usuario. Seleccione un rol en el menú desplegable **Rol**.
+
+5. Pulse **Guardar**.
+
+
+
+### Actualización de un usuario
+{: #update-roles}
+
+Puede actualizar los roles que se asignan a los usuarios y su nombre.
+{: shortdesc}
+
+1. Inicie una sesión en la [IU de Enclave Manager](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin).
+
+2. Pulse **Su nombre > Valores**.
+
+3. Mueva el puntero del ratón sobre el usuario cuyos permisos desea editar. Se visualiza un icono de lápiz.
+
+4. Pulse el icono de lápiz. Se abre una pantalla para editar usuarios.
+
+5. En el menú desplegable **Rol**, seleccione los roles que desea asignar.
+
+6. Actualice el nombre del usuario.
+
+7. Pulse **Guardar**. Los cambios en los permisos de un usuario entrarán en vigor de inmediato.
+
+

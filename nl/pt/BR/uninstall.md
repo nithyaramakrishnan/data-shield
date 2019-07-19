@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -29,19 +29,20 @@ Se você não precisar mais usar o {{site.data.keyword.datashield_full}}, será 
 
 
 ## Desinstalando com o Helm
+{: #uninstall-helm}
 
-1. Efetue login na CLI do {{site.data.keyword.cloud_notm}}. Siga os prompts na CLI para concluir a criação de log.
+1. Efetue login na CLI do {{site.data.keyword.cloud_notm}}. Siga os prompts na CLI para concluir a criação de log. Se você tiver um ID federado, anexe a opção `--sso` no final do comando.
 
   ```
-  ibmcloud login -a https://api. < region> .bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
   <table>
     <tr>
-      <th>Region</th>
-      <th>Terminal do IBM Cloud</th>
-      <th>Região do Kubernetes Service</th>
+      <th>Região</th>
+      <th>Terminal do {{site.data.keyword.cloud_notm}}</th>
+      <th>Região do {{site.data.keyword.containershort_notm}}</th>
     </tr>
     <tr>
       <td>Dallas</td>
@@ -82,25 +83,25 @@ Se você não precisar mais usar o {{site.data.keyword.datashield_full}}, será 
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
-  2. Copie a saída e cole-a em seu terminal.
+  2. Copie a saída e cole-a em seu console.
 
 3. Exclua o serviço.
 
   ```
-  helm delete datashield --purge
+  helm delete <chart-name> --purge
   ```
-  {: pre}
+  {: codeblock}
 
 4. Exclua os certificados TLS executando cada um dos comandos a seguir.
 
   ```
-  kubectl delete secret datashield-enclaveos-converter-tls
-  kubectl delete secret datashield-enclaveos-frontend-tls
-  kubectl delete secret datashield-enclaveos-manager-main-tls
+  kubectl delete secret <chart-name>-enclaveos-converter-tls
+  kubectl delete secret <chart-name>-enclaveos-frontend-tls
+  kubectl delete secret <chart-name>-enclaveos-manager-main-tls
   ```
-  {: pre}
+  {: codeblock}
 
 5. O processo de desinstalação usa "hooks" do Helm para executar um desinstalador. É possível excluir o desinstalador após ele ser executado.
 
@@ -108,21 +109,21 @@ Se você não precisar mais usar o {{site.data.keyword.datashield_full}}, será 
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: pre}
+  {: codeblock}
 
 Você também pode desejar excluir a instância `cert-manager` e o segredo da configuração do Docker caso você tenha criado um.
 {: tip}
 
 
-
-## Desinstalando com o instalador beta
+## Desinstalando com o instalador
 {: #uninstall-installer}
 
-Se você instalou o {{site.data.keyword.datashield_short}} usando o instalador beta, também é possível desinstalar o serviço com o instalador.
+Se você instalou o {{site.data.keyword.datashield_short}} usando o instalador, também será possível desinstalar o serviço com o instalador.
 
 Para desinstalar o {{site.data.keyword.datashield_short}}, efetue login na CLI `ibmcloud`, tenha como destino o cluster e execute o comando a seguir:
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
-  {: pre}
+  {: codeblock}
+

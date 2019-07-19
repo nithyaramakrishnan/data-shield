@@ -2,11 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
+
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -30,14 +34,14 @@ Estas preguntas más frecuentes proporcionan respuestas a preguntas comunes sobr
 {: #enclave-attestation}
 {: faq}
 
-En las plataformas, se crean instancias de enclaves mediante código que no es confianza. Por lo tanto, para que a los enclaves se les pueda proporcionar información confidencial de aplicaciones, es esencial que se pueda confirmar que la instancia del enclave se ha creado correctamente en una plataforma que está protegida por Intel® SGX. Esto se lleva a cabo mediante un proceso de testificación remota. La testificación remota consiste en utilizar el software de la plataforma e instrucciones de Intel SGX para generar un "presupuesto". El presupuesto combina el resumen de enclave con un resumen de los datos de enclave relevantes y una clave asimétrica exclusiva de la plataforma en una estructura de datos que se envía a un servidor remoto a través de un canal autenticado. Si el servidor remoto concluye que la instancia del enclave se ha creado según lo esperado y está en ejecución en un procesador con capacidad real para Intel SGX, se suministrará el enclave según sea necesario.
+En las plataformas, se crean instancias de enclaves mediante código que no es confianza. Por lo tanto, para que a los enclaves se les pueda proporcionar información confidencial de aplicaciones, es esencial que se pueda confirmar que la instancia del enclave se ha creado correctamente en una plataforma que está protegida por Intel® SGX. Esto se lleva a cabo mediante un proceso de testificación remota. La testificación remota consiste en utilizar el software de la plataforma y las instrucciones de Intel® SGX para generar un "presupuesto". El presupuesto combina el resumen de enclave con un resumen de los datos de enclave relevantes y una clave asimétrica exclusiva de la plataforma en una estructura de datos que se envía a un servidor remoto a través de un canal autenticado. Si el servidor remoto concluye que la instancia del enclave se ha creado según lo esperado y está en ejecución en un procesador con capacidad real para Intel® SGX, suministra el enclave según sea necesario.
 
 
-##	¿Qué lenguajes admite actualmente {{site.data.keyword.datashield_short}}?
+## ¿Qué lenguajes admite actualmente {{site.data.keyword.datashield_short}}?
 {: #language-support}
 {: faq}
 
-El servicio amplía el soporte del lenguaje SGX de C y C++ a Python y Java. También proporciona aplicaciones SGX convertidas previamente para MariaDB, NGINX y Vault, con un cambio mínimo (o inexistente) del código.
+El servicio amplía el soporte del lenguaje SGX de C y C++ a Python y Java®. También proporciona aplicaciones SGX convertidas previamente para MariaDB, NGINX y Vault, con un cambio mínimo (o inexistente) del código.
 
 
 ##	¿Cómo puedo saber si Intel SGX está habilitado en mi nodo trabajador?
@@ -51,7 +55,7 @@ El software de {{site.data.keyword.datashield_short}} comprueba la disponibilida
 {: #running-app}
 {: faq}
 
-[Inicie sesión](/docs/services/data-shield?topic=data-shield-access#access-iam) en su cuenta de Enclave Manager y vaya al separador **Apps**. En el separador **Apps**, puede ver información acerca de la testificación de Intel SGX para sus aplicaciones en forma de certificado. El enclave de aplicaciones se puede verificar en cualquier momento utilizando el servicio de testificación remota de Intel (IAS) para verificar que la aplicación está en ejecución en un enclave verificado.
+[Inicie sesión](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) en su cuenta de Enclave Manager y vaya al separador **Apps**. En el separador **Apps**, puede ver información acerca de la testificación de Intel® SGX para sus aplicaciones en forma de certificado. El enclave de aplicaciones se puede verificar en cualquier momento utilizando el servicio de testificación remota de Intel (IAS) para verificar que la aplicación está en ejecución en un enclave verificado.
 
 
 

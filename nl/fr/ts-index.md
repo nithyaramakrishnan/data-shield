@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -34,22 +34,43 @@ Si vous rencontrez des problèmes lorsque vous utilisez {{site.data.keyword.data
 ## Aide et support
 {: #gettinghelp}
 
-Pour obtenir de l'aide, vous pouvez rechercher des informations dans la documentation ou poser des questions sur un forum. Vous pouvez aussi ouvrir un ticket de demande de service. Lorsque vous posez une question sur un forum, identifiez votre question pour qu'elle soit vue par l'équipe de développement d'{{site.data.keyword.Bluemix_notm}}.
-  * Si vous avez des questions techniques au sujet d'{{site.data.keyword.datashield_short}}, postez vos questions sur <a href="https://stackoverflow.com/search?q=ibm-data-shield" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="Icône de lien externe"></a> et identifiez votre question avec "ibm-data-shield".
-  * Posez toute question relative au service et aux instructions de mise en route sur le forum <a href="https://developer.ibm.com/answers/topics/data-shield/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="Icône de lien externe"></a>. Identifiez votre question avec `data-shield`.
+Pour obtenir de l'aide, vous pouvez rechercher des informations dans la documentation ou poser des questions sur un forum. Vous pouvez aussi ouvrir un ticket de demande de service. Lorsque vous posez une question sur un forum, identifiez votre question pour qu'elle soit vue par l'équipe de développement d'{{site.data.keyword.cloud_notm}}.
+  * Si vous avez des questions techniques au sujet d'{{site.data.keyword.datashield_short}}, postez vos questions sur <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="Icône de lien externe"></a> et identifiez votre question avec "ibm-data-shield".
+  * Posez toute question relative au service et aux instructions de mise en route sur le forum <a href="https://developer.ibm.com/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="Icône de lien externe"></a>. Identifiez votre question avec `data-shield`.
 
-Pour plus d'informations sur l'obtention de support, voir [Comment obtenir le support dont j'ai besoin ?](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support)
+Pour plus d'informations sur l'obtention de support, voir [Comment obtenir le support dont j'ai besoin ?](/docs/get-support?topic=get-support-getting-customer-support)
 
 
-## Je ne connais pas les options que je peux utiliser avec l'installateur
-{: #options}
+## Obtention des fichiers journaux
+{: #ts-logs}
 
-Pour afficher une liste de toutes les commandes et obtenir des informations d'aide supplémentaires, exécutez la commande suivante et examinez la sortie.
+Lorsque vous ouvrez un ticket de demande de service pour IBM Cloud Data Shield, mettre à disposition vos journaux peut aider à accélérer le processus de traitement des incidents. Vous pouvez utiliser la procédure suivante pour vous procurer vos journaux puis les copier et coller dans l'incident que vous créez. 
 
-```
-docker run registry.bluemix.net/ibm/datashield-installer help
-```
-{: pre}
+1. Connectez-vous à l'interface de ligne de commande d'{{site.data.keyword.cloud_notm}}. Suivez les invites dans l'interface de ligne de commande pour finaliser la connexion. Si vous disposez d'un ID fédéré, ajoutez l'option `--sso` à la fin de la commande.
+
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
+
+2. Définissez le contexte de votre cluster.
+
+  1. Utilisez la commande permettant de définir la variable d'environnement et de télécharger les fichiers de configuration Kubernetes.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copiez la sortie commençant par `export` et collez-la dans votre terminal pour définir la variable d'environnement `KUBECONFIG`.
+
+3. Exécutez la commande suivante pour obtenir vos journaux.
+
+  ```
+  kubectl logs --all-containers=true --selector release=$(helm list | grep 'data-shield' | awk {'print $1'}) > logs
+  ```
+  {: codeblock}
+
 
 ## Je ne parviens pas à me connecter à l'interface utilisateur d'Enclave Manager
 {: #ts-log-in}
@@ -64,7 +85,7 @@ La connexion peut échouer pour les raisons suivantes :
 * Le jeton que vous utilisez a peut-être expiré.
 
 {: tsResolve}
-Pour résoudre le problème, vérifiez que vous utilisez l'ID de messagerie électronique correct. Si oui, vérifiez que le courrier électronique possède les autorisations correctes pour accéder à Enclave Manager. Si vous avez les autorisations correctes, votre jeton d'accès a peut-être expiré. Les jetons sont valides pendant une durée de 60 minutes. Pour obtenir un nouveau jeton, exécutez `ibmcloud iam oauth-tokens`.
+Pour résoudre le problème, vérifiez que vous utilisez l'ID de messagerie électronique correct. Si oui, vérifiez que le courrier électronique possède les autorisations correctes pour accéder à Enclave Manager. Si vous avez les autorisations correctes, votre jeton d'accès a peut-être expiré. Les jetons sont valides pendant une durée de 60 minutes. Pour obtenir un nouveau jeton, exécutez `ibmcloud iam oauth-tokens`. Si vous possédez plusieurs comptes IBM Cloud, vérifiez que celui avec lequel vous êtes connecté à l'interface CLI est le bon compte pour le cluster Enclave Manager.
 
 
 ## L'API du convertisseur de conteneur renvoie l'erreur "Interdit"
@@ -77,7 +98,7 @@ Vous essayez d'exécuter le convertisseur de conteneur et recevez l'erreur `Inte
 Il est possible que vous ne puissiez pas accéder au convertisseur si votre jeton Bearer ou IAM est manquant ou a expiré.
 
 {: tsResolve}
-Pour résoudre ce problème, vérifiez que vous utilisez un jeton IAM OAuth IBM ou un jeton d'authentification pour Enclave Manager dans l'en-tête de votre demande. Les jetons ont la forme suivante :
+Pour résoudre le problème, vérifiez que vous utilisez un jeton IAM OAuth IBM ou un jeton d'authentification pour Enclave Manager dans l'en-tête de votre demande. Les jetons ont la forme suivante :
 
 * IAM : `Authentification : Basic <IBM IAM Token>`
 * Enclave Manager : `Authentification : Bearer <E.M. Token>`
@@ -103,7 +124,7 @@ Pour résoudre ce problème, procédez comme suit :
   ```
   kubectl get secret -oyaml converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. Utilisez le décodeur Base64 pour décoder le contenu secret de `.dockerconfigjson` et vérifiez qu'il est correct.
 
@@ -124,7 +145,7 @@ Pour résoudre ce problème, vérifiez :
 * que SGX est activé dans le système BIOS des machines hôte. S'il n'est pas activé, contactez le support IBM.
 
 
-## Erreur lors de la conversion des conteneurs
+## Erreur : Conversion de conteneurs
 {: #ts-container-convert-fails}
 
 {: tsSymptoms}
@@ -133,46 +154,46 @@ Vous rencontrez l'erreur suivante lorsque vous essayez de convertir votre conten
 ```
 {"errorType":"Processing Failure","reason":"Credentials store error: StoreError('docker-credential-osxkeychain not installed or not available in PATH',)"}
 ```
-{: pre}
+{: codeblock}
 
 {: tsCauses}
-Sur MacOS, si la chaîne de certificats OSX est utilisée dans votre fichier config.json, le convertisseur de conteneur échoue. 
+Sous macOS, si la chaîne de certificats OS X Keychain est utilisée dans votre fichier `config.json`, le convertisseur de conteneur échoue. 
 
 {: tsResolve}
 Pour résoudre ce problème, procédez comme suit :
 
-1. Désactivez la chaîne de certificats OSX sur votre système local. Accédez à **Préférences Système > iCloud** et décochez la case **Trousseau**.
+1. Désactivez la chaîne de certificats OS X sur votre système local. Accédez à **Préférences Système > iCloud** et décochez la case **Trousseau**.
 
-2. Supprimez le secret que vous avez créé. Vérifiez que vous êtes connecté à IBM Cloud et que vous avez ciblé votre cluster avant d'exécuter la commande suivante.
+2. Supprimez le secret que vous avez créé. Vérifiez que vous êtes connecté à IBM Cloud et avez bien ciblé votre cluster avant d'exécuter la commande suivante.
 
   ```
   kubectl delete secret converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. Dans votre fichier `$HOME/.docker/config.json`, supprimez la ligne `"credsStore": "osxkeychain"`.
 
 4. Connectez-vous à votre registre.
 
-5. Créez un nouveau secret.
+5. Créez un secret.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
-  {: pre}
+  {: codeblock}
 
 6. Répertoriez vos pods et notez le nom du pod contenant la mention `enclaveos-converter`.
 
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 7. Supprimez le pod.
 
   ```
   kubectl delete pod <nom du pod>
   ```
-  {: pre}
+  {: codeblock}
 
 8. Convertissez votre image.

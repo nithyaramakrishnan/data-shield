@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -24,17 +24,19 @@ subcollection: data-shield
 
 
 # 部署映像檔
-{: #deploy-containers}
+{: #deploying}
 
-轉換映像檔之後，您必須將 {{site.data.keyword.datashield_short}} 容器重新部署至 Kubernet 叢集。
+轉換映像檔之後，您必須將 {{site.data.keyword.datashield_short}} 容器部署至 Kubernet 叢集。
 {: shortdesc}
 
-將 {{site.data.keyword.datashield_short}} 容器部署至 Kubernetes 叢集時，容器規格必須包括磁區裝載。磁區裝載能夠在容器中提供使用 SGX 裝置和 AESM Socket。
+部署 {{site.data.keyword.datashield_short}} 時，容器規格必須包含容許 SGX 裝置和 AESM 套接字可用的磁區裝載。
 
-沒有應用程式可嘗試服務嗎？沒問題。我們提供數個您可以嘗試的範例應用程式，包括 MariaDB 及 NGINX。IBM Container Registry 中的任何 [{{site.data.keyword.datashield_short}} 映像檔](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)都可用來作為範例。
+沒有應用程式可嘗試服務嗎？沒問題。我們提供數個您可以嘗試的範例應用程式，包括 MariaDB 及 NGINX。IBM Container Registry 中的任何 [{{site.data.keyword.datashield_short}} 映像檔](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter)都可用來作為範例。
 {: tip}
 
-1. 將下列 Pod 規格儲存為範本。
+1. 配置[取回密碼](/docs/containers?topic=containers-images#other)。
+
+2. 將下列 Pod 規格儲存為範本。
 
     ```
     apiVersion: v1
@@ -77,12 +79,12 @@ subcollection: data-shield
     ```
     {: screen}
 
-2. 將 `your-app-sgx` 和 `your-registry-server` 欄位更新為您的應用程式和伺服器。
+3. 將 `your-app-sgx` 和 `your-registry-server` 欄位更新為您的應用程式和伺服器。
 
-3. 建立 Kubernetes Pod。
+4. 建立 Kubernetes Pod。
 
    ```
    kubectl create -f template.yml
    ```
-  {: pre}
+  {: codeblock}
 

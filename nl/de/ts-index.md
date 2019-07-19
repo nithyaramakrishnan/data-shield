@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -34,22 +34,43 @@ Wenn Sie beim Arbeiten mit {{site.data.keyword.datashield_full}} Probleme haben,
 ## Hilfe aufrufen und Support erhalten
 {: #gettinghelp}
 
-Um Hilfe zu erhalten, können Sie in der Dokumentation nach Informationen suchen oder in Fragen über ein Forum stellen. Sie können auch ein Support-Ticket öffnen. Wenn Sie eine Frage in einem Forum stellen, taggen Sie Ihre Frage, sodass sie von den {{site.data.keyword.Bluemix_notm}}-Entwicklungsteams gesehen wird.
-  * Wenn Sie technische Fragen zu {{site.data.keyword.datashield_short}} haben, stellen Sie Ihre Frage über <a href="https://stackoverflow.com/search?q=ibm-data-shield" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="Symbol zum externen Link"></a> und versehen Sie sie mit dem Tag "ibm-data-shield".
-  * Wenn Sie Fragen zum Service und zu Einführungsanweisungen haben, verwenden Sie das Forum <a href="https://developer.ibm.com/answers/topics/data-shield/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="Symbol zum externen Link"></a>. Geben Sie das Tag `data-shield` an.
+Um Hilfe zu erhalten, können Sie in der Dokumentation nach Informationen suchen oder Fragen über ein Forum stellen. Sie können auch ein Support-Ticket öffnen. Wenn Sie eine Frage in einem Forum stellen, taggen Sie Ihre Frage, sodass sie von den {{site.data.keyword.cloud_notm}}-Entwicklungsteams gesehen wird.
+  * Wenn Sie technische Fragen zu {{site.data.keyword.datashield_short}} haben, stellen Sie Ihre Frage über <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="Symbol zum externen Link"></a> und versehen Sie sie mit dem Tag "ibm-data-shield".
+  * Wenn Sie Fragen zum Service und zu Einführungsanweisungen haben, verwenden Sie das Forum <a href="https://developer.ibm.com/" target="_blank">dW Answers <img src="../../icons/launch-glyph.svg" alt="Symbol zum externen Link"></a>. Geben Sie den Tag `data-shield` an.
 
-Weitere Informationen zum Anfordern von Unterstützung finden Sie unter [Wie erhalte ich die gewünschte Unterstützung?](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
+Weitere Informationen zum Anfordern von Unterstützung finden Sie unter [Wie erhalte ich die gewünschte Unterstützung?](/docs/get-support?topic=get-support-getting-customer-support).
 
 
-## Ich kenne die Optionen nicht, die ich mit dem Installationsprogramm verwenden kann.
-{: #options}
+## Protokolle abrufen
+{: #ts-logs}
 
-Um alle Befehle und weitere Hilfeinformationen anzuzeigen, können Sie den folgenden Befehl ausführen und die Ausgabe überprüfen.
+Beim Öffnen eines Support-Tickets für IBM Cloud Data Shield kann die Bereitstellung Ihrer Protokolle den Fehlerbehebungsprozess beschleunigen. Wenn Sie die folgenden Schritte ausführen, können Sie Ihre Protokolle abrufen und sie anschließend während der Erstellung per Copy-and-Paste in die Problemstellung einfügen.
 
-```
-docker run registry.bluemix.net/ibm/datashield-installer help
-```
-{: pre}
+1. Melden Sie sich bei der {{site.data.keyword.cloud_notm}}-Befehlszeilenschnittstelle (CLI) an. Folgen Sie den Eingabeaufforderungen in der Befehlszeilenschnittstelle, um die Anmeldung abzuschließen. Wenn Sie über eine eingebundene ID verfügen, hängen Sie die Option `-- sso` an das Ende des Befehls an.
+
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
+
+2. Legen Sie den Kontext für Ihren Cluster fest.
+
+  1. Rufen Sie den Befehl ab, um die Umgebungsvariable festzulegen, und laden Sie die Kubernetes-Konfigurationsdateien herunter.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Kopieren Sie die Ausgabe, die mit `export` beginnt, und fügen Sie sie in Ihr Terminal ein, um die Umgebungsvariable `KUBECONFIG` festzulegen.
+
+3. Führen Sie den folgenden Befehl aus, um Ihre Protokolle abzurufen.
+
+  ```
+  kubectl logs --all-containers=true --selector release=$(helm list | grep 'data-shield' | awk {'print $1'}) > logs
+  ```
+  {: codeblock}
+
 
 ## Ich kann mich nicht bei der Benutzerschnittstelle von Enclave Manager anmelden.
 {: #ts-log-in}
@@ -64,10 +85,10 @@ Das Anmelden kann aus den folgenden Gründen fehlschlagen:
 * Das von Ihnen verwendete Token ist möglicherweise abgelaufen.
 
 {: tsResolve}
-Stellen Sie sicher, dass Sie die richtige E-Mail-ID verwenden, um das Problem zu beheben. Wenn dies der Fall ist, prüfen Sie, ob die E-Mail über die korrekten Berechtigungen für den Zugriff auf den Enclave Manager verfügt. Wenn Sie über die entsprechenden Berechtigungen verfügen, ist Ihr Zugriffstoken möglicherweise abgelaufen. Token sind jeweils für 60 Minuten gültig. Um ein neues Token abzurufen, führen Sie `ibmcloud iam oauth-tokens` aus.
+Stellen Sie sicher, dass Sie die richtige E-Mail-ID verwenden, um das Problem zu beheben. Wenn dies der Fall ist, prüfen Sie, ob die E-Mail über die korrekten Berechtigungen für den Zugriff auf den Enclave Manager verfügt. Wenn Sie über die entsprechenden Berechtigungen verfügen, ist Ihr Zugriffstoken möglicherweise abgelaufen. Token sind jeweils für 60 Minuten gültig. Um ein neues Token abzurufen, führen Sie `ibmcloud iam oauth-tokens` aus. Wenn Sie über mehrere IBM Cloud-Konten verfügen, überprüfen Sie das Konto, mit dem Sie bei der Befehlszeilenschnittstelle angemeldet sind, mit dem richtigen Konto für den Enclave Manager-Cluster.
 
 
-## Die Container Converter-API gibt einen unzulässigen Fehler zurück.
+## Die Container Converter-API gibt einen Fehler des Typs 'Forbidden' zurück.
 {: #ts-converter-forbidden-error}
 
 {: tsSymptoms}
@@ -77,7 +98,7 @@ Beim Versuch, Container Converter auszuführen, wird ein Fehler angezeigt: `Forb
 Möglicherweise können Sie nicht auf den Converter zugreifen, wenn Ihr IAM- oder Bearer-Token fehlt oder abgelaufen ist.
 
 {: tsResolve}
-Um das Problem zu beheben, sollten Sie sicherstellen, dass Sie entweder ein IBM IAM OAuth-Token oder ein Enclave Manager-Authentifizierungstoken in der Kopfzeile Ihrer Anforderung verwenden. Die Token haben das folgende Format:
+Um das Problem zu beheben, stellen Sie sicher, dass Sie entweder ein IBM IAM OAuth-Token oder ein Enclave Manager-Authentifizierungstoken in der Kopfzeile Ihrer Anforderung verwenden. Die Token haben das folgende Format:
 
 * IAM: `Authentication: Basic <IBM IAM Token>`
 * Enclave Manager: `Authentication: Bearer <E.M. Token>`
@@ -103,7 +124,7 @@ Um das Problem zu beheben, können Sie die folgenden Schritte ausführen:
   ```
   kubectl get secret -oyaml converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. Verwenden Sie einen Base64-Decoder, um den geheimen Inhalt von `.dockerconfigjson` zu dekodieren und zu überprüfen, ob er korrekt ist.
 
@@ -112,7 +133,7 @@ Um das Problem zu beheben, können Sie die folgenden Schritte ausführen:
 {: #ts-problem-mounting-device}
 
 {: tsSymptoms}
-Beim Versuch, {{site.data.keyword.datashield_short}} Container an Datenträgen `/var/run/aesmd/aesm.socket` oder `/dev/isgx` anzuhängen, treten Probleme auf.
+Beim Versuch, {{site.data.keyword.datashield_short}}-Container an den Datenträger `/var/run/aesmd/aesm.socket` oder `/dev/isgx` anzuhängen, treten Probleme auf.
 
 {: tsCauses}
 Die Mountvorgänge können aufgrund von Problemen mit der Konfiguration des Hosts fehlschlagen.
@@ -133,46 +154,46 @@ Der folgende Fehler tritt auf, wenn Sie versuchen, den Container zu konvertieren
 ```
 {"errorType":"Processing Failure","reason":"Credentials store error: StoreError('docker-credential-osxkeychain not installed or not available in PATH',)"}
 ```
-{: pre}
+{: codeblock}
 
 {: tsCauses}
-Unter MacOS schlägt Container Converter fehl, wenn die OSX-Schlüsselkette in Ihrer config.json-Datei verwendet wird. 
+Unter Mac OS schlägt Container Converter fehl, wenn die OS X-Schlüsselkette in Ihrer `config.json`-Datei verwendet wird. 
 
 {: tsResolve}
 Um das Problem zu beheben, können Sie die folgenden Schritte ausführen:
 
-1. Inaktivieren Sie die OSX-Schlüsselkette auf Ihrem lokalen System. Wechseln Sie zu **Systemeinstellungen > iCloud** und wählen Sie das Kontrollkästchen für **Schlüsselkette** ab.
+1. Inaktivieren Sie die OS X-Schlüsselkette auf Ihrem lokalen System. Wechseln Sie zu **Systemeinstellungen > iCloud** und wählen Sie das Kontrollkästchen für **Schlüsselkette** ab.
 
-2. Löschen Sie den geheimen Schlüssel, den Sie erstellt haben. Stellen Sie sicher, dass Sie bei IBM Cloud angemeldet sind, und Ihren Cluster als Ziel angegeben haben, bevor Sie den folgenden Befehl ausführen.
+2. Löschen Sie den geheimen Schlüssel, den Sie erstellt haben. Stellen Sie sicher, dass Sie bei IBM Cloud angemeldet sind und Ihren Cluster als Ziel angegeben haben, bevor Sie den folgenden Befehl ausführen.
 
   ```
   kubectl delete secret converter-docker-config
   ```
-  {: pre}
+  {: codeblock}
 
 3. Löschen Sie in der Datei `$HOME/.docker/config.json` die Zeile `"credsStore": "osxkeychain"`.
 
 4. Melden Sie sich bei Ihrer Registry an.
 
-5. Erstellen Sie einen neuen geheimen Schlüssel.
+5. Erstellen Sie einen geheimen Schlüssel.
 
   ```
   kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=$HOME/.docker/config.json
   ```
-  {: pre}
+  {: codeblock}
 
 6. Listen Sie Ihre Pods auf und notieren Sie im Namen den Pod mit `enclaveos-converter`.
 
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 7. Löschen Sie den Pod.
 
   ```
   kubectl delete pod <pod name>
   ```
-  {: pre}
+  {: codeblock}
 
-8. Konvertieren Sie Ihr Image. 
+8. Konvertieren Sie Ihr Image.

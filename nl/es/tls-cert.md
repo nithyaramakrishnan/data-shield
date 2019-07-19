@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-01"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -31,7 +31,7 @@ subcollection: data-shield
 {: shortdesc}
 
 
-## Utilización del cliente
+## Uso por parte del cliente
 {: #tls-frontend}
 
 Puede optar por utilizar el certificado predeterminado o utilizar su propio certificado TLS según la manera en que defina el diagrama de Helm.
@@ -41,7 +41,6 @@ Para obtener más información sobre los certificados proporcionados por IBM, co
 [documentación del servicio de Kubernetes](/docs/containers?topic=containers-ingress#ingress_expose_public).
 {: note}
 
-Para utilizar su propio emisor:
 
 1. Abra el diagrama de Helm.
 
@@ -58,7 +57,7 @@ Eso es todo. Está preparado para utilizar su propio certificado de su propio em
 ## Utilización del programa de fondo
 {: #tls-backend}
 
-El servicio {{site.data.keyword.datashield_short}} también utiliza TLS para la comunicación interna entre servicios de fondo. Estos certificados también los proporciona `cert-manager`. En general, no tendrá que hacer nada con estos certificados.
+El servicio {{site.data.keyword.datashield_short}} también utiliza TLS para la comunicación interna entre servicios de fondo. Estos certificados también los proporciona `cert-manager`. En general, no tiene que hacer nada con estos certificados.
 {: shortdesc}
 
 Consulte la tabla siguiente para ver información contextual sobre el modo en que
@@ -67,32 +66,32 @@ Consulte la tabla siguiente para ver información contextual sobre el modo en qu
 <table>
     <tr>
         <th>Recurso</th>
-        <th>Cómo se crea</th>
+        <th>Creación</th>
     </tr>
     <tr>
-        <td><code>datashield-ca-issuer</code></td>
+        <td><code>&lt;chartname&gt;-ca-issuer</code></td>
         <td>Un emisor de <code>cert-manager</code> autofirmado que se utiliza para generar la entidad emisora de certificados
 <code>datashield-enclaveos-ca</code> que emite certificados TLS para los componentes de {{site.data.keyword.datashield_short}}.</td>
     </tr>
     <tr>
-        <td><code>datashield-issuer</code></td>
+        <td><code>&lt;chartname&gt;-issuer</code></td>
         <td>El emisor de certificados TLS que se utilizan en los componentes de {{site.data.keyword.datashield_short}}. Los certificados se crean utilizando la entidad emisora de certificados <code>datashield-enclaveos-ca</code>.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-ca</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-ca</code></td>
         <td>El recurso <code>cert-manager</code> que es tanto un certificado como una entidad emisora de certificados privados. Como entidad emisora de certificados, emite certificados TLS para los servicios de fondo de {{site.data.keyword.datashield_short}}. El certificado se monta como un secreto de Kubernetes en diversos servicios, que luego confía en los clientes que tengan un certificado firmado por la entidad emisora de certificados
 <code>datashield-enclaveos-ca</code>.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-converter</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-converter</code></td>
         <td>El certificado utilizado por el conversor de contenedores de EnclaveOS.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-frontend</code></td>
-        <td>El certificado utilizado por el contenedor que proporciona el programa de usuario de Enclave Manager. Se utiliza para realizar la autenticación en el proxy Ingress. Nota: este no es el mismo certificado que el que podría cambiar para utilizar el suyo propio.</td>
+        <td><code>&lt;chartname&gt;-enclaveos-frontend</code></td>
+        <td>El certificado utilizado por el contenedor que proporciona el programa de usuario de Enclave Manager para autenticarse ante el proxy Ingress. Nota: este certificado es distinto del certificado al que podría cambiar para utilizar el suyo propio.</td>
     </tr>
     <tr>
-        <td><code>datashield-enclaveos-manager-main</code></td>
+        <td><code>&lt;chartname&gt;-enclaveos-manager-main</code></td>
         <td>El certificado utilizado por la aplicación de fondo de Enclave Manager.</td>
     </tr>
 </table>

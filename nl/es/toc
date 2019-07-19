@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" audience="service" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
+{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
@@ -10,25 +10,30 @@ IBM Cloud Data Shield
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    install.md
-    access.md
-    convert.md
-    deploy.md
+    {: .topicgroup}
+    Gestión del servicio
+        install.md
+        update.md
+        uninstall.md
+    
+    {: .topicgroup}
+    Configuración de Enclave Manager
+        access.md
+        backup-restore.md
+        tls-cert.md
+
+    manage.md
 
     {: .topicgroup}
-    Imágenes blindadas preempaquetadas
-        [Imagen de Barbican](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-        [Imagen de MariaDB](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
-        [Imagen de NGINX](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
-        [Imagen de Vault](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
-
-    tls-cert.md
-    uninstall.md
+    Despliegue de apps con la API
+        convert.md
+        deploy.md
+        curated-apps.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [Blogs](https://www.ibm.com/blogs/bluemix/?s=Data+shield)
-    [Fortanix](http://fortanix.com/)
+    [Blogs](https://www.ibm.com/cloud/blog)
+    [Fortanix](https://fortanix.com/)
     [Intel SGX](https://software.intel.com/en-us/sgx)
     {: .navgroup-end}
 

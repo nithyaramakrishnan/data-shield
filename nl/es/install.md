@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -23,7 +23,7 @@ subcollection: data-shield
 {:download: .download}
 
 # Instalación
-{: #deploying}
+{: #install}
 
 Puede instalar {{site.data.keyword.datashield_full}} utilizando el diagrama de Helm proporcionado o utilizando el instalador proporcionado. Puede trabajar con los mandatos de instalación con los que se sienta más cómodo.
 {: shortdesc}
@@ -35,145 +35,35 @@ Para poder empezar a trabajar con {{site.data.keyword.datashield_short}}, primer
 
 * Las CLI siguientes:
 
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli)
-  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [Docker](https://docs.docker.com/install/)
-  * [Helm](/docs/containers?topic=containers-integrations#helm)
-
-  Es posible que quiera configurar Helm para que utilice la modalidad `--tls`. Para obtener ayuda para habilitar TLS, consulte el [repositorio de Helm](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). Si habilita TLS, asegúrese de añadir `--tls` a cada mandato de Helm que ejecute.
-  {: tip}
+  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
+  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
+  * [Docker](https://docs.docker.com/install/){: external}
+  * [Helm](/docs/containers?topic=containers-helm)
 
 * Los [plugins de CLI de {{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins) siguientes:
 
-  * Servicio Kubernetes
-  * Container Registry
+  * {{site.data.keyword.containershort_notm}}
+  * {{site.data.keyword.registryshort_notm}}
 
 * Un clúster de Kubernetes habilitado para SGX. Actualmente, se puede habilitar SGX en un clúster nativo con el tipo de nodo mb2c.4x32. Si no dispone de uno, puede utilizar los pasos siguientes como ayuda para asegurarse de crear el clúster que necesita.
   1. Realice los preparativos para [crear el clúster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
-  2. Asegúrese de que tiene los [permisos necesarios](/docs/containers?topic=containers-users#users) para crear un clúster.
+  2. Asegúrese de que tiene los [permisos necesarios](/docs/containers?topic=containers-users) para crear un clúster.
 
-  3. Cree el [clúster](/docs/containers?topic=containers-clusters#clusters).
+  3. Cree el [clúster](/docs/containers?topic=containers-clusters).
 
-* Una instancia del servicio [cert-manager](https://cert-manager.readthedocs.io/en/latest/) de la versión 0.5.0 o posterior. Para instalar la instancia utilizando Helm, puede ejecutar el mandato siguiente.
+* Una instancia del servicio [cert-manager](https://cert-manager.readthedocs.io/en/latest/){: external} de la versión 0.5.0 o posterior. Para instalar la instancia utilizando Helm, puede ejecutar el mandato siguiente.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
-  {: pre}
+  {: codeblock}
+
+¿Desea ver información de registro para Data Shield? Configure una instancia de {{site.data.keyword.la_full_notm}} para el clúster.
+{: tip}
 
 
-## Opcional: Creación de un espacio de nombres de Kubernetes
-{: #create-namespace}
-
-De forma predeterminada, {{site.data.keyword.datashield_short}} se instala en el espacio de nombres `kube-system`. De manera opcional, puede utilizar un espacio de nombres alternativo creando uno nuevo.
-{: shortdesc}
-
-
-1. Inicie la sesión en la CLI de {{site.data.keyword.cloud_notm}}. Siga las indicaciones de la CLI para finalizar el inicio de sesión.
-
-  ```
-  ibmcloud login -a https://api.<region>.bluemix.net
-  ```
-  {: pre}
-
-  <table>
-    <tr>
-      <th>Región</th>
-      <th>Punto final de IBM Cloud</th>
-      <th>Región del servicio Kubernetes</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>EE.UU. sur</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>UE central</td>
-    </tr>
-    <tr>
-      <td>Sídney</td>
-      <td><code>au-syd</code></td>
-      <td>AP sur</td>
-    </tr>
-    <tr>
-      <td>Londres</td>
-      <td><code>eu-gb</code></td>
-      <td>RU sur</td>
-    </tr>
-    <tr>
-      <td>Tokio</td>
-      <td><code>jp-tok</code></td>
-      <td>AP norte</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>EE.UU. este</td>
-    </tr>
-  </table>
-
-2. Establezca el contexto del clúster.
-
-  1. Obtenga el mandato para establecer la variable de entorno y descargar los archivos de configuración de Kubernetes.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: pre}
-
-  2. Copie la salida y péguela en el terminal.
-
-3. Cree un espacio de nombres.
-
-  ```
-  kubectl create namespace <namespace_name>
-  ```
-  {: pre}
-
-4. Copie los secretos pertinentes del espacio de nombres predeterminado al nuevo espacio de nombres.
-
-  1. Obtenga una lista de los secretos disponibles.
-
-    ```
-    kubectl get secrets
-    ```
-    {: pre}
-
-    Se deben copiar los secretos que empiecen por `bluemix*`.
-    {: tip}
-
-  2. De uno en uno, copie los secretos.
-
-    ```
-    kubectl get secret <secret_name> --namespace=default --export -o yaml |\
-    kubectl apply --namespace=<namespace_name> -f -
-    ```
-    {: pre}
-
-  3. Compruebe que se hayan copiado los secretos.
-
-    ```
-    kubectl get secrets --namespace <namespace_name>
-    ```
-    {: pre}
-
-5. Cree una cuenta de servicio. Para ver todas las opciones de personalización, consulte la [página de RBAC en el repositorio de GitHub de Helm](https://github.com/helm/helm/blob/master/docs/rbac.md).
-
-  ```
-  kubectl create serviceaccount --namespace <namespace_name> <service_account_name>
-  kubectl create clusterrolebinding <role_name> --clusterrole=cluster-admin --serviceaccount=<namespace_name>:<service_account_name>
-  ```
-  {: pre}
-
-6. Genere certificados y habilite Helm con TLS siguiendo las instrucciones que aparecen en el [repositorio de GitHub de Tiller SSL](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md). Asegúrese de especificar el espacio de nombres que ha creado.
-
-¡Excelente! Ahora está preparado para instalar {{site.data.keyword.datashield_short}} en el nuevo espacio de nombres. A partir de este punto, asegúrese de añadir `--tiller-namespace <namespace_name>` a cualquier mandato de Helm que ejecute.
-
-
-## Instalación con un diagrama de Helm
+## Instalación con Helm
 {: #install-chart}
 
 Puede utilizar el diagrama de Helm proporcionado para instalar {{site.data.keyword.datashield_short}} en su clúster nativo habilitado para SGX.
@@ -188,50 +78,12 @@ El diagrama de Helm instala los componentes siguientes:
 
 Para instalar {{site.data.keyword.datashield_short}} en el clúster:
 
-1. Inicie la sesión en la CLI de {{site.data.keyword.cloud_notm}}. Siga las indicaciones de la CLI para completar el inicio de sesión.
+1. Inicie la sesión en la CLI de {{site.data.keyword.cloud_notm}}. Siga las indicaciones de la CLI para completar el inicio de sesión. Si tiene un ID federado, añada la opción `--sso` al final del mandato.
 
   ```
-  ibmcloud login -a cloud.ibm.com -r <region>
+  ibmcloud login
   ```
-  {: pre}
-
-  <table>
-    <tr>
-      <th>Región</th>
-      <th>Punto final de IBM Cloud</th>
-      <th>Región del servicio Kubernetes</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>EE.UU. sur</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>UE central</td>
-    </tr>
-    <tr>
-      <td>Sídney</td>
-      <td><code>au-syd</code></td>
-      <td>AP sur</td>
-    </tr>
-    <tr>
-      <td>Londres</td>
-      <td><code>eu-gb</code></td>
-      <td>RU sur</td>
-    </tr>
-    <tr>
-      <td>Tokio</td>
-      <td><code>jp-tok</code></td>
-      <td>AP norte</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>EE.UU. este</td>
-    </tr>
-  </table>
+  {: codeblock}
 
 2. Establezca el contexto del clúster.
 
@@ -240,52 +92,80 @@ Para instalar {{site.data.keyword.datashield_short}} en el clúster:
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
   2. Copie la salida a partir de `export` y péguela en el terminal para establecer la variable de entorno
 `KUBECONFIG`.
 
-3. Si aún no lo ha hecho, añada el repositorio `ibm`.
+3. Si aún no lo ha hecho, añada el repositorio `iks-charts`.
 
   ```
-  helm repo add ibm https://registry.bluemix.net/helm/ibm
+  helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
-  {: pre}
+  {: codeblock}
 
 4. Opcional: si no sabe cuál es la dirección de correo electrónico asociada con el administrador o el ID de la cuenta de administrador, ejecute el mandato siguiente.
 
   ```
   ibmcloud account show
   ```
-  {: pre}
+  {: codeblock}
 
 5. Obtenga el subdominio Ingress para el clúster.
 
   ```
   ibmcloud ks cluster-get <cluster_name>
   ```
-  {: pre}
+  {: codeblock}
 
-6. Instale el diagrama.
+6. Obtenga la información que necesita para configurar las prestaciones de [copia de seguridad y restauración](/docs/services/data-shield?topic=data-shield-backup-restore). 
+
+7. Inicialice Helm creando una política de enlace de rol para Tiller. 
+
+  1. Cree una cuenta de servicio para Tiller.
+  
+    ```
+    kubectl --namespace kube-system create serviceaccount tiller
+    ```
+    {: codeblock}
+
+  2. Cree el enlace de rol para asignar el acceso de administrador de Tiller en el clúster.
+
+    ```
+    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+    ```
+    {: codeblock}
+
+  3. Inicialice Helm.
+
+    ```
+    helm init --service-account tiller --upgrade
+    ```
+    {: codeblock}
+
+  Es posible que quiera configurar Helm para que utilice la modalidad `--tls`. Para obtener ayuda para habilitar TLS, consulte el [repositorio de Helm](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. Si habilita TLS, asegúrese de añadir `--tls` a cada mandato de Helm que ejecute. Para obtener más información sobre el uso de Helm con el servicio Kubernetes de IBM Cloud, consulte [Adición de servicios mediante diagramas de Helm](/docs/containers?topic=containers-helm#public_helm_install).
+  {: tip}
+
+8. Instale el diagrama.
 
   ```
-  helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
+  helm install ibm/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
-  {: pre}
+  {: codeblock}
 
-  Si ha [configurado {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert#convert) para el conversor, debe añadir `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
+  Si ha [configurado {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) para el conversor, debe añadir `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
   {: note}
 
-7. Para supervisar el inicio de los componentes, puede ejecutar el mandato siguiente.
+9. Para supervisar el inicio de los componentes, puede ejecutar el mandato siguiente.
 
   ```
   kubectl get pods
   ```
-  {: pre}
+  {: codeblock}
 
 
 
-## Instalación con el instalador de {{site.data.keyword.datashield_short}}
+## Instalación con el instalador
 {: #installer}
 
 Puede utilizar el instalador para instalar rápidamente {{site.data.keyword.datashield_short}} en el clúster nativo habilitado para SGX.
@@ -296,7 +176,7 @@ Puede utilizar el instalador para instalar rápidamente {{site.data.keyword.data
   ```
   ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
 2. Establezca el contexto del clúster.
 
@@ -305,58 +185,32 @@ Puede utilizar el instalador para instalar rápidamente {{site.data.keyword.data
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
-  2. Copie la salida y péguela en el terminal.
+  2. Copie la salida y péguela en la consola.
 
 3. Inicie sesión en la CLI de Container Registry.
 
   ```
   ibmcloud cr login
   ```
-  {: pre}
+  {: codeblock}
 
-4. Extraiga la imagen en la máquina local.
+4. Extraiga la imagen en su sistema local.
 
   ```
-  docker pull registry.bluemix.net/ibm/datashield-installer
+  docker pull <region>.icr.io/ibm/datashield-installer
   ```
-  {: pre}
+  {: codeblock}
 
 5. Instale {{site.data.keyword.datashield_short}} ejecutando el mandato siguiente.
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.bluemix.net/ibm/datashield-installer provision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/ibm/datashield-installer provision
   --adminEmail <ADMIN_EMAIL> --accountId <ACCOUNT_ID> --ingressSubdomain <INGRESS_SUBDOMAIN>
   [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
   ```
-  {: pre}
-
-  Para instalar la versión más reciente de {{site.data.keyword.datashield_short}}, utilice
-`latest` para el distintivo `--version`.
-
-
-## Actualización del servicio
-{: #update}
-
-Cuando {{site.data.keyword.datashield_short}} se instale en el clúster, puede actualizarlo en cualquier momento.
-
-Para actualizar a la versión más reciente con el diagrama de Helm, ejecute el mandato siguiente.
-
-  ```
-  helm repo update && helm install ibm/ibmcloud-data-shield --name datashield --set enclaveos-chart.Manager.AdminEmail=<>  --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.Registry=registry.ng.bluemix.net/<your-registry>
-  ```
-  {: pre}
-
-
-Para actualizar a la versión más reciente con el instalador, ejecute el mandato siguiente:
-
-  ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.bluemix.net/ibm/datashield-installer upgrade
-  [ --adminEmail <ADMIN_EMAIL> ] [ --accountId <ACCOUNT_ID> ] [ --ingressSubdomain <INGRESS_SUBDOMAIN> ]
-  [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
-  ```
-  {: pre}
+  {: codeblock}
 
   Para instalar la versión más reciente de {{site.data.keyword.datashield_short}}, utilice `latest` para el distintivo `--version`.
 

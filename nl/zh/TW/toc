@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" audience="service" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
+{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
@@ -10,25 +10,30 @@ IBM Cloud Data Shield
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    install.md
-    access.md
-    convert.md
-    deploy.md
+    {: .topicgroup}
+    管理服務
+        install.md
+        update.md
+        uninstall.md
+    
+    {: .topicgroup}
+    配置 Enclave Manager
+        access.md
+        backup-restore.md
+        tls-cert.md
+
+    manage.md
 
     {: .topicgroup}
-    預先包裝的防護映像檔
-        [Barbican 映像檔](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-        [MariaDB 映像檔](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
-        [NGINX 映像檔](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
-        [Vault 映像檔](https://cloud.ibm.com/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
-
-    tls-cert.md
-    uninstall.md
+    使用 API 部署應用程式
+        convert.md
+        deploy.md
+        curated-apps.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [部落格](https://www.ibm.com/blogs/bluemix/?s=Data+shield)
-    [Fortanix](http://fortanix.com/)
+    [部落格](https://www.ibm.com/cloud/blog)
+    [Fortanix](https://fortanix.com/)
     [Intel SGX](https://software.intel.com/en-us/sgx)
     {: .navgroup-end}
 
