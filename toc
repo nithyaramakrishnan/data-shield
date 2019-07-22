@@ -27,6 +27,7 @@ IBM Cloud Data Shield
     {: .topicgroup}
     Deploying apps with the API
         convert.md
+        signing-key.md
         deploy.md
         curated-apps.md
     {: .navgroup-end}
