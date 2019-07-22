@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -24,17 +24,19 @@ subcollection: data-shield
 
 
 # イメージのデプロイ
-{: #deploy-containers}
+{: #deploying}
 
-イメージを変換したら、{{site.data.keyword.datashield_short}} コンテナーを Kubernetes クラスターに再デプロイする必要があります。
+イメージを変換したら、{{site.data.keyword.datashield_short}} コンテナーを Kubernetes クラスターにデプロイする必要があります。
 {: shortdesc}
 
-{{site.data.keyword.datashield_short}} コンテナーを Kubernetes クラスターにデプロイする際、コンテナーの仕様にはボリューム・マウントが含まれている必要があります。ボリューム・マウントを使用することによって、コンテナーで SGX デバイスと AESM ソケットを使用できるようになります。
+{{site.data.keyword.datashield_short}} をデプロイする際、SGX デバイスと AESM ソケットを使用できるように、コンテナーの仕様にボリューム・マウントが指定されていなければなりません。
 
-このサービスを試用するためのアプリケーションをお持ちではないですか? 問題ありません。MariaDB や NGINX など、試用できるサンプル・アプリがいくつも用意されています。IBM Container Registry にある [{{site.data.keyword.datashield_short}} イメージ](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)をサンプルとして自由に使用できます。
+このサービスを試用するためのアプリケーションをお持ちではないですか? 問題ありません。 MariaDB や NGINX など、試用できるサンプル・アプリがいくつも用意されています。 IBM Container Registry にある [{{site.data.keyword.datashield_short}} イメージ](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter)をサンプルとして自由に使用できます。
 {: tip}
 
-1. 次のポッド仕様をテンプレートとして保存します。
+1. [プル・シークレット](/docs/containers?topic=containers-images#other)を構成します。
+
+2. 次のポッド仕様をテンプレートとして保存します。
 
     ```
     apiVersion: v1
@@ -77,12 +79,12 @@ subcollection: data-shield
     ```
     {: screen}
 
-2. `your-app-sgx` および `your-registry-server` の各フィールドをご使用のアプリとサーバーに合わせて更新します。
+3. `your-app-sgx` および `your-registry-server` の各フィールドをご使用のアプリとサーバーに合わせて更新します。
 
-3. Kubernetes ポッドを作成します。
+4. Kubernetes ポッドを作成します。
 
    ```
    kubectl create -f template.yml
    ```
-  {: pre}
+  {: codeblock}
 

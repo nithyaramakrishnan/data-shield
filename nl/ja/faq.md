@@ -2,11 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
+
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+
+subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -30,14 +34,14 @@ lastupdated: "2019-03-13"
 {: #enclave-attestation}
 {: faq}
 
-エンクレーブは、信頼されていないコードによって、プラットフォーム上にインスタンス化されます。そのため、エンクレーブにアプリケーションの機密情報を入れてプロビジョンする前に、Intel® SGX によって保護されているプラットフォーム上にエンクレーブが適切にインスタンス化されていることを確認できることが必要です。これは、リモート認証プロセスによって行われます。リモート認証は、Intel SGX 命令とプラットフォーム・ソフトウェアを使用して「見積もり」を生成することによって行われます。見積もりは、エンクレーブのダイジェストと、関連するエンクレーブ・データとプラットフォーム固有の非対称鍵のダイジェストを、1 つのデータ構造に結合したもので、認証済みチャネルを介してリモート・サーバーに送信されます。エンクレーブが意図したとおりにインスタンス化されていて Intel 純正の SGX 対応プロセッサーで稼働しているとリモート・サーバーが判断すると、そこで必要に応じてエンクレーブがプロビジョンされます。
+エンクレーブは、信頼されていないコードによって、プラットフォーム上にインスタンス化されます。 そのため、エンクレーブにアプリケーションの機密情報を入れてプロビジョンする前に、Intel® SGX によって保護されているプラットフォーム上にエンクレーブが適切にインスタンス化されていることを確認できることが必要です。 これは、リモート認証プロセスによって行われます。 リモート認証は、Intel® SGX 命令とプラットフォーム・ソフトウェアを使用して「クオート」を生成することによって行われます。見積もりは、エンクレーブのダイジェストと、関連するエンクレーブ・データとプラットフォーム固有の非対称鍵のダイジェストを、1 つのデータ構造に結合したもので、認証済みチャネルを介してリモート・サーバーに送信されます。 エンクレーブが意図したとおりにインスタンス化されていて Intel® 純正の SGX 対応プロセッサーで稼働しているとリモート・サーバーが判断すると、そこで必要に応じてエンクレーブがプロビジョンされます。
 
 
-##	{{site.data.keyword.datashield_short}} では、現在どの言語がサポートされていますか?
+## {{site.data.keyword.datashield_short}} では、現在どの言語がサポートされていますか?
 {: #language-support}
 {: faq}
 
-このサービスは、SGX の言語サポートを、C と C++ だけでなく Python と Java も使えるように拡張します。また、MariaDB、NGINX、Vault に関しても、コード変更をほとんどしなくても (あるいはまったくしなくても) 使用できる、事前に変換された SGX アプリケーションが用意されています。
+このサービスは、SGX の言語サポートを、C と C++ だけでなく Python と Java® も使えるように拡張します。また、MariaDB、NGINX、Vault に関しても、コード変更をほとんどしなくても (あるいはまったくしなくても) 使用できる、事前に変換された SGX アプリケーションが用意されています。
 
 
 ##	自分のワーカー・ノード上で Intel SGX が使用可能かどうか確認する方法を教えてください。
@@ -51,7 +55,7 @@ lastupdated: "2019-03-13"
 {: #running-app}
 {: faq}
 
-Enclave Manager アカウントに[ログイン](/docs/services/data-shield?topic=data-shield-access#access-iam)して、**「アプリ (Apps)」**タブに移動します。**「アプリ (Apps)」**タブには、アプリケーションの Intel SGX 認証に関する情報が、証明書の形式で表示されています。Intel Remote Attestation Service (IAS) を使用してアプリケーションが検証済みのエンクレーブで実行されていることを検証することによって、いつでもアプリケーションのエンクレーブを確認できます。
+Enclave Manager アカウントに[ログイン](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin)して、**「アプリ (Apps)」**タブに移動します。 **「アプリ (Apps)」**タブには、アプリケーションの Intel® SGX 認証に関する情報が、証明書の形式で表示されています。Intel Remote Attestation Service (IAS) を使用してアプリケーションが検証済みのエンクレーブで実行されていることを検証することによって、いつでもアプリケーションのエンクレーブを確認できます。
 
 
 
@@ -60,4 +64,4 @@ Enclave Manager アカウントに[ログイン](/docs/services/data-shield?topi
 {: faq}
 
 
-アプリケーションのパフォーマンスは、ワークロードの性質に依存します。CPU の負荷が高いワークロードでは、{{site.data.keyword.datashield_short}} がアプリに与える影響は最小限にとどまります。ただし、メモリーまたは I/O の負荷が高いアプリケーションを使用する場合は、ページングやコンテキスト切り替えに伴う影響が見られる場合があります。一般に、SGX エンクレーブ・ページ・キャッシュに関連する、アプリのメモリー占有スペースのサイズによって、{{site.data.keyword.datashield_short}} の影響を判別できます。
+アプリケーションのパフォーマンスは、ワークロードの性質に依存します。 CPU の負荷が高いワークロードでは、{{site.data.keyword.datashield_short}} がアプリに与える影響は最小限にとどまります。 ただし、メモリーまたは入出力の負荷が高いアプリケーションを使用する場合は、ページングやコンテキスト切り替えに伴う影響が見られる場合があります。一般に、SGX エンクレーブ・ページ・キャッシュに関連する、アプリのメモリー占有スペースのサイズによって、{{site.data.keyword.datashield_short}} の影響を判別できます。

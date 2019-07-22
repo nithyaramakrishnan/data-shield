@@ -2,15 +2,15 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-13"
+lastupdated: "2019-07-08"
 
-keywords: data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, intel sgx, software guard extensions, fortanix runtime encryption
+keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
 subcollection: data-shield
 
 ---
 
-{:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -29,19 +29,20 @@ subcollection: data-shield
 
 
 ## Helm を使用したアンインストール
+{: #uninstall-helm}
 
-1. {{site.data.keyword.cloud_notm}} CLI にログインします。CLI のプロンプトに従ってゆくとログインが完了します。
+1. {{site.data.keyword.cloud_notm}} CLI にログインします。 CLI のプロンプトに従っていくとログインが完了します。フェデレーテッド ID がある場合は、コマンドの末尾に `--sso` オプションを付加してください。
 
   ```
-  ibmcloud login -a https://api.<region>.bluemix.net
+  ibmcloud login -a cloud.ibm.com -r <region>
   ```
-  {: pre}
+  {: codeblock}
 
   <table>
     <tr>
       <th>地域</th>
-      <th>IBM Cloud エンドポイント</th>
-      <th>Kubernetes サービス地域</th>
+      <th>{{site.data.keyword.cloud_notm}} エンドポイント</th>
+      <th>{{site.data.keyword.containershort_notm}} 地域</th>
     </tr>
     <tr>
       <td>ダラス</td>
@@ -82,47 +83,47 @@ subcollection: data-shield
     ```
     ibmcloud ks cluster-config <cluster_name_or_ID>
     ```
-    {: pre}
+    {: codeblock}
 
-  2. 出力をコピーして、それを端末に貼り付けます。
+  2. 出力をコピーしてコンソールに貼り付けます。
 
 3. サービスを削除します。
 
   ```
-  helm delete datashield --purge
+  helm delete <chart-name> --purge
   ```
-  {: pre}
+  {: codeblock}
 
 4. 以下のコマンドをそれぞれ実行して TLS 証明書を削除します。
 
   ```
-  kubectl delete secret datashield-enclaveos-converter-tls
-  kubectl delete secret datashield-enclaveos-frontend-tls
-  kubectl delete secret datashield-enclaveos-manager-main-tls
+  kubectl delete secret <chart-name>-enclaveos-converter-tls
+  kubectl delete secret <chart-name>-enclaveos-frontend-tls
+  kubectl delete secret <chart-name>-enclaveos-manager-main-tls
   ```
-  {: pre}
+  {: codeblock}
 
-5. アンインストール処理では、Helm の「フック」を使用してアンインストーラーが実行されます。実行後はアンインストーラーを削除できます。
+5. アンインストール処理では、Helm の「フック」を使用してアンインストーラーが実行されます。 実行後はアンインストーラーを削除できます。
 
   ```
   kubectl delete daemonset data-shield-uninstaller
   kubectl delete configmap data-shield-uninstall-script
   ```
-  {: pre}
+  {: codeblock}
 
 `cert-manager` インスタンスと Docker 構成シークレットを作成していれば、それらも削除できます。
 {: tip}
 
 
-
-## ベータ版インストーラーを使用したアンインストール
+## インストーラーを使用したアンインストール
 {: #uninstall-installer}
 
-ベータ版インストーラーを使用して {{site.data.keyword.datashield_short}} をインストールした場合は、そのインストーラーでサービスをアンインストールすることもできます。
+インストーラーを使用して {{site.data.keyword.datashield_short}} をインストールした場合は、そのインストーラーでサービスをアンインストールすることもできます。
 
 {{site.data.keyword.datashield_short}} をアンインストールするには、`ibmcloud` CLI にログインし、ご使用のクラスターをターゲットにしてから、次のコマンドを実行します。
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config registry.ng.bluemix.net/datashield-core/datashield-beta-installer unprovision
+  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
   ```
-  {: pre}
+  {: codeblock}
+
