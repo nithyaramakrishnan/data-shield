@@ -188,6 +188,14 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
   ```
   {: codeblock}
 
+## Setting environment variables
+{: #convert-env}
+
+You may need to change the way that you pass environment variables to your application.
+{: shortdesc}
+
+Many applications can be configured by environment variables. Various sources of environment variables may exist, including a container image, a Kubernetes pod specification, or a container entrypoint script. The {{site.data.keyword.datashield_short}} conversion process transfers any environment variables specified by the input container image to a configuration file in the output container, where they will be covered by the enclave signature. This freezes the values of the environment variables at conversion time. Environment variables supplied after conversion (for example, by a Kubernetes pod specification) will not be seen by the application. This protects your application from maliciously-set environment variables at runtime.
+
 ## Requesting an application certificate
 {: #request-cert}
 
