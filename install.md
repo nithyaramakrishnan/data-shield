@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-08-01"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -45,7 +45,7 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
   * {{site.data.keyword.containershort_notm}}
   * {{site.data.keyword.registryshort_notm}}
 
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: mb2c.4x32. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
+* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: `mb3c.4x32` or `ms3c.4x32.1.9tb.ssd`. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
   2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
