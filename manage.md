@@ -179,7 +179,7 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 
 3. Select an application from the drop-down list or add an application.
 
-4. Enter the name of your Docker image and tag it with a specific 
+4. Enter the name of your Docker image and tag it with a label.
 
 5. Click **Build**. The build is added to the whitelist. You can approve the build in the **Tasks** tab.
 
