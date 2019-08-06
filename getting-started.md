@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-01"
+lastupdated: "2019-08-05"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -51,7 +51,11 @@ For help with downloading the CLIs or configuring your {{site.data.keyword.conta
   * {{site.data.keyword.containershort}}
   * {{site.data.keyword.registryshort_notm}}
 
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: `mb3c.4x32` or `ms3c.4x32.1.9tb.ssd`. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
+* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: `mb2c.4x32` or `ms2c.4x32.1.9tb.ssd`. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
+
+  To see the `mb2c.4x32` option, you must check the **Ubuntu 16** operating system.
+  {: note}
+
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
   2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
@@ -151,7 +155,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster, complete th
 7. Install the chart.
 
   ```
-  helm install ibm/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
+  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: codeblock}
 
