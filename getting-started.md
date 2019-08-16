@@ -170,7 +170,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster, complete th
 7. Install the chart.
 
   ```
-  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config --set global.ServiceReplicas=<Number of Service Replicas>
+  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
   ```
   {: codeblock}
 
