@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-05"
+lastupdated: "2019-08-15"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -156,8 +156,29 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: codeblock}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
-  {: note}
+  <table>
+    <caption>Table 1. Installation options</caption>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
+      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
+    </tr>
+    <!-- <tr>
+      <td><code>--set global.ServiceReplicas=<Number of Service Replicas></code></td>
+      <td>Optional: Used to enable high availability by allow multiple instances of IBM Cloud Data Shield components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, we recommend having a minimum of three replicas.</td>
+    </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_CREDENTIALS</code></td>
+      <td>Optional: You can use your own IAS credentials. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-credentials --from-file=ias-credentials.crt --from-file=ias-credentials.key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid></code></td>
+    </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+      <td>Optional: You can use your own IAS API key. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey>. Note: By default, IAS requests are made through a proxy service.</code></td>
+    </tr> -->
+  </table>
 
 9. To monitor the startup of your components, you can run the following command.
 
