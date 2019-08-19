@@ -157,7 +157,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   {: codeblock}
 
   <table>
-    <caption>Table 1. Installation options</caption>
+    <caption>Table 1. Optional installation options</caption>
     <tr>
       <th>Command</th>
       <th>Description</th>
