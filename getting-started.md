@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-15"
+lastupdated: "2019-08-21"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -90,7 +90,7 @@ Want to see logging information for Data Shield? Set up an {{site.data.keyword.l
 ## Installing the service
 {: #gs-install}
 
-You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster. The following instructions walk you through the most basic, default installation of the Helm chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield/).
+You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster. The following instructions walk you through the most basic, default installation of the Helm chart. For more information about your options, see [Installing {{site.data.keyword.datashield_short}}](/docs/services/data-shield?topic=data-shield-install).
 {: shortdesc}
 
 The Helm chart installs the following components:
