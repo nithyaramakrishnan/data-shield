@@ -200,7 +200,7 @@ To resolve the issue you can use the following steps:
 
 
 ## Error: `cert-manager` CRD
-{: #ts-container-convert-fails}
+{: #ts-cert-manager-crd}
 
 {: tsSymptoms}
 You encounter the following error when you try to install `--version 0.5.0` of the `cert-manager` service.
@@ -222,3 +222,5 @@ kubectl delete crd clusterissuers.certmanager.k8s.io
 kubectl delete crd issuers.certmanager.k8s.io
 ```
 {: codeblock}
+
+
