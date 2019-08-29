@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-19"
+lastupdated: "2019-08-29"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -115,19 +115,16 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-You might also want to delete the `cert-manager` instance and the Docker config secret if you created one.
-{: tip}
-
-
-## Uninstalling with the installer
-{: #uninstall-installer}
-
-If you installed {{site.data.keyword.datashield_short}} by using the installer, you can also uninstall the service with the installer.
-
-To uninstall {{site.data.keyword.datashield_short}}, log in to the `ibmcloud` CLI, target your cluster, and run the following command:
+6. Optional: Delete your instance of `cert-manager`. If you delete your instance, be sure that you also delete the following CRDs.
 
   ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/datashield-core/datashield-beta-installer unprovision
+  kubectl delete crd certificates.certmanager.k8s.io
+  kubectl delete crd clusterissuers.certmanager.k8s.io 
+  kubectl delete crd issuers.certmanager.k8s.io
   ```
   {: codeblock}
+
+7. Optional: Delete your Docker config secret.
+
+
 

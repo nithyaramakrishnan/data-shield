@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-15"
+lastupdated: "2019-08-29"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -154,12 +154,12 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
 8. Install the chart.
 
   ```
-  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> <converter-registry-option>
+  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
   ```
   {: codeblock}
 
   <table>
-    <caption>Table 1. Optional installation options</caption>
+    <caption>Table 1. Installation options</caption>
     <tr>
       <th>Command</th>
       <th>Description</th>
@@ -190,53 +190,4 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   {: codeblock}
 
 
-
-## Installing with the installer
-{: #installer}
-
-You can use the installer to quickly install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
-{: shortdesc}
-
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in.
-
-  ```
-  ibmcloud login -a cloud.ibm.com -r <region>
-  ```
-  {: codeblock}
-
-2. Set the context for your cluster.
-
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output and paste it into your console.
-
-3. Sign in to the Container Registry CLI.
-
-  ```
-  ibmcloud cr login
-  ```
-  {: codeblock}
-
-4. Pull the image to your local system.
-
-  ```
-  docker pull <region>.icr.io/ibm/datashield-installer
-  ```
-  {: codeblock}
-
-5. Install {{site.data.keyword.datashield_short}} by running the following command.
-
-  ```
-  docker run -v <CONFIG_SRC>:/usr/src/app/broker-config <region>.icr.io/ibm/datashield-installer provision
-  --adminEmail <ADMIN_EMAIL> --accountId <ACCOUNT_ID> --ingressSubdomain <INGRESS_SUBDOMAIN>
-  [ --version <VERSION>] [ --registry <REGISTRY> ] [ --converterSecret <CONVERTER_SECRET> ] [ --namespace <NAMESPACE> ]
-  ```
-  {: codeblock}
-
-  To install the most recent version of {{site.data.keyword.datashield_short}}, use `latest` for the `--version` flag.
 
