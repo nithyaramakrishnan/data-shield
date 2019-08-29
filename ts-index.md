@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-08-29"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -44,7 +44,7 @@ For more information about getting support, see [how do I get the support that I
 ## Obtaining logs
 {: #ts-logs}
 
-When you open a support ticket for IBM Cloud Data Shield, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
+When you open a support ticket for {{site.data.keyword.datashield_short}}, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -88,7 +88,7 @@ Sign-in might fail for the following reasons:
 To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the correct permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`. If you have multiple IBM Cloud accounts, verify that the account you are logged in to the CLI with the correct account for the Enclave Manager cluster.
 
 
-## The container converter API returns a forbidden error
+## Error: Container converter forbidden
 {: #ts-converter-forbidden-error}
 
 {: tsSymptoms}
@@ -100,8 +100,8 @@ You might not be able to access the converter if your IAM or Bearer token is mis
 {: tsResolve}
 To resolve the issue, verify that you are using either an IBM IAM OAuth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
 
-* IAM: `Authentication: Basic <IBM IAM Token>`
-* Enclave Manager: `Authentication: Bearer <E.M. Token>`
+* IAM: `Authentication: Basic <IBM_IAM_Token>`
+* Enclave Manager: `Authentication: Bearer <EM_Token>`
 
 If your token is present, verify that it is still valid and run the request again.
 
@@ -197,3 +197,30 @@ To resolve the issue you can use the following steps:
   {: codeblock}
 
 8. Convert your image.
+
+
+## Error: `cert-manager` CRD
+{: #ts-cert-manager-crd}
+
+{: tsSymptoms}
+You encounter the following error when you try to install `--version 0.5.0` of the `cert-manager` service.
+
+```
+Error: customresourcedefinitions.apiextensions.k8s.io "certificates.certmanager.k8s.io" already exists
+```
+{: codeblock}
+
+{: tsCauses}
+If you have you previously installed cert-manager and then uninstalled it, you might have CRDs left from the initial instance.
+
+{: tsResolve}
+To resolve the issue, delete the following CRDs.
+
+```
+kubectl delete crd certificates.certmanager.k8s.io
+kubectl delete crd clusterissuers.certmanager.k8s.io 
+kubectl delete crd issuers.certmanager.k8s.io
+```
+{: codeblock}
+
+
