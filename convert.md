@@ -44,7 +44,14 @@ Before you convert your applications, you should ensure that you fully understan
 
 * The container guest must run as the container's root user.
 
-* Testing included containers that are based on Debian 8, Debian 9, Ubuntu 16.04, Ubuntu 18.04, and Java (OpenJDK 8 and OpenJ9 0.14) with varying results. Other environments might work, but have not been tested.
+* Tested container environments include the following:
+
+  * Debian 8
+  * Debian 9
+  * Ubuntu 16.04
+  * Ubuntu 18.04
+  * Java OpenJDK 8
+  * Java OpenJ9 0.14
 
 
 ## Configuring registry credentials
