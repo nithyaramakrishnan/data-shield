@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-15"
+lastupdated: "2019-09-16"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -28,7 +28,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time - after the application is started within an SGX Enclave is protected by IBM Cloud Data Shield. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}. 
 
 The conversion process does not encrypt your application.
 {: important}
@@ -41,8 +41,6 @@ Before you convert your applications, you should ensure that you fully understan
 {: shortdesc}
 
 * For security reasons, secrets must be provided at run time - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
-
-* The container guest must run as the container's root user.
 
 * Tested container environments include the following:
 
@@ -166,7 +164,7 @@ When you convert Java-based applications, there are a few extra requirements and
 
 **Options**
 
-To use the `Java-Mode` conversion, modify your Docker file to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in this section. 
+To use the `Java-Mode` conversion, modify your Docker file to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in this section.
 
 
 * Set the environment variable MALLOC_ARENA_MAX equal to 1.
@@ -180,10 +178,10 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
 
   ```
   -XX:CompressedClassSpaceSize=16m
-  -XX:-UsePerfData 
-  -XX:ReservedCodeCacheSize=16m 
-  -XX:-UseCompiler 
-  -XX:+UseSerialGC 
+  -XX:-UsePerfData
+  -XX:ReservedCodeCacheSize=16m
+  -XX:-UseCompiler
+  -XX:+UseSerialGC
   ```
   {: codeblock}
 
@@ -199,7 +197,7 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
 ## Requesting an application certificate
 {: #request-cert}
 
-A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager Certificate Authority and include Intel's remote attestation report for your app's SGX enclave.
+A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager Certificate Authority, which issues certificates only to enclaves presenting a valid attestation.
 {: shortdesc}
 
 Check out the following example to see how to configure a request to generate an RSA private key and generate the certificate for the key. The key is kept on the root of the application container. If you don't want an ephemeral key or certificate, you can customize the `keyPath` and `certPath` for your apps and store them on a persistent volume.

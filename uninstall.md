@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-29"
+lastupdated: "2019-09-16"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -97,13 +97,14 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 4. Delete the TLS certificates by running each of the following commands.
 
   ```
-  kubectl delete secret <release name>-enclaveos-converter-tls
-  kubectl delete secret <release name>-enclaveos-frontend-tls
-  kubectl delete secret <release name>-enclaveos-converter-tls
-  kubectl delete secret <release name>-enclaveos-ca
+  kubectl delete secret <release name>-enclaveos-ca         
+  kubectl delete secret <release name>-enclaveos-converter-tls-v2        
+  kubectl delete secret <release name>-enclaveos-frontend-tls-v2         
+  kubectl delete secret <release name>-enclaveos-manager-admin-tls-v2    
+  kubectl delete secret <release name>-enclaveos-manager-main-tls-v2 
   kubectl delete secret <release name>-cockroachdb-ca
   kubectl delete secret <release name>-cockroachdb.client.root
-  kubectl delete secret <release name>-cockroachdb.node 
+  kubectl delete secret <release name>-cockroachdb.node
   ```
   {: codeblock}
 
