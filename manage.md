@@ -144,10 +144,9 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 7. Edit any advanced settings that you might want to change.
 
-8. Click **Create new application**. The application is deployed and added to your whitelist. You can approve the build request in the **tasks** tab.
+8. Add any certificate using the **Certificate configuration** section. A converted application can request a certificate from the {{site.data.keyword.datashield_short}} when your application is started. The certificates are signed by the {{site.data.keyword.datashield_short}} Certificate Authority, which issues certificates only to enclaves presenting a valid attestation.
 
-
-
+9. Click **Create new application**. The application is deployed and added to your whitelist. You can approve the build request in the **tasks** tab.
 
 ### Editing an app
 {: #em-app-edit}
@@ -201,7 +200,7 @@ When an application is whitelisted, it is added to the list of pending requests 
 ## Viewing logs
 {: #em-view}
 
-You can audit your Enclave manager instance for several different types of activity. 
+You can audit your Enclave manager instance for several different types of activity.
 {: shortdesc}
 
 1. Navigate to the **Audit log** tab of the Enclave Manager UI.
@@ -211,7 +210,6 @@ You can audit your Enclave manager instance for several different types of activ
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate Authority: Activity that pertains to a Certificate Authority.
-  * Administration: Activity that pertains to administrative. 
+  * Administration: Activity that pertains to administrative.
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
-

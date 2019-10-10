@@ -28,7 +28,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}}.
 
 The conversion process does not encrypt your application.
 {: important}
@@ -112,7 +112,6 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
   {: codeblock}
 
 
-
 ## Converting your images
 {: #converting-images}
 
@@ -190,12 +189,19 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
   ```
   -Xnojit
   –Xnoaot
+  -Xdump:none
   ```
   {: codeblock}
 
 
-## Requesting an application certificate
-{: #request-cert}
+## Create an application and Request an application certificate
+{: #create-app-request-cert}
+
+1. once you have the `$token` you need to get the Bearer token:
+```
+export em_token=`curl -X POST https://enclave-manager.<ingress-domain>/api/v1/sys/auth/token -H "Authorization: Basic $token" | jq -r '.access_token'`
+```
+{: codeblock}
 
 A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager Certificate Authority, which issues certificates only to enclaves presenting a valid attestation.
 {: shortdesc}
@@ -206,32 +212,55 @@ Check out the following example to see how to configure a request to generate an
 
  ```json
  {
-       "inputImageName": "your-registry-server/your-app",
-       "outputImageName": "your-registry-server/your-app-sgx",
-       "certificates": [
-         {
-           "issuer": "MANAGER_CA",
-           "subject": "SGX-Application",
-           "keyType": "rsa",
-           "keyParam": {
-             "size": 2048
-           },
-           "keyPath": "/appkey.pem",
-           "certPath": "/appcert.pem",
-           "chainPath": "none"
-         }
-       ]
+     "name": "name of your application",
+     "description": "description of your application",
+     "input_image_name": "your-registry-server/your-app",
+     "output_image_name": "your-registry-server/your-app-sgx",
+     "isvprodid": 1,
+     "isvsvn": 1,
+     "memsize": 1024,
+     "threads": 64,
+     "allowed_domains": ["SGX-Application.domain"],
+     "advanced_settings": {
+         "encryptedDirs": ["/tmp", "/etc/app/app-dir"],
+         "java_runtime": "OPENJDK",
+         "certificate": {
+                 "issuer": "MANAGER_CA",
+                 "keyType": "RSA",
+                 "keyParam": {
+                   "size": 2048
+                 },
+                 "subject": "SGX-Application.domain",
+                 "keyPath": "/appkey.pem",
+                 "certPath": "/appcert.pem",
+                 "caCertPath": "/cacert.pem",
+                 "chainPath": "/chainpath.pem"
+     }
+   }
  }
  ```
  {: screen}
 
-2. Enter your variables and run the following command to run the converter again with your certificate information.
+2. Enter your variables and run the following command to run the converter again with your certificate information and create an application.
 
  ```
- curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
+curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/apps
  ```
- {: codeblock}
+{: codeblock}
 
+## Create a build
+{: #convert-build}
+
+Run the following command to create a build of an applications:
+```
+curl -H 'Content-Type: application/json' -d '{"app_id": "53fca221-b65f-4deb-ae39-20534a717b06", "docker_version": "1.15.2" }'  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/builds/convert-app
+```
+{: codeblock}
+
+where,
+- `app_id` is the response to the POST message to `/apps`
+- `docket_version` is the docker image tag, which will be combined with the `input_image_name` and `output_image_name` specified when the app was created.
+{: shortdesc}
 
 ## Whitelisting applications
 {: #convert-whitelist}
@@ -240,20 +269,4 @@ When a Docker image is converted to run inside of Intel® SGX, it can be whiteli
 {: shortdesc}
 
 
-1. Obtain an Enclave Manager access token by using the IAM authentication token:
-
-  ```
-  export em_token=`curl -X POST https://enclave-manager.<ingress-domain>/api/v1/sys/auth/token -H "Authorization: Basic $token" | jq -r '.access_token'`
-  echo $em_token
-  ```
-  {: codeblock}
-
-2. Make a whitelist request to the Enclave Manager. Be sure to enter your information when you run the following command.
-
-  ```
-  curl -X POST https://enclave-manager.<ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json' -H "Authorization: Bearer $em_token"
-  ```
-  {: codeblock}
-
-3. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
-
+1. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Tasks** section of the GUI.

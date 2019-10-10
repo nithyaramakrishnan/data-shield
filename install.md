@@ -123,12 +123,12 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: codeblock}
 
-6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
+6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities.
 
-7. Initialize Helm by creating a role binding policy for Tiller. 
+7. Initialize Helm by creating a role binding policy for Tiller.
 
   1. Create a service account for Tiller.
-  
+
     ```
     kubectl --namespace kube-system create serviceaccount tiller
     ```
@@ -156,6 +156,9 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
   ```
+  To deploy {{site.data.keyword.datashield_full}} on an OpenShift cluster, specify ```--set global.OpenShiftEnabled=true``` when installing the helm chart.
+  {: note}
+
   {: codeblock}
 
   <table>
@@ -188,6 +191,3 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   kubectl get pods
   ```
   {: codeblock}
-
-
-

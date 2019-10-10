@@ -79,6 +79,7 @@ Don't have an application to try the service? No problem. We offer several sampl
     ```
     {: screen}
 
+
 3. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
 
 4. Create the Kubernetes pod.
@@ -88,3 +89,19 @@ Don't have an application to try the service? No problem. We offer several sampl
    ```
   {: codeblock}
 
+## Deploying images on IBM Cloud OpenShift clusters
+
+Data Shield 1.5.xx includes a technology preview of support for IBM Cloud OpenShift clusters.
+
+To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when installing the helm chart.
+
+Be aware of the following limitations when using {{site.data.keyword.datashield_full}} on OpenShift:
+
+* Currently, application containers must be run as privileged containers so that they may access the host's SGX devices. This requirement will be eliminated in a future release. To make containers privileged, add the following to the pod specification for each container that needs to access the SGX devices:
+```
+securityContext:
+  privileged: true
+```
+OpenShift security policies may restrict creation of privileged containers. Cluster admin users have permission to create privileged containers when creating pods directly. When pods are created by a Kubernetes controller (replica set, daemon set), that controller must be associated with a service account that has permission to create privileged containers.
+
+* Installing {{site.data.keyword.datashield_full}} on a cluster puts SELinux in permissive mode. SELinux compatibility will be addressed in an upcoming release.
