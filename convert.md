@@ -208,7 +208,7 @@ A converted application can request a certificate from the Enclave Manager when 
 
 Check out the following example to see how to configure a request to generate an RSA private key and generate the certificate for the key. The key is kept on the root of the application container. If you don't want an ephemeral key or certificate, you can customize the `keyPath` and `certPath` for your apps and store them on a persistent volume.
 
-1. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
+2. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
 
  ```json
  {
@@ -241,7 +241,7 @@ Check out the following example to see how to configure a request to generate an
  ```
  {: screen}
 
-2. Enter your variables and run the following command to run the converter again with your certificate information and create an application.
+3. Enter your variables and run the following command to run the converter again with your certificate information and create an application.
 
  ```
 curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/apps
@@ -251,7 +251,7 @@ curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Bearer
 ## Create a build
 {: #convert-build}
 
-Run the following command to create a build of an applications:
+Run the following command to create a build of an application:
 ```
 curl -H 'Content-Type: application/json' -d '{"app_id": "53fca221-b65f-4deb-ae39-20534a717b06", "docker_version": "1.15.2" }'  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/builds/convert-app
 ```
@@ -259,7 +259,7 @@ curl -H 'Content-Type: application/json' -d '{"app_id": "53fca221-b65f-4deb-ae39
 
 where,
 - `app_id` is the response to the POST message to `/apps`
-- `docket_version` is the docker image tag, which will be combined with the `input_image_name` and `output_image_name` specified when the app was created.
+- `docker_version` is the docker image tag, which will be combined with the `input_image_name` and `output_image_name` specified when the app was created.
 {: shortdesc}
 
 ## Whitelisting applications
