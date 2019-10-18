@@ -95,7 +95,7 @@ Before you can work with {{site.data.keyword.datashield_short}}, you must have t
   ```
   {: codeblock}
 
-Want to see logging information for {{site.data.keyword.datashield_short}}? Set up [{{site.data.keyword.la_full_notm}}]().
+Want to see logging information for {{site.data.keyword.datashield_short}}? Set up [{{site.data.keyword.la_full_notm}}](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started).
 {: tip}
 
 
@@ -113,8 +113,6 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
 *	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-If you have a previous version of {{site.data.keyword.datashield_short}} installed on your cluster, you must [uninstall](/docs/services/data-shield?topic=data-shield-uninstall) that version before you can install this release. Upgrading your version does not install this release.
-{: note}
 
 ### Installing on your cluster
 {: #install-cluster}

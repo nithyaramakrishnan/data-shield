@@ -101,8 +101,9 @@ Before you can work with {{site.data.keyword.datashield_short}}, you must have t
   ```
   {: codeblock}
 
-Want to see logging information for Data Shield? Set up an {{site.data.keyword.la_full_notm}} instance for your cluster.
+Want to see logging information for {{site.data.keyword.datashield_short}}? Set up [{{site.data.keyword.la_full_notm}}](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started).
 {: tip}
+
 
 ## Installing the service
 {: #gs-install}
@@ -116,10 +117,8 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
 *	The {{site.data.keyword.datashield_short}} Container Conversion Service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-If you have a previous version of {{site.data.keyword.datashield_short}} installed on your cluster, you must [uninstall](/docs/services/data-shield?topic=data-shield-uninstall) that version before you can install this release. Upgrading your version does not install this release.
-{: note}
-
-To install {{site.data.keyword.datashield_short}} onto your cluster:
+### Installing on your cluster
+{: #gs-install-cluster}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
