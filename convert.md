@@ -249,7 +249,7 @@ Check out the following example to see how to configure a request to generate an
   ```
   {: codeblock}
 
-6. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
+6. Save the following template as `app.json` and make the required changes to fit your application's certificate requirements.
 
   ```json
   {
