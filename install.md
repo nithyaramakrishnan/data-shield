@@ -29,8 +29,7 @@ subcollection: data-shield
 You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
 {: shortdesc}
 
-With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
-{: preview}
+**Tehcnical Preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
 
 ## Before you begin
 {: #begin}
@@ -55,7 +54,7 @@ To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you
   * {{site.data.keyword.registryshort_notm}}
 
 
-For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out the tutorial [Creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 {: tip}
 
 ### Required resources

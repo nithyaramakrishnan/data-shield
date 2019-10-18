@@ -35,13 +35,15 @@ When it comes to protecting your data, encryption is one of the most popular and
 However, after an application starts to run, data in use by CPU and memory is vulnerable to attacks. Malicious insiders, root users, credential compromise, OS zero-day, and network intruders are all threats to data. Taking encryption one step further, you can now protect data in use. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/services/data-shield?topic=data-shield-about).
 
 
-With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
-{: preview}
+**Technical preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+
+
+
 
 ## Before you begin
 {: #gs-begin}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 ### Prerequisites
 {: #gs-prereq}
