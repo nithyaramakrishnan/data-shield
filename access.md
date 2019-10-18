@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -79,7 +79,7 @@ Check out the following table to see which roles are supported and some example 
   </tr>
   <tr>
     <td>Manager</td>
-    <td>Can perform the actions that a Writer can perform and more; including updating user names and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
+    <td>Can perform the actions that a Writer can perform and more; including updating usernames and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
     <td>Updating a user role.</td>
   </tr>
 </table>
@@ -113,7 +113,7 @@ You can update the roles that are assigned to your users and their name.
 
 2. Click **Your name > Settings**.
 
-3. Hover over the user whose permissions you want to edit. A pencil icon displays.
+3. Hover over the user whose permissions you want to edit. A pencil icon shows.
 
 4. Click the pencil icon. The edit user screen opens.
 

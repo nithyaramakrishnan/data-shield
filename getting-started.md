@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-29"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -22,6 +22,7 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+{:preview: .preview}
 
 # Getting started tutorial
 {: #getting-started}
@@ -31,14 +32,16 @@ With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can prote
 
 When it comes to protecting your data, encryption is one of the most popular and effective ways. But, the data must be encrypted at each step of its lifecycle for it to really be secure. The three phases of the data lifecycle include data at rest, data in motion, and data in use. Data at rest and in motion are commonly used to protect data when it is stored and when it is transported.
 
-However, after an application starts to run, data in use by CPU and memory is vulnerable to attacks. Malicious insiders, root users, credential compromise, OS zero-day, and network intruders are all threats to data. Taking encryption one step further, you can now protect data in use. 
+However, after an application starts to run, data in use by CPU and memory is vulnerable to attacks. Malicious insiders, root users, credential compromise, OS zero-day, and network intruders are all threats to data. Taking encryption one step further, you can now protect data in use. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/services/data-shield?topic=data-shield-about).
 
-For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/services/data-shield?topic=data-shield-about).
+
+With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when [installing the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+{: preview}
 
 ## Before you begin
 {: #gs-begin}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources.
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 ### Prerequisites
 {: #gs-prereq}
@@ -66,10 +69,24 @@ For help with downloading the CLIs or configuring your {{site.data.keyword.conta
 
 Before you can work with {{site.data.keyword.datashield_short}}, you must have the following resources.
 
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: `mb2c.4x32` or `ms2c.4x32.1.9tb.ssd`. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
+* An SGX-enabled Kubernetes or OpenShift cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table. 
 
-  To see the `mb2c.4x32` options, you must check the **Ubuntu 16** operating system.
-  {: note}
+  <table>
+    <tr>
+      <th>Type of cluster</th>
+      <th>Available machine types</th>
+    </tr>
+    <tr>
+      <td>{{site.data.keyword.containershort}}</td>
+      <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must check the <b>Ubuntu 16</b> operating system.</td>
+    </tr>
+    <tr>
+      <td>{{site.data.keyword.openshiftshort}}</td>
+      <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
+    </tr>
+  </table>
+
+  If you need help with creating your cluster, check out the following resources: 
 
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
@@ -176,8 +193,21 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   ```
   {: codeblock}
 
-  If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) for your converter you must add `--set converter-chart.Converter.DockerConfigSecret=converter-docker-config`.
-  {: note}
+  <table>
+    <caption>Table 1. Installation options</caption>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
+      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
+    </tr>
+    <tr>
+      <td><code>--set global.OpenShiftEnabled=true</code></td>
+      <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+    </tr>
+  </table>
 
 8. To monitor the startup of your components, you can run the following command.
 

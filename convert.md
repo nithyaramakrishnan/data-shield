@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-09-16"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -28,7 +28,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}}. 
 
 The conversion process does not encrypt your application.
 {: important}
@@ -37,7 +37,7 @@ The conversion process does not encrypt your application.
 ## Before you begin
 {: #convert-before}
 
-Before you convert your applications, you should ensure that you fully understand the following considerations.
+Before you convert your applications, ensure that you fully understand the following considerations.
 {: shortdesc}
 
 * For security reasons, secrets must be provided at run time - not placed in the container image that you want to convert. When the app is converted and running, you can verify through attestation that the application is running in an enclave before you provide any secrets.
@@ -72,6 +72,12 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
 
   ```
   ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
+  ```
+  {: codeblock}
+
+3. Create an API key for the container converter.
+
+  ```
   ibmcloud iam service-api-key-create 'Data Shield Container Converter' data-shield-container-converter
   ```
   {: codeblock}
@@ -164,7 +170,7 @@ When you convert Java-based applications, there are a few extra requirements and
 
 **Options**
 
-To use the `Java-Mode` conversion, modify your Docker file to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in this section.
+To use the `Java-Mode` conversion, modify your Dockerfile to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in the following section.
 
 
 * Set the environment variable MALLOC_ARENA_MAX equal to 1.
@@ -190,57 +196,52 @@ To use the `Java-Mode` conversion, modify your Docker file to supply the followi
   ```
   -Xnojit
   –Xnoaot
+  -Xdump:none
   ```
   {: codeblock}
 
 
-## Requesting an application certificate
+## Creating an app and requesting a certificate
 {: #request-cert}
 
-A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager Certificate Authority, which issues certificates only to enclaves presenting a valid attestation.
+A converted application can request a certificate from the Enclave Manager when your application is started. The certificates are signed by Enclave Manager certificate authority, which issues certificates only to enclaves that present a valid attestation.
 {: shortdesc}
 
 Check out the following example to see how to configure a request to generate an RSA private key and generate the certificate for the key. The key is kept on the root of the application container. If you don't want an ephemeral key or certificate, you can customize the `keyPath` and `certPath` for your apps and store them on a persistent volume.
 
-1. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
- ```json
- {
-       "inputImageName": "your-registry-server/your-app",
-       "outputImageName": "your-registry-server/your-app-sgx",
-       "certificates": [
-         {
-           "issuer": "MANAGER_CA",
-           "subject": "SGX-Application",
-           "keyType": "rsa",
-           "keyParam": {
-             "size": 2048
-           },
-           "keyPath": "/appkey.pem",
-           "certPath": "/appcert.pem",
-           "chainPath": "none"
-         }
-       ]
- }
- ```
- {: screen}
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
 
-2. Enter your variables and run the following command to run the converter again with your certificate information.
+2. Set the context for your cluster.
 
- ```
- curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Basic $token"  https://enclave-manager.<Ingress-subdomain>/api/v1/tools/converter/convert-app
- ```
- {: codeblock}
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
 
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
 
-## Whitelisting applications
-{: #convert-whitelist}
+  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-When a Docker image is converted to run inside of Intel® SGX, it can be whitelisted. By whitelisting your image, you're assigning admin privileges that allow the application to run on the cluster where {{site.data.keyword.datashield_short}} is installed.
-{: shortdesc}
+3. Get your Ingress subdomain.
 
+  ```
+  ibmcloud ks cluster-get <your-cluster-name>
+  ```
+  {: codeblock}
 
-1. Obtain an Enclave Manager access token by using the IAM authentication token:
+4. In terminal, get an IAM token.
+
+  ```
+  export token=`ibmcloud iam oauth-tokens | awk -F"Bearer " '{print $NF}'`
+  ```
+  {: codeblock}
+
+5. Obtain an Enclave Manager access token by using an IAM authentication token.
 
   ```
   export em_token=`curl -X POST https://enclave-manager.<ingress-domain>/api/v1/sys/auth/token -H "Authorization: Basic $token" | jq -r '.access_token'`
@@ -248,12 +249,130 @@ When a Docker image is converted to run inside of Intel® SGX, it can be whiteli
   ```
   {: codeblock}
 
-2. Make a whitelist request to the Enclave Manager. Be sure to enter your information when you run the following command.
+6. Save the following template as `app.json` and make the required changed to fit your application's certificate requirements.
+
+  ```json
+  {
+      "name": "<app_name>",
+      "description": "<app_description>",
+      "input_image_name": "<your-registry-server/your-app>",
+      "output_image_name": "<your-registry-server/your-app-sgx>",
+      "isvprodid": <isvprodid>,
+      "isvsvn": <isvsvn>,
+      "memsize": <memory_size>,
+      "threads": <threads>,
+      "allowed_domains": ["<SGX-Application.domain>"],
+      "advanced_settings": {
+          "encryptedDirs": [],
+          "java_runtime": "",
+          "certificate": {
+                  "issuer": "MANAGER_CA",
+                  "keyType": "RSA",
+                  "keyParam": {
+                    "size": 2048
+                  },
+                  "subject": "SGX-Application.domain",
+                  "keyPath": "/appkey.pem",
+                  "certPath": "/appcert.pem",
+                  "caCertPath": "/cacert.pem",
+                  "chainPath": "/chainpath.pem"
+      }
+    }
+  }
+  ```
+  {: screen}
+
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>name</code></td>
+      <td>The name that you want to give your application. This is how your application is listed in the Enclave Manager.</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td>A short description about your application.</td>
+    </tr>
+    <tr>
+      <td><code>input_image_name</code></td>
+      <td>The name of the image that you want to convert including your registry. Note that a tag is not included.</td>
+    </tr>
+    <tr>
+      <td><code>output_image_name</code></td>
+      <td>The name that you want your converted image to have, including the output registry. Note that a tag is not included.</td>
+    </tr>
+    <tr>
+      <td><code>isvprodid</code></td>
+      <td>A numeric product identifier that you assign to your enclave. You can choose a unique value in range 0 - 65,535.</td>
+    </tr>
+    <tr>
+      <td><code>isvsvn</code></td>
+      <td>A numeric security version that you assign to your enclave. When you make a change that affects your application security, be sure to incrementally increase the value.</td>
+    </tr>
+    <tr>
+      <td><code>memsize</code></td>
+      <td>The size of memory that you want your enclave to have. If your app uses a large amount of memory, you can use a large enclave size. However, the size of your enclave can affect your performance. Be sure that your memory allocation is set to a power of 2. For example: <code>2048 MB</code>.</td>
+    </tr>
+    <tr>
+      <td><code>threads</code></td>
+      <td>The number of threads for your enclave. Be sure that your thread size is large enough to accommodate the maximum number of processes that run in your app. For example: <code>128</code>.</td>
+    </tr>
+    <tr>
+      <td><code>allowed_domains</code></td>
+      <td>Any domains on which your app is accessible.</td>
+    </tr>
+    <tr>
+      <td><code>advanced_settings</code></td>
+      <td>Advanced settings are configured for best practice in the example code block. Be sure that you understand the way that changing a setting affects your application before you make any change. Also, note you can specify only one of <code>certPath</code> or <code>caCertPath</code> at any time. If you specify both at the same time, the command in the following step fails.</br> The available options for the Java Runtime are <code>ORACLE</code>, <code>OPENJDK</code>, <code>OPENJ9</code>, and <code>LIBERTY</code>.</br>For <code>subject</code>, list one of the domains that you specified in <code>allowed_domains</code>.</td>
+    </tr>
+  </table>
+
+7. Enter your variables and run the following command to convert and create a build for your 
 
   ```
-  curl -X POST https://enclave-manager.<ingress-subdomain>/api/v1/builds -d '{"docker_image_name": "your-app-sgx", "docker_version": "latest", "docker_image_sha": "<...>", "docker_image_size": <...>, "mrenclave": "<...>", "mrsigner": "<..>", "isvprodid": 0, "isvsvn": 0, "app_name": "your-app-sgx"}' -H 'Content-type: application/json' -H "Authorization: Bearer $em_token"
+  curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/apps
   ```
   {: codeblock}
 
-3. Use the Enclave Manager GUI to approve or deny whitelist requests. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
+  Make a note of the app ID in the output of the command.
+  {: tip}
+
+## Creating a build
+{: #convert-build}
+
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+
+  ```
+  ibmcloud login
+  ```
+  {: codeblock}
+
+2. Set the context for your cluster.
+
+  1. Get the command to set the environment variable and download the Kubernetes configuration files.
+
+    ```
+    ibmcloud ks cluster-config <cluster_name_or_ID>
+    ```
+    {: codeblock}
+
+  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+
+3. Get your Ingress subdomain.
+
+  ```
+  ibmcloud ks cluster-get <your-cluster-name>
+  ```
+  {: codeblock}
+
+4. Enter your variables and run the following command to create the build for your app and add it to your whitelist. You can find the app ID in the output of step number 8 of the previous section.
+
+  ```
+  curl -H 'Content-Type: application/json' -d '{"app_id": "<app_id>", "docker_version": "<version_number>" }'  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/builds/convert-app
+  ```
+  {: codeblock}
+
+5. In the Enclave Manager GUI, the build was added to your whitelist. Be sure to approve the build so that it can complete. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
 

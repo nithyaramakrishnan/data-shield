@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -22,10 +22,10 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Using the Enclave Manager
+# Deploying apps with the Enclave Manager
 {: #enclave-manager}
 
-You can use the Enclave Manager UI to manage the applications that you protect with {{site.data.keyword.datashield_full}}. From the UI you can manage your app deployment, assign access, handle whitelist requests and convert your applications.
+You can use the Enclave Manager UI to manage the applications that you protect with {{site.data.keyword.datashield_full}}. From the UI you can manage your app deployment, assign access, handle whitelist requests, and convert your applications.
 {: shortdesc}
 
 
@@ -37,14 +37,14 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 
 1. Be sure that you have the [correct access](/docs/services/data-shield?topic=data-shield-access).
 
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+2. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
   ibmcloud login
   ```
   {: codeblock}
 
-2. Set the context for your cluster.
+3. Set the context for your cluster.
 
   1. Get the command to set the environment variable and download the Kubernetes configuration files.
 
@@ -55,21 +55,14 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 
   2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
 
-3. Check to see that all your service is running by confirming that all of your pods are in an *active* state.
+4. Check to see that all your service is running by confirming that all of your pods are in an *active* state.
 
   ```
   kubectl get pods
   ```
   {: codeblock}
 
-4. Look up the front end URL for your Enclave Manager by running the following command.
-
-  ```
-  kubectl get svc datashield-enclaveos-frontend
-  ```
-  {: codeblock}
-
-5. Obtain your Ingress subdomain.
+5. Get your Ingress subdomain.
 
   ```
   ibmcloud ks cluster-get <your-cluster-name>
@@ -90,12 +83,9 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
   ```
   {: codeblock}
 
-8. Copy the token and paste it into the Enclave Manager GUI. You do not need to copy the `Bearer` portion of the printed token.
+8. Copy the just the alpha-numeric portion of the token and paste it into the Enclave Manager GUI. You do not need to copy the word `Bearer`.
 
 9. Click **Sign in**.
-
-
-
 
 
 
@@ -106,65 +96,65 @@ You can use the Enclave Manager UI to monitor the status, deactivate, or downloa
 {: shortdesc}
 
 
-1. Sign in to the Enclave Manager.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager.
 
-2. Navigate to the **Nodes** tab.
+2. Go to the **Nodes** tab.
 
 3. Click the IP address of the node that you want to investigate. An information screen opens.
 
-4. On the information screen, you can choose to deactivate the node or download the certificate that is used.
+4. On the information screen, you can choose to remove the node from your whitelist by clicking **Delist node** or you can download the certificate that is used for attestation.
 
 
 
-
-## Deploying applications
-{: #em-apps}
-
-You can use the Enclave Manager UI to deploy your applications.
-{: shortdesc}
-
-
-### Adding an app
+## Adding an app
 {: #em-app-add}
 
 You can convert, deploy, and whitelist your application all at the same time by using the Enclave Manager UI.
 {: shortdesc}
 
-1. Sign in to the Enclave Manager and navigate to the **Apps** tab.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
 
 2. Click **Add new application**.
 
 3. Give your application a name and description.
 
-4. Enter the input and output name for your images. The input is your current application name. The output is where you can find the converted application.
+4. Enter the input and output name for your images. The input is the name of your registry and image without the tag. The output is the name of the registry and image where you want to send the converted application.
 
-5. Enter an **ISVPRDID** and **ISVSVN**.
+5. Enter an **ISVPRDID**. It is a numeric product identifier that you assign to the enclave. You can choose a unique value in range 0 - 65,535.
+
+6. Enter an **ISVSVN**. It is a numeric security version that you assign to the enclave. When you make a change that affects your application security, be sure to incrementally increase the value.
+
+7. Provide a memory size for your Enclave. If your application uses a large amount of memory, you can use a large enclave. However, the size of your enclave can affect your performance. Be sure that your memory allocation is set to a power of 2. For example: `2048 MB`.
+
+8. Enter a number of threads for your enclave that is large enough to accommodate the maximum number of processes that run in your app.
 
 6. Enter any allowed domains.
 
 7. Edit any advanced settings that you might want to change.
 
-8. Click **Create new application**. The application is deployed and added to your whitelist. You can approve the build request in the **tasks** tab.
+8. Click **Add**. The application added to your list of available applications. To deploy your app, create a build and then approve the build request in the **tasks** tab.
 
 
 
 
-### Editing an app
+## Editing an app
 {: #em-app-edit}
 
 You can edit an application after you add it to your list.
 {: shortdesc}
 
 
-1. Sign in to the Enclave Manager and navigate to the **Apps** tab.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
 
 2. Click the name of the application that you want to edit. A new screen opens where you can review the configuration including certificates and deployed builds.
 
 3. Click **Edit application**.
 
-4. Update the configuration that you want to make. Be sure that you understand the way that changing the advanced settings affects your application before you make any change.
+4. Update the configuration. Be sure that you understand the way that changing the advanced settings affects your application before you make any changes.
 
-5. Click **Edit application**.
+5. Click **Update application**.
+
+
 
 
 ## Building applications
@@ -173,27 +163,27 @@ You can edit an application after you add it to your list.
 You can use the Enclave Manager UI to rebuild your applications after you make changes.
 {: shortdesc}
 
-1. Sign in to the Enclave Manager and navigate to the **Builds** tab.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Builds** tab.
 
 2. Click **Create new build**.
 
-3. Select an application from the drop-down list or add an application.
+3. Select an application from the drop-down list or click **[add an application](/docs/services/data-shield?topic=data-shield-enclave-manager#em-app-add)** to go to the app tab.
 
 4. Enter the name of your Docker image and tag it with a label.
 
-5. Click **Build**. The build is added to the whitelist. You can approve the build in the **Tasks** tab.
+5. Click **Create**. The build is added to your whitelist. You can approve the build in the **Tasks** tab.
 
 
 
 ## Approving tasks
 {: #em-tasks}
 
-When an application is whitelisted, it is added to the list of pending requests in the **tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
+When an application is whitelisted, it is added to the list of pending requests in the **Tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
 {: shortdesc}
 
-1. Sign in to the Enclave Manager and navigate to the **Tasks** tab.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and navigate to the **Tasks** tab.
 
-2. Click the row that contains the request that you want to approve or deny. A screen with more information opens.
+2. Click the row of the request that you want to approve or deny. A screen with more information opens.
 
 3. Review the request and click **Approve** or **Deny**. Your name is added to the list of **Reviewers**.
 
@@ -210,8 +200,9 @@ You can audit your Enclave manager instance for several different types of activ
   * App status: Activity that pertains to your application such as whitelist requests and new builds.
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
-  * Certificate Authority: Activity that pertains to a Certificate Authority.
-  * Administration: Activity that pertains to administrative. 
+  * Certificate authority: Activity that pertains to a certificate authority.
+  * Administration: Activity that pertains to administration. 
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
+{: tip}
 

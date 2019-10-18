@@ -133,7 +133,7 @@ To resolve the issue, you can follow these steps:
 {: #ts-problem-mounting-device}
 
 {: tsSymptoms}
-You encounter issues while trying to mount {{site.data.keyword.datashield_short}} containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
+You encounter issues when you try to mount {{site.data.keyword.datashield_short}} containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
 
 {: tsCauses}
 Mounting can fail due to issues with the configuration of the host.
@@ -203,7 +203,7 @@ To resolve the issue you can use the following steps:
 {: #ts-cert-manager-crd}
 
 {: tsSymptoms}
-You encounter the following error when you try to install `--version 0.5.0` of the `cert-manager` service.
+You encounter the following error when you try to install version `0.5.0` of the Cert Manager service.
 
 ```
 Error: customresourcedefinitions.apiextensions.k8s.io "certificates.certmanager.k8s.io" already exists

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -87,4 +87,30 @@ Don't have an application to try the service? No problem. We offer several sampl
    kubectl create -f template.yml
    ```
   {: codeblock}
+
+
+
+## Deploying images on IBM Cloud OpenShift clusters
+{: #deploy-openshift}
+
+With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters.
+
+To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+{: tip}
+
+Because {{site.data.keyword.datashield_short}} is being previewed, there are a few limitations that you should be aware of:
+
+* Application containers must run as privileged containers, which allows them to access the host's SGX devices. To make a container privileged, add the following code snippet to your pod specification for each container that needs to access the SGX devices.
+
+  ```
+  securityContext:
+    privileged: true
+  ```
+  {: screen}
+
+  OpenShift security policies might restrict the creation of privileged containers. Cluster admins have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
+  {: note}
+
+* SELinux is placed in permissive mode during the installation. 
+
 

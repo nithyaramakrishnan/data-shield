@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-08-29"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -21,34 +21,66 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+{:preview: .preview}
 
 # Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} by using either the provided Helm chart or by using the provided installer. You can work with the installation commands that you feel most comfortable with.
+You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
 {: shortdesc}
+
+With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+{: preview}
 
 ## Before you begin
 {: #begin}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources.
 
-* The following CLIs:
+### Prerequisites
+{: #prereq}
+
+To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+
+* CLIs:
 
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
   * [Docker](https://docs.docker.com/install/){: external}
   * [Helm](/docs/containers?topic=containers-helm)
 
-* The following [{{site.data.keyword.cloud_notm}} CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins#plug-ins):
+* [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins):
 
-  * {{site.data.keyword.containershort_notm}}
+  * {{site.data.keyword.containershort}}
   * {{site.data.keyword.registryshort_notm}}
 
-* An SGX-enabled Kubernetes cluster. Currently, SGX can be enabled on a bare metal cluster with node type: `mb2c.4x32` or `ms2c.4x32.1.9tb.ssd`. If you don't have one, you can use the following steps to help ensure that you create the cluster that you need.
 
-  To see the `mb2c.4x32` option, you must check the **Ubuntu 16** operating system.
-  {: note}
+For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out the tutorial [Creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+{: tip}
+
+### Required resources
+{: #resources}
+
+Before you can work with {{site.data.keyword.datashield_short}}, you must have the following resources.
+
+* An SGX-enabled Kubernetes or OpenShift cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table. 
+
+  <table>
+    <tr>
+      <th>Type of cluster</th>
+      <th>Available machine types</th>
+    </tr>
+    <tr>
+      <td>{{site.data.keyword.containershort}}</td>
+      <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must check the <b>Ubuntu 16</b> operating system.</td>
+    </tr>
+    <tr>
+      <td>{{site.data.keyword.openshiftshort}}</td>
+      <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
+    </tr>
+  </table>
+
+  If you need help with creating your cluster, check out the following resources: 
 
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
@@ -56,18 +88,20 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 
   3. Create the [cluster](/docs/containers?topic=containers-clusters).
 
-* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/){: external} service version 0.5.0 or newer. To install the instance by using Helm, you can run the following command.
+* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/){: external} service version 0.5.0 or newer. The default installation uses <code>cert-manager</code> to set up [TLS certificates](/docs/services/data-shield?topic=data-shield-tls-certificates) for internal communication between {{site.data.keyword.datashield_short}} services. To install an instance by using Helm, you can run the following command.
 
   ```
   helm repo update && helm install --version 0.5.0 stable/cert-manager
   ```
   {: codeblock}
 
-Want to see logging information for Data Shield? Set up an {{site.data.keyword.la_full_notm}} instance for your cluster.
+Want to see logging information for {{site.data.keyword.datashield_short}}? Set up [{{site.data.keyword.la_full_notm}}]().
 {: tip}
 
 
-## Installing with Helm
+
+
+## Installing the Helm chart
 {: #install-chart}
 
 You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
@@ -82,7 +116,8 @@ The Helm chart installs the following components:
 If you have a previous version of {{site.data.keyword.datashield_short}} installed on your cluster, you must [uninstall](/docs/services/data-shield?topic=data-shield-uninstall) that version before you can install this release. Upgrading your version does not install this release.
 {: note}
 
-To install {{site.data.keyword.datashield_short}} onto your cluster:
+### Installing on your cluster
+{: #install-cluster}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -168,9 +203,13 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
       <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
       <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
     </tr>
+    <tr>
+      <td><code>--set global.OpenShiftEnabled=true</code></td>
+      <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+    </tr>
     <!-- <tr>
       <td><code>--set global.ServiceReplicas=<Number of Service Replicas></code></td>
-      <td>Optional: Used to enable high availability by allow multiple instances of IBM Cloud Data Shield components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, we recommend having a minimum of three replicas.</td>
+      <td>Optional: Used to enable high availability by allow multiple instances of {{site.data.keyword.datashield_short}} components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, we recommend having a minimum of three replicas.</td>
     </tr>
     <tr>
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_CREDENTIALS</code></td>
@@ -188,6 +227,4 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
   kubectl get pods
   ```
   {: codeblock}
-
-
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-10-18"
 
 keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
 
@@ -36,18 +36,21 @@ With {{site.data.keyword.datashield_short}}, your app code and data run in CPU-h
 ## Integrations
 {: #integrations}
 
-To provide the most seamless experience for you, {{site.data.keyword.datashield_short}} is integrated with other {{site.data.keyword.cloud_notm}} services, Fortanix®, and Intel® SGX.
+To provide the best experience possible for you, {{site.data.keyword.datashield_short}} is integrated with other {{site.data.keyword.cloud_notm}} services, Fortanix®, and Intel® SGX.
+
 
 <dl>
   <dt>Fortanix®</dt>
-    <dd>With [Fortanix Runtime Encryption](https://fortanix.com/) you can keep your most valuable apps and data protected, even when the infrastructure is compromised. Built on Intel SGX, Fortanix provides a new category of data security called Runtime Encryption. Similar to the way encryption works for data at rest and data during motion, runtime encryption keeps keys, data, and applications that are protected from external and internal threats. The threats might include malicious insiders, cloud providers, OS-level hacks, or network intruders.</dd>
+    <dd>With <a href="https://fortanix.com/" target="_blank" class="external">Fortanix Runtime Encryption</a> you can keep your most valuable apps and data protected, even when the infrastructure is compromised. Built on Intel SGX, Fortanix provides a new category of data security called Runtime Encryption. Similar to the way encryption works for data at rest and data during motion, runtime encryption keeps keys, data, and applications that are protected from external and internal threats. The threats might include malicious insiders, cloud providers, OS-level hacks, or network intruders.</dd>
   <dt>Intel® SGX</dt>
-    <dd>[Intel SGX](https://software.intel.com/en-us/sgx) is an extension to the x86 architecture that allows you to run applications in a fully isolated, secure enclave. The application isn't only isolated from other applications that run on the same system, but also from the Operating System and possible Hypervisor. The isolation also prevents administrators from tampering with the application after it's started. The memory of secure enclaves is also encrypted to thwart physical attacks. The technology also supports storing persistent data securely such that it can be read only by the secure enclave.</dd>
+    <dd>With <a href="https://software.intel.com/en-us/sgx" target="_blank" class="external">Intel SGX</a>, which is an extension to the x86 architecture, you can run applications in a fully isolated, secure enclave. The application isn't only isolated from other applications that run on the same system, but also from the Operating System and possible Hypervisor. The isolation also prevents administrators from tampering with the application after it's started. The memory of secure enclaves is also encrypted to thwart physical attacks. The technology also supports storing persistent data securely such that it can be read only by the secure enclave.</dd>
   <dt>{{site.data.keyword.containerlong_notm}}</dt>
-    <dd>[{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started) delivers powerful tools by combining Docker containers, the Kubernetes technology, an intuitive user experience, and built-in security and isolation to automate working with containerized apps.</dd>
+    <dd><a href="/docs/containers?topic=containers-getting-started">{{site.data.keyword.containerlong_notm}}</a> delivers powerful tools by combining Docker containers, the Kubernetes technology, an intuitive user experience, and built-in security and isolation to automate working with containerized apps.</dd>
+  <dt>{{site.data.keyword.openshiftlong_notm}} (Technical preview)</dt>
+    <dd><a href="/docs/openshift?topic=openshift-getting-started">{{site.data.keyword.openshiftlong_notm}}</a> combines the power of {{site.data.keyword.containerlong_notm}} with the best of IBM Cloud container orchestration software. You get all of the benefits of managed {{site.data.keyword.containerlong_notm}} and you gain the flexibility to use <a href="https://docs.openshift.com/container-platform/3.11/welcome/index.html">OpenShift tools</a> such as Red Hat Enterprise Linux® for your app deployments.</dd>
   <dt>{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</dt>
-    <dd>[IAM](/docs/iam?topic=iam-getstarted) enables you to securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. {{site.data.keyword.cloud_notm}} API keys are available through Tivoli Information Archive Manager that you can use to authenticate through the CLI or as part of automation to log in as your user identity.</dd>
+    <dd>With <a href="/docs/iam?topic=iam-getstarted">IAM</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
   <dt>{{site.data.keyword.la_full_notm}}</dt>
-    <dd>You can expand your log collection, retention, and search abilities by creating a [logging configuration](/docs/containers?topic=containers-health) through the {{site.data.keyword.containerlong_notm}} that forwards your logs to [{{site.data.keyword.la_full_notm}}](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started).
-    With the service, you can also take advantage of centralized insights, log encryption, and log data retention for as long as you need.</dd>
+    <dd>You can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>
 </dl>
+
