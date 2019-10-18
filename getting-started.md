@@ -35,7 +35,7 @@ When it comes to protecting your data, encryption is one of the most popular and
 However, after an application starts to run, data in use by CPU and memory is vulnerable to attacks. Malicious insiders, root users, credential compromise, OS zero-day, and network intruders are all threats to data. Taking encryption one step further, you can now protect data in use. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/services/data-shield?topic=data-shield-about).
 
 
-With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when [installing the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
 {: preview}
 
 ## Before you begin
@@ -219,7 +219,7 @@ To install {{site.data.keyword.datashield_short}} onto your cluster:
 ## Next steps
 {: #gs-next}
 
-Now that the service is installed on your cluster, you can start protecting your data! Next, you can try [converting](/docs/services/data-shield?topic=data-shield-convert), [deploying](/docs/services/data-shield?topic=data-shield-deploying) your applications. 
+Now that the service is installed on your cluster, you can start protecting your data! Next, you can try [converting](/docs/services/data-shield?topic=data-shield-convert) and [deploying](/docs/services/data-shield?topic=data-shield-deploying) your applications. 
 
 If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images:
 
