@@ -259,7 +259,7 @@ Check out the following example to see how to configure a request to generate an
       "output_image_name": "<your-registry-server/your-app-sgx>",
       "isvprodid": <isvprodid>,
       "isvsvn": <isvsvn>,
-      "memsize": <memory_size>,
+      "mem_size": <memory_size>,
       "threads": <threads>,
       "allowed_domains": ["<SGX-Application.domain>"],
       "advanced_settings": {
