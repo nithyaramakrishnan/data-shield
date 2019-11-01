@@ -184,7 +184,7 @@ The Helm chart installs the following components:
     ```
     {: codeblock}
 
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://github.com/helm/helm/blob/master/docs/tiller_ssl.md){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run. For more information about using Helm with IBM Cloud Kubernetes Service, see [Adding services by using Helm Charts](/docs/containers?topic=containers-helm#public_helm_install).
+  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
   {: tip}
 
 7. Install the chart.
