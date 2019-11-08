@@ -191,7 +191,7 @@ When an application is whitelisted, it is added to the list of pending requests 
 ## Viewing logs
 {: #em-view}
 
-You can audit your Enclave manager instance for several different types of activity. 
+You can audit your Enclave manager instance for several different types of activity.
 {: shortdesc}
 
 1. Navigate to the **Audit log** tab of the Enclave Manager UI.
@@ -201,8 +201,22 @@ You can audit your Enclave manager instance for several different types of activ
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate authority: Activity that pertains to a certificate authority.
-  * Administration: Activity that pertains to administration. 
+  * Administration: Activity that pertains to administration.
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
 {: tip}
 
+## Configure Certificate
+{: #em-certificate}
+
+Add a certificate using the Certificate configuration section in the **Add application** page of {{site.data.keyword.datashield_short}}. A converted application can request a certificate from  {{site.data.keyword.datashield_short}} when your application is started. The certificates are signed by the IBM Cloud Data Shield Certificate Authority, which issues certificates only to enclaves presenting a valid attestation. Following are the **Certificate Configuration** fields:
+* Key path – Enter the key path that will be accessible by the application. For example: `/etc/nginx/nginx-key.pem`
+* Certificate path – Enter the certificate path that will be accessible by the application. For example: `/etc/nginx/nginx-cert.pem`
+* CA Cert path (optional) – Enter the path to store the Data Shield CA certificate.For example: `/etc/cacert.pem`
+* Chain path (optional) – Enter the chain path for the complete certificate chain.
+* Subject – Enter the subject which is same as the value in the Allowed domain(s) list.
+
+As an optional step, the user can install the CA certificate in the system trust store where all the certificates are stored. Following are the three options:
+*	**Yes, install and continue build conversion even if the installation fails** – select this option if you want to convert the build even after the CA Certificate installation fails.
+*	**Yes, install and fail build conversion if the installation fails** – select this option if you want to stop build conversion after the CA Certificate installation fails.
+*	**No, do not install** – select this option if you do not want to install the CA Certificate.
