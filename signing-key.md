@@ -1,13 +1,11 @@
 ---
-
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: converted containers, sign sgx, app security, production apps, images, containers, cluster, debug key, intel signing key, intel, data protection, runtime, memory encryption, 
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
@@ -25,10 +23,8 @@ subcollection: data-shield
 # Signing converted containers
 {: #enclaveos-signer}
 
-All of the converted containers that are used with {{site.data.keyword.datashield_full}} are signed by an SGX debug key. To ensure the security of your applications that run in {{site.data.keyword.datashield_full}}, you must obtain a signing key from Intel to run converted containers on production.
+When a container is converted by {{site.data.keyword.datashield_full}}, it is signed by an Intel SGX debug key. However, debug keys are not recommended for use with production ready workloads. To ensure the security of your applications, you must obtain a signing key from Intel to run converted containers in production environments.
 {: shortdesc}
-
-
 
 ## Requesting a production signing key
 {: #signing-key-request}
