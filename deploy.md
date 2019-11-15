@@ -4,10 +4,9 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-10-18"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: clusters, deploy apps, pod specification, security policies, containers, encryption, helm, sample apps, volumes, memory, data in use,
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}

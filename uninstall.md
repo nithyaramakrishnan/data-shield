@@ -1,13 +1,11 @@
 ---
-
 copyright:
   years: 2018, 2019
-lastupdated: "2019-09-16"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
@@ -21,6 +19,7 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+
 
 # Uninstalling
 {: #uninstall}

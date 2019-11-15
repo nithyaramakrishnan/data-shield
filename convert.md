@@ -2,12 +2,11 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}

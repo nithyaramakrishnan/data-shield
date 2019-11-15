@@ -1,13 +1,11 @@
 ---
-
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: tls certificates, data in use, certificate authority, backend services, ingress proxy, issue cert, enclave manager, data shield, private key, data protection, cluster, container, app security, memory,
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}

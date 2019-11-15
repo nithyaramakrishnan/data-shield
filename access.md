@@ -2,12 +2,11 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
@@ -25,9 +24,11 @@ subcollection: data-shield
 # Assigning access
 {: #access}
 
-You can control access to the {{site.data.keyword.datashield_full}} Enclave Manager. This type of access control is separate from the typical Identity and Access Management (IAM) roles that you use when you are working with {{site.data.keyword.cloud_notm}}.
+You can give access to the Enclave Manager to users that might need to deploy, convert, or delete applications from the {{site.data.keyword.datashield_full}} environment.
 {: shortdesc}
 
+This type of access control is separate from the typical Identity and Access Management (IAM) roles that you use when you are working with {{site.data.keyword.cloud_notm}}.
+{: tip}
 
 ## Assigning cluster access
 {: #access-cluster}

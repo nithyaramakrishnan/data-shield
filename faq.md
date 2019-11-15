@@ -1,13 +1,11 @@
 ---
-
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}

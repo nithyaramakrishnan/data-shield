@@ -2,12 +2,11 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
@@ -25,7 +24,7 @@ subcollection: data-shield
 # About the service
 {: #about}
 
-With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can protect the data in your container workloads that run on {{site.data.keyword.cloud_notm}} while your data is in use.
+With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can protect the data in your containerized workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
 {: shortdesc}
 
 When it comes to protecting your data, encryption is one of the most popular and effective controls. But, the data must be encrypted at each step of its lifecycle for your data to really be secure. During its lifecycle, data has three phases. It can be at rest, in motion, or in use. Data at rest and in motion are generally the area of focus when you think of securing your data. But, after an application starts to run, data that is in use by CPU and memory is vulnerable to various attacks. The attacks might include malicious insiders, root users, credential compromise, OS zero-day, network intruders, and others. Taking that protection one step further, you can now encrypt data in use. 

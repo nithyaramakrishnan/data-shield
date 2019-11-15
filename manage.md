@@ -1,13 +1,11 @@
 ---
-
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
@@ -137,6 +135,7 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 
 
+
 ## Editing an app
 {: #em-app-edit}
 
@@ -205,4 +204,7 @@ You can audit your Enclave manager instance for several different types of activ
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
 {: tip}
+
+
+
 

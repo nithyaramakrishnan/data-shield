@@ -2,12 +2,11 @@
 
 copyright:
 	years: 2018, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-11-15"
 
-keywords: Data protection, data in use, runtime encryption, runtime memory encryption, encrypted memory, Intel SGX, software guard extensions, Fortanix runtime encryption
+keywords: backup, restore, enclave manager, app security, memory encryption, database, container, kube security, nodes, hmac credentials, helm, keys
 
 subcollection: data-shield
-
 ---
 
 {:external: target="_blank" .external}
