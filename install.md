@@ -155,7 +155,10 @@ The Helm chart installs the following components:
 
 6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. Initialize Helm by creating a role binding policy for Tiller. 
+7. If you're working with Helm version 2, initialize Helm by creating a role binding policy for Tiller.
+
+  As part of the release of Helm 3, Tiller is deprecated. With Tiller gone, the security model for Helm is simplified and permissions are evaluated by using your kubeconfig file. For more information, see [the Helm docs](https://helm.sh/docs/faq/){: external}.
+  {: deprecated}
 
   1. Create a service account for Tiller.
   
@@ -177,9 +180,6 @@ The Helm chart installs the following components:
     helm init --service-account tiller --upgrade
     ```
     {: codeblock}
-
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-  {: tip}
 
 8. Install the chart.
 

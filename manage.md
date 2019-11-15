@@ -128,11 +128,51 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 6. Enter any allowed domains.
 
-7. Edit any advanced settings that you might want to change.
+7. Edit any advanced settings that you might want to change. For more information about the certificate configuration options, see [Configuring certificates](/docs/services/data-shield?topic=data-shield-enclave-manager#em-certificate).
 
 8. Click **Add**. The application added to your list of available applications. To deploy your app, create a build and then approve the build request in the **tasks** tab.
 
 
+### Configuring certificates
+{: #em-certificate}
+
+A converted application can request a certificate from {{site.data.keyword.datashield_short}} when the app is started. The certificates are signed by the {{site.data.keyword.datashield_short}} certificate authority, which issues certificates only to enclaves that present valid attestation.
+
+1. In the certificate configuration field, provide the information as outlined in the following table.
+
+  <table>
+    <caption>Table 1. Certificate configuration options</caption>
+    <tr>
+      <th>Configuration option</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Key path</td>
+      <td>The path to the key that is accessible by the application. For example: <code>/etc/nginx/nginx-key.pem</code></td>
+    </tr>
+    <tr>
+      <td>Certificate path</td>
+      <td>The path to the certificate that is accessible by the application. For example: <code>/etc/nginx/nginx-cert.pem</code></td>
+    </tr>
+    <tr>
+      <td>Optional: CA cert path</td>
+      <td>The path to store the {{site.data.keyword.datashield_short}} CA certificate. For example: <code>/etc/cacert.pem</code>.</td>
+    </tr>
+    <tr>
+      <td>Optional: Chain path</td>
+      <td>The path for the complete certificate chain.</td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td>The subject, as shown in the Allowed domains list.</td>
+    </tr>
+  </table>
+
+2. Choose from the following options whether to install the CA certificate in the system truststore with all of the other certificates.
+
+  * **Yes, install and continue build conversion even if the installation fails**: Allows the build conversion to complete even if the certificate installation fails.
+  * **Yes, install and fail build conversion if the installation fails**: Stops the build conversion if the certificate installation fails.
+  *	**No, do not install**: Does not install the certificate.
 
 
 
