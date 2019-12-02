@@ -116,7 +116,7 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 3. Give your application a name and description.
 
-4. Enter the input and output name for your images. The input is the name of your registry and image without the tag. The output is the name of the registry and image where you want to send the converted application.
+4. Enter the input and output name for your images. The input is the name of your registry and image without the docker tag. The docker tag will eventually be added to the builds of this app, by copying from the source build (See Step 4 of "Building applications" section). The output is the name of the registry and image where you want to send the converted application.
 
 5. Enter an **ISVPRDID**. It is a numeric product identifier that you assign to the enclave. You can choose a unique value in range 0 - 65,535.
 
@@ -230,7 +230,7 @@ When an application is whitelisted, it is added to the list of pending requests 
 ## Viewing logs
 {: #em-view}
 
-You can audit your Enclave manager instance for several different types of activity. 
+You can audit your Enclave manager instance for several different types of activity.
 {: shortdesc}
 
 1. Navigate to the **Audit log** tab of the Enclave Manager UI.
@@ -240,11 +240,7 @@ You can audit your Enclave manager instance for several different types of activ
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate authority: Activity that pertains to a certificate authority.
-  * Administration: Activity that pertains to administration. 
+  * Administration: Activity that pertains to administration.
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
 {: tip}
-
-
-
-
