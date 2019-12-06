@@ -75,7 +75,7 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 To update to the newest version with the Helm chart, run the following command.
 
   ```
-  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 
+  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
   ```
   {: codeblock}
 
@@ -95,3 +95,5 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
   </table>
 
+  **Note:** Node enrollment and app certificate issuance will now succeed by default on platforms running out of date microcode. If you want these operations to fail on out of date platforms, you can provide the option `--set Manager.FailOnGroupOutOfDate=true` when installing your cluster. It is not possible to change the option on existing clusters.
+  {: note}

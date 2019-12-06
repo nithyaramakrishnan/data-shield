@@ -24,7 +24,7 @@ subcollection: data-shield
 # Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
+You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart.
 {: shortdesc}
 
 **Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
@@ -60,7 +60,7 @@ For help with downloading the CLIs or configuring your {{site.data.keyword.conta
 
 Before you can work with {{site.data.keyword.datashield_short}}, you must have the following resources.
 
-* An SGX-enabled Kubernetes or OpenShift cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table. 
+* An SGX-enabled Kubernetes or OpenShift cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table.
 
   <table>
     <tr>
@@ -77,7 +77,7 @@ Before you can work with {{site.data.keyword.datashield_short}}, you must have t
     </tr>
   </table>
 
-  If you need help with creating your cluster, check out the following resources: 
+  If you need help with creating your cluster, check out the following resources:
 
   1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
 
@@ -153,7 +153,7 @@ The Helm chart installs the following components:
   ```
   {: codeblock}
 
-6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
+6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities.
 
 7. If you're working with Helm version 2, initialize Helm by creating a role binding policy for Tiller.
 
@@ -161,7 +161,7 @@ The Helm chart installs the following components:
   {: deprecated}
 
   1. Create a service account for Tiller.
-  
+
     ```
     kubectl --namespace kube-system create serviceaccount tiller
     ```
@@ -216,10 +216,12 @@ The Helm chart installs the following components:
     </tr> -->
   </table>
 
+**Note:** Node enrollment and app certificate issuance will now succeed by default on platforms running out of date microcode. If you want these operations to fail on out of date platforms, you can provide the option `--set Manager.FailOnGroupOutOfDate=true` when installing your cluster. It is not possible to change the option on existing clusters.
+{: note}
+
 9. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
   ```
   {: codeblock}
-
