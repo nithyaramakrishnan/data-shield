@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-11-15"
+lastupdated: "2019-12-16"
 
 keywords: secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
 
@@ -52,4 +52,16 @@ To provide the best experience possible for you, {{site.data.keyword.datashield_
   <dt>{{site.data.keyword.la_full_notm}}</dt>
     <dd>You can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>
 </dl>
+
+## Disaster recovery
+{: #disaster-recovery}
+
+When you work with {{site.data.keyword.datashield_short}}, you are responsible for the backup and recovery of your data.
+
+When you establish high availability and create a disaster recovery scenario be sure:
+
+* That your application continuously monitors to ensure the reliability and availability of your service evironment.
+* To back up and recover data in the same region in which the service operates.
+
+For more information about backing up your instance of the Enclave Manager, see [Backing up and restoring](/docs/services/data-shield?topic=data-shield-backup-restore).
 
