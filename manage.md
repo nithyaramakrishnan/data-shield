@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2019
-lastupdated: "2019-11-15"
+lastupdated: "2019-12-02"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -116,7 +116,11 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 3. Give your application a name and description.
 
+<<<<<<< HEAD
 4. Enter the input and output name for your images. The input is the name of your registry and image without the docker tag. The docker tag will eventually be added to the builds of this app, by copying from the source build (See Step 4 of "Building applications" section). The output is the name of the registry and image where you want to send the converted application.
+=======
+4. Enter the input and output name for your images. The input is the name of your registry and image without the Docker tag. The Docker tag is added when the app is built. The output is the name of the registry and image where you want to send the converted application.
+>>>>>>> a34a6260475217f41af3e17bcb358d6b6042d25c
 
 5. Enter an **ISVPRDID**. It is a numeric product identifier that you assign to the enclave. You can choose a unique value in range 0 - 65,535.
 
