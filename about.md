@@ -56,12 +56,5 @@ To provide the best experience possible for you, {{site.data.keyword.datashield_
 ## Disaster recovery
 {: #disaster-recovery}
 
-When you work with {{site.data.keyword.datashield_short}}, you are responsible for the backup and recovery of your data.
-
-When you establish high availability and create a disaster recovery scenario be sure:
-
-* That your application continuously monitors to ensure the reliability and availability of your service evironment.
-* To back up and recover data in the same region in which the service operates.
-
-For more information about backing up your instance of the Enclave Manager, see [Backing up and restoring](/docs/services/data-shield?topic=data-shield-backup-restore).
+When you work with {{site.data.keyword.datashield_short}}, you are responsible for the backup and recovery of your data. For more information about backing up your instance of the Enclave Manager, see [Backing up and restoring](/docs/services/data-shield?topic=data-shield-backup-restore).
 
