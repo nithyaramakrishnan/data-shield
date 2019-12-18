@@ -36,7 +36,7 @@ Don't have an application to try the service? No problem. We offer several sampl
 1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
 
 2. Save the following pod specification as a template.
-NOTE: The line 'type: CharDevice' is important. This will prevent Kubernetes from creating an empty directory if the underlying device files does not exist.
+NOTE: The line 'type: CharDevice' is important. This will prevent Kubernetes from creating an empty directory if the underlying device file does not exist.
 {: note}
     ```
     apiVersion: v1
