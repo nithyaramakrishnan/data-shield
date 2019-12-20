@@ -87,11 +87,15 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
     <tr>
       <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
-      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
+      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the update command.</td>
     </tr>
     <tr>
       <td><code>--set global.OpenShiftEnabled=true</code></td>
       <td>Optional: If you're working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+    </tr>
+    <tr>
+      <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
+      <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your update command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
   </table>
 
