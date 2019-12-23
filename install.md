@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2019
-lastupdated: "2019-11-15"
+lastupdated: "2019-12-16"
 
 keywords: install data shield, data in use, helm, cluster, environment variable, role binding, bare metal, tls certificates, tiller, ingress, subdomain, docker configuration, sample app, tech preivew, runtime encryption, memory, app security,
 
@@ -27,7 +27,7 @@ subcollection: data-shield
 You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart.
 {: shortdesc}
 
-**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
 
 ## Before you begin
 {: #begin}
@@ -37,7 +37,7 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 ### Prerequisites
 {: #prereq}
 
-To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your Kubernetes Service environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
+To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
 
 * CLIs:
 
@@ -52,7 +52,7 @@ To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you
   * {{site.data.keyword.registryshort_notm}}
 
 
-For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 {: tip}
 
 ### Required resources
@@ -60,7 +60,7 @@ For help with downloading the CLIs or configuring your {{site.data.keyword.conta
 
 Before you can work with {{site.data.keyword.datashield_short}}, you must have the following resources.
 
-* An SGX-enabled Kubernetes or OpenShift cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table.
+* An SGX-enabled Kubernetes or {{site.data.keyword.openshiftshort}} cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table.
 
   <table>
     <tr>
@@ -200,20 +200,12 @@ The Helm chart installs the following components:
     </tr>
     <tr>
       <td><code>--set global.OpenShiftEnabled=true</code></td>
-      <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
-    </tr>
-    <!-- <tr>
-      <td><code>--set global.ServiceReplicas=<Number of Service Replicas></code></td>
-      <td>Optional: Used to enable high availability by allow multiple instances of {{site.data.keyword.datashield_short}} components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, we recommend having a minimum of three replicas.</td>
+      <td>Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command.</td>
     </tr>
     <tr>
-      <td><code>--set enclaveos-chart.Ias.Mode=IAS_CREDENTIALS</code></td>
-      <td>Optional: You can use your own IAS credentials. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-credentials --from-file=ias-credentials.crt --from-file=ias-credentials.key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid></code></td>
+      <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
+      <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
-    <tr>
-      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-      <td>Optional: You can use your own IAS API key. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey>. Note: By default, IAS requests are made through a proxy service.</code></td>
-    </tr> -->
   </table>
 
 **Note:** Node enrollment and app certificate issuance will now succeed by default on platforms running out of date microcode. If you want these operations to fail on out of date platforms, you can provide the option `--set Manager.FailOnGroupOutOfDate=true` when installing your cluster. It is not possible to change the option on existing clusters.

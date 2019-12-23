@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2019
-lastupdated: "2019-11-15"
+lastupdated: "2019-12-16"
 
 keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
@@ -26,12 +26,6 @@ subcollection: data-shield
 
 This FAQ provides answers to common questions about the {{site.data.keyword.datashield_full}} service.
 {: shortdesc}
-
-## How is pricing calculated for {{site.data.keyword.datashield_full}}?
-{: #pricing}
-{: faq}
-
-{{site.data.keyword.datashield_full}} runs on SGX enabled clusters. When you provision an instance of IBM Cloud Kubernetes Service, you are charged as outlined in your purchase for the infrastructure that you use. However, {{site.data.keyword.datashield_full}} itself is currently being offered as a promotion and is free to try.
 
 
 ## What is enclave attestation? When and why is it required?
