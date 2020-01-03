@@ -111,7 +111,7 @@ If your token is present, verify that it is still valid and run the request agai
 You attempt to run the container converter on an image from a private Docker registry and the converter is unable to connect.
 
 {: tsCauses}
-Your private registry credentials might not be configured correctly. 
+Your private registry credentials might not be configured correctly.
 
 {: tsResolve}
 To resolve the issue, you can follow these steps:
@@ -139,7 +139,7 @@ Mounting can fail due to issues with the configuration of the host.
 {: tsResolve}
 To resolve the issue, verify both:
 
-* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the {{site.data.keyword.datashield_short}} software, and perform the installation steps again. 
+* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the {{site.data.keyword.datashield_short}} software, and perform the installation steps again.
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
 
 
@@ -155,7 +155,7 @@ You encounter the following error when you try to convert your container.
 {: codeblock}
 
 {: tsCauses}
-On macOS, if the OS X Keychain is used in your `config.json` file the container converter fails. 
+On macOS, if the OS X Keychain is used in your `config.json` file the container converter fails.
 
 {: tsResolve}
 To resolve the issue you can use the following steps:
@@ -216,9 +216,62 @@ To resolve the issue, delete the following CRDs.
 
 ```
 kubectl delete crd certificates.certmanager.k8s.io
-kubectl delete crd clusterissuers.certmanager.k8s.io 
+kubectl delete crd clusterissuers.certmanager.k8s.io
 kubectl delete crd issuers.certmanager.k8s.io
 ```
 {: codeblock}
 
+## Error: `datashield-sgx` pod fails
+{: #ts-datashiled-sgx-pod}
 
+{: tsSymptoms}
+You encounter the following error when the `datashiled-sgx` pod fails when you try to install the SGX driver.
+
+```
+Starting SGX Installer
+UBUNTU
+Verifying archive integrity... All good.
+Uncompressing SGX base drivers installer
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libprotobuf9v5 is already the newest version (2.6.1-1.3).
+dkms is already the newest version (2.2.0.3-2ubuntu11.8).
+libcurl3 is already the newest version (7.47.0-1ubuntu2.14).
+linux-headers-4.4.0-157-generic is already the newest version (4.4.0-157.185).
+0 upgraded, 0 newly installed, 0 to remove and 82 not upgraded.
+1 not fully installed or removed.
+After this operation, 0 B of additional disk space will be used.
+Setting up libsgx-enclave-common (2.4.100.48163-xenial1) ...
+cp: cannot stat '/opt/intel/libsgx-enclave-common/aesm/data': No such file or directory
+dpkg: error processing package libsgx-enclave-common (--configure):
+ subprocess installed post-installation script returned error exit status 1
+Processing triggers for libc-bin (2.23-0ubuntu11) ...
+Errors were encountered while processing:
+ libsgx-enclave-common
+  100%  E: Sub-process /usr/bin/dpkg returned an error code (1)
+```
+{: codeblock}
+
+{: tsCauses}
+
+{: tsResolve}
+To resolve the issue, you can use the following steps:
+
+1. Access each node on the cluster.
+
+2. run either of the following commands on each node:
+
+```
+dpkg --purge libsgx-enclave-common
+```
+{: codeblock}
+
+or
+
+```
+sudo rm -rf /opt/intel/libsgx-enclave-common
+```
+{: codeblock}
+
+3. Reinstall the SGX driver. This will run the `datashiled-sgx` pod again.
