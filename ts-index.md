@@ -256,7 +256,7 @@ Errors were encountered while processing:
 {: tsCauses}
 
 {: tsResolve}
-To resolve the issue, you can use the following steps:
+To resolve the issue, try the following steps:
 
 1. Access each node on the cluster.
 
