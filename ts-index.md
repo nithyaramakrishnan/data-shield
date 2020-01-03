@@ -254,6 +254,7 @@ Errors were encountered while processing:
 {: codeblock}
 
 {: tsCauses}
+You might have not installed the intel/sgx libraries such as `libsgx-enclave-common`, which would have caused the sgx driver to fail resulting in the script not being able to install the package since it was unable to access the package in the cluster.
 
 {: tsResolve}
 To resolve the issue, try the following steps:
