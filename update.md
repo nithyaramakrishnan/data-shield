@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-11-15"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -74,6 +74,9 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 
 To update to the newest version with the Helm chart, run the following command.
 
+  {{site.data.keyword.datashield_short}} is not configured to work with Helm v3. Be sure that you're using Helm v2.
+  {: tip}
+
   ```
   helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 
   ```
@@ -96,6 +99,10 @@ To update to the newest version with the Helm chart, run the following command.
     <tr>
       <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
       <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your update command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
+    </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
     </tr>
   </table>
 

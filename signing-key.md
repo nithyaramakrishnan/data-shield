@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-11-15"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: converted containers, sign sgx, app security, production apps, images, containers, cluster, debug key, intel signing key, intel, data protection, runtime, memory encryption, 
 

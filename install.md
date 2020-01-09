@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-12-16"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: install data shield, data in use, helm, cluster, environment variable, role binding, bare metal, tls certificates, tiller, ingress, subdomain, docker configuration, sample app, tech preivew, runtime encryption, memory, app security,
 
@@ -24,7 +24,7 @@ subcollection: data-shield
 # Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} on either an {{site.data.keyword.containerlong_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
+You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
 {: shortdesc}
 
 **Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
@@ -37,23 +37,18 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 ### Prerequisites
 {: #prereq}
 
-To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
-
-* CLIs:
-
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
-  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
-  * [Docker](https://docs.docker.com/install/){: external}
-  * [Helm](/docs/containers?topic=containers-helm)
-
-* [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins):
-
-  * {{site.data.keyword.containershort}}
-  * {{site.data.keyword.registryshort_notm}}
+To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 
-For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
+* [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
+* [Docker](https://docs.docker.com/install/){: external}
+* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plugins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
+* [Helm version 2](/docs/containers?topic=containers-helm): Be sure to follow the instructions for setting up Helm in a cluster with public access.
+
+You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
 {: tip}
+
 
 ### Required resources
 {: #resources}
@@ -155,33 +150,7 @@ The Helm chart installs the following components:
 
 6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. If you're working with Helm version 2, initialize Helm by creating a role binding policy for Tiller.
-
-  As part of the release of Helm 3, Tiller is deprecated. With Tiller gone, the security model for Helm is simplified and permissions are evaluated by using your kubeconfig file. For more information, see [the Helm docs](https://helm.sh/docs/faq/){: external}.
-  {: deprecated}
-
-  1. Create a service account for Tiller.
-  
-    ```
-    kubectl --namespace kube-system create serviceaccount tiller
-    ```
-    {: codeblock}
-
-  2. Create the role binding to assign Tiller admin access in the cluster.
-
-    ```
-    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-    ```
-    {: codeblock}
-
-  3. Initialize Helm.
-
-    ```
-    helm init --service-account tiller --upgrade
-    ```
-    {: codeblock}
-
-8. Install the chart.
+7. Install the chart.
 
   ```
   helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
@@ -206,9 +175,13 @@ The Helm chart installs the following components:
       <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
       <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    </tr>
   </table>
 
-9. To monitor the startup of your components, you can run the following command.
+8. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods

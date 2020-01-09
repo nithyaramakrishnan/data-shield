@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-11-15"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -220,5 +220,6 @@ kubectl delete crd clusterissuers.certmanager.k8s.io
 kubectl delete crd issuers.certmanager.k8s.io
 ```
 {: codeblock}
+
 
 
