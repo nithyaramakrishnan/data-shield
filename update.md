@@ -74,6 +74,9 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 
 To update to the newest version with the Helm chart, run the following command.
 
+  {{site.data.keyword.datashield_short}} is not configured to work with Helm v3. Be sure that you're using Helm v2.
+  {: tip}
+
   ```
   helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 
   ```

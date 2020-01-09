@@ -24,7 +24,7 @@ subcollection: data-shield
 # Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} on either an {{site.data.keyword.containerlong_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
+You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
 {: shortdesc}
 
 **Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
@@ -44,7 +44,10 @@ To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you
   * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
   * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
   * [Docker](https://docs.docker.com/install/){: external}
-  * [Helm](/docs/containers?topic=containers-helm)
+  * [Helm version 2](/docs/containers?topic=containers-helm)
+
+  {{site.data.keyword.datashield_short}} is not configured to work with Helm v3. Be sure that you're using Helm v2.
+  {: important}
 
 * [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins):
 
@@ -155,10 +158,10 @@ The Helm chart installs the following components:
 
 6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. If you're working with Helm version 2, initialize Helm by creating a role binding policy for Tiller.
+7. Install Tiller. You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
 
-  As part of the release of Helm 3, Tiller is deprecated. With Tiller gone, the security model for Helm is simplified and permissions are evaluated by using your kubeconfig file. For more information, see [the Helm docs](https://helm.sh/docs/faq/){: external}.
-  {: deprecated}
+  Both {{site.data.keyword.datashield_short}} and Tiller are not configured to work with Helm v3. Be sure that you're using Helm v2.
+  {: tip}
 
   1. Create a service account for Tiller.
   
@@ -206,6 +209,18 @@ The Helm chart installs the following components:
       <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
       <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
+    <!--<tr>
+      <td><code>--set global.ServiceReplicas=<Number of Service Replicas></code></td>
+      <td>Optional: Used to enable high availability by allow multiple instances of {{site.data.keyword.datashield_short}} components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, a minimum of three replicas is recommended.</td>
+    </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_CREDENTIALS</code></td>
+      <td>Optional: You can use your own IAS credentials. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-credentials --from-file=ias-credentials.crt --from-file=ias-credentials.key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid></code></td>
+    </tr>
+    <tr>
+      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+      <td>Optional: You can use your own IAS API key. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    </tr>--> 
   </table>
 
 9. To monitor the startup of your components, you can run the following command.
