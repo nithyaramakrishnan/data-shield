@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-11-15"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -328,7 +328,7 @@ Check out the following example to see how to configure a request to generate an
     </tr>
   </table>
 
-7. Enter your variables and run the following command to convert and create a build for your 
+7. Enter your variables and run the following command to convert and create a build for your application.
 
   ```
   curl -H 'Content-Type: application/json' -d @app.json  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/apps

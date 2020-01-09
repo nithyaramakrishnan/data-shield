@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-12-16"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
@@ -35,7 +35,7 @@ This FAQ provides answers to common questions about the {{site.data.keyword.data
 Enclaves are instantiated on platforms by untrusted code. So, before enclaves are provisioned with application confidential information, it is essential to be able to confirm that the enclave was correctly instantiated on a platform that is protected by Intel® SGX. This is done by a remote attestation process. Remote attestation consists of using Intel® SGX instructions and platform software to generate a “quote”. The quote combines the enclave digest with a digest of relevant enclave data and a platform-unique asymmetric key into a data structure that is sent to a remote server over an authenticated channel. If the remote server concludes that the enclave was instantiated as intended and is running on a genuine Intel® SGX-capable processor, it provisions the enclave as required.
 
 
-## What languages are currently supported from {{site.data.keyword.datashield_short}}?
+## What languages are currently supported?
 {: #language-support}
 {: faq}
 

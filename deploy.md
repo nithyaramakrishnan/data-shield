@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-10-18"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: clusters, deploy apps, pod specification, security policies, containers, encryption, helm, sample apps, volumes, memory, data in use,
 

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-12-16"
+  years: 2018, 2020
+lastupdated: "2020-01-09"
 
 keywords: install data shield, data in use, helm, cluster, environment variable, role binding, bare metal, tls certificates, tiller, ingress, subdomain, docker configuration, sample app, tech preivew, runtime encryption, memory, app security,
 
