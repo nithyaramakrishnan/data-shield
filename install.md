@@ -209,18 +209,10 @@ The Helm chart installs the following components:
       <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
       <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
-    <!--<tr>
-      <td><code>--set global.ServiceReplicas=<Number of Service Replicas></code></td>
-      <td>Optional: Used to enable high availability by allow multiple instances of {{site.data.keyword.datashield_short}} components to run. The number of service replicas must be less than or equal to the number of available nodes in your Kubernetes cluster. To ensure high availability, a minimum of three replicas is recommended.</td>
-    </tr>
-    <tr>
-      <td><code>--set enclaveos-chart.Ias.Mode=IAS_CREDENTIALS</code></td>
-      <td>Optional: You can use your own IAS credentials. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-credentials --from-file=ias-credentials.crt --from-file=ias-credentials.key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid></code></td>
-    </tr>
     <tr>
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-      <td>Optional: You can use your own IAS API key. To do so, you must first generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
-    </tr>--> 
+      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    </tr>
   </table>
 
 9. To monitor the startup of your components, you can run the following command.
