@@ -37,26 +37,18 @@ Before you can begin working with {{site.data.keyword.datashield_short}}, you mu
 ### Prerequisites
 {: #prereq}
 
-To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out the tutorial, [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1).
-
-* CLIs:
-
-  * [{{site.data.keyword.cloud_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
-  * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
-  * [Docker](https://docs.docker.com/install/){: external}
-  * [Helm version 2](/docs/containers?topic=containers-helm)
-
-  {{site.data.keyword.datashield_short}} is not configured to work with Helm v3. Be sure that you're using Helm v2.
-  {: important}
-
-* [CLI plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins):
-
-  * {{site.data.keyword.containershort}}
-  * {{site.data.keyword.registryshort_notm}}
+To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 
-For help with downloading the CLIs or configuring your {{site.data.keyword.containershort}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
+* [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
+* [Docker](https://docs.docker.com/install/){: external}
+* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plugins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
+* [Helm version 2](/docs/containers?topic=containers-helm): Be sure to follow the instructions for setting up Helm in a cluster with public access.
+
+You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
 {: tip}
+
 
 ### Required resources
 {: #resources}
@@ -158,33 +150,7 @@ The Helm chart installs the following components:
 
 6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. Install Tiller. You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-
-  Both {{site.data.keyword.datashield_short}} and Tiller are not configured to work with Helm v3. Be sure that you're using Helm v2.
-  {: tip}
-
-  1. Create a service account for Tiller.
-  
-    ```
-    kubectl --namespace kube-system create serviceaccount tiller
-    ```
-    {: codeblock}
-
-  2. Create the role binding to assign Tiller admin access in the cluster.
-
-    ```
-    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-    ```
-    {: codeblock}
-
-  3. Initialize Helm.
-
-    ```
-    helm init --service-account tiller --upgrade
-    ```
-    {: codeblock}
-
-8. Install the chart.
+7. Install the chart.
 
   ```
   helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
@@ -215,7 +181,7 @@ The Helm chart installs the following components:
     </tr>
   </table>
 
-9. To monitor the startup of your components, you can run the following command.
+8. To monitor the startup of your components, you can run the following command.
 
   ```
   kubectl get pods
