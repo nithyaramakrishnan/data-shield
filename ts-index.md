@@ -254,24 +254,11 @@ Errors were encountered while processing:
 {: codeblock}
 
 {: tsCauses}
+You might have not installed the intel/sgx libraries such as `libsgx-enclave-common` because the worker node is in a bad state such as the `dpk` package was not working properly or the installer pod was not installing correctly on the said worker node.
 
 {: tsResolve}
 To resolve the issue, you can use the following steps:
 
-1. Access each node on the cluster.
+1. Access the worker node on the cluster and restart it.
 
-2. run either of the following commands on each node:
-
-```
-dpkg --purge libsgx-enclave-common
-```
-{: codeblock}
-
-or
-
-```
-sudo rm -rf /opt/intel/libsgx-enclave-common
-```
-{: codeblock}
-
-3. Reinstall the SGX driver. This will run the `datashiled-sgx` pod again.
+2. Reinstall the SGX driver. This will run the `datashiled-sgx` pod again and install the necessary packages.
