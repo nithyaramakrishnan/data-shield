@@ -192,6 +192,7 @@ Now that the service is installed on your cluster, you can start protecting your
 
 If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images:
 
+* [Sample apps](https://github.com/ibm-cloud-security/data-shield-reference-apps){: external}
 * [Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet){: external}
 * Container Registry: [Barbican image](/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter), [MariaDB image](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter), [NGINX image](/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter), or [Vault image](/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter).
 
