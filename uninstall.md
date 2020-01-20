@@ -124,7 +124,7 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-7. Optional: Delete your converter service ID. Note, if you choose to delete your service ID, your Docker config secret will no longer work. 
+7. Optional: Delete your converter service ID. Note: if you choose to delete your service ID, your Docker config secret will no longer work. 
 
   ```
   ibmcloud iam service-id-delete <service_id>
