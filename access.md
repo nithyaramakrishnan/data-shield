@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-01-20"
 
 keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
@@ -30,29 +30,26 @@ You can give access to the Enclave Manager to users that might need to deploy, c
 This type of access control is separate from the typical Identity and Access Management (IAM) roles that you use when you are working with {{site.data.keyword.cloud_notm}}.
 {: tip}
 
-## Assigning cluster access
-{: #access-cluster}
+## Assigning account access
+{: #access-account}
 
-Before you can sign in to the Enclave Manager, you must have access to the cluster that the Enclave Manager is running on.
+Before you can invite other users to use your account, you must be an account owner or admin.
 {: shortdesc}
 
-1. Sign in to the account that hosts the cluster that you want to sign in to.
+1. Sign in to your account.
 
 2. Go to **Manage > Access (IAM) > Users**.
 
 3. Click **Invite users**.
 
-4. Provide the email addresses for the user's that you want to add.
+4. Enter the email addresses for the users that you want to add. You can enter up to 100 at a time separated by commas, spaces, or line breaks.
 
-5. From the **Assign access to** drop down, select **Resource**.
+5. Click **Invite**. 
 
-6. From the **Services** drop down, select **Kubernetes Service**.
+There is no need to assign additional access to specific resources.
+{: tip}
 
-7. Select a **Region**, **Cluster**, and **Namespace**.
 
-8. Using the Kubernetes Service documentation on [assigning cluster access](/docs/containers?topic=containers-users) as a guide, assign the access that the user needs to complete their tasks.
-
-9. Click **Save**.
 
 ## Setting roles for Enclave Manager users
 {: #enclave-roles}
