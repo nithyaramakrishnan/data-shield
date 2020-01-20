@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-01-20"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -32,6 +32,9 @@ You can use the Enclave Manager UI to manage the applications that you protect w
 
 In the Enclave Manager console, you can view the nodes in your cluster and their attestation status. You can also view tasks and an audit logs of cluster events. To get started, sign in.
 {: shortdesc}
+
+The first time that you sign in to the Enclave Manager, it must be done by using the same email and account ID that were used to install {{site.data.keyword.datashield_short}} on the cluster.
+{: tip}
 
 1. Be sure that you have the [correct access](/docs/services/data-shield?topic=data-shield-access).
 
@@ -220,7 +223,7 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 When an application is whitelisted, it is added to the list of pending requests in the **Tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
 {: shortdesc}
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and navigate to the **Tasks** tab.
+1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Tasks** tab.
 
 2. Click the row of the request that you want to approve or deny. A screen with more information opens.
 
@@ -233,7 +236,7 @@ When an application is whitelisted, it is added to the list of pending requests 
 You can audit your Enclave manager instance for several different types of activity. 
 {: shortdesc}
 
-1. Navigate to the **Audit log** tab of the Enclave Manager UI.
+1. Go to the **Audit log** tab of the Enclave Manager UI.
 2. Filter the logging results to narrow your search. You can choose to filter by timeframe or by any of the following types.
 
   * App status: Activity that pertains to your application such as whitelist requests and new builds.

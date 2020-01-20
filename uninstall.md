@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-01-20"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -124,7 +124,14 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-7. Optional: Delete your Docker config secret.
+7. Optional: Delete your converter service ID. Note: if you choose to delete your service ID, your Docker config secret will no longer work. 
+
+  ```
+  ibmcloud iam service-id-delete <service_id>
+  ```
+  {: codeblock}
+
+8. Optional: Delete your Docker config secret.
 
 
 
