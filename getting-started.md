@@ -196,7 +196,13 @@ You might want to configure Helm to use `--tls` mode. For help with enabling TLS
 ## Installing {{site.data.keyword.datashield_short}}
 {: #gs-install}
 
-Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service.
+Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
+
+The Helm chart installs the following components:
+
+*	The supporting software for SGX.
+*	The {{site.data.keyword.datashield_short}} Enclave Manager.
+*	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
 
 1. If you haven't already, add the `iks-charts` repository.
