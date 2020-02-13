@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: backup, restore, enclave manager, app security, memory encryption, database, container, kube security, nodes, hmac credentials, helm, keys
 
@@ -39,7 +39,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 {: tip}
 
 
-1. Create a [service ID](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation, and selecting the option to include HMAC credentials. The backup job uses the HMAC credentials to authenticate to {{site.data.keyword.cos_short}}.
+1. Create a [service ID](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation, and selecting the option to include HMAC credentials. The backup job uses the HMAC credentials to authenticate to {{site.data.keyword.cos_short}}.
 
 2. Create a Kubernetes secret with the credentials to authenticate to {{site.data.keyword.cos_short}}.
 		
@@ -70,7 +70,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 		</tr>
 		<tr>
 			<td><code>global.S3.Endpoint</code></td>
-			<td>The location of the {{site.data.keyword.cos_short}} bucket that you created. You can find the endpoint in the <a href="/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints">{{site.data.keyword.cos_short}} endpoint documentation</a>.</td>
+			<td>The location of the {{site.data.keyword.cos_short}} bucket that you created. You can find the endpoint in the <a href="/docs/cloud-object-storage?topic=cloud-object-storage-endpoints">{{site.data.keyword.cos_short}} endpoint documentation</a>.</td>
 		</tr>
 		<tr>
 			<td>Optional: <code>enclaveos-chart.Backup.S3Prefix</code></td>

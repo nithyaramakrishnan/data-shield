@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: clusters, deploy apps, pod specification, security policies, containers, encryption, helm, sample apps, volumes, memory, data in use,
 
@@ -30,7 +30,7 @@ After you convert your images, you must deploy your {{site.data.keyword.datashie
 
 When you deploy {{site.data.keyword.datashield_short}}, the container specification must include volume mounts that allow the SGX devices and the AESM socket to be available.
 
-Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
+Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
 {: tip}
 
 1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
@@ -97,7 +97,7 @@ Don't have an application to try the service? No problem. We offer several sampl
 
 With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters.
 
-To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
 {: tip}
 
 Because {{site.data.keyword.datashield_short}} is being previewed, there are a few limitations that you should be aware of:

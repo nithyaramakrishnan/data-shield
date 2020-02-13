@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: install data shield, data in use, helm, cluster, environment variable, role binding, bare metal, tls certificates, tiller, ingress, subdomain, docker configuration, sample app, tech preivew, runtime encryption, memory, app security,
 
@@ -27,89 +27,49 @@ subcollection: data-shield
 You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
 {: shortdesc}
 
-**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true`  when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
 
 ## Before you begin
-{: #begin}
+{: #install-before}
 
-Before you can begin working with {{site.data.keyword.datashield_short}}, you must have the following prerequisites and resources.
-
-### Prerequisites
-{: #prereq}
-
-To work with {{site.data.keyword.cloud_notm}} by using the CLI, be sure that you have the following CLIs and plug-ins downloaded. For help with downloading the CLIs and plug-ins or configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
-
+Before you get started, ensure that you have the following CLIs and plug-ins downloaded.
 
 * [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
+* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
 * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
 * [Docker](https://docs.docker.com/install/){: external}
-* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plugins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
 * [Helm version 2](/docs/containers?topic=containers-helm): Be sure to follow the instructions for setting up Helm in a cluster with public access.
 
-You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+  {: tip}
+
+
+## Preparing your cluster
+{: #install-prepare-cluster}
+
+To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table.
+
+<table>
+  <tr>
+    <th>Type of cluster</th>
+    <th>Available machine types</th>
+  </tr>
+  <tr>
+    <td>{{site.data.keyword.containershort}}</td>
+    <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 16</b> operating system.</td>
+  </tr>
+  <tr>
+    <td>{{site.data.keyword.openshiftshort}}</td>
+    <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
+  </tr>
+</table>
+
+For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 {: tip}
 
+When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.
 
-### Required resources
-{: #resources}
-
-Before you can work with {{site.data.keyword.datashield_short}}, you must have the following resources.
-
-* An SGX-enabled Kubernetes or {{site.data.keyword.openshiftshort}} cluster. Depending on the type of cluster that you choose, the type of machine flavor differs. Be sure that you have the correct corresponding flavor by reviewing the following table. 
-
-  <table>
-    <tr>
-      <th>Type of cluster</th>
-      <th>Available machine types</th>
-    </tr>
-    <tr>
-      <td>{{site.data.keyword.containershort}}</td>
-      <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must check the <b>Ubuntu 16</b> operating system.</td>
-    </tr>
-    <tr>
-      <td>{{site.data.keyword.openshiftshort}}</td>
-      <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
-    </tr>
-  </table>
-
-  If you need help with creating your cluster, check out the following resources: 
-
-  1. Prepare to [create your cluster](/docs/containers?topic=containers-clusters#cluster_prepare).
-
-  2. Ensure that you have the [required permissions](/docs/containers?topic=containers-users) to create a cluster.
-
-  3. Create the [cluster](/docs/containers?topic=containers-clusters).
-
-* An instance of the [cert-manager](https://cert-manager.readthedocs.io/en/latest/){: external} service version 0.5.0 or newer. The default installation uses `cert-manager` to set up [TLS certificates](/docs/services/data-shield?topic=data-shield-tls-certificates) for internal communication between {{site.data.keyword.datashield_short}} services. To install an instance by using Helm, you can run the following command.
-
-  ```
-  helm repo update && helm install --version 0.5.0 stable/cert-manager
-  ```
-  {: codeblock}
-
-Want to see logging information for {{site.data.keyword.datashield_short}}? Set up [{{site.data.keyword.la_full_notm}}](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started).
-{: tip}
-
-
-
-
-## Installing the Helm chart
-{: #install-chart}
-
-You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
-{: shortdesc}
-
-The Helm chart installs the following components:
-
-*	The supporting software for SGX, which is installed on the bare metal hosts by a privileged container.
-*	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
-*	The EnclaveOS® container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
-
-
-### Installing on your cluster
-{: #install-cluster}
-
-1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
+1. Log in to the {{site.data.keyword.cloud_notm}} CLI by running the following command and then following the prompts. If you have a federated ID, append the `--sso` option to the end of the command.
 
   ```
   ibmcloud login
@@ -125,32 +85,120 @@ The Helm chart installs the following components:
     ```
     {: codeblock}
 
-  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  2. Copy the output beginning with `export` and paste it into your console to set the `KUBECONFIG` environment variable.
 
-3. If you haven't already, add the `iks-charts` repository.
-
-  ```
-  helm repo add iks-charts https://icr.io/helm/iks-charts
-  ```
-  {: codeblock}
-
-4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
+3. If you don't know the email that is associated with the administrator or the account ID, run the following command. Make a note of this information.
 
   ```
   ibmcloud account show
   ```
   {: codeblock}
 
-5. Get the Ingress subdomain for your cluster.
+4. Get the Ingress subdomain for your cluster. Make a note of this information.
 
   ```
   ibmcloud ks cluster-get <cluster_name>
   ```
   {: codeblock}
 
-6. Get the information that you need to set up [backup and restore](/docs/services/data-shield?topic=data-shield-backup-restore) capabilities. 
 
-7. Install the chart.
+## Configuring credentials
+{: #install-convert}
+
+Before you can run applications in an Enclave, your container image must be converted. To prepare your image for conversion, create a service ID and give it permissions to work with the container converter.
+
+Not working with IBM Cloud Container Registry? Learn how to [configure credentials for other registries](/docs/data-shield?topic=data-shield-convert#configure-other-registry).
+{: tip}
+
+
+1. Create a service ID and a service ID API key for the {{site.data.keyword.datashield_short}} container converter.
+
+  ```
+  ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
+  ```
+  {: codeblock}
+
+2. Create an API key for the container converter.
+
+  ```
+  ibmcloud iam service-api-key-create 'Data Shield Container Converter' data-shield-container-converter
+  ```
+  {: codeblock}
+
+3. Grant the service ID permission to access your container registry.
+
+  ```
+  ibmcloud iam service-policy-create data-shield-container-converter --roles Reader,Writer --service-name container-registry
+  ```
+  {: codeblock}
+
+4. Create a Kubernetes secret to be used for future conversions. Replace the `<api key>` variable, and then run the following command. If you don't have `openssl`, you can use any command-line base64 encoder with appropriate options. Be sure that there are not new lines in the middle or at the end of the encoded string.
+
+  ```
+  (echo -n '{"auths":{"<region>.icr.io":{"auth":"'; echo -n 'iamapikey:<api key>' | openssl base64 -A;  echo '"}}}') | kubectl create secret generic converter-docker-config --from-file=.dockerconfigjson=/dev/stdin
+  ```
+  {: codeblock}
+
+
+
+## Installing Helm and `cert manager`
+{: #install-helm}
+
+To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
+
+
+You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+{: tip}
+
+1. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
+
+  ```
+  kubectl create serviceaccount tiller -n kube-system
+  ```
+  {: codeblock}
+
+  ```
+  kubectl create clusterrolebinding tiller --clusterrole=cluster-admin --serviceaccount=kube-system:tiller -n kube-system
+  ```
+  {: codeblock}
+
+2. Verify that the Tiller service account is created.
+
+  ```
+  kubectl get serviceaccount -n kube-system tiller
+  ```
+  {: codeblock}
+
+3. Initialize the Helm CLI and install Tiller in your cluster with the service account that you created.
+
+  ```
+  helm init --service-account tiller
+  ```
+  {: codeblock}
+
+4. {{site.data.keyword.datashield_short}} uses [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. To work with the service, install an instance of `cert-manager` by using Helm.
+
+  ```
+  helm repo update && helm install --version 0.5.0 stable/cert-manager
+  ```
+  {: codeblock}
+
+
+## Installing the Helm chart
+{: #install-chart}
+
+Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
+
+The Helm chart installs the following components:
+
+*	The supporting software for SGX.
+*	The {{site.data.keyword.datashield_short}} Enclave Manager, which manages SGX enclaves in the {{site.data.keyword.datashield_short}} environment.
+*	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
+
+
+1. Get the information that you need to set up [backup and restore](/docs/data-shield?topic=data-shield-backup-restore) capabilities. 
+
+2. Install the chart.
 
   ```
   helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
@@ -165,7 +213,7 @@ The Helm chart installs the following components:
     </tr>
     <tr>
       <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
-      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
+      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/data-shield?topic=data-shield-convert) you must append the Docker configuration to the installation command.</td>
     </tr>
     <tr>
       <td><code>--set global.OpenShiftEnabled=true</code></td>

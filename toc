@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/services/data-shield?topic=data-shield-getting-started#getting-started" path="services/data-shield"}
+{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/data-shield?topic=data-shield-getting-started" path="data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
@@ -10,12 +10,6 @@ IBM Cloud Data Shield
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    {: .topicgroup}
-    Managing the service
-        install.md
-        update.md
-        uninstall.md
-    
     {: .topicgroup}
     Configuring the Enclave Manager
         access.md
@@ -30,6 +24,9 @@ IBM Cloud Data Shield
         signing-key.md
         deploy.md
         curated-apps.md
+
+    update.md
+    uninstall.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

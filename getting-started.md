@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-27"
+lastupdated: "2020-02-10"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, tech preview, cpu, memory,
 
@@ -30,10 +30,12 @@ subcollection: data-shield
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
 {: shortdesc}
 
-When it comes to protecting your data, encryption is one of the most popular and effective ways. But, the data must be encrypted at each step of its lifecycle for it to really be secure. Data at rest and in motion are commonly used to protect data when it is stored and when it is transported. However, after an application starts to run, data in use by CPU and memory is vulnerable to attacks. Malicious insiders, compromised credentials, and network intruders are all threats to data. Taking encryption one step further, you can now protect data in use. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/services/data-shield?topic=data-shield-about).
+![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with IBM Cloud Data Shield" caption-side="bottom"}
+
+You can be up and running with IBM Cloud Data Shield in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed Data Shield on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
 
 
-**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/services/data-shield?topic=data-shield-install).
+**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
 
 
 
@@ -55,7 +57,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 ## Preparing your cluster
 {: gs-prepare-cluster}
 
-To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table.
+To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled baremetal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table.
 
 <table>
   <tr>
@@ -115,7 +117,7 @@ When you have a running cluster, you can start obtaining the information that yo
 
 Before you can run applications in an Enclave, your container image must be converted. To prepare your image for conversion, create a service ID and give it permissions to work with the container converter.
 
-Not working with IBM Cloud Container Registry? Learn how to [configure credentials for other registries](/docs/services/data-shield?topic=data-shield-convert#configure-other-registry).
+Not working with IBM Cloud Container Registry? Learn how to [configure credentials for other registries](/docs/data-shield?topic=data-shield-convert#configure-other-registry).
 {: tip}
 
 
@@ -250,10 +252,10 @@ The Helm chart installs the following components:
 ## Next steps
 {: #gs-next}
 
-Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/services/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/services/data-shield?topic=data-shield-deploying) your applications. 
+Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications. 
 
 If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images or sample apps:
 
 * [Sample apps](https://github.com/ibm-cloud-security/data-shield-reference-apps){: external}
 * [Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet){: external}
-* Container Registry: [Barbican image](/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter), [MariaDB image](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter), [NGINX image](/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter), or [Vault image](/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter).
+* Container Registry: [Barbican image](/docs/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter), [MariaDB image](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter), [NGINX image](/docs/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter), or [Vault image](/docs/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter).

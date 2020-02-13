@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: images, public, global registry, applications, containerized app, sample app, data security, encryption, kube security,
 
@@ -58,7 +58,7 @@ You can access the public IBM images by using the CLI.
     ```
     {: codeblock}
 
-For more information about working with container images, see the [Registry documentation](/docs/services/Registry?topic=registry-getting-started).
+For more information about working with container images, see the [Registry documentation](/docs/Registry?topic=registry-getting-started).
 
 
 ## IBM Cloud Data Shield image options
@@ -67,9 +67,9 @@ For more information about working with container images, see the [Registry docu
 You can use any of the following public images to quickly get up and running with IBM Cloud Data Shield.
 {: shortdesc}
 
-* [Barbican](/docs/services/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
-* [MariaDB](/docs/services/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
-* [NGINX](/docs/services/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
-* [Vault](/docs/services/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
+* [Barbican](/docs/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)
+* [MariaDB](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter#datashield-mariadb_starter)
+* [NGINX](/docs/Registry?topic=RegistryImages-datashield-nginx_starter#datashield-nginx_starter)
+* [Vault](/docs/Registry?topic=RegistryImages-datashield-vault_starter#datashield-vault_starter)
 
 

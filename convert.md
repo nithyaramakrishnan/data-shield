@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -54,7 +54,7 @@ Before you convert your applications, ensure that you fully understand the follo
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you used the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/services/Registry?topic=registry-user#existing_users).
+You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you used the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/Registry?topic=registry-user#existing_users).
 {: shortdesc}
 
 ### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
@@ -124,7 +124,7 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-enclave-manager#em-apps).
+You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-apps).
 {: tip}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
