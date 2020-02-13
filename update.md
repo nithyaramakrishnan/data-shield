@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -21,7 +21,7 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Updating
+# Updating {{site.data.keyword.datashield_short}}
 {: #update}
 
 After {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
@@ -90,7 +90,7 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
     <tr>
       <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
-      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/services/data-shield?topic=data-shield-convert) you must append the Docker configuration to the update command.</td>
+      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/data-shield?topic=data-shield-convert) you must append the Docker configuration to the update command.</td>
     </tr>
     <tr>
       <td><code>--set global.OpenShiftEnabled=true</code></td>

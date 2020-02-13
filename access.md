@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-20"
+lastupdated: "2020-02-04"
 
 keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
@@ -107,7 +107,7 @@ By using the Enclave Manager GUI, you can give new user's access to the informat
 You can update the roles that are assigned to your users and their name.
 {: shortdesc}
 
-1. Sign in to the [Enclave Manager UI](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin).
+1. Sign in to the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-signin).
 
 2. Click **Your name > Settings**.
 

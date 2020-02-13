@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-20"
+lastupdated: "2020-02-04"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -36,7 +36,7 @@ In the Enclave Manager console, you can view the nodes in your cluster and their
 The first time that you sign in to the Enclave Manager, it must be done by using the same email and account ID that were used to install {{site.data.keyword.datashield_short}} on the cluster.
 {: tip}
 
-1. Be sure that you have the [correct access](/docs/services/data-shield?topic=data-shield-access).
+1. Be sure that you have the [correct access](/docs/data-shield?topic=data-shield-access).
 
 2. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -97,7 +97,7 @@ You can use the Enclave Manager UI to monitor the status, deactivate, or downloa
 {: shortdesc}
 
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager.
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager.
 
 2. Go to the **Nodes** tab.
 
@@ -113,7 +113,7 @@ You can use the Enclave Manager UI to monitor the status, deactivate, or downloa
 You can convert, deploy, and whitelist your application all at the same time by using the Enclave Manager UI.
 {: shortdesc}
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
 
 2. Click **Add new application**.
 
@@ -131,7 +131,7 @@ You can convert, deploy, and whitelist your application all at the same time by 
 
 6. Enter any allowed domains.
 
-7. Edit any advanced settings that you might want to change. For more information about the certificate configuration options, see [Configuring certificates](/docs/services/data-shield?topic=data-shield-enclave-manager#em-certificate).
+7. Edit any advanced settings that you might want to change. For more information about the certificate configuration options, see [Configuring certificates](/docs/data-shield?topic=data-shield-enclave-manager#em-certificate).
 
 8. Click **Add**. The application added to your list of available applications. To deploy your app, create a build and then approve the build request in the **tasks** tab.
 
@@ -186,7 +186,7 @@ You can edit an application after you add it to your list.
 {: shortdesc}
 
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
 
 2. Click the name of the application that you want to edit. A new screen opens where you can review the configuration including certificates and deployed builds.
 
@@ -205,11 +205,11 @@ You can edit an application after you add it to your list.
 You can use the Enclave Manager UI to rebuild your applications after you make changes.
 {: shortdesc}
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Builds** tab.
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Builds** tab.
 
 2. Click **Create new build**.
 
-3. Select an application from the drop-down list or click **[add an application](/docs/services/data-shield?topic=data-shield-enclave-manager#em-app-add)** to go to the app tab.
+3. Select an application from the drop-down list or click **[add an application](/docs/data-shield?topic=data-shield-enclave-manager#em-app-add)** to go to the app tab.
 
 4. Enter the name of your Docker image and tag it with a label.
 
@@ -223,7 +223,7 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 When an application is whitelisted, it is added to the list of pending requests in the **Tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
 {: shortdesc}
 
-1. [Sign in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Tasks** tab.
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Tasks** tab.
 
 2. Click the row of the request that you want to approve or deny. A screen with more information opens.
 

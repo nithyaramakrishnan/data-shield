@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-02-04"
 
 keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
@@ -53,7 +53,7 @@ The service extends SGX language support from C and C++ to Python and Java®. It
 {: #running-app}
 {: faq}
 
-[Log in](/docs/services/data-shield?topic=data-shield-enclave-manager#em-signin) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab, you can see information about the Intel® SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
+[Log in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab, you can see information about the Intel® SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
 
 
 ## What is the performance impact of running the application on {{site.data.keyword.datashield_short}}?
