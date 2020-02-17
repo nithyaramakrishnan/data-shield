@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-02-17"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, tech preview, cpu, memory,
 
@@ -30,9 +30,9 @@ subcollection: data-shield
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
 {: shortdesc}
 
-![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with IBM Cloud Data Shield" caption-side="bottom"}
+![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with {{site.data.keyword.datashield_short}}" caption-side="bottom"}
 
-You can be up and running with IBM Cloud Data Shield in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed Data Shield on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
+You can be up and running with {{site.data.keyword.datashield_short}} in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed {{site.data.keyword.datashield_short}} on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
 
 
 **Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
@@ -57,7 +57,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 ## Preparing your cluster
 {: gs-prepare-cluster}
 
-To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled baremetal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table.
+To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled baremetal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 <table>
   <tr>
@@ -74,8 +74,8 @@ To work with {{site.data.keyword.datashield_short}}, you must have an SGX enable
   </tr>
 </table>
 
-For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
-{: tip}
+Your cluster must be using Kubernetes version 1.15 or earlier to install the service.
+{: important}
 
 When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.
 
@@ -124,14 +124,14 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
 1. Create a service ID and a service ID API key for the {{site.data.keyword.datashield_short}} container converter.
 
   ```
-  ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
+  ibmcloud iam service-id-create data-shield-container-converter -d '{{site.data.keyword.datashield_short}} Container Converter'
   ```
   {: codeblock}
 
 2. Create an API key for the container converter.
 
   ```
-  ibmcloud iam service-api-key-create 'Data Shield Container Converter' data-shield-container-converter
+  ibmcloud iam service-api-key-create '{{site.data.keyword.datashield_short}} Container Converter' data-shield-container-converter
   ```
   {: codeblock}
 
