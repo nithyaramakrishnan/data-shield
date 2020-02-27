@@ -196,8 +196,26 @@ You can edit an application after you add it to your list.
 
 5. Click **Update application**.
 
+## Check if an application is production signed or not
+{: #em-app-prod}
 
+You can view the number of application instances that are currently running and how many of these instances are running with debug mode.
+{: shortdesc}
 
+An application that is running with debug mode is a security concern and not recommended.
+{: important}
+
+To view the application instances running with debug mode:
+1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the IBM Cloud Data Shield and go to the **Apps** tab.
+2. There are two ways to view  the application instances that are running in debug mode:
+   * In the **Applications overview** table, under the Status column for each application, you will see a Warning icon. Click the Warning icon to view  the number of application instances that are running in debug mode, or
+   ![Application Instance in debug mode.](images/Application-instances-debugmode.png){: caption="Figure 1. Application instances running in debug mode" caption-side="bottom"}
+   * Click the application itself to go to the detailed view of an application to view the number of application instances running in debug mode. To do this:
+   a. In the detailed view of an application, click the Warning icon below the name of the application.
+      ![Application detailed view.](images/Application-detailed-view.png){: caption="Figure 2. Application detailed view" caption-side="bottom"}
+
+3. To view the application instances, scroll to the bottom of the application detailed view page. The *Deployed builds* table lists the instances of the application. In the *Build* column for an application instance, notice that there is a Warning icon that denotes that the application is running in debug mode.
+![Application instances.](images/Deployed-builds.png){: caption="Figure 3. Application instances" caption-side="bottom"}
 
 ## Building applications
 {: #em-builds}
@@ -233,7 +251,7 @@ When an application is whitelisted, it is added to the list of pending requests 
 ## Viewing logs
 {: #em-view}
 
-You can audit your Enclave manager instance for several different types of activity. 
+You can audit your Enclave manager instance for several different types of activity.
 {: shortdesc}
 
 1. Go to the **Audit log** tab of the Enclave Manager UI.
@@ -243,11 +261,7 @@ You can audit your Enclave manager instance for several different types of activ
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate authority: Activity that pertains to a certificate authority.
-  * Administration: Activity that pertains to administration. 
+  * Administration: Activity that pertains to administration.
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
 {: tip}
-
-
-
-
