@@ -31,9 +31,8 @@ IBM Cloud Data Shield
 
     {: .navgroup id="reference"}
     [Blogs](https://www.ibm.com/cloud/blog)
-    [Fortanix](https://fortanix.com/)
-    [Intel SGX](https://software.intel.com/en-us/sgx)
     [Sample apps](https://github.com/ibm-cloud-security/data-shield-reference-apps)
+    [Case study](https://www.ibm.com/case-studies/irene-energy-hybrid-cloud-blockchain)
     {: .navgroup-end}
 
     {: .navgroup id="help"}

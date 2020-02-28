@@ -28,34 +28,7 @@ subcollection: data-shield
 {{site.data.keyword.datashield_full}} uses TLS certificates both in front-end and backend apps. The Enclave Manager web front end uses an IBM-provided "Let's Encrypt" certificate by default. In the backend, TLS is used for internal communication among backend services.
 {: shortdesc}
 
-<!-- ## Certificate lifetime
-{: #tls-cert-life}
 
-As you work with {{site.data.keyword.datashield_short}}, certificates are created and you'll need to manage them. Check out the following table for more information about the length of time that each type of certificate is valid for.
-
-<table>
-    <caption>Table 1. Understanding certificate lifetime</caption>
-    <tr>
-        <th>Certificate type</th>
-        <th>Length of validity</th>
-    </tr>
-    <tr>
-        <td>Zone root CA</td>
-        <td>5 years</td>
-    </tr>
-    <tr>
-        <td>Node</td>
-        <td>1 year</td>
-    </tr>
-    <tr>
-        <td>Node attestation</td>
-        <td>90 days</td>
-    </tr>
-    <tr>
-        <td>Application</td>
-        <td>90 days</td>
-    </tr>
-</table> -->
 
 
 
@@ -121,8 +94,5 @@ Check out the following table for contextual information about how {{site.data.k
 </table>
 
 
-<!---## Disabling cert-manager
-{: #tls-disable-cert-manager}
 
-You can choose to disable `cert-manager` entirely and configure your certificates manually for the Enclave Manager backend services. To do so, set the Helm value `global.CertManager.Enabled` to `false`.--->
 

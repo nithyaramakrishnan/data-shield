@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-11"
+lastupdated: "2020-02-17"
 
 keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
 
@@ -20,6 +20,8 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+{:script: data-hd-video='script'}
+
 
 
 # About the service
@@ -28,11 +30,32 @@ subcollection: data-shield
 With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can protect the data in your containerized workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
 {: shortdesc}
 
+<div class="embed-responsive embed-responsive-16by9" data-hd-video="video">
+  <iframe class="embed-responsive-item" id="about-data-shield" title="About {{site.data.keyword.appid_short_notm}}" type="text/html" width="640" height="390" src="https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&playerId=kplayer&entry_id=0_qy62q1zo&flashvars[streamerType]=auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
+</div>
+
+## Video transcript
+{: #transcript-about}
+{: script}
+{: notoc}
+
+In today's digital global economy data is one of the most valuable assests of enterprises. Data must be protected throughout its lifecycle - when at rest, when in motion, and in use. IBM Cloud Security Services have you covered by managing access to your resources, protecting your data, and providing you with insightful visibility into your security environment. Today we're going to focus on the all important protection of data in use. With IBM Cloud Data Shield, your app code and data run in CPU hardened enclaves, which are trusted areas of memory on the worker node that protect the critical aspects of your apps. Let's look at how IBM Cloud Data Shield helps customers protect their data in use. 
+
+So, you're developing a new banking service that deals with sensitive user information and financial data. You've been working with your team for weeks to bake in security to the product from the ground up to establish parameter security so no one has physical access to the Kubernetes cluster that you're running. You've set it up so that only Ingress on Kubernetes was exposed on the public network. Network policies between pods restrict communication. Cloud Internet services provide firewalling and protection from DDOS attacks. Key Protect stores encryption keys. There's encryption at rest and the public endpoints are served over a secure connection.
+
+With all these measures, the team makes sure the data that flows through the service is protected at rest and in transit through encryption. However the data is still exposed in plain text while in use or runtime and remains vulnerable to privileged user attacks. IBM Cloud Data Shield bridges the gap in today's protection measures by bringing runtime memory encryption to data in use.
+
+Your team understands that the backend API was still exposed to privileged users and the vulnerabilities that come with it. You've explored the options and discovered that Intel SGX as a potential solution where the application runs encrypted in memory. However, your team didn't have the competency or time to learn Intel SGX in order to reengineer their current application that they developed to leverage Intel SGX. The team then learned about IBM Cloud Data Shield and built a quick proof of concept by installing the Helm chart on their target Kubernetes cluster. 
+
+They were able to demonstrate the value by simulating a privileged user attack by memory dumping the application and scrapping for text. This time, they didn't see any plain text in the memory. IBM Cloud Data Shield helped your team convert your existing backend into a shielded or runtime memory encrypted counterpart in a few minutes. And, they were able to automate the conversion through their DevOps integration. Finally, they were able to deploy a new backend API in less than 15 minutes. Your team has now managed to protect data at rest, in transit, and in use.
+
+
+## Types of encryption
+{: #encryption-types}
 
 ![Types of encryption shown in an image. Includes data at rest, in motion, and in use.](images/encryption-types.png){: caption="Figure 1. Types of encryption" caption-side="bottom"}
 
 When it comes to protecting your data, encryption is one of the most popular and effective controls. But, the data must be encrypted at each step of its lifecycle for your data to really be secure. During its lifecycle, data has three phases. It can be at rest, in motion, or in use. Data at rest and in motion are generally the area of focus when you think of securing your data. But, after an application starts to run, data that is in use by CPU and memory is vulnerable to various attacks. The attacks might include malicious insiders, root users, credential compromise, OS zero-day, network intruders, and others. Enter - {{site.data.keyword.datashield_short}}.
-
 
 
 ## How it works
@@ -40,14 +63,14 @@ When it comes to protecting your data, encryption is one of the most popular and
 
 With {{site.data.keyword.datashield_short}}, you can secure your data while it is in use.
 
-![An example Data Shield enabled cluster.](images/ds-arch.png){: caption="Figure 1. Cluster set up" caption-side="bottom"}
-
+![An example {{site.data.keyword.datashield_short}} enabled cluster.](images/ds-arch.png){: caption="Figure 2. Cluster set up" caption-side="bottom"}
 
 On your worker node, you might have several different applications running at the same time. To fully secure your app data, you can run any of the apps that handle sensitive information within an enclave. Enclaves are trusted areas of memory that keep code and data confidential and secure. The information in the enclave cannot be read or modified in anyway by anything outside the enclave - including processes that run at higher privilege levels.
 
 IBM Cloud Data Shield achieves this level of security by establishing trust through Elliptic Curve Digital Signature Algorithm (ECDSA)-based remote attestation. An attestation report provides information like the identity of the software, details of an execution, and an assessment of any possible software tampering. After the enclave establishes trust, an encrypted communication channel is established.
 
 If you or your company require data sensitivity because of internal policies, government regulations, or industry compliance requirements, this solution might help you to move to the cloud.
+
 
 
 ## Integrated technologies
