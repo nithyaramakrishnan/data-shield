@@ -178,7 +178,6 @@ A converted application can request a certificate from {{site.data.keyword.datas
   *	**No, do not install**: Does not install the certificate.
 
 
-
 ## Editing an app
 {: #em-app-edit}
 
@@ -195,7 +194,6 @@ You can edit an application after you add it to your list.
 4. Update the configuration. Be sure that you understand the way that changing the advanced settings affects your application before you make any changes.
 
 5. Click **Update application**.
-
 
 
 
