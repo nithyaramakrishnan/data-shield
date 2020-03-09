@@ -24,7 +24,7 @@ subcollection: data-shield
 # Installing
 {: #install}
 
-You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart. 
+You can install {{site.data.keyword.datashield_full}} on either a {{site.data.keyword.containershort_notm}} or a {{site.data.keyword.openshiftlong_notm}} cluster by using the provided Helm chart.
 {: shortdesc}
 
 **Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
@@ -196,7 +196,7 @@ The Helm chart installs the following components:
 *	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
 
-1. Get the information that you need to set up [backup and restore](/docs/data-shield?topic=data-shield-backup-restore) capabilities. 
+1. Get the information that you need to set up [backup and restore](/docs/data-shield?topic=data-shield-backup-restore) capabilities.
 
 2. Install the chart.
 
@@ -204,6 +204,9 @@ The Helm chart installs the following components:
   helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
   ```
   {: codeblock}
+
+3. Enable High Availability (HA) for {{site.data.keyword.datashield_short}} services.
+if you are working with multi node kubernetes cluster, then you can choose to have HA enabled for {{site.data.keyword.datashield_short}} services. This can be done using the <code>--set global.ServiceReplicas=<replica-count></code> command mentioned in the table below y specifying the replica count.
 
   <table>
     <caption>Table 1. Installation options</caption>
@@ -227,6 +230,10 @@ The Helm chart installs the following components:
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
       <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
     </tr>
+    <tr>
+      <td><code>--set global.ServiceReplicas=<replica-count></code></td>
+      <td>Optional: Enable HA by specifying the replica count. This will deploy the Datashield DB and Backend DataShield Manager with HA capabilities. Note: The maximum replica count should be less than or equal to the number of nodes.</td>
+    </tr>
   </table>
 
 8. To monitor the startup of your components, you can run the following command.
@@ -235,4 +242,3 @@ The Helm chart installs the following components:
   kubectl get pods
   ```
   {: codeblock}
-
