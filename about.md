@@ -27,7 +27,7 @@ subcollection: data-shield
 # About the service
 {: #about}
 
-With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can protect the data in your containerized workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
+With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can protect the data in your containerized workloads that run on {{site.data.keyword.containershort_notm}} and OpenShift clusters while your data is in use.
 {: shortdesc}
 
 <div class="embed-responsive embed-responsive-16by9" data-hd-video="video">
