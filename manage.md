@@ -178,7 +178,6 @@ A converted application can request a certificate from {{site.data.keyword.datas
   *	**No, do not install**: Does not install the certificate.
 
 
-
 ## Editing an app
 {: #em-app-edit}
 
@@ -197,6 +196,15 @@ You can edit an application after you add it to your list.
 5. Click **Update application**.
 
 
+
+## Verifying whether an app is production signed
+{: #em-app-prod}
+
+Running an application in debug mode is a security concern and not recommended for production applications. To see which applications are not production ready, you can look in the following locations.
+
+* In the **Applications overview** table, a warning icon appears in the *Status* column for each application that is currently running in debug mode.
+
+* In the **Deployed builds** table a warning icon appears in the *Build* column.
 
 
 ## Building applications

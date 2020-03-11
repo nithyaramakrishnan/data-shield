@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-17"
+lastupdated: "2020-02-10"
 
-keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, tech preview, cpu, memory,
+keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
 subcollection: data-shield
 ---
@@ -19,23 +19,20 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
-{:preview: .preview}
 
 
 
 # Getting started tutorial
 {: #getting-started}
 
-
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} while your data is in use.
 {: shortdesc}
+
+
 
 ![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with {{site.data.keyword.datashield_short}}" caption-side="bottom"}
 
 You can be up and running with {{site.data.keyword.datashield_short}} in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed {{site.data.keyword.datashield_short}} on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
-
-
-**Technology preview**: With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters. To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
 
 
 
@@ -238,6 +235,10 @@ The Helm chart installs the following components:
     <tr>
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
       <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    </tr>
+    <tr>
+      <td><code>--set global.ServiceReplicas=<replica-count></code></td>
+      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your intall command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>~
     </tr>
   </table>
 

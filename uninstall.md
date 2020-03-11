@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-20"
+lastupdated: "2020-01-27"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -21,14 +21,11 @@ subcollection: data-shield
 {:download: .download}
 
 
-# Uninstalling
+# Uninstalling {{site.data.keyword.datashield_short}}
 {: #uninstall}
 
 If you no longer need to use {{site.data.keyword.datashield_full}}, you can delete the service and the TLS certificates that were created.
 
-
-## Uninstalling with Helm
-{: #uninstall-helm}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
