@@ -33,7 +33,7 @@ When you deploy {{site.data.keyword.datashield_short}}, the container specificat
 Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
 {: tip}
 
-1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
+1. Configure [pull secrets](/docs/containers?topic=containers-registry#other).
 
 2. Save the following pod specification as a template.
 
@@ -97,7 +97,7 @@ Don't have an application to try the service? No problem. We offer several sampl
 
 With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters.
 
-To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-install).
+To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-getting-started).
 {: tip}
 
 Because {{site.data.keyword.datashield_short}} is being previewed, there are a few limitations that you should be aware of:

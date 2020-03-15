@@ -100,7 +100,7 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
 
 If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file. Files on OS X are not supported currently.
 
-1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
+1. Configure [pull secrets](/docs/containers?topic=containers-registry#other).
 
 2. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -124,7 +124,7 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-apps).
+You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-app-add).
 {: tip}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
