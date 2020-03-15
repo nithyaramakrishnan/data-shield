@@ -20,6 +20,7 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:download: .download}
 {:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Frequently asked questions (FAQ)
 {: #faq}
@@ -38,6 +39,7 @@ Enclaves are instantiated on platforms by untrusted code. So, before enclaves ar
 ## What languages are currently supported?
 {: #language-support}
 {: faq}
+{: support}
 
 The service extends SGX language support from C and C++ to Python and Java®. It also provides pre-converted SGX applications for MariaDB, NGINX, and Vault, with little-to-no code change.
 
@@ -52,6 +54,7 @@ The service extends SGX language support from C and C++ to Python and Java®. It
 ##	How do I know that my application is running in an SGX enclave?
 {: #running-app}
 {: faq}
+{: support}
 
 [Log in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab, you can see information about the Intel® SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
 
@@ -59,6 +62,7 @@ The service extends SGX language support from C and C++ to Python and Java®. It
 ## What is the performance impact of running the application on {{site.data.keyword.datashield_short}}?
 {: #impact}
 {: faq}
+{: support}
 
 
 The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that {{site.data.keyword.datashield_short}} has on your app is minimal. But, if you have memory or I/O intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine {{site.data.keyword.datashield_short}}'s impact.

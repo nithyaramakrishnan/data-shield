@@ -53,6 +53,7 @@ There is no need to assign additional access to specific resources.
 
 ## Setting roles for Enclave Manager users
 {: #enclave-roles}
+{: support}
 
 {{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}

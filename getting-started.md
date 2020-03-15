@@ -194,6 +194,7 @@ You might want to configure Helm to use `--tls` mode. For help with enabling TLS
 
 ## Installing {{site.data.keyword.datashield_short}}
 {: #gs-install}
+{: support}
 
 Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 
