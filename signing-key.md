@@ -42,7 +42,7 @@ When you use your converted applications in production, you must sign them with 
     </tr>
     <tr>
       <td><code>ISVSN</code></td>
-      <td>The security version number of the enclave as assigned by the enclave author. After an enclave is successfully initialized, the CPU records the SVN. The SVN is then used during attestation whenever a security property is changed.</td>
+      <td>The security version number of the enclave as assigned by the enclave author. After an enclave is successfully initialized, the CPU records the `SVN`. The `SVN` is then used during attestation whenever a security property is changed.</td>
     </tr>
     <tr>
       <td><code>ISVPRODID</code></td>

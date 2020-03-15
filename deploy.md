@@ -110,7 +110,7 @@ Because {{site.data.keyword.datashield_short}} is being previewed, there are a f
   ```
   {: screen}
 
-  OpenShift security policies might restrict the creation of privileged containers. Cluster admins have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
+  OpenShift security policies might restrict the creation of privileged containers. Cluster administrators have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
   {: note}
 
 * SELinux is placed in permissive mode during the installation. 

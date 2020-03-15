@@ -54,7 +54,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 ## Preparing your cluster
 {: gs-prepare-cluster}
 
-To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled baremetal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 <table>
   <tr>
@@ -238,7 +238,7 @@ The Helm chart installs the following components:
     </tr>
     <tr>
       <td><code>--set global.ServiceReplicas=<replica-count></code></td>
-      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your intall command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>~
+      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
     </tr>
   </table>
 

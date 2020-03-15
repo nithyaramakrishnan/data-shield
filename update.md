@@ -98,7 +98,7 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
     <tr>
       <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
-      <td>Optional: By default, node enrollment and the issueing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your update command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
+      <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your update command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
     </tr>
     <tr>
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
