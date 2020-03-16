@@ -2,24 +2,35 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-04"
+lastupdated: "2020-03-16"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
 subcollection: data-shield
 ---
 
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
+{:screen: .screen}
 {:download: .download}
+{:external: target="_blank" .external}
+{:new_window: target="_blank"}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:shortdesc: .shortdesc}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+
 
 # Converting images
 {: #convert}
@@ -100,7 +111,7 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
 
 If you already have a `~/.docker/config.json` file that authenticates to the registry that you want to use, you can use that file. Files on OS X are not supported currently.
 
-1. Configure [pull secrets](/docs/containers?topic=containers-images#other).
+1. Configure [pull secrets](/docs/containers?topic=containers-registry#other).
 
 2. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -124,7 +135,7 @@ If you already have a `~/.docker/config.json` file that authenticates to the reg
 You can use the Enclave Manager API to connect to the converter.
 {: shortdesc}
 
-You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-apps).
+You can also convert your containers when you build your apps through the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager#em-app-add).
 {: tip}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.

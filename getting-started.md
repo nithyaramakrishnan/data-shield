@@ -1,24 +1,35 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-03-16"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
 subcollection: data-shield
 ---
 
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
+{:screen: .screen}
 {:download: .download}
+{:external: target="_blank" .external}
+{:new_window: target="_blank"}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:shortdesc: .shortdesc}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+
 
 
 
@@ -54,7 +65,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 ## Preparing your cluster
 {: gs-prepare-cluster}
 
-To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled baremetal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 <table>
   <tr>
@@ -194,6 +205,7 @@ You might want to configure Helm to use `--tls` mode. For help with enabling TLS
 
 ## Installing {{site.data.keyword.datashield_short}}
 {: #gs-install}
+{: support}
 
 Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 
@@ -238,7 +250,7 @@ The Helm chart installs the following components:
     </tr>
     <tr>
       <td><code>--set global.ServiceReplicas=<replica-count></code></td>
-      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your intall command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>~
+      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
     </tr>
   </table>
 

@@ -2,25 +2,35 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-17"
+lastupdated: "2020-03-16"
 
 keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
 
 subcollection: data-shield
 ---
 
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
+{:screen: .screen}
 {:download: .download}
-{:script: data-hd-video='script'}
+{:external: target="_blank" .external}
+{:new_window: target="_blank"}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:shortdesc: .shortdesc}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+
 
 
 
@@ -89,14 +99,14 @@ If you or your company require data sensitivity because of internal policies, go
   <dt>Access control</dt>
     <dd>With <a href="/docs/iam?topic=iam-getstarted">{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
   <dt>Logging</dt>
-    <dd>Activity logs for Helm install, update, and delete are captured by your respective Kubernetes Service audit logs.</dd></br>
+    <dd>Activity logs for Helm install, update, and delete are captured by your Kubernetes Service audit logs.</dd></br>
     <dd>With {{site.data.keyword.la_full_notm}}, you can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>
   <dt>Certificate management</dt>
     <dd>Cert manager is a native Kubernetes add on that helps to manage the certificates by issuing self-signed certificates from the Enclave Manager.</dd>
 </dl>
 
 
-## Business partner
+## IBM Business Partner
 {: #partner}
 
 {{site.data.keyword.datashield_short}} is offered in conjunction with <a href="https://fortanix.com/" target="_blank" class="external">Fortanix®</a>. 

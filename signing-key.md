@@ -1,24 +1,35 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-03-16"
 
 keywords: converted containers, sign sgx, app security, production apps, images, containers, cluster, debug key, intel signing key, intel, data protection, runtime, memory encryption, 
 
 subcollection: data-shield
 ---
 
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
+{:screen: .screen}
 {:download: .download}
+{:external: target="_blank" .external}
+{:new_window: target="_blank"}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:shortdesc: .shortdesc}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+
 
 # Signing converted containers
 {: #enclaveos-signer}
@@ -42,7 +53,7 @@ When you use your converted applications in production, you must sign them with 
     </tr>
     <tr>
       <td><code>ISVSN</code></td>
-      <td>The security version number of the enclave as assigned by the enclave author. After an enclave is successfully initialized, the CPU records the SVN. The SVN is then used during attestation whenever a security property is changed.</td>
+      <td>The security version number of the enclave as assigned by the enclave author. After an enclave is successfully initialized, the CPU records the `SVN`. The `SVN` is then used during attestation whenever a security property is changed.</td>
     </tr>
     <tr>
       <td><code>ISVPRODID</code></td>
