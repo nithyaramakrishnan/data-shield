@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-03-16"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -19,6 +19,7 @@ subcollection: data-shield
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+{:support: data-reuse='support'}
 
 
 
