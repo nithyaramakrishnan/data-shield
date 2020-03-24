@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-16"
+lastupdated: "2020-03-19"
 
 keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
@@ -23,6 +23,7 @@ subcollection: data-shield
 {:deprecated: .deprecated}
 {:shortdesc: .shortdesc}
 {:support: data-reuse='support'}
+{:script: data-hd-video='script'}
 {:table: .aria-labeledby="caption"}
 {:troubleshoot: data-hd-content-type='troubleshoot'}
 {:help: data-hd-content-type='help'}
