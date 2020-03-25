@@ -39,7 +39,7 @@ subcollection: data-shield
 You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}}. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}}.
 
 The conversion process does not encrypt your application.
 {: important}
@@ -274,7 +274,6 @@ Check out the following example to see how to configure a request to generate an
       "threads": <threads>,
       "allowed_domains": ["<SGX-Application.domain>"],
       "advanced_settings": {
-          "encryptedDirs": [],
           "java_runtime": "",
           "certificate": {
                   "issuer": "MANAGER_CA",
@@ -386,4 +385,3 @@ Check out the following example to see how to configure a request to generate an
   {: codeblock}
 
 5. In the Enclave Manager GUI, the build was added to your whitelist. Be sure to approve the build so that it can complete. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
-
