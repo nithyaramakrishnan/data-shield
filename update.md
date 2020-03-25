@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-03-25"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -51,14 +51,10 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 
 2. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output and paste it into your console.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 3. If you haven't already, add the `iks-charts` repository.
 
@@ -77,7 +73,7 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 5. Get the Ingress subdomain for your cluster.
 
   ```
-  ibmcloud ks cluster-get <cluster_name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 

@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-24"
+lastupdated: "2020-03-25"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -86,14 +86,10 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 
 2. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output and paste it into your console.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 3. Delete the service.
 

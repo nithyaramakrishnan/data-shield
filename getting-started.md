@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-03-25"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -97,14 +97,10 @@ When you have a running cluster, you can start obtaining the information that yo
 
 2. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output beginning with `export` and paste it into your console to set the `KUBECONFIG` environment variable.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 3. If you don't know the email that is associated with the administrator or the account ID, run the following command. Make a note of this information.
 
@@ -116,7 +112,7 @@ When you have a running cluster, you can start obtaining the information that yo
 4. Get the Ingress subdomain for your cluster. Make a note of this information.
 
   ```
-  ibmcloud ks cluster-get <cluster_name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 
