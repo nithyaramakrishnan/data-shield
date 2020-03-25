@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-03-25"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -229,14 +229,10 @@ Check out the following example to see how to configure a request to generate an
 
 2. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 3. Get your Ingress subdomain.
 
@@ -362,14 +358,10 @@ Check out the following example to see how to configure a request to generate an
 
 2. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 3. Get your Ingress subdomain.
 

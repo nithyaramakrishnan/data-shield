@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-03-25"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -59,14 +59,10 @@ The first time that you sign in to the Enclave Manager, it must be done by using
 
 3. Set the context for your cluster.
 
-  1. Get the command to set the environment variable and download the Kubernetes configuration files.
-
-    ```
-    ibmcloud ks cluster-config <cluster_name_or_ID>
-    ```
-    {: codeblock}
-
-  2. Copy the output beginning with `export` and paste it into your terminal to set the `KUBECONFIG` environment variable.
+  ```
+  ibmcloud ks cluster config --cluster <cluster_name_or_ID>
+  ```
+  {: codeblock}
 
 4. Check to see that all your service is running by confirming that all of your pods are in an *active* state.
 
