@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-03-26"
 
 keywords: backup, restore, enclave manager, app security, memory encryption, database, container, kube security, nodes, hmac credentials, helm, keys
 
@@ -101,48 +101,48 @@ If you configured your Helm chart to create a backup of the Enclave Manager befo
 
 2. Deploy the Enclave Manager with 0 instances of the backend server by setting the following Helm value.
 
-		```
-		--set enclaveos-chart.Manager.ReplicaCount=0
-		```
-		{: codeblock}
+	```
+	--set enclaveos-chart.Manager.ReplicaCount=0
+	```
+	{: codeblock}
 
 3. After the Enclave Manager is deployed, copy the backup to the database container.
 
-		```
-		kubectl cp <local path to backup> <release>-enclaveos-cockroachdb-0:/cockroach
-		```
-		{: codeblock}
+	```
+	kubectl cp <local path to backup> <release>-enclaveos-cockroachdb-0:/cockroach
+	```
+	{: codeblock}
 
 4. Create a shell in the database container.
 
-		```
-		kubectl exec -it <release>-enclaveos-cockroachdb-0 bash
-		```
-		{: codeblock}
+	```
+	kubectl exec -it <release>-enclaveos-cockroachdb-0 bash
+	```
+	{: codeblock}
 
 5. Prepare the database to restore from your backup.
 
-		1. Create an SQL shell.
+   1. Create an SQL shell.
 
-				```
-				./cockroach sql --insecure
-				```
-				{: codeblock}
-		
-		2. When prompted by SQL run the following commands.
+		```
+		./cockroach sql --insecure
+		```
+		{: codeblock}
 
-				```
-				drop database malbork cascade;
-				create database malbork;
-				```
-				{: codeblock}
-		
-		3. Exit and run the following command.
+   1. When prompted by SQL run the following commands.
 
-				```
-				./cockroach sql --insecure -d malbork < <your backup>.sql
-				```
-				{: codeblock}
+		```
+		drop database malbork cascade;
+		create database malbork;
+		```
+		{: codeblock}
+
+   1. Exit and run the following command.
+
+		```
+		./cockroach sql --insecure -d malbork < <your backup>.sql
+		```
+		{: codeblock}
 
 6. Scale the Enclave Manager deployment up by running `helm upgrade` without setting the `enclaveos-chart.Manager.ReplicaCount` value.
 
