@@ -85,12 +85,12 @@ Check out the following table to see which roles are supported and some example 
   </tr>
   <tr>
     <td>Editor</td>
-    <td>Can perform the actions that a Reader can perform and more; including deactivating and renewing node attestation, adding a build, and approving or denying any action or tasks.</td>
+    <td>Can perform the actions that a Viewer can perform and more; including deactivating and renewing node attestation, adding a build, and approving or denying any action or tasks.</td>
     <td>Certifying an application.</td>
   </tr>
   <tr>
-    <td>Viewer</td>
-    <td>Can perform the actions that a Writer can perform and more; including updating usernames and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
+    <td>Administrator</td>
+    <td>Can perform the actions that an Editor can perform and more; including updating usernames and roles, adding users to the cluster, updating cluster settings, and any other privileged actions.</td>
     <td>Updating a user role.</td>
   </tr>
 </table>

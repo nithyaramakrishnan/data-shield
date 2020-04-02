@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-02"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -108,7 +108,7 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   kubectl delete secret <release name>-enclaveos-manager-main-tls-v2 
   kubectl delete secret <release name>-cockroachdb-ca
   kubectl delete secret <release name>-cockroachdb.client.root
-  kubectl delete secret <release name>-cockroachdb.node
+  kubectl delete secret <release name>-cockroachdb.node-v2
   ```
   {: codeblock}
 

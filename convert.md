@@ -257,7 +257,7 @@ Check out the following example to see how to configure a request to generate an
   {: codeblock}
 
 6. Save the following template as `app.json` and make the required changes to fit your application's certificate requirements.
-
+  
   ```json
   {
     "name": "<app_name>",
@@ -271,10 +271,6 @@ Check out the following example to see how to configure a request to generate an
     "allowed_domains": ["<SGX-Application.domain>"],
     "advanced_settings": {
         "java_runtime": "",
-          "caCertificate": {
-            "caCertPath": "/cacert.pem",
-            "system": "true"
-          },
         "certificate": {
                 "issuer": "MANAGER_CA",
                 "keyType": "RSA",
@@ -284,13 +280,12 @@ Check out the following example to see how to configure a request to generate an
                 "subject": "SGX-Application.domain",
                 "keyPath": "/appkey.pem",
                 "certPath": "/appcert.pem",
+                "caCertPath": "/cacert.pem",
                 "chainPath": "/chainpath.pem"
-    }
-  }
-  }
+    }  
   ```
   {: screen}
-
+  
   <table>
     <tr>
       <th>Variable</th>
@@ -334,7 +329,7 @@ Check out the following example to see how to configure a request to generate an
     </tr>
     <tr>
       <td><code>advanced_settings</code></td>
-      <td>Advanced settings are configured for best practice in the example code block. Be sure that you understand the way that changing a setting affects your application before you make any change. Also, note you can specify only one of <code>certPath</code> or <code>caCertPath</code> at any time. If you specify both at the same time, the command in the following step fails. The <code>caCertpath</code> is the path to store the Manager CA certificate. <code>System</code> sets the option of install the CA Certificate into the system trust store. <code>System<code> options include <code>true</code>, <code>false</code>, and <code>undefined</code>. </br><code>true</code>: Continue to install the service and build the conversion even if the installation of the CA certificate was unsuccessful. </br><code>false</code>: Stop the installation process and do not install the service. </br><code>undefined</code>: Install the service, but fail the build conversion if the CA certificate installation fails. </br></br> The available options for the Java Runtime are <code>ORACLE</code>, <code>OPENJDK</code>, <code>OPENJ9</code>, and <code>LIBERTY</code>.</br>For <code>subject</code>, list one of the domains that you specified in <code>allowed_domains</code>. For <code>system</code>, options include <code>true</code>, </td>
+      <td>Advanced settings are configured for best practice in the example code block. Be sure that you understand the way that changing a setting affects your application before you make any change. Also, note you can specify only one of <code>certPath</code> or <code>caCertPath</code> at any time. If you specify both at the same time, the command in the following step fails. </br></br> The available options for the Java Runtime are <code>ORACLE</code>, <code>OPENJDK</code>, <code>OPENJ9</code>, and <code>LIBERTY</code>.</br>For <code>subject</code>, list one of the domains that you specified in <code>allowed_domains</code>. For <code>system</code>, options include <code>true</code>, </td>
     </tr>
   </table>
 
