@@ -270,7 +270,6 @@ Check out the following example to see how to configure a request to generate an
     "threads": <threads>,
     "allowed_domains": ["<SGX-Application.domain>"],
     "advanced_settings": {
-        "encryptedDirs": [],
         "java_runtime": "",
           "caCertificate": {
             "caCertPath": "/cacert.pem",
