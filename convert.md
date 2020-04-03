@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-02"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -257,38 +257,35 @@ Check out the following example to see how to configure a request to generate an
   {: codeblock}
 
 6. Save the following template as `app.json` and make the required changes to fit your application's certificate requirements.
-
+  
   ```json
   {
-      "name": "<app_name>",
-      "description": "<app_description>",
-      "input_image_name": "<your-registry-server/your-app>",
-      "output_image_name": "<your-registry-server/your-app-sgx>",
-      "isvprodid": <isvprodid>,
-      "isvsvn": <isvsvn>,
-      "mem_size": <memory_size>,
-      "threads": <threads>,
-      "allowed_domains": ["<SGX-Application.domain>"],
-      "advanced_settings": {
-          "encryptedDirs": [],
-          "java_runtime": "",
-          "certificate": {
-                  "issuer": "MANAGER_CA",
-                  "keyType": "RSA",
-                  "keyParam": {
-                    "size": 2048
-                  },
-                  "subject": "SGX-Application.domain",
-                  "keyPath": "/appkey.pem",
-                  "certPath": "/appcert.pem",
-                  "caCertPath": "/cacert.pem",
-                  "chainPath": "/chainpath.pem"
-      }
-    }
-  }
+    "name": "<app_name>",
+    "description": "<app_description>",
+    "input_image_name": "<your-registry-server/your-app>",
+    "output_image_name": "<your-registry-server/your-app-sgx>",
+    "isvprodid": <isvprodid>,
+    "isvsvn": <isvsvn>,
+    "mem_size": <memory_size>,
+    "threads": <threads>,
+    "allowed_domains": ["<SGX-Application.domain>"],
+    "advanced_settings": {
+        "java_runtime": "",
+        "certificate": {
+                "issuer": "MANAGER_CA",
+                "keyType": "RSA",
+                "keyParam": {
+                  "size": 2048
+                },
+                "subject": "SGX-Application.domain",
+                "keyPath": "/appkey.pem",
+                "certPath": "/appcert.pem",
+                "caCertPath": "/cacert.pem",
+                "chainPath": "/chainpath.pem"
+    }  
   ```
   {: screen}
-
+  
   <table>
     <tr>
       <th>Variable</th>
@@ -332,7 +329,7 @@ Check out the following example to see how to configure a request to generate an
     </tr>
     <tr>
       <td><code>advanced_settings</code></td>
-      <td>Advanced settings are configured for best practice in the example code block. Be sure that you understand the way that changing a setting affects your application before you make any change. Also, note you can specify only one of <code>certPath</code> or <code>caCertPath</code> at any time. If you specify both at the same time, the command in the following step fails.</br> The available options for the Java Runtime are <code>ORACLE</code>, <code>OPENJDK</code>, <code>OPENJ9</code>, and <code>LIBERTY</code>.</br>For <code>subject</code>, list one of the domains that you specified in <code>allowed_domains</code>.</td>
+      <td>Advanced settings are configured for best practice in the example code block. Be sure that you understand the way that changing a setting affects your application before you make any change. Also, note you can specify only one of <code>certPath</code> or <code>caCertPath</code> at any time. If you specify both at the same time, the command in the following step fails. </br></br> The available options for the Java Runtime are <code>ORACLE</code>, <code>OPENJDK</code>, <code>OPENJ9</code>, and <code>LIBERTY</code>.</br>For <code>subject</code>, list one of the domains that you specified in <code>allowed_domains</code>. For <code>system</code>, options include <code>true</code>, </td>
     </tr>
   </table>
 
