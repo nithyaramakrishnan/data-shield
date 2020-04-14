@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-14"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -41,6 +41,9 @@ With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can prote
 {: shortdesc}
 
 
+Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [OpenShift](/docs/openshift?topic=openshift-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
+{: tip}
+
 
 ![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with {{site.data.keyword.datashield_short}}" caption-side="bottom"}
 
@@ -57,10 +60,6 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 * [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
 * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
 * [Docker](https://docs.docker.com/install/){: external}
-* [Helm version 2](/docs/containers?topic=containers-helm): Be sure to follow the instructions for setting up Helm in a cluster with public access.
-
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-  {: tip}
 
 
 ## Preparing your cluster
@@ -155,15 +154,17 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
   {: codeblock}
 
 
-
 ## Installing Helm and `cert manager`
 {: #gs-helm}
 
-To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
+To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
 
-
-You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+If you're using version 2, you might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
 {: tip}
+
+
+### Installing Helm version 2
+{: #gs-helm}
 
 1. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
 
@@ -191,13 +192,53 @@ You might want to configure Helm to use `--tls` mode. For help with enabling TLS
   ```
   {: codeblock}
 
-4. {{site.data.keyword.datashield_short}} uses [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. To work with the service, install an instance of `cert-manager` by using Helm.
+
+### Installing Helm version 3
+{: #install-v3}
+
+1. Install [version 3](https://github.com/helm/helm/releases){: external} of the CLI.
+
+2. Add the `iks-charts` repo to your instance of Helm.
 
   ```
-  helm repo update && helm install --version 0.5.0 stable/cert-manager
+  helm repo add iks-charts https://icr.io/helm/iks-charts
   ```
   {: codeblock}
 
+
+### Installing `cert-manager`
+{: #install-cert}
+
+{{site.data.keyword.datashield_short}} uses open source [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
+
+1. Create the resource in your cluster.
+
+  ```
+  kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
+  ```
+  {: codeblock}
+
+2. Create the namespace and add a label.
+
+  ```
+  kubectl create namespace cert-manager
+  kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
+  ```
+  {: codeblock}
+
+3. Add the `jetstack` repo.
+
+  ```
+  helm repo add jetstack https://charts.jetstack.io
+  ```
+  {: codeblock}
+
+4. Install `cert-manager`.
+
+  ```
+  helm repo update && helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v0.10.1 --set extraArgs[0]="--enable-certificate-owner-ref=true" --set webhook.enabled=false
+  ```
+  {: codeblock}
 
 
 ## Installing {{site.data.keyword.datashield_short}}

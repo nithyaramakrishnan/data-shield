@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-02"
+lastupdated: "2020-04-14"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -46,44 +46,6 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>{{site.data.keyword.cloud_notm}} Endpoint</th>
-      <th>{{site.data.keyword.containershort_notm}} region</th>
-    </tr>
-    <tr>
-      <td>Dallas</td>
-      <td><code>us-south</code></td>
-      <td>US South</td>
-    </tr>
-    <tr>
-      <td>Frankfurt</td>
-      <td><code>eu-de</code></td>
-      <td>EU Central</td>
-    </tr>
-    <tr>
-      <td>Sydney</td>
-      <td><code>au-syd</code></td>
-      <td>AP South</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td><code>eu-gb</code></td>
-      <td>UK South</td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>jp-tok</code></td>
-      <td>AP North</td>
-    </tr>
-    <tr>
-      <td>Washington DC</td>
-      <td><code>us-east</code></td>
-      <td>US East</td>
-    </tr>
-  </table>
-
 2. Set the context for your cluster.
 
   ```
@@ -91,28 +53,28 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-3. Delete the service.
+3. Delete the job that's attached to your instance of the service.
 
   ```
-  helm delete <release-name> --purge
-  ```
-  {: codeblock}
-
-4. Delete the TLS certificates by running each of the following commands.
-
-  ```
-  kubectl delete secret <release name>-enclaveos-ca         
-  kubectl delete secret <release name>-enclaveos-converter-tls-v2        
-  kubectl delete secret <release name>-enclaveos-frontend-tls-v2         
-  kubectl delete secret <release name>-enclaveos-manager-admin-tls-v2    
-  kubectl delete secret <release name>-enclaveos-manager-main-tls-v2 
-  kubectl delete secret <release name>-cockroachdb-ca
-  kubectl delete secret <release name>-cockroachdb.client.root
-  kubectl delete secret <release name>-cockroachdb.node-v2
+  kubectl delete job $(kubectl get jobs -o custom-columns=:metadata.name | grep cockroachdb-init)
   ```
   {: codeblock}
 
-5. The uninstall process uses Helm "hooks" to run an uninstaller. You can delete the uninstaller after it runs.
+4. Delete the chart.
+
+  ```
+  helm uninstall <release_name>
+  ```
+  {: codeblock}
+
+
+
+## Optional: Delete the certificates and supporting software
+{: #delete-extras}
+
+When you work with IBM Cloud Data Shield, there are certificates, installers, and secrets that must also be deleted to fully remove the service from your cluster.
+
+1. The uninstall process uses Helm "hooks" to run an uninstaller. You can delete the uninstaller after it runs.
 
   ```
   kubectl delete daemonset data-shield-uninstaller
@@ -120,23 +82,67 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
   ```
   {: codeblock}
 
-6. Optional: Delete your instance of `cert-manager`. If you delete your instance, be sure that you also delete the following CRDs.
+2. Delete the TLS certificates by running each of the following commands.
 
   ```
-  kubectl delete crd certificates.certmanager.k8s.io
-  kubectl delete crd clusterissuers.certmanager.k8s.io 
-  kubectl delete crd issuers.certmanager.k8s.io
+  kubectl delete secret <release_name>-enclaveos-ca         
+  kubectl delete secret <release_name>-enclaveos-converter-tls-v2        
+  kubectl delete secret <release_name>-enclaveos-frontend-tls-v2         
+  kubectl delete secret <release_name>-enclaveos-manager-admin-tls-v2    
+  kubectl delete secret <release_name>-enclaveos-manager-main-tls-v2 
+  kubectl delete secret <release_name>-cockroachdb-ca
+  kubectl delete secret <release_name>-cockroachdb.client.root
+  kubectl delete secret <release_name>-cockroachdb.node-v2
   ```
   {: codeblock}
 
-7. Optional: Delete your converter service ID. Note: if you choose to delete your service ID, your Docker config secret will no longer work. 
+3. Optional: Delete your instance of `cert-manager`. 
+
+  1. Uninstall `cert-manager`.
+
+    ```
+    helm uninstall cert-manager -n cert-manager
+    ```
+    {: codeblock}
+
+  2. Delete the namespace.
+
+    ```
+    kubectl delete namespace cert-manager
+    ```
+    {: codeblock}
+
+  3. Delete the CRDs.
+
+    * If you're using version 3 of Helm:
+
+      ```
+      kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
+      ```
+      {: codeblock}
+
+    * If you're using version 2 of Helm:
+
+      ```
+      kubectl delete crd certificates.certmanager.k8s.io
+      kubectl delete crd clusterissuers.certmanager.k8s.io 
+      kubectl delete crd issuers.certmanager.k8s.io
+      ```
+      {: codeblock}
+
+4. Delete your converter service ID. If you delete your service ID, your Docker Config Secret no longer works and should also be deleted.
 
   ```
   ibmcloud iam service-id-delete <service_id>
   ```
   {: codeblock}
 
-8. Optional: Delete your Docker config secret.
+5. Delete your Docker config secret.
+
+  ```
+  kubectl delete secret converter-docker-config
+  ```
+  {: codeblock}
 
 
 
