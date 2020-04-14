@@ -96,7 +96,7 @@ When you work with IBM Cloud Data Shield, there are certificates, installers, an
   ```
   {: codeblock}
 
-3. Optional: Delete your instance of `cert-manager`. 
+3. Delete your instance of `cert-manager`. 
 
   1. Uninstall `cert-manager`.
 
