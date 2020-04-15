@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-14"
+lastupdated: "2020-04-15"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -69,6 +69,7 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 
 
 
+
 ## Optional: Delete the certificates and supporting software
 {: #delete-extras}
 
@@ -107,28 +108,26 @@ When you work with IBM Cloud Data Shield, there are certificates, installers, an
 
   2. Delete the namespace.
 
-    ```
-    kubectl delete namespace cert-manager
-    ```
-    {: codeblock}
+    * If you're using Helm v2, run the following command:
+
+      ```
+      helm delete cert-manager --purge
+      ```
+      {: codeblock}
+
+    * If you're using Helm v3, run the following command:
+
+      ```
+      kubectl delete namespace cert-manager
+      ```
+      {: codeblock}
 
   3. Delete the CRDs.
 
-    * If you're using version 3 of Helm:
-
-      ```
-      kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
-      ```
-      {: codeblock}
-
-    * If you're using version 2 of Helm:
-
-      ```
-      kubectl delete crd certificates.certmanager.k8s.io
-      kubectl delete crd clusterissuers.certmanager.k8s.io 
-      kubectl delete crd issuers.certmanager.k8s.io
-      ```
-      {: codeblock}
+    ```
+    kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
+    ```
+    {: codeblock}
 
 4. Delete your converter service ID. If you delete your service ID, your Docker Config Secret no longer works and should also be deleted.
 
