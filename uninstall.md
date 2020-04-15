@@ -62,17 +62,17 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 
 4. Delete the chart.
 
-  * If you're using Helm v2, run the following command.
-
-    ```
-    helm delete <release-name> --purge
-    ```
-    {: codeblock}
-
   * If you're using Helm v3, run the following command.
 
     ```
     helm uninstall <release_name>
+    ```
+    {: codeblock}
+
+  * If you're using Helm v2, run the following command.
+
+    ```
+    helm delete <release-name> --purge
     ```
     {: codeblock}
 
@@ -110,19 +110,19 @@ When you work with IBM Cloud Data Shield, there are certificates, installers, an
 
   1. Uninstall `cert-manager`.
 
-  * If you're using Helm v2, run the following command:
-
-      ```
-      helm delete cert-manager --purge
-      ```
-      {: codeblock}
-
     * If you're using Helm v3, run the following command:
 
       ```
       helm uninstall cert-manager -n cert-manager
       ```
       {: codeblock}
+    
+    * If you're using Helm v2, run the following command:
+
+        ```
+        helm delete cert-manager --purge
+        ```
+        {: codeblock}
 
   2. Delete the namespace.
   

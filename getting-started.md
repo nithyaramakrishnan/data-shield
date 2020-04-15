@@ -160,6 +160,18 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
 To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
 
 
+### Installing Helm v3
+{: #install-v3}
+
+1. Install [version 3](https://helm.sh/docs/intro/install/){: external} of the CLI.
+
+2. Add the `iks-charts` repo to your instance of Helm.
+
+  ```
+  helm repo add iks-charts https://icr.io/helm/iks-charts
+  ```
+  {: codeblock}
+
 ### Installing Helm v2
 {: #gs-helm}
 
@@ -200,18 +212,6 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
   ```
   {: codeblock}
 
-
-### Installing Helm v3
-{: #install-v3}
-
-1. Install [version 3](https://helm.sh/docs/intro/install/){: external} of the CLI.
-
-2. Add the `iks-charts` repo to your instance of Helm.
-
-  ```
-  helm repo add iks-charts https://icr.io/helm/iks-charts
-  ```
-  {: codeblock}
 
 
 ### Installing `cert-manager`
@@ -271,13 +271,13 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager.
 *	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
-### Installing with Helm v2
-{: #gs-install-helm2}
+### Installing with Helm v3
+{: #gs-install-helm3}
 
-To install IBM Cloud Data Shield by using version 2 of Helm, run the following command.
+To install IBM Cloud Data Shield by using version 3 of Helm, run the following command.
 
 ```
-helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
+helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
 ```
 {: codeblock}
 
@@ -308,13 +308,13 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
 You can verify the installation and monitor the startup of your components by running `kubectl get pods`.
 {: note}
 
-### Installing with Helm v3
-{: #gs-install-helm3}
+### Installing with Helm v2
+{: #gs-install-helm2}
 
-To install IBM Cloud Data Shield by using version 3 of Helm, run the following command.
+To install IBM Cloud Data Shield by using version 2 of Helm, run the following command.
 
 ```
-helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
+helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
 ```
 {: codeblock}
 
