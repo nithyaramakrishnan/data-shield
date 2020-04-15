@@ -167,7 +167,14 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
 
 1. Download [version 2](https://github.com/helm/helm/releases/tag/v2.16.6){: external}.
 
-1. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
+2. Add the `iks-charts` repo to your instance of Helm.
+
+  ```
+  helm repo add iks-charts https://icr.io/helm/iks-charts
+  ```
+  {: codeblock}
+
+3. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
 
   ```
   kubectl create serviceaccount tiller -n kube-system
@@ -179,14 +186,14 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
   ```
   {: codeblock}
 
-2. Verify that the Tiller service account is created.
+4. Verify that the Tiller service account is created.
 
   ```
   kubectl get serviceaccount -n kube-system tiller
   ```
   {: codeblock}
 
-3. Initialize the Helm CLI and install Tiller in your cluster with the service account that you created.
+5. Initialize the Helm CLI and install Tiller in your cluster with the service account that you created.
 
   ```
   helm init --service-account tiller
@@ -307,7 +314,7 @@ You can verify the installation and monitor the startup of your components by ru
 To install IBM Cloud Data Shield by using version 3 of Helm, run the following command.
 
 ```
-helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
+helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
 ```
 {: codeblock}
 
