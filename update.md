@@ -1,13 +1,12 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-14"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
 subcollection: data-shield
 ---
-
 
 {:codeblock: .codeblock}
 {:screen: .screen}
@@ -56,21 +55,14 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
   ```
   {: codeblock}
 
-3. If you haven't already, add the `iks-charts` repository.
-
-  ```
-  helm repo add iks-charts https://icr.io/helm/iks-charts
-  ```
-  {: codeblock}
-
-4. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
+3. Optional: If you don't know the email that is associated with the administrator or the admin account ID, run the following command.
 
   ```
   ibmcloud account show
   ```
   {: codeblock}
 
-5. Get the Ingress subdomain for your cluster.
+4. Get the Ingress subdomain for your cluster.
 
   ```
   ibmcloud ks cluster get --cluster <cluster_name>
@@ -82,8 +74,14 @@ After {{site.data.keyword.datashield_short}} is installed on your cluster, you c
 
 To update to the newest version with the Helm chart, run the following command.
 
-  {{site.data.keyword.datashield_short}} is not configured to work with Helm v3. Be sure that you're using Helm v2.
-  {: tip}
+1. Delete the job for your current version of Data Shield.
+
+  ```
+  kubectl delete job $(kubectl get jobs -o custom-columns=:metadata.name | grep cockroachdb-init)
+  ```
+  {: codeblock}
+
+2. Update your chart.
 
   ```
   helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 

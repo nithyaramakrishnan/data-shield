@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-15"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -41,6 +41,9 @@ With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can prote
 {: shortdesc}
 
 
+Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [OpenShift](/docs/openshift?topic=openshift-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
+{: tip}
+
 
 ![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with {{site.data.keyword.datashield_short}}" caption-side="bottom"}
 
@@ -57,10 +60,6 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 * [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
 * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
 * [Docker](https://docs.docker.com/install/){: external}
-* [Helm version 2](/docs/containers?topic=containers-helm): Be sure to follow the instructions for setting up Helm in a cluster with public access.
-
-  You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-  {: tip}
 
 
 ## Preparing your cluster
@@ -155,17 +154,39 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
   {: codeblock}
 
 
-
 ## Installing Helm and `cert manager`
 {: #gs-helm}
 
-To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
+To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
 
 
-You might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
-{: tip}
+### Installing Helm v3
+{: #install-v3}
 
-1. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
+1. Install [version 3](https://helm.sh/docs/intro/install/){: external} of the CLI.
+
+2. Add the `iks-charts` repo to your instance of Helm.
+
+  ```
+  helm repo add iks-charts https://icr.io/helm/iks-charts
+  ```
+  {: codeblock}
+
+### Installing Helm v2
+{: #gs-helm}
+
+If you're using version 2, you might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
+
+1. Download [version 2](https://github.com/helm/helm/releases/tag/v2.16.6){: external}.
+
+2. Add the `iks-charts` repo to your instance of Helm.
+
+  ```
+  helm repo add iks-charts https://icr.io/helm/iks-charts
+  ```
+  {: codeblock}
+
+3. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
 
   ```
   kubectl create serviceaccount tiller -n kube-system
@@ -177,27 +198,65 @@ You might want to configure Helm to use `--tls` mode. For help with enabling TLS
   ```
   {: codeblock}
 
-2. Verify that the Tiller service account is created.
+4. Verify that the Tiller service account is created.
 
   ```
   kubectl get serviceaccount -n kube-system tiller
   ```
   {: codeblock}
 
-3. Initialize the Helm CLI and install Tiller in your cluster with the service account that you created.
+5. Initialize the Helm CLI and install Tiller in your cluster with the service account that you created.
 
   ```
   helm init --service-account tiller
   ```
   {: codeblock}
 
-4. {{site.data.keyword.datashield_short}} uses [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. To work with the service, install an instance of `cert-manager` by using Helm.
+
+
+### Installing `cert-manager`
+{: #install-cert}
+
+{{site.data.keyword.datashield_short}} uses open source [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
+
+1. Create the resource in your cluster.
 
   ```
-  helm repo update && helm install --version 0.5.0 stable/cert-manager
+  kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
   ```
   {: codeblock}
 
+2. Create the namespace and add a label.
+
+  ```
+  kubectl create namespace cert-manager
+  kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
+  ```
+  {: codeblock}
+
+3. Add the `jetstack` repo.
+
+  ```
+  helm repo add jetstack https://charts.jetstack.io
+  ```
+  {: codeblock}
+
+4. Install `cert-manager`.
+
+  * If you're using Helm v2, run the following command.
+
+    ```
+    helm repo update && helm install --name cert-manager jetstack/cert-manager --namespace cert-manager --version v0.10.1 --set extraArgs[0]="--enable-certificate-owner-ref=true" --set webhook.enabled=false
+    ```
+    {: codeblock}
+
+
+  * If you're using Helm v3, run the following command.
+
+    ```
+    helm repo update && helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v0.10.1 --set extraArgs[0]="--enable-certificate-owner-ref=true" --set webhook.enabled=false
+    ```
+    {: codeblock}
 
 
 ## Installing {{site.data.keyword.datashield_short}}
@@ -212,51 +271,79 @@ The Helm chart installs the following components:
 *	The {{site.data.keyword.datashield_short}} Enclave Manager.
 *	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
 
+### Installing with Helm v3
+{: #gs-install-helm3}
 
-1. If you haven't already, add the `iks-charts` repository.
+To install IBM Cloud Data Shield by using version 3 of Helm, run the following command.
 
-  ```
-  helm repo add iks-charts https://icr.io/helm/iks-charts
-  ```
-  {: codeblock}
+```
+helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
+```
+{: codeblock}
 
-2. Install the chart.
+<table>
+  <caption>Table 1. Installation options</caption>
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>--set global.OpenShiftEnabled=true</code></td>
+    <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+  </tr>
+      <tr>
+    <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
+    <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
+  </tr>
+  <tr>
+    <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+  </tr>
+  <tr>
+    <td><code>--set global.ServiceReplicas=<replica-count></code></td>
+    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
+  </tr>
+</table>
 
-  ```
-  helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
-  ```
-  {: codeblock}
+You can verify the installation and monitor the startup of your components by running `kubectl get pods`.
+{: note}
 
-  <table>
-    <caption>Table 1. Installation options</caption>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td><code>--set global.OpenShiftEnabled=true</code></td>
-      <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
-    </tr>
-       <tr>
-      <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
-      <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
-    </tr>
-    <tr>
-      <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
-    </tr>
-    <tr>
-      <td><code>--set global.ServiceReplicas=<replica-count></code></td>
-      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
-    </tr>
-  </table>
+### Installing with Helm v2
+{: #gs-install-helm2}
 
-3. To monitor the startup of your components, you can run the following command.
+To install IBM Cloud Data Shield by using version 2 of Helm, run the following command.
 
-  ```
-  kubectl get pods
-  ```
-  {: codeblock}
+```
+helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
+```
+{: codeblock}
+
+<table>
+  <caption>Table 1. Installation options</caption>
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>--set global.OpenShiftEnabled=true</code></td>
+    <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+  </tr>
+      <tr>
+    <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
+    <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
+  </tr>
+  <tr>
+    <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
+    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+  </tr>
+  <tr>
+    <td><code>--set global.ServiceReplicas=<replica-count></code></td>
+    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
+  </tr>
+</table>
+
+You can verify the installation and monitor the startup of your components by running `kubectl get pods`.
+{: note}
 
 
 ## Next steps
