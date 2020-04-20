@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-13"
+lastupdated: "2020-04-20"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -237,7 +237,7 @@ Check out the following example to see how to configure a request to generate an
 3. Get your Ingress subdomain.
 
   ```
-  ibmcloud ks cluster-get <your-cluster-name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 
@@ -368,7 +368,7 @@ Check out the following example to see how to configure a request to generate an
 3. Get your Ingress subdomain.
 
   ```
-  ibmcloud ks cluster-get <your-cluster-name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 
