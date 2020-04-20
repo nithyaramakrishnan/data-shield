@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-04-20"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -74,14 +74,14 @@ The first time that you sign in to the Enclave Manager, it must be done by using
 5. Get your Ingress subdomain.
 
   ```
-  ibmcloud ks cluster-get <your-cluster-name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 
 6. In a browser, enter the Ingress subdomain where your Enclave Manager is available.
 
   ```
-  enclave-manager.<cluster-ingress-subdomain>
+  enclave-manager.<cluster_ingress_subdomain>
   ```
   {: codeblock}
 
