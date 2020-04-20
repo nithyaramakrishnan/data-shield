@@ -237,7 +237,7 @@ Check out the following example to see how to configure a request to generate an
 3. Get your Ingress subdomain.
 
   ```
-  ibmcloud ks cluster-get <your-cluster-name>
+  ibmcloud ks cluster get --cluster <cluster_name>
   ```
   {: codeblock}
 
