@@ -2,7 +2,7 @@
 
 With IBM Cloud™ Data Shield, powered by Fortanix®, you can protect the data in your container workloads that run on Kubernetes Service or OpenShift clusters while your data is in use.
 
-For more information about how you are charged for using IBM Cloud Data Shield, see the [catalog](https://cloud.ibm.com/catalog/data-shield).
+For more information about how you are charged for using IBM Cloud Data Shield, see the [catalog](https://cloud.ibm.com/catalog/services/data-shield).
 
 ## Introduction
 
