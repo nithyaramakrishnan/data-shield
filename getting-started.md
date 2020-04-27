@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-15"
+lastupdated: "2020-04-27"
 
 keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -161,7 +161,7 @@ To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 
 
 
 ### Installing Helm v3
-{: #install-v3}
+{: #install-helm-v3}
 
 1. Install [version 3](https://helm.sh/docs/intro/install/){: external} of the CLI.
 
@@ -173,7 +173,7 @@ To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 
   {: codeblock}
 
 ### Installing Helm v2
-{: #gs-helm}
+{: #gs-helm-v2}
 
 If you're using version 2, you might want to configure Helm to use `--tls` mode. For help with enabling TLS check out the [Helm repository](https://v2.helm.sh/docs/tiller_ssl/#using-ssl-between-helm-and-tiller){: external}. If you enable TLS, be sure to append `--tls` to every Helm command that you run.
 
