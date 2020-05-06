@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-27"
+lastupdated: "2020-05-06"
 
-keywords: confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
+keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
 subcollection: data-shield
 ---
@@ -34,7 +34,7 @@ subcollection: data-shield
 
 
 
-# Getting started tutorial
+# Getting started {{site.data.keyword.datashield_short}}
 {: #getting-started}
 
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} or OpenShift while your data is in use.
@@ -62,7 +62,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 * [Docker](https://docs.docker.com/install/){: external}
 
 
-## Preparing your cluster
+## Step 1: Prepare your cluster
 {: gs-prepare-cluster}
 
 To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
@@ -116,7 +116,7 @@ When you have a running cluster, you can start obtaining the information that yo
   {: codeblock}
 
 
-## Configuring credentials
+## Step 2: Configure credentials
 {: #gs-convert}
 
 Before you can run applications in an Enclave, your container image must be converted. To prepare your image for conversion, create a service ID and give it permissions to work with the container converter.
@@ -154,7 +154,7 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
   {: codeblock}
 
 
-## Installing Helm and `cert manager`
+## Step 3: Install Helm and `cert manager`
 {: #gs-helm}
 
 To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
@@ -259,7 +259,7 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
     {: codeblock}
 
 
-## Installing {{site.data.keyword.datashield_short}}
+## Step 4: Install {{site.data.keyword.datashield_short}}
 {: #gs-install}
 {: support}
 
