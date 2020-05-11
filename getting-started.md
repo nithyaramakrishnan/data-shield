@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-05-06"
+lastupdated: "2020-05-11"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -214,10 +214,10 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
 
 
 
-### Installing `cert-manager`
+### Installing `cert manager`
 {: #install-cert}
 
-{{site.data.keyword.datashield_short}} uses open source [`cert-manager`](https://cert-manager.readthedocs.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
+{{site.data.keyword.datashield_short}} uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
 
 1. Create the resource in your cluster.
 
