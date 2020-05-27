@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-05-27"
 
 keywords: images, public, global registry, applications, containerized app, sample app, data security, encryption, kube security,
 
@@ -70,7 +70,7 @@ You can access the public IBM images by using the CLI.
     ```
     {: codeblock}
 
-For more information about working with container images, see the [Registry documentation](/docs/Registry?topic=registry-getting-started).
+For more information about working with container images, see the [Registry documentation](/docs/Registry?topic=Registry-getting-started).
 
 
 ## IBM Cloud Data Shield image options

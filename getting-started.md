@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-05-11"
+lastupdated: "2020-05-27"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -56,8 +56,8 @@ You can be up and running with {{site.data.keyword.datashield_short}} in just th
 
 Before you get started, ensure that you have the following CLIs and plug-ins downloaded.
 
-* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli)
-* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli/reference/ibmcloud?topic=cloud-cli-plug-ins)
+* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-install-ibmcloud-cli)
+* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli?topic=cli-plug-ins)
 * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
 * [Docker](https://docs.docker.com/install/){: external}
 
