@@ -59,13 +59,6 @@ Don't have an application to try the service? No problem. We offer several sampl
       containers:
       - name: your-app-sgx
         image: your-registry-server/your-app-sgx
-        volumeMounts:
-        - mountPath: /dev/isgx
-          name: isgx
-        - mountPath: /dev/gsgx
-          name: gsgx
-        - mountPath: /var/run/aesmd/aesm.socket
-          name: aesm-socket
         env:
         - name: NODE_IP
           valueFrom:
@@ -73,19 +66,10 @@ Don't have an application to try the service? No problem. We offer several sampl
               fieldPath: status.hostIP
         - name: NODE_AGENT_BASE_URL
           value: http://$(NODE_IP):9092/v1
-      volumes:
-      - name: isgx
-        hostPath:
-          path: /dev/isgx
-          type: CharDevice
-      - name: gsgx
-        hostPath:
-          path: /dev/gsgx
-          type: CharDevice
-      - name: aesm-socket
-        hostPath:
-          path: /var/run/aesmd/aesm.socket
-          type: Socket
+        resources:
+          limits:
+            fortanix.com/isgx: 1
+            fortanix.com/gsgx:1
     ```
     {: screen}
 
@@ -124,6 +108,4 @@ Because {{site.data.keyword.datashield_short}} is being previewed, there are a f
   OpenShift security policies might restrict the creation of privileged containers. Cluster administrators have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
   {: note}
 
-* SELinux is placed in permissive mode during the installation. 
-
-
+* SELinux is placed in permissive mode during the installation.
