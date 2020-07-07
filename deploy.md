@@ -59,13 +59,6 @@ Don't have an application to try the service? No problem. We offer several sampl
       containers:
       - name: your-app-sgx
         image: your-registry-server/your-app-sgx
-        volumeMounts:
-        - mountPath: /dev/isgx
-          name: isgx
-        - mountPath: /dev/gsgx
-          name: gsgx
-        - mountPath: /var/run/aesmd/aesm.socket
-          name: aesm-socket
         env:
         - name: NODE_IP
           valueFrom:
