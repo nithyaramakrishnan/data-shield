@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-07-07"
 
 keywords: clusters, deploy apps, pod specification, security policies, containers, encryption, helm, sample apps, volumes, memory, data in use,
 
@@ -73,19 +73,10 @@ Don't have an application to try the service? No problem. We offer several sampl
               fieldPath: status.hostIP
         - name: NODE_AGENT_BASE_URL
           value: http://$(NODE_IP):9092/v1
-      volumes:
-      - name: isgx
-        hostPath:
-          path: /dev/isgx
-          type: CharDevice
-      - name: gsgx
-        hostPath:
-          path: /dev/gsgx
-          type: CharDevice
-      - name: aesm-socket
-        hostPath:
-          path: /var/run/aesmd/aesm.socket
-          type: Socket
+      resources:
+        limits:
+          fortanix.com/isgx: 1
+          fortanix.com/gsgx: 1
     ```
     {: screen}
 
