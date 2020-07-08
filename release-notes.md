@@ -42,7 +42,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 
 
-## Version 1.17.694
+## Current version (1.17.694)
 {: #v1.17.694}
 
 **Released: 6 April 2020**
@@ -57,9 +57,10 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Addressed Glibc Vulnerability CVE-2020-10029.
 
+## 2020 updates
+{: #2020-updates}
 
-
-## Version 1.16.654
+### Version 1.16.654
 {: #v1.16.654}
 
 **Released: 20 March 2020**
@@ -73,7 +74,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Fixed a resource leak that had the potential to prevent applications with multiple forks from running.
 
 
-## Version 1.15.625
+### Version 1.15.625
 {: #v1.15.625}
 
 **Released: 02 March 2020**
@@ -89,7 +90,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 
 
-## Version 1.14.596
+### Version 1.14.596
 {: #v1.14.596}
 
 **Released: 13 February 2020**
@@ -104,7 +105,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Bug fixes
 
 
-## Version 1.12.575
+### Version 1.12.575
 {: #v1.12.575}
 
 **Released: 06 February 2020**
@@ -120,7 +121,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Bug fixes
 
 
-## Version 1.11.534
+### Version 1.11.534
 {: #v1.11.534}
 
 **Released: 21 January 2020**
