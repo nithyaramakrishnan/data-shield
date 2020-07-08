@@ -131,7 +131,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Upgraded to Intel SGX PSW version 2.7
 
 
-### 2019 updates
+## 2019 updates
 {: #2019-updates}
 
 ### Version 1.10.448
@@ -524,7 +524,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 
 
-### 2018 updates
+## 2018 updates
 {: #2018-updates}
 
 
