@@ -40,9 +40,49 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
+## Current version (1.19.794)
+{: #v1.19.794}
+
+**Released: 06 June 2020**
+
+- Enclave Manager:
+
+  - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull Kubectl, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
+  - Fixed multiple pods of same statesfulset being scheduled on the same node.
+  - Enforced TLS 1.2 across the board.
+  - Made the username field non-editable in the UI.
+  - Removed 1024 but RSA Encryption key size option from certificate config of an app.
+
+- EnclaveOS:
+
+  - Set all reserved and undesired bits in SGX ATTRIBUTEMASK to 1 to avoid running enclaves with unexpected features enabled.
+  - Updated the way that FPU and Vector register state is now properly saved and restored when signals are delivered and returned.
+  - Updated the version of `glibc` to 2.28 to permit the conversion of containers based on Debian 10.
+  - The in-enclave `glibc` now uses the Linux `clone()` system call.
 
 
-## Current version (1.17.694)
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version 1.18.731
+{: #v1.18.731}
+
+**Released: 27 April 2020**
+
+- Enclave Manager:
+
+  - Added information to the UI for certification and chain path requirements.
+  - Added the ability to delete non-admin users.
+  - Replaced `sgx_perm_daemon` with a device-plugin pod which mounts `gsgx`, `isgx`, and `aesmd` on requeting containers.
+
+If the manager pods fail to come up after upgrading, delete them one-by-one to fix the issue.
+{: note}
+
+
+### Version 1.17.694
 {: #v1.17.694}
 
 **Released: 6 April 2020**
@@ -55,10 +95,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - EnclaveOS:
 
-  - Addressed Glibc Vulnerability CVE-2020-10029.
-
-## 2020 updates
-{: #2020-updates}
+  - Addressed `Glibc` Vulnerability CVE-2020-10029.
 
 ### Version 1.16.654
 {: #v1.16.654}
@@ -134,6 +171,8 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 ## 2019 updates
 {: #2019-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2019.
 
 ### Version 1.10.448
 {: #v1.10.448}
@@ -528,11 +567,13 @@ Releases before 1.2 cannot be upgraded to this release.
 ## 2018 updates
 {: #2018-updates}
 
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2018.
+
 
 ### Version 0.4.48
 {: #v0.4.48}
 
-**Released: 13 December 2019**
+**Released: 13 December 2018**
 
 - Product release.
 
