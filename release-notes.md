@@ -50,12 +50,12 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 - Enclave Manager:
 
   - Remove the experimental encrypted directories feature from the Enclave Manager UI. The feature is still available for use through the API.
-  - Added support for Helm 3
-  - Updated SGX PSW to version 2.9.100.2
+  - Added support for Helm 3.
+  - Updated SGX PSW to version 2.9.100.2.
 
 - EnclaveOS:
 
-  - Addressed Glibc Vulnerability CVE-2020-10029
+  - Addressed Glibc Vulnerability CVE-2020-10029.
 
 
 
@@ -66,7 +66,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - Enclave Manager:
 
-  - Moved the CA Certificate configuration into the Advanced Settings section in the Application template
+  - Moved the CA Certificate configuration into the Advanced Settings section in the Application template.
 
 - EnclaveOS:
 
@@ -80,8 +80,8 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - Enclave Manager:
 
-  - Upgraded Node.js to version 13.x
-  - Changed the Edit App form to make the App Name field read only in the UI.
+  - Upgraded Node.js to version 13.x.
+  - Changed the Edit App form to make the App Name field read-only in the UI.
 
 - EnclaveOS:
 
@@ -127,8 +127,8 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - Enclave Manager:
 
-  - Updated to the authentication token mechanism that handles authentication between the node agent and the Enclave Manager.
-  - Upgraded to Intel SGX PSW version 2.7
+  - Updated the authentication token mechanism that handles authentication between the node agent and the Enclave Manager.
+  - Upgraded to Intel SGX PSW version 2.7.
 
 
 ## 2019 updates
@@ -157,13 +157,13 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - Enclave Manager:
 
-  - Added support for billing labels in Kubernetes and OpenShift
-  - Fixed cockroach Docker image vulnerability
+  - Added support for billing labels in Kubernetes and OpenShift.
+  - Fixed cockroach Docker image vulnerability.
   - Node enrollment and app certificate issuance now succeeds by default on platforms that are running out-of-date microcode. It is not possible to change this option on existing clusters. You must reinstall the Enclave Manager to take advantage of this feature.
 
 - EnclaveOS:
 
-  - Improved logging errors
+  - Improved logging errors.
 
 
 ### Version 1.8.396
@@ -186,8 +186,8 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Updated the endpoint names of the Docker images to `icr.io`.
   - Updated the {{site.data.keyword.datashield_short}} uninstaller to work with OpenShift.
-  - Fixed an issue when a different `Ias.Mode(IAS_API_KEY, IAS_CREDENTIALS)` is used for deployment
-  - Upgraded cockroach DB to `v2.1.9` to address vulnerability scan results
+  - Fixed an issue when a different `Ias.Mode(IAS_API_KEY, IAS_CREDENTIALS)` is used for deployment.
+  - Upgraded cockroach DB to `v2.1.9` to address vulnerability scan results.
 
 - EnclaveOS:
 
@@ -246,7 +246,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 - General
 
   - {{site.data.keyword.datashield_short}} now creates a `datashield-admin` service account upon installation.
-  - Updated Python with September 2019 security fixes to address several CVEs
+  - Updated Python with September 2019 security fixes to address several CVEs.
 
 
 Releases before 1.2 cannot be upgraded to this release.
@@ -277,11 +277,11 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Update Golang version to address HTTP/2 DoS attack
+  - Update Golang version to address HTTP/2 DoS attack.
 
 - EnclaveOS:
 
-  - Fix a security vulnerability
+  - Fix a security vulnerability.
   - For Java containers converted with 'OPENJ9' option, the -Xmx value is chosen dynamically based on enclave size. 
   - Set the default number of malloc arenas to 2, for better performance for most applications.
 
@@ -299,8 +299,8 @@ Releases before 1.2 cannot be upgraded to this release.
 - Enclave Manager:
 
   - Added maintainer information to the Helm chart.
-  - Updated the Helm chart readme file
-  - Fixed an issue with service startup
+  - Updated the Helm chart readme file.
+  - Fixed an issue with service startup.
 
 Releases before 1.2 cannot be upgraded to this release.
 {: note}
@@ -314,17 +314,17 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Added support for configuring IAS credentials directly
-  - Fixed bugs and improved stability
-  - Added production signed enclaves
+  - Added support for configuring IAS credentials directly.
+  - Fixed bugs and improved stability.
+  - Added production signed enclaves.
 
 - EnclaveOS:
 
-  - Added support for running as a non-root user
-  - Turned off environment variable and command-line restrictions for containers
-  - Turned off read-only file systems
-  - Added more performance monitoring
-  - Improved performance
+  - Added support for running as a non-root user.
+  - Turned off environment variable and command-line restrictions for containers.
+  - Turned off read-only file systems.
+  - Added more performance monitoring.
+  - Improved performance.
 
 Releases before 1.2 cannot be upgraded to this release.
 {: note}
@@ -355,7 +355,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - EnclaveOS:
 
-  - Broadened support for Java applications
+  - Broadened support for Java applications.
   - Fixed bugs and improved stability.
   - For security reasons, environment variables set in the host environment at run time are no longer passed to the guest.
   - Added fixes for security vulnerabilities.
@@ -383,7 +383,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - EnclaveOS
 
-  - EclaveOS application file systems are now mounted read-only by default to prevent inadvertent disclosure of sensitive data. If your application needs to write data to a file system, consider mounting an encrypted file system by supplying the `Encrypted Directories` option at conversion time.
+  - EnclaveOS application file systems are now mounted read-only by default to prevent inadvertent disclosure of sensitive data. If your application needs to write data to a file system, consider mounting an encrypted file system by supplying the `Encrypted Directories` option at conversion time.
 
 
 
@@ -395,8 +395,8 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - User Interface:
 
-  - Changed the default enclave size and thread count
-  - Fixed bugs for build page crash
+  - Changed the default enclave size and thread count.
+  - Fixed bugs for build page crash.
   - Improved {{site.data.keyword.datashield_short}} naming.
 
 - Enclave Manager:
@@ -413,8 +413,8 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - User Interface:
 
-  - Edit application to change when 400 error displays
-  - Fixed audit log display
+  - Edit application to change when 400 error displays.
+  - Fixed audit log display.
   - Added a flag to show when configuration is needed.
 
 - Enclave Manager:
@@ -443,8 +443,8 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Added IASv3 support
-  - Attested heartbeat from app to manager
+  - Added IASv3 support.
+  - Attested heartbeat from app to manager.
 
 
 
@@ -455,9 +455,9 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Secured TLS communication
-  - Updated TLS cert secret name
-  - Added UI for EnclaveOS conversion
+  - Secured TLS communication.
+  - Updated TLS cert secret name.
+  - Added UI for EnclaveOS conversion.
 
 
 ### Version 0.4.69
@@ -467,8 +467,8 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Added notes.txt to the Helm chart
-  - Update security for apt
+  - Added notes.txt to the Helm chart.
+  - Update security for apt.
 
 
 
@@ -479,8 +479,8 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Fixed an error that occasionally prevented login through the web UI
-  - Fixed an error with issuing application certificates
+  - Fixed an error that occasionally prevented login through the web UI.
+  - Fixed an error with issuing application certificates.
 
 
 ### Version 0.4.65
@@ -490,16 +490,16 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Fixed the high severity issues that were identified by pen testing
-  - Updated Helm chat to set an uninstall hook that moves the Enclave Manager database image and creates the associated build
+  - Fixed the high severity issues that were identified by pen testing.
+  - Updated Helm chart to set an uninstall hook that moves the Enclave Manager database image and creates the associated build.
   - Added APIs to the backend to automate the process of converting a container image and creating the associated build.
   - Updated authentication to enforce that the IAM tokens are used to log in are issued under the correct account.
 
 - EnclaveOS:
 
-  - Added support for obtaining the enclave signature from the EnclaveOS_SIGNATURE environment variable
-  - Fixed an out of memory error from bash that appeared with certain applications
-  - Fixed bugs
+  - Added support for obtaining the enclave signature from the EnclaveOS_SIGNATURE environment variable.
+  - Fixed an out of memory error from bash that appeared with certain applications.
+  - Fixed bugs.
 
 
 
@@ -510,7 +510,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 - Enclave Manager:
 
-  - Fixed issue with logging in to the web UI
+  - Fixed issue with logging in to the web UI.
 
 
 ### Version 0.4.57
