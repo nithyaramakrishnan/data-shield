@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-08"
+lastupdated: "2020-07-09"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -98,10 +98,10 @@ When you work with {{site.data.keyword.datashield_short}}, there are certificate
 
     * If you're using Helm v3, run the following command:
 
-      ```
-      helm uninstall cert-manager -n cert-manager
-      ```
-      {: codeblock}
+        ```
+        helm uninstall cert-manager -n cert-manager
+        ```
+        {: codeblock}
     
     * If you're using Helm v2, run the following command:
 
