@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-08"
+lastupdated: "2020-07-09"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -501,7 +501,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 
 ### Version 0.4.69
-{: #v0.4.74}
+{: #v0.4.69}
 
 **Released: 23 January 2019**
 
