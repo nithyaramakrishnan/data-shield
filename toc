@@ -38,4 +38,5 @@ IBM Cloud Data Shield
     {: .navgroup id="help"}
     faq.md
     ts-index.md
+    release-notes.md
     {: .navgroup-end}
