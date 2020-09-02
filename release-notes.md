@@ -161,7 +161,7 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 
@@ -177,7 +177,7 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 ### Version 1.12.575
@@ -189,11 +189,11 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
   - Added support to delete builds in the UI.
   - The Enclave Manager replica count now applies to the database, as well as the backend application.
-  - Bug fixes
+  - Fixed bugs
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 ### Version 1.11.534
