@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-09-02"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -39,10 +39,55 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.19.794)
+## Current version (1.21.889)
+{: #v1.21.889}
+
+**Released: 30 August 2020**
+
+- Enclave Manager:
+
+  - Removed `You can provide a different tag number for the new builds.` from the create new builds page.
+  - Trimmed white-space in input fields in the container conversion tool.
+  - Fixed text bug that occurred when deleting builds.
+  - Removed public JavaScript source maps.
+  - Fixed the vulnerabilities CVE-2020-14039, CVE-2020-15586 and CVE-2020-16845 by updating Go to version 1.14.7.
+  - Fixed the vulnerability CVE-2019-20907 by updating Python.
+  - Fixed the vulnerability CVE-2020-15709 by updating Ubuntu software-properties package.
+
+- EnclaveOS:
+
+  - Fixed defects.
+
+
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version 1.20.858
+{: #v1.20.858}
+
+**Released: 07 August 2020**
+
+- Enclave Manager:
+
+  - Added support for installation on version 1.16 Kubernetes Service clusters.
+  - Fixed vulnerabilities CVE-2020-8172, CVE-2020-8174, and CVE-2020-11080 by updating Node.js to version 14.6
+
+- EnclaveOS:
+
+  - Added support for the container converter in air-tight or firewalled environments
+  - Fixed vulnerability CVE-2020-1752 by updating the `glibc` to version 2.31.
+
+If you have {{site.data.keyword.datashield_short}} running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16. This upgrade is not supported. First, update your cluster version and then install {{site.data.keyword.datashield_short}}.
+{: note}
+
+
+### Version 1.19.794
 {: #v1.19.794}
 
-**Released: 06 June 2020**
+**Released: 22 June 2020**
 
 - Enclave Manager:
 
@@ -59,12 +104,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Updated the version of `glibc` to 2.28 to permit the conversion of containers based on Debian 10.
   - The in-enclave `glibc` now uses the Linux `clone()` system call.
 
-
-
-## 2020 updates
-{: #2020-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
 ### Version 1.18.731
 {: #v1.18.731}
@@ -122,7 +161,7 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 
@@ -138,7 +177,7 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 ### Version 1.12.575
@@ -150,11 +189,11 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 
   - Added support to delete builds in the UI.
   - The Enclave Manager replica count now applies to the database, as well as the backend application.
-  - Bug fixes
+  - Fixed bugs
 
 - EnclaveOS:
 
-  - Bug fixes
+  - Fixed bugs
 
 
 ### Version 1.11.534
