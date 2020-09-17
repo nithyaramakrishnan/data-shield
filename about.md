@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-09-17"
 
 keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
 
@@ -30,6 +30,7 @@ subcollection: data-shield
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
+{:video: .video}
 
 
 
@@ -41,8 +42,9 @@ With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can 
 {: shortdesc}
 
 <div class="embed-responsive embed-responsive-16by9" data-hd-video="video">
-  <iframe class="embed-responsive-item" id="about-data-shield" title="About {{site.data.keyword.appid_short_notm}}" type="text/html" width="640" height="390" src="https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&playerId=kplayer&entry_id=0_qy62q1zo&flashvars[streamerType]=auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
+  <iframe class="embed-responsive-item" id="about-data-shield" title="About {{site.data.keyword.datashield_short}}" type="text/html" width="640" height="390" src="https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&playerId=kplayer&entry_id=0_qy62q1zo&flashvars[streamerType]=auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 </div>
+
 
 
 ## Types of encryption
@@ -97,7 +99,7 @@ They were able to demonstrate the value by simulating a privileged user attack b
     <dd><a href="/docs/containers?topic=containers-getting-started">{{site.data.keyword.containerlong_notm}}</a> delivers powerful tools by combining Docker containers, the Kubernetes technology, an intuitive user experience, and built-in security and isolation to automate working with containerized apps.</dd></br>
     <dd><a href="/docs/openshift?topic=openshift-getting-started">{{site.data.keyword.openshiftlong_notm}}</a> combines the power of {{site.data.keyword.containerlong_notm}} with the best of IBM Cloud container orchestration software. You get all of the benefits of managed {{site.data.keyword.containerlong_notm}} and you gain the flexibility to use <a href="https://docs.openshift.com/container-platform/3.11/welcome/index.html">OpenShift tools</a> such as Red Hat Enterprise Linux® for your app deployments.</dd>
   <dt>Access control</dt>
-    <dd>With <a href="/docs/iam?topic=iam-getstarted">{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
+    <dd>With <a href="/docs/account?topic=account-access-getstarted">{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
   <dt>Logging</dt>
     <dd>Activity logs for Helm install, update, and delete are captured by your Kubernetes Service audit logs.</dd></br>
     <dd>With {{site.data.keyword.la_full_notm}}, you can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>

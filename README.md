@@ -46,7 +46,7 @@ Want to try out IBM Cloud Data Shield, but don't have an image ready to go? No p
 
 ## Uninstalling and troubleshooting
 
-If you encounter an issue while working with IBM Cloud Data Shield, try looking through the [troubleshooting](https://cloud.ibm.com/docs/data-shield?topic=data-shield-troubleshooting#troubleshooting) or [frequently asked questions](https://cloud.ibm.com/docs/data-shield?topic=data-shield-faq#faq) sections of the documentation. If you don't see your question or a solution to your issue, contact [IBM support](https://cloud.ibm.com/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
+If you encounter an issue while working with IBM Cloud Data Shield, try looking through the [troubleshooting](https://cloud.ibm.com/docs/data-shield?topic=data-shield-troubleshooting#troubleshooting) or [frequently asked questions](https://cloud.ibm.com/docs/data-shield?topic=data-shield-faq#faq) sections of the documentation. If you don't see your question or a solution to your issue, contact [IBM support](https://cloud.ibm.com/docs/get-support?topic=get-support-using-avatar#getting-customer-support).
 
 If you no longer need to use IBM Cloud Data Shield, you can [uninstall the service](https://cloud.ibm.com/docs/data-shield?topic=data-shield-uninstall#uninstall).
 
