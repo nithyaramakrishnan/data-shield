@@ -72,9 +72,6 @@ Don't have an application to try the service? No problem. We offer several sampl
     ```
     {: screen}
 
-    The line `type: CharDevice` prevents Kubernetes from creating an empty directory if the underlying device files don't exist.
-    {: Tip}
-
 3. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
 
 4. Create the Kubernetes pod.
@@ -107,6 +104,4 @@ Because {{site.data.keyword.datashield_short}} is being previewed, there are a f
   OpenShift security policies might restrict the creation of privileged containers. Cluster administrators have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
   {: note}
 
-* SELinux is placed in permissive mode during the installation. 
-
-
+* SELinux is placed in permissive mode during the installation.
