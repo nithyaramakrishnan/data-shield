@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-09-21"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -29,6 +29,9 @@ subcollection: data-shield
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
+{:video: .video}
+{:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
 
 
 # Troubleshooting
@@ -44,7 +47,7 @@ For help, you can search for information in the documentation or by asking quest
 
 If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
 
-For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-getting-customer-support).
+For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-using-avatar).
 
 
 ## Obtaining logs

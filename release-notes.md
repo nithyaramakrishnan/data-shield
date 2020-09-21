@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-02"
+lastupdated: "2020-09-21"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -29,6 +29,9 @@ subcollection: data-shield
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
+{:video: .video}
+{:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
 
 
 
