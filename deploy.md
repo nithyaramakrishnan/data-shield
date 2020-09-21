@@ -82,9 +82,6 @@ Don't have an application to try the service? No problem. We offer several sampl
     ```
     {: screen}
 
-    The line `type: CharDevice` prevents Kubernetes from creating an empty directory if the underlying device files don't exist.
-    {: Tip}
-
 3. Update the fields `your-app-sgx` and `your-registry-server` to your app and server.
 
 4. Create the Kubernetes pod.
