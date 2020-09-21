@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-09-21"
 
 keywords: images, public, global registry, applications, containerized app, sample app, data security, encryption, kube security,
 
@@ -31,6 +31,7 @@ subcollection: data-shield
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
 {:video: .video}
+{:step: data-tutorial-type='step'}
 
 
 

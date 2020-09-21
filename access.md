@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-09-21"
 
 keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
@@ -31,6 +31,7 @@ subcollection: data-shield
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
 {:video: .video}
+{:step: data-tutorial-type='step'}
 
 
 # Assigning access

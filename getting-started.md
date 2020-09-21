@@ -1,11 +1,18 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-09-21"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
 subcollection: data-shield
+
+content-type: tutorial
+
+account-plan: lite
+services: containers, registry, openshift
+completion-time: 30m
+
 ---
 
 {:codeblock: .codeblock}
@@ -30,12 +37,15 @@ subcollection: data-shield
 {:tsResolve: .tsResolve}
 {:tsSymptoms: .tsSymptoms}
 {:video: .video}
-
+{:step: data-tutorial-type='step'}
 
 
 
 # Getting started {{site.data.keyword.datashield_short}}
 {: #getting-started}
+{: toc-content-type="tutorial"}
+{: toc-services="containers, registry, openshift"}
+{: toc-completion-time="30m"}
 
 With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} or OpenShift while your data is in use.
 {: shortdesc}
@@ -62,8 +72,9 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 * [Docker](https://docs.docker.com/install/){: external}
 
 
-## Step 1: Prepare your cluster
+## Prepare your cluster
 {: gs-prepare-cluster}
+{: step}
 
 To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
@@ -116,8 +127,9 @@ When you have a running cluster, you can start obtaining the information that yo
   {: codeblock}
 
 
-## Step 2: Configure credentials
+## Configure credentials
 {: #gs-convert}
+{: step}
 
 Before you can run applications in an Enclave, your container image must be converted. To prepare your image for conversion, create a service ID and give it permissions to work with the container converter.
 
@@ -154,8 +166,9 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
   {: codeblock}
 
 
-## Step 3: Install Helm and `cert manager`
+## Install Helm and `cert manager`
 {: #gs-helm}
+{: step}
 
 To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
 
@@ -259,9 +272,10 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
     {: codeblock}
 
 
-## Step 4: Install {{site.data.keyword.datashield_short}}
+## Install {{site.data.keyword.datashield_short}}
 {: #gs-install}
 {: support}
+{: step}
 
 Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
 
