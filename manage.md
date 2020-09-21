@@ -31,6 +31,7 @@ subcollection: data-shield
 {:tsSymptoms: .tsSymptoms}
 {:video: .video}
 {:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
 
 
 # Deploying apps with the Enclave Manager

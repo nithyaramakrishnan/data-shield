@@ -38,6 +38,7 @@ completion-time: 30m
 {:tsSymptoms: .tsSymptoms}
 {:video: .video}
 {:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
 
 
 
