@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-05"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -319,11 +319,11 @@ helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.
   </tr>
   <tr>
     <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. Note: By default, IAS requests are made through a proxy service.</td>
   </tr>
   <tr>
-    <td><code>--set global.ServiceReplicas=<replica-count></code></td>
-    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
+    <td><code>--set global.ServiceReplicas=&lt;replica-count&gt;</code></td>
+    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
   </tr>
 </table>
 
@@ -356,11 +356,11 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
   </tr>
   <tr>
     <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. <strong>Note</strong>: By default, IAS requests are made through a proxy service.</td>
   </tr>
   <tr>
     <td><code>--set global.ServiceReplicas=<replica-count></code></td>
-    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. Note: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
+    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
   </tr>
 </table>
 

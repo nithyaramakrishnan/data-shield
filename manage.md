@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-05"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -44,7 +44,7 @@ subcollection: data-shield
 # Deploying apps with the Enclave Manager
 {: #enclave-manager}
 
-You can use the Enclave Manager UI to manage the applications that you protect with {{site.data.keyword.datashield_full}}. From the UI you can manage your app deployment, assign access, handle whitelist requests, and convert your applications.
+You can use the Enclave Manager UI to manage the applications that you protect with {{site.data.keyword.datashield_full}}. From the UI you can manage your app deployment, assign access, handle allow list requests, and convert your applications.
 {: shortdesc}
 
 
@@ -120,14 +120,14 @@ You can use the Enclave Manager UI to monitor the status, deactivate, or downloa
 
 3. Click the IP address of the node that you want to investigate. An information screen opens.
 
-4. On the information screen, you can choose to remove the node from your whitelist by clicking **Delist node** or you can download the certificate that is used for attestation.
+4. On the information screen, you can choose to remove the node from your allow list by clicking **Delist node** or you can download the certificate that is used for attestation.
 
 
 
 ## Adding an app
 {: #em-app-add}
 
-You can convert, deploy, and whitelist your application all at the same time by using the Enclave Manager UI.
+You can convert, deploy, and allow list your application all at the same time by using the Enclave Manager UI.
 {: shortdesc}
 
 1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Apps** tab.
@@ -238,14 +238,14 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 
 4. Enter the name of your Docker image and tag it with a label.
 
-5. Click **Create**. The build is added to your whitelist. You can approve the build in the **Tasks** tab.
+5. Click **Create**. The build is added to your allow list. You can approve the build in the **Tasks** tab.
 
 
 
 ## Approving tasks
 {: #em-tasks}
 
-When an application is whitelisted, it is added to the list of pending requests in the **Tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
+When an application is allow listed, it is added to the list of pending requests in the **Tasks** tab of the Enclave Manager UI. You can use the UI to approve or deny the request.
 {: shortdesc}
 
 1. [Sign in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to the Enclave Manager and go to the **Tasks** tab.
@@ -264,7 +264,7 @@ You can audit your Enclave manager instance for several different types of activ
 1. Go to the **Audit log** tab of the Enclave Manager UI.
 2. Filter the logging results to narrow your search. You can choose to filter by timeframe or by any of the following types.
 
-  * App status: Activity that pertains to your application such as whitelist requests and new builds.
+  * App status: Activity that pertains to your application such as allow list requests and new builds.
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate authority: Activity that pertains to a certificate authority.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-05"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -381,12 +381,12 @@ Check out the following example to see how to configure a request to generate an
   ```
   {: codeblock}
 
-4. Enter your variables and run the following command to create the build for your app and add it to your whitelist. You can find the app ID in the output of step number 8 of the previous section.
+4. Enter your variables and run the following command to create the build for your app and add it to your allow list. You can find the app ID in the output of step number 8 of the previous section.
 
   ```
   curl -H 'Content-Type: application/json' -d '{"app_id": "<app_id>", "docker_version": "<version_number>" }'  -H "Authorization: Bearer $em_token" https://enclave-manager.<ingress-domain>/api/v1/builds/convert-app
   ```
   {: codeblock}
 
-5. In the Enclave Manager GUI, the build was added to your whitelist. Be sure to approve the build so that it can complete. You can track and manage whitelisted builds in the **Tasks** section of the GUI.
+5. In the Enclave Manager GUI, the build was added to your allow list. Be sure to approve the build so that it can complete. You can track and manage allow listed builds in the **Tasks** section of the GUI.
 
