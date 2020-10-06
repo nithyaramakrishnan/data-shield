@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-05"
+lastupdated: "2020-10-06"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -52,7 +52,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 ## Current version (1.22.925)
 {: #v1.22.925}
 
-**Released: 09 September 2020**
+**Released: 24 September 2020**
 
 - Enclave Manager:
 
