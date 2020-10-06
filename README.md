@@ -33,7 +33,7 @@ Note: If you're working with an OpenShift cluster, be sure to append the followi
 
 ## Next steps
 
-With the [Enclave Manager GUI](https://cloud.ibm.com/docs/data-shield?topic=data-shield-enclave-manager), you can manage nodes, deploy and build apps, and approve tasks for all of the applications that run in your IBM Cloud Data Shield environment. You can also build, deploy, and whitelist applications by [using the API](https://cloud.ibm.com/docs/data-shield?topic=data-shield-convert) if that is your preference.
+With the [Enclave Manager GUI](https://cloud.ibm.com/docs/data-shield?topic=data-shield-enclave-manager), you can manage nodes, deploy and build apps, and approve tasks for all of the applications that run in your IBM Cloud Data Shield environment. You can also build, deploy, and allow list applications by [using the API](https://cloud.ibm.com/docs/data-shield?topic=data-shield-convert) if that is your preference.
 
 ## Using prepackaged shielded images
 

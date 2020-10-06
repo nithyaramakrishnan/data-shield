@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-06"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -49,7 +49,29 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.21.889)
+## Current version (1.22.925)
+{: #v1.22.925}
+
+**Released: 24 September 2020**
+
+- Enclave Manager:
+
+  - Deleted `Undefined` from the pop-up that is seen when deleting builds.
+  - Fixed CVE-2020-24553 by upgrading to GoLang version `1.15.2`.
+  - Updated to use `cloud.ibm.com` URLs.
+
+- EnclaveOS:
+
+  - Fixed defects.
+
+
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version 1.21.889
 {: #v1.21.889}
 
 **Released: 30 August 2020**
@@ -68,12 +90,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Fixed defects.
 
-
-
-## 2020 updates
-{: #2020-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
 ### Version 1.20.858
 {: #v1.20.858}
