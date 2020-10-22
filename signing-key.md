@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-22"
 
 keywords: converted containers, sign sgx, app security, production apps, images, containers, cluster, debug key, intel signing key, intel, data protection, runtime, memory encryption, 
 
@@ -46,6 +46,8 @@ subcollection: data-shield
 
 When a container is converted by {{site.data.keyword.datashield_full}}, it is signed by an Intel SGX debug key. However, debug keys are not recommended for use with production ready workloads. To ensure the security of your applications, you must obtain a signing key from Intel to run converted containers in production environments.
 {: shortdesc}
+
+
 
 ## Requesting a production signing key
 {: #signing-key-request}
@@ -93,7 +95,7 @@ Before you can sign your converted applications, be sure that you have the follo
   sudo apt-get -y install python3-pip
   ```
 
-* The enclaveos-signer requirements
+* The `enclaveos-signer` requirements
 
   ```
   pip3  install -r requirements.txt
@@ -103,7 +105,7 @@ Before you can sign your converted applications, be sure that you have the follo
 ### Signing your development images
 {: #signing}
 
-Signing your development images is optional. If you choose not to, they are signed in the background by a random debug key that is provided by IBM Cloud Data Shield. If you want to use your own key, use the following steps.
+Signing your development images is optional. If you choose not to, they are signed in the background by a random debug key that is provided by {{site.data.keyword.datashield_short}}. If you want to use your own key, use the following steps.
 
 1. Clone the following repository.
 
@@ -146,7 +148,7 @@ Signing your development images is optional. If you choose not to, they are sign
 ### Signing your production images
 {: #signing-images}
 
-You can use the enclaveos-signer to sign IBM Cloud Data Shield converted images with a production-level signing key.
+You can use the `enclaveos-signer` to sign {{site.data.keyword.datashield_short}} converted images with a production-level signing key.
 
 
 1. Clone the following repository.

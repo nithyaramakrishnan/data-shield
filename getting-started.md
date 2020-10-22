@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-05"
+lastupdated: "2020-10-22"
 
-keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, kube security, image, tiller, sample app, runtime encryption, cpu, memory,
+keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
 subcollection: data-shield
 
@@ -207,7 +207,7 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
   ```
   {: codeblock}
 
-3. Create a Kubernetes service account and cluster role binding for Tiller in the kube-system namespace of your cluster.
+3. Create a Kubernetes service account and cluster role binding for Tiller in the `kube-system` namespace of your cluster.
 
   ```
   kubectl create serviceaccount tiller -n kube-system
@@ -359,7 +359,7 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
     <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. <strong>Note</strong>: By default, IAS requests are made through a proxy service.</td>
   </tr>
   <tr>
-    <td><code>--set global.ServiceReplicas=<replica-count></code></td>
+    <td><code>--set global.ServiceReplicas=&lt;replica-count&gt;</code></td>
     <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
   </tr>
 </table>

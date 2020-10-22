@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-22"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -117,7 +117,7 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
     <tr>
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=<spid> --from-literal=api-key=<apikey></code>. Note: By default, IAS requests are made through a proxy service.</td>
+      <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. Note: By default, IAS requests are made through a proxy service.</td>
     </tr>
   </table>
 
