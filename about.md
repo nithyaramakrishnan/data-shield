@@ -51,7 +51,7 @@ With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can 
 
 ![About {{site.data.keyword.datashield_short}}](https://www.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/27941801/partner_id/1773841?iframeembed=true&entry_id=0_qy62q1zo){: video output="iframe" data-script="transcript-about" id="mediacenterplayer" frameborder="0" width="560" height="315" allowfullscreen webkitallowfullscreen mozAllowFullScreen}
 
-## Video transcript
+#### Video transcript
 {: #transcript-about}
 {: script}
 {: notoc}
