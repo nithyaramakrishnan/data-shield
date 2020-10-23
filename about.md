@@ -51,9 +51,8 @@ With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can 
 
 ![About {{site.data.keyword.datashield_short}}](https://www.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/27941801/partner_id/1773841?iframeembed=true&entry_id=0_qy62q1zo){: video output="iframe" data-script="transcript-about" id="mediacenterplayer" frameborder="0" width="560" height="315" allowfullscreen webkitallowfullscreen mozAllowFullScreen}
 
-#### Video transcript
+## Video transcript
 {: #transcript-about}
-{: script}
 {: notoc}
 
 In today's digital global economy data is one of the most valuable assets of enterprises. Data must be protected throughout its lifecycle - when at rest, when in motion, and in use. IBM Cloud Security Services have you covered by managing access to your resources, protecting your data, and providing you with insightful visibility into your security environment. Today we're going to focus on the all important protection of data in use. With {{site.data.keyword.datashield_short}}, your app code and data run in CPU hardened enclaves, which are trusted areas of memory on the worker node that protect the critical aspects of your apps. Let's look at how {{site.data.keyword.datashield_short}} helps customers protect their data in use. 
