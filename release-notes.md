@@ -116,7 +116,7 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 
 - Enclave Manager:
 
-  - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull kubectl, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
+  - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull `kubectl`, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
   - Fixed multiple pods of same statefulsets being scheduled on the same node.
   - Enforced TLS 1.2 across the board.
   - Made the username field non-editable in the UI.
