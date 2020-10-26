@@ -117,7 +117,7 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 - Enclave Manager:
 
   - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull `kubectl`, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
-  - Fixed multiple pods of same statefulsets being scheduled on the same node.
+  - Fixed multiple pods of same StatefulSets being scheduled on the same node.
   - Enforced TLS 1.2 across the board.
   - Made the username field non-editable in the UI.
   - Removed 1024 but RSA Encryption key size option from certificate config of an app.
@@ -385,7 +385,7 @@ Releases before 1.2 cannot be upgraded to this release.
 - EnclaveOS:
 
   - Fix a security vulnerability.
-  - For Java containers converted with 'OPENJ9' option, the -Xmx value is chosen dynamically based on enclave size. 
+  - For Java containers converted with 'OPENJ9' option, the `-Xmx` value is chosen dynamically based on enclave size. 
   - Set the default number of `malloc arenas` to 2, for better performance for most applications.
 
 
