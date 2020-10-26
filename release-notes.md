@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-06"
+lastupdated: "2020-10-26"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -42,7 +42,6 @@ subcollection: data-shield
 
 
 
-
 # Release notes
 {: #release-notes}
 
@@ -57,7 +56,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 - Enclave Manager:
 
   - Deleted `Undefined` from the pop-up that is seen when deleting builds.
-  - Fixed CVE-2020-24553 by upgrading to GoLang version `1.15.2`.
+  - Fixed CVE-2020-24553 by upgrading to Golang version `1.15.2`.
   - Updated to use `cloud.ibm.com` URLs.
 
 - EnclaveOS:
@@ -103,7 +102,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
 - EnclaveOS:
 
-  - Added support for the container converter in air-tight or firewalled environments
+  - Added support for the container converter in air-tight or fire-walled environments
   - Fixed vulnerability CVE-2020-1752 by updating the `glibc` to version 2.31.
 
 If you have {{site.data.keyword.datashield_short}} running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16. This upgrade is not supported. First, update your cluster version and then install {{site.data.keyword.datashield_short}}.
@@ -117,15 +116,15 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 
 - Enclave Manager:
 
-  - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull Kubectl, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
-  - Fixed multiple pods of same statesfulset being scheduled on the same node.
+  - Updated the image path to be configurable. Set `global.Images.Kubectl`, `global.Images.Docker`, `global.Images.Ubuntu`, `global.Images.Busybox` when installing to pull kubectl, Docker, Ubuntu, and BusyBox images from a private Docker registry. By default, they're pulled from a public repository.
+  - Fixed multiple pods of same statefulsets being scheduled on the same node.
   - Enforced TLS 1.2 across the board.
   - Made the username field non-editable in the UI.
   - Removed 1024 but RSA Encryption key size option from certificate config of an app.
 
 - EnclaveOS:
 
-  - Set all reserved and undesired bits in SGX ATTRIBUTEMASK to 1 to avoid running enclaves with unexpected features enabled.
+  - Set all reserved and undesired bits in `SGX ATTRIBUTEMASK` to 1 to avoid running enclaves with unexpected features enabled.
   - Updated the way that FPU and Vector register state is now properly saved and restored when signals are delivered and returned.
   - Updated the version of `glibc` to 2.28 to permit the conversion of containers based on Debian 10.
   - The in-enclave `glibc` now uses the Linux `clone()` system call.
@@ -140,7 +139,7 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 
   - Added information to the UI for certification and chain path requirements.
   - Added the ability to delete non-admin users.
-  - Replaced `sgx_perm_daemon` with a device-plugin pod which mounts `gsgx`, `isgx`, and `aesmd` on requeting containers.
+  - Replaced `sgx_perm_daemon` with a device plug-in pod which mounts `gsgx`, `isgx`, and `aesmd` on requesting containers.
 
 If the manager pods fail to come up after upgrading, delete them one-by-one to fix the issue.
 {: note}
@@ -340,7 +339,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 - Enclave Manager:
 
   - Updated the Enclave Manager conversion UI to include an option to select a file system location where the Enclave Manager CA certificate is made available.
-  -Update protobuf library for `CVE-2019-15544`.
+  -Update protocol buffer library for `CVE-2019-15544`.
   
 - EnclaveOS:
 
@@ -387,7 +386,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
   - Fix a security vulnerability.
   - For Java containers converted with 'OPENJ9' option, the -Xmx value is chosen dynamically based on enclave size. 
-  - Set the default number of malloc arenas to 2, for better performance for most applications.
+  - Set the default number of `malloc arenas` to 2, for better performance for most applications.
 
 
 Releases before 1.2 cannot be upgraded to this release.
