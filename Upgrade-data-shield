@@ -1,0 +1,69 @@
+---
+copyright:
+  years: 2018, 2020
+created: "2020-10-25"
+
+keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
+
+subcollection: data-shield
+---
+
+{:codeblock: .codeblock}
+{:screen: .screen}
+{:download: .download}
+{:external: target="_blank" .external}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:beta: .beta}
+{:term: .term}
+{:shortdesc: .shortdesc}
+{:script: data-hd-video='script'}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+{:java: .ph data-hd-programlang='java'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:swift: .ph data-hd-programlang='swift'}
+{:curl: .ph data-hd-programlang='curl'}
+{:video: .video}
+{:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
+
+
+
+# Ubuntu 16.04 IBM Cloud Kubernetes Service (IKS) Data Shield cluster to Ubuntu 18.04
+{: #update}
+
+If the current version of {{site.data.keyword.datashield_short}} installed is less than version 1.23, then first upgrade to version 1.23 and then follow the upgrade process below.
+{: shortdesc}
+
+## Prerequisites
+{: #update-requirements}
+•	The minimum version of {{site.data.keyword.datashield_short}} installed should be version 1.23 which is the latest version
+
+## Upgrade IBM Cluster from Ubuntu 16.04 IKS to 18.04
+{: #update-process}
+
+The upgrade process is as described below:
+1. Add all the Ubuntu 18.04 nodes to the cluster and wait till they are ready. The node is ready if you see the state of the node in the UI as `"normal"` or use the `kubectl get nodes` command and see that the node status is showing as `"ready"`.
+2. Now remove `‘x’` Ubuntu 16.04 nodes at a time where `‘x’` is strictly less than half of the CockroachDB replicas ( `‘x’ < global.ServiceReplicas/2` ).
+   For example: For a 3 node cluster, remove 1 node at a time. For a 10 node cluster remove 3, 3, and 4 node each time, respectively.
+3. Run the `helm upgrade` command so that `‘x’` ubuntu 18.04 nodes get the required labelling so that Data shield resources start running on them.
+
+  ```
+  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
+  ```
+  {: codeblock}
+
+4. Verify that all Data Shield pods are up and running and none of them are in `“pending”` state.
+5. Repeat steps 2, 3, and 4 until all the Ubuntu 16.04 nodes are removed from the cluster.
