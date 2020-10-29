@@ -1,0 +1,123 @@
+---
+copyright:
+  years: 2018, 2020
+created: "2020-10-25"
+
+keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
+
+subcollection: data-shield
+---
+
+{:codeblock: .codeblock}
+{:screen: .screen}
+{:download: .download}
+{:external: target="_blank" .external}
+{:faq: data-hd-content-type='faq'}
+{:gif: data-image-type='gif'}
+{:important: .important}
+{:note: .note}
+{:pre: .pre}
+{:tip: .tip}
+{:preview: .preview}
+{:deprecated: .deprecated}
+{:beta: .beta}
+{:term: .term}
+{:shortdesc: .shortdesc}
+{:script: data-hd-video='script'}
+{:support: data-reuse='support'}
+{:table: .aria-labeledby="caption"}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:help: data-hd-content-type='help'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+{:java: .ph data-hd-programlang='java'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:swift: .ph data-hd-programlang='swift'}
+{:curl: .ph data-hd-programlang='curl'}
+{:video: .video}
+{:step: data-tutorial-type='step'}
+{:tutorial: data-hd-content-type='tutorial'}
+
+
+
+# Ubuntu 16.04 IBM Cloud Kubernetes Service (IKS) Data Shield cluster to Ubuntu 18.04
+{: #upgrade}
+
+If the current version of {{site.data.keyword.datashield_short}} installed is less than version 1.23, then first upgrade to version 1.23 and then follow the upgrade process below.
+{: shortdesc}
+
+## Prerequisites
+{: #update-requirements}
+•	The minimum version of {{site.data.keyword.datashield_short}} installed should be version 1.23 which is the latest version
+
+
+## Upgrade IBM Cluster from Ubuntu 16.04 IKS to 18.04
+{: #upgrade-process}
+
+The upgrade process is as described below:
+1. Add all the Ubuntu 18.04 nodes to the cluster and wait till they are ready. The node is ready if you see the state of the node in the UI as `"normal"` or use the `kubectl get nodes` command and see that the node status is showing as `"ready"`.
+2. Ensure the Ubuntu 18.04 nodes added are SGX enabled.
+3. Next remove all the Ubuntu 16.04 nodes that does not have Data Shield Manager or CockroachDB pod running on it.
+4. Now remove `‘x’` Ubuntu 16.04 nodes at a time where `‘x’` is strictly less than half of the CockroachDB replicas ( `‘x’ < global.ServiceReplicas/2` ).
+   For example: For a 3 node cluster, remove 1 node at a time. For a 10 node cluster remove 3, 3, and 4 node each time, respectively.
+5. Run the `helm upgrade` command so that `‘x’` ubuntu 18.04 nodes get the required labelling so that Data shield resources start running on them.
+
+  ```
+  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set global.ServiceReplicas=<manager-replica count> --set enclaveos-chart.Manager.FailOnGroupOutOfDate=false
+  ```
+  {: codeblock}
+
+6. Verify that all Data Shield pods are up and running and none of them are in `“pending”` state.
+7. Repeat steps 2, 3, and 4 until all the Ubuntu 16.04 nodes are removed from the cluster.
+8. Delist the removed nodes from the UI manually.
+
+## Troubleshooting
+{: #upgrade-help}
+
+The following topics detail ways to troubleshoot and debug Data Shield upgrade steps.
+
+•	Problem: If enclaveos-agent pod or manager pod on the new node is struck in `ContainerCreating` state and output of `kubectl describe pods <agent/manager pod>`` is similar to:
+
+  ```
+  Normal   Scheduled  47m                    default-scheduler      Successfully assigned default/datashield-enclaveos-manager-1 to 10.94.114.74
+  Warning  Failed     47m                    kubelet, 10.94.114.74  Error: failed to generate container "35f6e7f660a80dff105593a5b8ab9fe20146c1771fc9a897b4dbf1d036043fd1" spec: lstat /dev/isgx: no such file or directory
+  Warning  Failed     47m                    kubelet, 10.94.114.74  Error: failed to generate container "95624416be36ec192abc13429271e86682af1d0f5ef81c4ecda1cd4ec21deb22" spec: lstat /dev/isgx: no such file or directory
+  ```
+  {: codeblock}
+
+  Solution: Check if the sgx pod is running on the node. If the sgx pod is in CrashLoopBackOff state it means that the installation of isgx driver failed on the node. The log of the sgx pod will help in determining the root cause for this. if the sgx pod is in running state then check if the isgx driver is installed on the node:
+  ```
+  root@kube-dal10-crb672a8b09bf145e2a9edbefecb162495-w5:/# lsmod | grep isgx
+  isgx                   45056  0
+  ```
+  {: codeblock}
+
+  If the isgx driver it is installed, then check if you can find it in `/dev` path.
+
+  ```
+  root@kube-dal10-crb672a8b09bf145e2a9edbefecb162495-w5:/# ls /dev/isgx
+  ```
+  {: codeblock}
+
+  If the isgx driver is found in /dev path, then the isgx driver installation was successful. But if it is not found then either the node hardware does not support SGX or SGX is not enabled in your BIOS.
+  If node selected while adding has SGX enabled, then reloading the node should enable SGX in your BIOS.
+
+  NOTE:
+  •	If you have access to the worker node, then check Kernel logs by logging into the worker node.
+  •	If you do not have access to the worker node, use the privileged pod (dkms pod in data-shield deployment) and run the following command to access the shell of the worker node and check Kernel logs.
+
+  ```
+  kubectl exec -it <dkms-pod> chroot /host bash
+  ```
+  {: codeblock}
+
+•	Problem: If Data Shield pods are stuck in `init` state and output of `kubectl describe pods <pod-name>` is similar to:
+
+  ```
+  Warning  FailedMount  60m (x4 over 76m)   kubelet, 10.176.16.235  Unable to attach or mount volumes: unmounted volumes=[datashield-admin-token-7wzv8], unattached volumes=[host-root enclave-volume cluster-ca datashield-admin-token-7wzv8 sgx-psw-version]: timed out waiting for the condition
+  ```
+  {: codeblock}
+  This shows that `datashield-admin` service account secret mounting is failing.
+
+  Solution: This happens because the secret does not exist and a new secret for the service account was created. Deleting the pod should fix the problem since a new pod will come up for it and it will automatically pick the updated secret.
