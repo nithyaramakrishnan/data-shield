@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-26"
+lastupdated: "2020-11-02"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -48,7 +48,45 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.22.925)
+## Current version (1.23.965)
+{: #v1.23.965}
+
+**Released: 30 October 2020**
+
+- Enclave Manager:
+
+  - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}.
+ 
+    To upgrade cluster nodes that run {{site.data.keyword.datashield_short}} 1.22.925 from Ubuntu 16.04 to Ubuntu 18.04:
+
+      1. Upgrade {{site.data.keyword.datashield_short}} from 1.22.925 to 1.23.965.    
+      2. Add all Ubuntu 18.04 nodes to the cluster and wait until they are ready. 
+   
+         A node is ready if you can see its state in the UI as normal or by using the `kubectl get nodes command` to verify that the node status is showing ready.
+         {: note}
+      3. Remove `X` Ubuntu 16.04 nodes at a time from the cluster, where `N` is strictly less than half of the CockroachDB replicas ( X < global.ServiceReplicas/2 ).        
+          
+          For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, subsequently remove 3, 3, and 4 nodes at a time.
+      4. Run the `helm upgrade` command again so that the `X` Ubuntu 18.04 nodes get the required labeling and {{site.data.keyword.datashield_short}} resources start running on the `X` nodes. 
+      5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and none of them are in pending state. 
+      6. Repeat step 3, 4 and 5 until all the Ubuntu 16.04 nodes are removed from the cluster. 
+  - Added support for editing `ISVPRODID` for an application.
+  - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
+  - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
+  - Fixed an issue with editing automatically created applications.
+  - Fixed a CockroachDB cleanup issue that was causing uninstall to fail.
+  
+- EnclaveOS: 
+
+  - Fixed an issue causing Java applications to hang when run with an enclave larger than 4 GB.
+  - Fixed an issue to effectively reduce inode number collisions, causing various issues with files.
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+## Version 1.22.925
 {: #v1.22.925}
 
 **Released: 24 September 2020**
@@ -63,12 +101,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Fixed defects.
 
-
-
-## 2020 updates
-{: #2020-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
 ### Version 1.21.889
 {: #v1.21.889}
