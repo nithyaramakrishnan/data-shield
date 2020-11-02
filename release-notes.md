@@ -57,19 +57,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}.
  
-    To upgrade cluster nodes that run {{site.data.keyword.datashield_short}} 1.22.925 from Ubuntu 16.04 to Ubuntu 18.04:
-
-      1. Upgrade {{site.data.keyword.datashield_short}} from 1.22.925 to 1.23.965.    
-      2. Add all Ubuntu 18.04 nodes to the cluster and wait until they are ready. 
-   
-         A node is ready if you can see its state in the UI as normal or by using the `kubectl get nodes command` to verify that the node status is showing ready.
-         {: note}
-      3. Remove `X` Ubuntu 16.04 nodes at a time from the cluster, where `N` is strictly less than half of the CockroachDB replicas ( X < global.ServiceReplicas/2 ).        
-          
-          For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, subsequently remove 3, 3, and 4 nodes at a time.
-      4. Run the `helm upgrade` command again so that the `X` Ubuntu 18.04 nodes get the required labeling and {{site.data.keyword.datashield_short}} resources start running on the `X` nodes. 
-      5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and none of them are in pending state. 
-      6. Repeat step 3, 4 and 5 until all the Ubuntu 16.04 nodes are removed from the cluster. 
+    For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#update-ubuntu-18.04)
   - Added support for editing `ISVPRODID` for an application.
   - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
@@ -86,7 +74,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
-## Version 1.22.925
+### Version 1.22.925
 {: #v1.22.925}
 
 **Released: 24 September 2020**
