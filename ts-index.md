@@ -330,12 +330,12 @@ If you have access to the worker node, you can check kernel logs by logging into
 {: #ts-problem-mounting-datashield-admin-volume}
 
 {: tsSymptoms}
-You encounter the following error when you run `kubectl describe pods <pod-name>`:
+You try to follow the [update process for {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but {{site.data.keyword.datashield_short}} pods are stuck in the `init` state. You encounter the following error when you run `kubectl describe pods <pod-name>`:
 
 ```
 Warning  FailedMount  60m (x4 over 76m)   kubelet, 10.176.16.235  Unable to attach or mount volumes: unmounted volumes=[datashield-admin-token-7wzv8], unattached volumes=[host-root enclave-volume cluster-ca datashield-admin-token-7wzv8 sgx-psw-version]: timed out waiting for the condition
 ```
-{: codeblock}
+{: screen}
 
 {: tsCauses}
 The secret that is associated with the  `datashield-admin` service account is not mounting successfully. You might encounter this problem because a secret does not exist, or a new secret for the service account was created. 
