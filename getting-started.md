@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-22"
+lastupdated: "2020-11-03"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -45,7 +45,6 @@ completion-time: 30m
 {:video: .video}
 {:step: data-tutorial-type='step'}
 {:tutorial: data-hd-content-type='tutorial'}
-
 
 
 
@@ -101,7 +100,7 @@ To work with {{site.data.keyword.datashield_short}}, you must have an SGX enable
   </tr>
 </table>
 
-Your cluster must be using Kubernetes version 1.15 or earlier to install the service.
+Your cluster must be using Kubernetes version 1.16 or earlier to install the service.
 {: important}
 
 When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.

@@ -305,7 +305,7 @@ The SGX driver might not be installed on the node.
 To resolve the issue, verify:
 
 - That the `sgx` pod is running on the node. If the `sgx` pod is in the `CrashLoopBackOff` state, the `isgx` driver was not installed successfully on the node. 
-- The logs of the `sgx` pod. If the `sgx` pod is in the running state, you can run the following command to whether the `isgx` driver is installed on the nodeL 
+- The logs of the `sgx` pod. If the `sgx` pod is in the running state, you can run the following command to check whether the `isgx` driver is installed on the node. 
 
   ```
   root@kube-dal10-crb672a8b09bf145e2a9edbefecb162495-w5:/# lsmod | grep isgx

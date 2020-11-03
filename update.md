@@ -134,7 +134,7 @@ Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.dat
 
    A node is ready when its status in the UI is displayed as `Normal`. You can also verify the status of a worker node by running the `kubectl get nodes` command.
    {: tip}
-3. Remove `X` number of Ubuntu 16.04 nodes at a time from the cluster, where `N` is strictly less than half of the CockroachDB replicas (`X < global.ServiceReplicas/2`).        
+3. Remove `X` number of Ubuntu 16.04 nodes at a time from the cluster, where `N` is less than half of the CockroachDB replicas (`X < global.ServiceReplicas/2`).        
    
    For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, remove 3, 3, and 4 nodes at a time.
 4. [Update to the newest version by using Helm](#update-helm).
