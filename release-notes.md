@@ -55,10 +55,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 - Enclave Manager:
 
-  - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}.
- 
-    For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#update-ubuntu-18.04)
-    {: note}
+  - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}. For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#update-ubuntu-18.04).
   - Added support for editing `ISVPRODID` for an application.
   - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
