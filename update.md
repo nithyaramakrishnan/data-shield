@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-22"
+lastupdated: "2020-11-03"
 
 keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -38,7 +38,6 @@ subcollection: data-shield
 {:video: .video}
 {:step: data-tutorial-type='step'}
 {:tutorial: data-hd-content-type='tutorial'}
-
 
 
 # Updating {{site.data.keyword.datashield_short}}
@@ -121,3 +120,27 @@ To update to the newest version with the Helm chart, run the following command.
     </tr>
   </table>
 
+## Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04
+{: #upgrade-ubuntu-18.04}
+
+If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run {{site.data.keyword.datashield_short}} to Ubuntu 18.04.
+
+Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
+{: note} 
+
+1. Update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher.
+
+2. Add all Ubuntu 18.04 nodes to your cluster and wait until they are ready. 
+
+   A node is ready when its status in the UI is displayed as `Normal`. You can also verify the status of a worker node by running the `kubectl get nodes` command.
+   {: tip}
+3. Remove `X` number of Ubuntu 16.04 nodes at a time from the cluster, where `N` is less than half of the CockroachDB replicas (`X < global.ServiceReplicas/2`).        
+   
+   For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, remove 3, 3, and 4 nodes at a time.
+4. [Update to the newest version by using Helm](#update-helm).
+
+    This step ensures that your Ubuntu 18.04 nodes get the required labeling, and it prepares your {{site.data.keyword.datashield_short}} resources to begin to run on them. 
+
+5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in pending state. 
+6. Repeat steps 3, 4 and 5 until all the Ubuntu 16.04 nodes are removed from the cluster.
+7. Manually delist the removed nodes from the UI. 

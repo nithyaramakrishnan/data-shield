@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-26"
+lastupdated: "2020-11-03"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -48,7 +48,31 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.22.925)
+## Current version (1.23.965)
+{: #v1.23.965}
+
+**Released: 30 October 2020**
+
+- Enclave Manager:
+
+  - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}. For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#update-ubuntu-18.04).
+  - Added support for editing `ISVPRODID` for an application.
+  - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
+  - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
+  - Fixed an issue with editing automatically created applications.
+  - Fixed a CockroachDB cleanup issue that was causing uninstall to fail.
+  
+- EnclaveOS: 
+
+  - Fixed an issue causing Java applications to hang when run with an enclave larger than 4 GB.
+  - Fixed an issue to effectively reduce inode number collisions, causing various issues with files.
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version 1.22.925
 {: #v1.22.925}
 
 **Released: 24 September 2020**
@@ -63,12 +87,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
   - Fixed defects.
 
-
-
-## 2020 updates
-{: #2020-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
 ### Version 1.21.889
 {: #v1.21.889}
