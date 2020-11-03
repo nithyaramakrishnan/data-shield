@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-11-03"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -38,7 +38,6 @@ subcollection: data-shield
 {:video: .video}
 {:step: data-tutorial-type='step'}
 {:tutorial: data-hd-content-type='tutorial'}
-
 
 
 # Troubleshooting
@@ -286,3 +285,60 @@ To resolve the issue, try uninstalling the library and then reinstalling the dri
 
 3. Reinstall the SGX driver, which runs the `datashield-sgx` and installs the necessary packages.
 
+## Unable to update {{site.data.keyword.datashield_short}}
+{: #ts-problem-updating-data-shield}
+
+{: tsSymptoms}
+You try to follow the [update process for {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but the `enclaveos-agent` pod or manager pod on the new node is stuck in the `ContainerCreating` state. You encounter the following error when you run `kubectl describe pods <agent | manager-pod>`:
+
+```
+Normal   Scheduled  47m                    default-scheduler      Successfully assigned default/datashield-enclaveos-manager-1 to 10.94.114.74
+Warning  Failed     47m                    kubelet, 10.94.114.74  Error: failed to generate container "35f6e7f660a80dff105593a5b8ab9fe20146c1771fc9a897b4dbf1d036043fd1" spec: lstat /dev/isgx: no such file or directory
+Warning  Failed     47m                    kubelet, 10.94.114.74  Error: failed to generate container "95624416be36ec192abc13429271e86682af1d0f5ef81c4ecda1cd4ec21deb22" spec: lstat /dev/isgx: no such file or directory
+```
+{: screen}
+
+{: tsCauses}
+The SGX driver might not be installed on the node.
+
+{: tsResolve}
+To resolve the issue, verify:
+
+- That the `sgx` pod is running on the node. If the `sgx` pod is in the `CrashLoopBackOff` state, the `isgx` driver was not installed successfully on the node. 
+- The logs of the `sgx` pod. If the `sgx` pod is in the running state, you can run the following command to whether the `isgx` driver is installed on the nodeL 
+
+  ```
+  root@kube-dal10-crb672a8b09bf145e2a9edbefecb162495-w5:/# lsmod | grep isgx
+  isgx                   45056  0
+  ```
+  {: codeblock}
+
+  If the `isgx` driver is installed, check whether you can find it in `/dev` path.
+
+  ```
+  root@kube-dal10-crb672a8b09bf145e2a9edbefecb162495-w5:/# ls /dev/isgx
+  ```
+  {: codeblock}
+
+  If you can find the `isgx` driver in the `/dev` path, it is installed successfully. If it is not found, either the node hardware does not support SGX, or SGX is not enabled in your BIOS. If the node that you selected has SGX enabled, reload the node to enable SGX in your BIOS.
+
+
+If you have access to the worker node, you can check kernel logs by logging into the worker node. If you do not have access to the worker node, use the privileged pod (`dkms` pod in the `data-shield` deployment) and run `kubectl exec -it <dkms-pod> chroot /host bash` to access the shell of the worker node and check kernel logs.
+{: note}
+
+## Unable to mount `datashield-admin` volume
+{: #ts-problem-mounting-datashield-admin-volume}
+
+{: tsSymptoms}
+You encounter the following error when you run `kubectl describe pods <pod-name>`:
+
+```
+Warning  FailedMount  60m (x4 over 76m)   kubelet, 10.176.16.235  Unable to attach or mount volumes: unmounted volumes=[datashield-admin-token-7wzv8], unattached volumes=[host-root enclave-volume cluster-ca datashield-admin-token-7wzv8 sgx-psw-version]: timed out waiting for the condition
+```
+{: codeblock}
+
+{: tsCauses}
+The secret that is associated with the  `datashield-admin` service account is not mounting successfully. You might encounter this problem because a secret does not exist, or a new secret for the service account was created. 
+  
+{: tsResolve}
+To resolve the issue, delete the pod. A new pod automatically picks up the updated secret.

@@ -125,7 +125,10 @@ To update to the newest version with the Helm chart, run the following command.
 
 If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run {{site.data.keyword.datashield_short}} to Ubuntu 18.04.
 
-1. Upgrade {{site.data.keyword.datashield_short}} to version 1.23.965 or higher.
+Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
+{: note} 
+
+1. Update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher.
 
 2. Add all Ubuntu 18.04 nodes to your cluster and wait until they are ready. 
 
