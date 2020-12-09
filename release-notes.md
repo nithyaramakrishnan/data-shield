@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-06"
+lastupdated: "2020-12-09"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -48,7 +48,21 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.23.965)
+## Current version (1.24.1010)
+{: #v1.24.1010}
+
+**Released: 19 November 2020**
+
+- EnclaveOS: 
+
+  - Fixed a performance issue by disabling application heartbeats.
+
+## 2020 updates
+{: #2020-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version (1.23.965)
 {: #v1.23.965}
 
 **Released: 30 October 2020**
@@ -67,10 +81,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Fixed an issue causing Java applications to hang when run with an enclave larger than 4 GB.
   - Fixed an issue to effectively reduce index node number collisions, causing various issues with files.
 
-## 2020 updates
-{: #2020-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
 ### Version 1.22.925
 {: #v1.22.925}
