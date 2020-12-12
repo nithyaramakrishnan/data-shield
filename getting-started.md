@@ -92,11 +92,11 @@ To work with {{site.data.keyword.datashield_short}}, you must have an SGX enable
   </tr>
   <tr>
     <td>{{site.data.keyword.containershort}}</td>
-    <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 16</b> operating system.</td>
+    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 18</b> operating system.</td>
   </tr>
   <tr>
     <td>{{site.data.keyword.openshiftshort}}</td>
-    <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
+    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></td>
   </tr>
 </table>
 
@@ -237,7 +237,7 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
 ### Installing `cert manager`
 {: #install-cert}
 
-{{site.data.keyword.datashield_short}} uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
+{{site.data.keyword.datashield_short}} uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services.
 
 1. Create the resource in your cluster.
 
@@ -370,7 +370,7 @@ You can verify the installation and monitor the startup of your components by ru
 ## Next steps
 {: #gs-next}
 
-Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications. 
+Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications.
 
 If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images or sample apps:
 
