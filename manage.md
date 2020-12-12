@@ -238,7 +238,9 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 
 4. Enter the name of your Docker image and tag it with a label.
 
-5. Click **Create**. The build is added to your allow list. You can approve the build in the **Tasks** tab.
+5. Configure the **Heartbeat status** that records the status of your application and the **Heartbeat interval** which is the interval at which the application heartbeat is recorded in seconds.
+
+6. Click **Create**. The build is added to your allow list. You can approve the build in the **Tasks** tab.
 
 
 
@@ -258,7 +260,7 @@ When an application is allow listed, it is added to the list of pending requests
 ## Viewing logs
 {: #em-view}
 
-You can audit your Enclave manager instance for several different types of activity. 
+You can audit your Enclave manager instance for several different types of activity.
 {: shortdesc}
 
 1. Go to the **Audit log** tab of the Enclave Manager UI.
@@ -268,11 +270,7 @@ You can audit your Enclave manager instance for several different types of activ
   * User approval: Activity that pertains to a user's access such as their approval or denial to use the account.
   * Node attestation: Activity that pertains to node attestation.
   * Certificate authority: Activity that pertains to a certificate authority.
-  * Administration: Activity that pertains to administration. 
+  * Administration: Activity that pertains to administration.
 
 If you want to keep a record of the logs beyond 1 month, you can export the information as a `.csv` file.
 {: tip}
-
-
-
-
