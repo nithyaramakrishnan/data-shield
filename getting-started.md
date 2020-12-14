@@ -100,9 +100,6 @@ To work with {{site.data.keyword.datashield_short}}, you must have an SGX enable
   </tr>
 </table>
 
-Your cluster must be using Kubernetes version 1.16 or earlier to install the service.
-{: important}
-
 When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI by running the following command and then following the prompts. If you have a federated ID, append the `--sso` option to the end of the command.
