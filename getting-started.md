@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-03"
+lastupdated: "2020-12-14"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -92,16 +92,13 @@ To work with {{site.data.keyword.datashield_short}}, you must have an SGX enable
   </tr>
   <tr>
     <td>{{site.data.keyword.containershort}}</td>
-    <td><code>mb2c.4x32</code> and <code>ms2c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 16</b> operating system.</td>
+    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 16</b> operating system.</td>
   </tr>
   <tr>
     <td>{{site.data.keyword.openshiftshort}}</td>
-    <td><code>mb3c.4x32</code> and <code>ms3c.4x32.1.9tb.ssd</code></td>
+    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></td>
   </tr>
 </table>
-
-Your cluster must be using Kubernetes version 1.16 or earlier to install the service.
-{: important}
 
 When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.
 
