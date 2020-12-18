@@ -92,7 +92,7 @@ To update to the newest version with the Helm chart, run the following command.
 2. Update your chart.
 
   ```
-  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 
+  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain>
   ```
   {: codeblock}
 
@@ -126,21 +126,41 @@ To update to the newest version with the Helm chart, run the following command.
 If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run {{site.data.keyword.datashield_short}} to Ubuntu 18.04.
 
 Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
-{: note} 
+{: note}
 
 1. Update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher.
 
-2. Add all Ubuntu 18.04 nodes to your cluster and wait until they are ready. 
+2. Add all Ubuntu 18.04 nodes to your cluster and wait until they are ready.
 
    A node is ready when its status in the UI is displayed as `Normal`. You can also verify the status of a worker node by running the `kubectl get nodes` command.
    {: tip}
 3. Remove `X` number of Ubuntu 16.04 nodes at a time from the cluster, where `N` is less than half of the CockroachDB replicas (`X < global.ServiceReplicas/2`).        
-   
+
    For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, remove 3, 3, and 4 nodes at a time.
 4. [Update to the newest version by using Helm](#update-helm).
 
-    This step ensures that your Ubuntu 18.04 nodes get the required labeling, and it prepares your {{site.data.keyword.datashield_short}} resources to begin to run on them. 
+    This step ensures that your Ubuntu 18.04 nodes get the required labeling, and it prepares your {{site.data.keyword.datashield_short}} resources to begin to run on them.
 
-5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in pending state. 
+5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in pending state.
 6. Repeat steps 3, 4 and 5 until all the Ubuntu 16.04 nodes are removed from the cluster.
-7. Manually delist the removed nodes from the UI. 
+7. Manually delist the removed nodes from the UI.
+
+## Upgrade {{site.data.keyword.datashield_short}} Cluster to IKS 1.18
+{: #upgrade-IKS-1.18}
+
+
+Before you upgrade the cluster, be sure to update {{site.data.keyword.datashield_short}} to version 1.25 or higher. If the current version installed is less than version 1.25, then first upgrade to version 1.25 and then follow the IKS upgrade process below. To see the current data shield version, use the command:
+{: note}
+
+```
+helm ls
+```
+
+1. First upgrade the master node to IKS 1.18, that is (IKS 1.16.XXX -> 1.17.XXX -> 1.18.XXX).
+
+2. Upgrade `X` number of worker nodes at a time from the cluster, where `X` is strictly less than half of the CockroachDB replicas (`X < global.ServiceReplicas/2`).
+
+For example, for a 3-node cluster, upgrade 1 node at a time. For a 10-node cluster, upgrade 3, 3, and 4 nodes at a time, respectively.
+
+3. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in `pending` state.
+4. Repeat steps 2 and 3 until all the nodes are upgraded from IKS 1.16 to 1.18 in the cluster.
