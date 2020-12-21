@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2020
-lastupdated: "2020-12-14"
+lastupdated: "2020-12-21"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -238,6 +238,9 @@ You can use the Enclave Manager UI to rebuild your applications after you make c
 4. Enter the name of your Docker image and tag it with a label.
 
 5. Configure the **Heartbeat status** and **Heartbeat interval** to record the status of your application and the interval at which the application heartbeat is recorded. The interval is calculated in seconds.
+
+  By default, the heartbeat status is disabled.
+  {: tip}
 
 6. Click **Create**. The build is added to your allow list. You can approve the build in the **Tasks** tab.
 
