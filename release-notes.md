@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-12-09"
+  years: 2018, 2021
+lastupdated: "2021-01-13"
 
 keywords: release notes, data shield version, data shield updates, new in data shield
 
@@ -74,7 +74,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
   - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
   - Fixed an issue with editing automatically created applications.
-  - Fixed a CockroachDB cleanup issue that was causing uninstall to fail.
+  - Fixed a `CockroachDB` cleanup issue that was causing uninstall to fail.
   
 - EnclaveOS: 
 
