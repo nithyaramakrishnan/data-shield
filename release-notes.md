@@ -47,7 +47,7 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.24.1010)
+## Current version: 1.24.1010
 {: #v1.24.1010}
 
 **Released: 19 November 2020**
@@ -60,7 +60,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
-### Version (1.23.965)
+### Version 1.23.965
 {: #v1.23.965}
 
 #### Released: 30 October 2020
