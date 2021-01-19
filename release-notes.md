@@ -3,7 +3,7 @@ copyright:
   years: 2018, 2021
 lastupdated: "2021-01-19"
 
-keywords: release notes, data shield version, data shield updates, new in data shield
+keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
 subcollection: data-shield
 ---
@@ -45,7 +45,6 @@ subcollection: data-shield
 # Release notes
 {: #release-notes}
 
-
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
 ## Current version (1.24.1010)
@@ -54,7 +53,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 **Released: 19 November 2020**
 
 - EnclaveOS: 
-
   - Fixed a performance issue by disabling application heartbeats.
 
 ## 2020 updates
