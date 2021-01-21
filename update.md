@@ -149,12 +149,14 @@ Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.dat
 {: #upgrade-IKS-1.18}
 
 
-Before you upgrade the cluster, be sure to update {{site.data.keyword.datashield_short}} to version 1.25 or higher. If the current version installed is less than version 1.25, then first upgrade to version 1.25 and then follow the IKS upgrade process below. To see the current data shield version, use the command:
+•	The minimum version of {{site.data.keyword.datashield_short}} installed should be version 1.25 or higher. If the current version installed is less than version 1.25, then first upgrade to version 1.25 and then follow the IKS upgrade process below. To see the current data shield version, use the command:
 {: note}
 
 ```
 helm ls
 ```
+•	Backup the database before starting the upgrade process. Visit https://www.cockroachlabs.com/docs/v20.1/backup-and-restore-advanced-options.html for more details.
+{: note}
 
 1. First upgrade the master node to IKS 1.18, that is (IKS 1.16.XXX -> 1.17.XXX -> 1.18.XXX).
 
@@ -162,5 +164,8 @@ helm ls
 
 For example, for a 3-node cluster, upgrade 1 node at a time. For a 10-node cluster, upgrade 3, 3, and 4 nodes at a time, respectively.
 
-3. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in `pending` state.
-4. Repeat steps 2 and 3 until all the nodes are upgraded from IKS 1.16 to 1.18 in the cluster.
+3. Wait for the metadata re-balancing to complete before upgrading another node. For more info refer to https://www.cockroachlabs.com/docs/v20.1/backup-and-restore-advanced-options.html.
+
+4. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in `pending` state.
+
+5. Repeat steps 2 and 3 until all the nodes are upgraded from IKS 1.16 to 1.18 in the cluster.
