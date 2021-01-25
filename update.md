@@ -164,7 +164,7 @@ helm ls
 
 For example, for a 3-node cluster, upgrade 1 node at a time. For a 10-node cluster, upgrade 3, 3, and 4 nodes at a time, respectively.
 
-3. Wait for the metadata re-balancing to complete before upgrading another node. For more info refer to https://www.cockroachlabs.com/docs/v20.1/backup-and-restore-advanced-options.html.
+3. Wait for the metadata re-balancing to complete before upgrading another node. For more info refer to https://www.cockroachlabs.com/docs/stable/demo-replication-and-rebalancing.html.
 
 4. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in `pending` state.
 
