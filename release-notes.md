@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-12-09"
+  years: 2018, 2021
+lastupdated: "2021-01-26"
 
-keywords: release notes, data shield version, data shield updates, new in data shield
+keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
 subcollection: data-shield
 ---
@@ -45,16 +45,14 @@ subcollection: data-shield
 # Release notes
 {: #release-notes}
 
-
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version (1.24.1010)
+## Current version: 1.24.1010
 {: #v1.24.1010}
 
 **Released: 19 November 2020**
 
 - EnclaveOS: 
-
   - Fixed a performance issue by disabling application heartbeats.
 
 ## 2020 updates
@@ -62,10 +60,11 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
-### Version (1.23.965)
+### Version 1.23.965
 {: #v1.23.965}
 
-**Released: 30 October 2020**
+#### Released: 30 October 2020
+{: #10-30-20}
 
 - Enclave Manager:
 
@@ -74,7 +73,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
   - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
   - Fixed an issue with editing automatically created applications.
-  - Fixed a CockroachDB cleanup issue that was causing uninstall to fail.
+  - Fixed a `CockroachDB` cleanup issue that was causing uninstall to fail.
   
 - EnclaveOS: 
 
@@ -85,7 +84,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.22.925
 {: #v1.22.925}
 
-**Released: 24 September 2020**
+#### Released: 24 September 2020
+{: #9-24-20}
 
 - Enclave Manager:
 
@@ -101,7 +101,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.21.889
 {: #v1.21.889}
 
-**Released: 30 August 2020**
+#### Released: 30 August 2020
+{: #8-30-20}
 
 - Enclave Manager:
 
@@ -121,7 +122,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.20.858
 {: #v1.20.858}
 
-**Released: 07 August 2020**
+#### Released: 07 August 2020
+{: #8-07-20}
 
 - Enclave Manager:
 
@@ -140,7 +142,8 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 ### Version 1.19.794
 {: #v1.19.794}
 
-**Released: 22 June 2020**
+#### Released: 22 June 2020
+{: #6-22-20}
 
 - Enclave Manager:
 
@@ -153,7 +156,7 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 - EnclaveOS:
 
   - Set all reserved and undesired bits in `SGX ATTRIBUTEMASK` to 1 to avoid running enclaves with unexpected features enabled.
-  - Updated the way that FPU and Vector register state is now properly saved and restored when signals are delivered and returned.
+  - Updated the way that FPU and Vector register state is now saved and restored when signals are delivered and returned.
   - Updated the version of `glibc` to 2.28 to permit the conversion of containers based on Debian 10.
   - The in-enclave `glibc` now uses the Linux `clone()` system call.
 
@@ -161,7 +164,8 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 ### Version 1.18.731
 {: #v1.18.731}
 
-**Released: 27 April 2020**
+#### Released: 27 April 2020
+{: #4-27-20}
 
 - Enclave Manager:
 
@@ -176,7 +180,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.17.694
 {: #v1.17.694}
 
-**Released: 6 April 2020**
+#### Released: 6 April 2020
+{: #4-06-20}
 
 - Enclave Manager:
 
@@ -191,7 +196,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.16.654
 {: #v1.16.654}
 
-**Released: 20 March 2020**
+#### Released: 20 March 2020
+{: #3-20-20}
 
 - Enclave Manager:
 
@@ -205,7 +211,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.15.625
 {: #v1.15.625}
 
-**Released: 02 March 2020**
+#### Released: 02 March 2020
+{: #3-02-20}
 
 - Enclave Manager:
 
@@ -221,7 +228,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.14.596
 {: #v1.14.596}
 
-**Released: 13 February 2020**
+#### Released: 13 February 2020
+{: #2-13-20}
 
 - Enclave Manager:
 
@@ -236,7 +244,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.12.575
 {: #v1.12.575}
 
-**Released: 06 February 2020**
+#### Released: 06 February 2020
+{: #2-06-20}
 
 - Enclave Manager:
 
@@ -252,7 +261,8 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ### Version 1.11.534
 {: #v1.11.534}
 
-**Released: 21 January 2020**
+#### Released: 21 January 2020
+{: #1-21-20}
 
 - Enclave Manager:
 
@@ -268,7 +278,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.10.448
 {: #v1.10.448}
 
-**Released: 20 December 2019**
+#### Released: 20 December 2019
+{: #12-20-19}
 
 - Enclave Manager:
 
@@ -284,7 +295,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.9.424
 {: #v1.9.424}
 
-**Released: 06 December 2019**
+#### Released: 06 December 2019
+{: #12-06-19}
 
 - Enclave Manager:
 
@@ -300,7 +312,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.8.396
 {: #v1.8.396}
 
-**Released: 22 November 2019**
+#### Released: 22 November 2019
+{: #11-22-19}
 
 - Enclave Manager:
 
@@ -311,7 +324,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.7.373
 {: #v1.7.373}
 
-**Released: 11 November 2019**
+#### Released: 11 November 2019
+{: #11-11-19}
 
 - Enclave Manager:
 
@@ -328,7 +342,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.6.342
 {: #v1.6.342}
 
-**Released: 25 October 2019**
+#### Released: 25 October 2019
+{: #10-25-19}
 
 - Enclave Manager:
 
@@ -347,7 +362,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.5.317
 {: #v1.5.317}
 
-**Released: 12 October 2019**
+#### Released: 12 October 2019
+{: #10-12-19}
 
 - Enclave Manager:
 
@@ -362,7 +378,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 1.4.282
 {: #v1.4.282}
 
-**Released: 20 September 2019**
+#### Released: 20 September 2019
+{: #9-20-19}
 
 - Enclave Manager:
 
@@ -388,7 +405,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.3.270
 {: #v1.3.270}
 
-**Released: 13 September 2019**
+#### Released: 13 September 2019
+{: #9-13-19}
   
 - EnclaveOS:
 
@@ -403,7 +421,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.3.262
 {: #v1.3.262}
 
-**Released: 06 September 2019**
+#### Released: 06 September 2019
+{: #9-06-19}
   
 
 - Enclave Manager:
@@ -424,7 +443,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.2.245
 {: #v1.2.245}
 
-**Released: 23 August 2019**
+#### Released: 23 August 2019
+{: #8-23-19}
   
 
 - Enclave Manager:
@@ -440,7 +460,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.2.238
 {: #v1.2.238}
 
-**Released: 13 August 2019**
+#### Released: 13 August 2019
+{: #8-13-19}
   
 
 - Enclave Manager:
@@ -464,7 +485,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.1.227
 {: #v1.1.227}
 
-**Released: 25 July 2019**
+#### Released: 25 July 2019
+{: #7-25-19}
   
 
 - Enclave Manager:
@@ -476,7 +498,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 1.0.212
 {: #v1.0.212}
 
-**Released: 03 July 2019**
+#### Released: 03 July 2019
+{: #7-03-19}
 
 - Enclave Manager:
 
@@ -496,7 +519,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.181
 {: #v0.5.181}
 
-**Released: 14 May 2019**
+#### Released: 14 May 2019
+{: #5-14-19}
 
 - Installer:
 
@@ -506,7 +530,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.180
 {: #v0.5.180}
 
-**Released: 13 May 2019**
+#### Released: 13 May 2019
+{: #5-13-19}
 
 - Enclave Manager:
 
@@ -521,7 +546,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.174
 {: #v0.5.174}
 
-**Released: 03 May 2019**
+#### Released: 03 May 2019
+{: #5-03-19}
 
 
 - User Interface:
@@ -539,7 +565,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.169
 {: #v0.4.169}
 
-**Released: 26 April 2019**
+#### Released: 26 April 2019
+{: #4-26-19}
 
 
 - User Interface:
@@ -556,7 +583,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.121
 {: #v0.4.121}
 
-**Released: 29 March 2019**
+#### Released: 29 March 2019
+{: #3-29-19}
 
 - Enclave Manager:
 
@@ -570,7 +598,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.88
 {: #v0.4.88}
 
-**Released: 19 March 2019**
+#### Released: 19 March 2019
+{: #3-19-19}
 
 - Enclave Manager:
 
@@ -582,7 +611,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.74
 {: #v0.4.74}
 
-**Released: 12 February 2019**
+#### Released: 12 February 2019
+{: #2-12-19}
 
 - Enclave Manager:
 
@@ -594,22 +624,13 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.69
 {: #v0.4.69}
 
-**Released: 23 January 2019**
+#### Released: 23 January 2019
+{: #1-23-19}
 
 - Enclave Manager:
 
   - Added notes.txt to the Helm chart.
   - Update security for apt.
-
-
-
-### Version 0.4.66
-{: #v0.4.66}
-
-**Released: 23 January 2019**
-
-- Enclave Manager:
-
   - Fixed an error that occasionally prevented login through the web UI.
   - Fixed an error with issuing application certificates.
 
@@ -617,7 +638,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.65
 {: #v0.4.65}
 
-**Released: 18 January 2019**
+#### Released: 18 January 2019
+{: #1-18-19}
 
 - Enclave Manager:
 
@@ -637,7 +659,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.59
 {: #v0.4.59}
 
-**Released: 18 January 2019**
+#### Released: 18 January 2019
+{: #18-19}
 
 - Enclave Manager:
 
@@ -647,7 +670,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.57
 {: #v0.4.57}
 
-**Released: 04 January 2019**
+#### Released: 04 January 2019
+{: #1-04-19}
 
 - General:
 
@@ -664,7 +688,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ### Version 0.4.48
 {: #v0.4.48}
 
-**Released: 13 December 2018**
+#### Released: 13 December 2018
+{: #12-13-18}
 
 - Product release.
 

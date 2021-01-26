@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-10-05"
+  years: 2018, 2021
+lastupdated: "2021-01-13"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -39,7 +39,6 @@ subcollection: data-shield
 {:video: .video}
 {:step: data-tutorial-type='step'}
 {:tutorial: data-hd-content-type='tutorial'}
-
 
 
 # Converting images
@@ -175,7 +174,6 @@ You can also convert your containers when you build your apps through the [Encla
 
 When you convert Java-based applications, there are a few extra requirements and limitations. When you convert Java applications by using the Enclave Manager UI, you can select `Java-Mode`. To convert Java apps by using the API, keep the following limitations and options in mind.
 
-**Limitations**
 
 * The recommended maximum enclave size for Java apps is 4 GB. Larger enclaves might work but can experience degraded performance.
 * The recommended heap size is less than the enclave size. We recommend removing any `-Xmx` option as a way to decrease the heap size.
@@ -187,38 +185,34 @@ When you convert Java-based applications, there are a few extra requirements and
 
   If you're working with another library, contact our team by using forums or by clicking the feedback button on this page. Be sure to include your contact information and the library that you're interested in working with.
 
+* To use the `Java-Mode` conversion, modify your Dockerfile to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in the following section.
 
-**Options**
+  - Set the environment variable MALLOC_ARENA_MAX equal to 1.
 
-To use the `Java-Mode` conversion, modify your Dockerfile to supply the following options. In order for the Java conversion to work, you must set all of the variables as they are defined in the following section.
+    ```
+    MALLOC_ARENA_MAX=1
+    ```
+    {: codeblock}
 
+  - If you're using the `OpenJDK JVM`, set the following options.
 
-* Set the environment variable MALLOC_ARENA_MAX equal to 1.
+    ```
+    -XX:CompressedClassSpaceSize=16m
+    -XX:-UsePerfData
+    -XX:ReservedCodeCacheSize=16m
+    -XX:-UseCompiler
+    -XX:+UseSerialGC
+    ```
+    {: codeblock}
 
-  ```
-  MALLOC_ARENA_MAX=1
-  ```
-  {: codeblock}
+  - If you're using the `OpenJ9 JVM`, set the following options.
 
-* If you're using the `OpenJDK JVM`, set the following options.
-
-  ```
-  -XX:CompressedClassSpaceSize=16m
-  -XX:-UsePerfData
-  -XX:ReservedCodeCacheSize=16m
-  -XX:-UseCompiler
-  -XX:+UseSerialGC
-  ```
-  {: codeblock}
-
-* If you're using the `OpenJ9 JVM`, set the following options.
-
-  ```
-  -Xnojit
-  –Xnoaot
-  -Xdump:none
-  ```
-  {: codeblock}
+    ```
+    -Xnojit
+    –Xnoaot
+    -Xdump:none
+    ```
+    {: codeblock}
 
 
 ## Creating an app and requesting a certificate

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-11-03"
+  years: 2018, 2021
+lastupdated: "2021-01-13"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -222,7 +222,7 @@ Error: customresourcedefinitions.apiextensions.k8s.io "certificates.certmanager.
 {: codeblock}
 
 {: tsCauses}
-If you have you previously installed cert-manager and then uninstalled it, you might have CRDs left from the initial instance.
+If you have you previously installed `cert-manager` and then uninstalled it, you might have CRDs leftover from the initial instance.
 
 {: tsResolve}
 To resolve the issue, delete the following CRDs.
