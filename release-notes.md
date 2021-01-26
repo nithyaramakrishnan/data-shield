@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-01-19"
+lastupdated: "2021-01-26"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -156,7 +156,7 @@ If you have {{site.data.keyword.datashield_short}} running in a Kubernetes clust
 - EnclaveOS:
 
   - Set all reserved and undesired bits in `SGX ATTRIBUTEMASK` to 1 to avoid running enclaves with unexpected features enabled.
-  - Updated the way that FPU and Vector register state is now properly saved and restored when signals are delivered and returned.
+  - Updated the way that FPU and Vector register state is now saved and restored when signals are delivered and returned.
   - Updated the version of `glibc` to 2.28 to permit the conversion of containers based on Debian 10.
   - The in-enclave `glibc` now uses the Linux `clone()` system call.
 

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-12-14"
+  years: 2018, 2021
+lastupdated: "2021-01-26"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -305,6 +305,10 @@ helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.
     <th>Command</th>
     <th>Description</th>
   </tr>
+    <tr>
+    <td><code>--set global.UsingCustomIBMIngressImage=false</code></td>
+    <td>The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to <code>false</code>.</td>
+  </tr>
   <tr>
     <td><code>--set global.OpenShiftEnabled=true</code></td>
     <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
@@ -341,6 +345,10 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
   <tr>
     <th>Command</th>
     <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>--set global.UsingCustomIBMIngressImage=false</code></td>
+    <td>The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to <code>false</code>.</td>
   </tr>
   <tr>
     <td><code>--set global.OpenShiftEnabled=true</code></td>
