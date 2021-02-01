@@ -57,7 +57,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Added support to enable and disable application heartbeats and configure heartbeat interval to resolve performance issues.
   - Added support for installation on version 1.18 Kubernetes Service clusters. 
   
-    If you are installing {{site.data.keyword.datashield_short}} on a cluster that was created after 1 December 2020, append the following tag to your installation command: `--set global.UsingCustomIBMIngressImage=false`. For more information, see [Installing {{site.data.keyword.datashield_full}}](/docs/data-shield?topic=data-shield-getting-started#gs-install).
+    If you are installing {{site.data.keyword.datashield_short}} on a cluster that was created after 1 December 2020, append the following tag to your installation command: `--set global.UsingCustomIBMIngressImage=false`. For more information, see [Installing {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-getting-started#gs-install).
     {: note}
 
   - Fixed the vulnerability CVE-2020-28362/66/67 by upgrading Go to 1.15.5.
@@ -72,9 +72,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
-<<<<<<< HEAD
-### Version 1.23.965
-=======
 ### Version (1.24.1010)
 {: #v1.24.1010}
 
@@ -86,7 +83,6 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
   - Fixed a performance issue by disabling application heartbeats.
 
 ### Version (1.23.965)
->>>>>>> Update release notes to 1.25.1090
 {: #v1.23.965}
 
 #### Released: 30 October 2020
