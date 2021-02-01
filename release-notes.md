@@ -150,15 +150,16 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 - Enclave Manager:
 
   - Added support for installation on version 1.16 Kubernetes Service clusters.
+
+    If you have {{site.data.keyword.datashield_short}} running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16, this upgrade is not supported. First, update your cluster version and then install {{site.data.keyword.datashield_short}}.
+    {: note}
+
   - Fixed vulnerabilities CVE-2020-8172, CVE-2020-8174, and CVE-2020-11080 by updating Node.js to version 14.6
 
 - EnclaveOS:
 
   - Added support for the container converter in air-tight or fire-walled environments
   - Fixed vulnerability CVE-2020-1752 by updating the `glibc` to version 2.31.
-
-If you have {{site.data.keyword.datashield_short}} running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16. This upgrade is not supported. First, update your cluster version and then install {{site.data.keyword.datashield_short}}.
-{: note}
 
 
 ### Version 1.19.794
