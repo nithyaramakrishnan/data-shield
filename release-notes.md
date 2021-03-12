@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-02-01"
+lastupdated: "2021-03-12"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -52,19 +52,19 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 **Released: 22 January 2021**
 
-- Enclave Manager: 
-  
+- Enclave Manager:
+
   - Added support to enable and disable application heartbeats and configure heartbeat interval to resolve performance issues.
-  - Added support for installation on version 1.18 Kubernetes Service clusters. 
-  
+  - Added support for installation on version 1.18 Kubernetes Service clusters.
+
     If you are installing {{site.data.keyword.datashield_short}} on a cluster that was created after 1 December 2020, append the following tag to your installation command: `--set global.UsingCustomIBMIngressImage=false`. For more information, see [Installing {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-getting-started#gs-install).
     {: note}
 
   - Fixed the vulnerability CVE-2020-28362/66/67 by upgrading Go to 1.15.5.
   - Fixed the vulnerability CVE-2020-8277 by upgrading Node.js to 14.15.1.
-  
+
 - EnclaveOS:
-  
+
   - Fixed defects.
 
 ## 2020 updates
@@ -78,8 +78,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 #### Released: 19 November 2020
 {: #2020-11-19}
 
-- EnclaveOS: 
-  
+- EnclaveOS:
+
   - Fixed a performance issue by disabling application heartbeats.
 
 ### Version (1.23.965)
@@ -96,8 +96,8 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
   - Fixed an issue with editing automatically created applications.
   - Fixed a `CockroachDB` cleanup issue that was causing uninstall to fail.
-  
-- EnclaveOS: 
+
+- EnclaveOS:
 
   - Fixed an issue causing Java applications to hang when run with an enclave larger than 4 GB.
   - Fixed an issue to effectively reduce index node number collisions, causing various issues with files.
@@ -390,7 +390,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
   - Added support for OpenShift.
   - Fixed CA certificates issue.
-  
+
 - EnclaveOS:
 
   - Added support for OpenShift.
@@ -406,7 +406,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
   - Updated the Enclave Manager conversion UI to include an option to select a file system location where the Enclave Manager CA certificate is made available.
   -Update protocol buffer library for `CVE-2019-15544`.
-  
+
 - EnclaveOS:
 
   - Conversion now also installs the Enclave Manager's root certificate in the system truststore for supported guest container types when a file system location is specified. Tested with: Debian, Ubuntu, and CentOS-based containers.
@@ -428,7 +428,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 #### Released: 13 September 2019
 {: #2019-09-13}
-  
+
 - EnclaveOS:
 
   - Fix an error converting certain images in `OPENJ9` mode.
@@ -444,7 +444,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 #### Released: 06 September 2019
 {: #2019-09-06}
-  
+
 
 - Enclave Manager:
 
@@ -453,7 +453,7 @@ Releases before 1.2 cannot be upgraded to this release.
 - EnclaveOS:
 
   - Fix a security vulnerability.
-  - For Java containers converted with 'OPENJ9' option, the `-Xmx` value is chosen dynamically based on enclave size. 
+  - For Java containers converted with 'OPENJ9' option, the `-Xmx` value is chosen dynamically based on enclave size.
   - Set the default number of `malloc arenas` to 2, for better performance for most applications.
 
 
@@ -466,7 +466,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 #### Released: 23 August 2019
 {: #2019-08-23}
-  
+
 
 - Enclave Manager:
 
@@ -483,7 +483,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 #### Released: 13 August 2019
 {: #2019-08-13}
-  
+
 
 - Enclave Manager:
 
@@ -508,7 +508,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
 #### Released: 25 July 2019
 {: #2019-07-25}
-  
+
 
 - Enclave Manager:
 
@@ -535,7 +535,7 @@ Releases before 1.2 cannot be upgraded to this release.
   - For security reasons, environment variables set in the host environment at run time are no longer passed to the guest.
   - Added fixes for security vulnerabilities.
   - Added curated application support.
-  
+
 
 ### Version 0.5.181
 {: #v0.5.181}
@@ -680,8 +680,8 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.4.59
 {: #v0.4.59}
 
-#### Released: 18 January 2019
-{: #2019-01-18}
+#### Released: 10 January 2019
+{: #2019-01-10}
 
 - Enclave Manager:
 
