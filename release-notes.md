@@ -75,6 +75,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 {: #v1.25.1090}
 
 #### Released: 22 January 2021
+{: #2020-01-22}
 
 - Enclave Manager:
 
@@ -100,6 +101,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 {: #v1.24.1010}
 
 #### Released: 19 November 2020
+{: #2020-11-19}
 
 - EnclaveOS: 
   - Fixed a performance issue by disabling application heartbeats.
