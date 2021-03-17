@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-03-12"
+lastupdated: "2021-03-16"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -47,10 +47,35 @@ subcollection: data-shield
 
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
-## Current version: 1.25.1090
+
+## Current version: 1.26.1148
+{: #v1.26.1148}
+
+**Released: 15 March 2021**
+
+- Enclave Manager:
+  - Added support to prevent creation of duplicate builds - multiple builds for the same `mrenclave` value.
+  - Upgraded Golang to version `1.16` to fix `CVE-2021-3114/CVE-2021-3115`.
+  - Updated Docker to version `20.10.3` to fix `CVE-2021-21284/CVE-2021-21285/CVE-2020-27534`.
+
+- EnclaveOS
+  - Updated `glibc` to version `2.33`.
+  - Implemented several additional nodes in the `/sys filesystem`.
+  - Fixed an issue with incorrect return value from `access() system` call for some files.
+  - Fixed `lseek()` on directories.
+  - Implemented `timer_create`, `timer_settime`, `timer_gettime`, `timer_getoverrun`, `timer_delete`.
+  - Fixed problems that can happen when applications terminate with certain signals.
+
+## 2021 updates
+{: #2021-updates}
+
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+
+### Version 1.25.1090
 {: #v1.25.1090}
 
-**Released: 22 January 2021**
+#### Released: 22 January 2021
+{: #2020-01-22}
 
 - Enclave Manager:
 
@@ -72,17 +97,17 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
 
-### Version (1.24.1010)
+### Version 1.24.1010
 {: #v1.24.1010}
 
 #### Released: 19 November 2020
 {: #2020-11-19}
 
-- EnclaveOS:
-
+- EnclaveOS: 
   - Fixed a performance issue by disabling application heartbeats.
 
-### Version (1.23.965)
+
+### Version 1.23.965
 {: #v1.23.965}
 
 #### Released: 30 October 2020
