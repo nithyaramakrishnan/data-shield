@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-03-16"
+lastupdated: "2021-03-29"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -69,7 +69,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 ## 2021 updates
 {: #2021-updates}
 
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2021.
 
 ### Version 1.25.1090
 {: #v1.25.1090}
