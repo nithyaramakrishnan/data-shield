@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-10-26"
+  years: 2018, 2021
+lastupdated: "2021-04-09"
 
-keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps, 
+keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps,
 
 subcollection: data-shield
 ---
@@ -55,13 +55,13 @@ With {{site.data.keyword.datashield_full}}, Fortanix®, and Intel® SGX you can 
 {: #transcript-about}
 {: notoc}
 
-In today's digital global economy data is one of the most valuable assets of enterprises. Data must be protected throughout its lifecycle - when at rest, when in motion, and in use. IBM Cloud Security Services have you covered by managing access to your resources, protecting your data, and providing you with insightful visibility into your security environment. Today we're going to focus on the all important protection of data in use. With {{site.data.keyword.datashield_short}}, your app code and data run in CPU hardened enclaves, which are trusted areas of memory on the worker node that protect the critical aspects of your apps. Let's look at how {{site.data.keyword.datashield_short}} helps customers protect their data in use. 
+In today's digital global economy data is one of the most valuable assets of enterprises. Data must be protected throughout its lifecycle - when at rest, when in motion, and in use. IBM Cloud Security Services have you covered by managing access to your resources, protecting your data, and providing you with insightful visibility into your security environment. Today we're going to focus on the all important protection of data in use. With {{site.data.keyword.datashield_short}}, your app code and data run in CPU hardened enclaves, which are trusted areas of memory on the worker node that protect the critical aspects of your apps. Let's look at how {{site.data.keyword.datashield_short}} helps customers protect their data in use.
 
 So, you're developing a new banking service that deals with sensitive user information and financial data. You've been working with your team for weeks to bake in security to the product from the ground up to establish parameter security so no one has physical access to the Kubernetes cluster that you're running. You've set it up so that only Ingress on Kubernetes was exposed on the public network. Network policies between pods restrict communication. Cloud Internet services provides a firewall and protection from DDoS attacks. Key Protect stores encryption keys. There's encryption at rest and the public endpoints are served over a secure connection.
 
 With all these measures, the team makes sure the data that flows through the service is protected at rest and in transit through encryption. However the data is still exposed in plain text while in use or runtime and remains vulnerable to privileged user attacks. {{site.data.keyword.datashield_short}} bridges the gap in today's protection measures by bringing runtime memory encryption to data in use.
 
-Your team understands that the backend API was still exposed to privileged users and the vulnerabilities that come with it. You've explored the options and discovered that Intel SGX as a potential solution where the application runs encrypted in memory. However, your team didn't have the competency or time to learn Intel SGX in order to re-engineer their current application that they developed to leverage Intel SGX. The team then learned about {{site.data.keyword.datashield_short}} and built a quick proof of concept by installing the Helm chart on their target Kubernetes cluster. 
+Your team understands that the backend API was still exposed to privileged users and the vulnerabilities that come with it. You've explored the options and discovered that Intel SGX as a potential solution where the application runs encrypted in memory. However, your team didn't have the competency or time to learn Intel SGX in order to re-engineer their current application that they developed to leverage Intel SGX. The team then learned about {{site.data.keyword.datashield_short}} and built a quick proof of concept by installing the Helm chart on their target Kubernetes cluster.
 
 They were able to demonstrate the value by simulating a privileged user attack by memory dumping the application and scrapping for text. This time, they didn't see any plain text in the memory. {{site.data.keyword.datashield_short}} helped your team convert your existing backend into a shielded or runtime memory encrypted counterpart in a few minutes. And, they were able to automate the conversion through their DevOps integration. Finally, they were able to deploy a new backend API in less than 15 minutes. Your team has now managed to protect data at rest, in transit, and in use.
 
@@ -109,7 +109,7 @@ If you or your company require data sensitivity because of internal policies, go
     <dd>With <a href="/docs/account?topic=account-access-getstarted">{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
   <dt>Logging</dt>
     <dd>Activity logs for Helm install, update, and delete are captured by your Kubernetes Service audit logs.</dd></br>
-    <dd>With {{site.data.keyword.la_full_notm}}, you can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>
+    <dd>With {{site.data.keyword.la_full_notm}}, you can expand your log collection, retention, and search abilities by creating a <a href="/docs/containers?topic=containers-health">logging configuration</a> through the {{site.data.keyword.containerlong_notm}} that forwards your logs to <a href="/docs/log-analysis?topic=log-analysis-getting-started">{{site.data.keyword.la_full_notm}}</a>. With the service, you can also take advantage of centralized insights, log encryption, and log data retention while you need.</dd>
   <dt>Certificate management</dt>
     <dd>Cert manager is a native Kubernetes add on that helps to manage the certificates by issuing self-signed certificates from the Enclave Manager.</dd>
 </dl>
@@ -118,7 +118,7 @@ If you or your company require data sensitivity because of internal policies, go
 ## IBM Business Partner
 {: #partner}
 
-{{site.data.keyword.datashield_short}} is offered in conjunction with <a href="https://fortanix.com/" target="_blank" class="external">Fortanix®</a>. 
+{{site.data.keyword.datashield_short}} is offered in conjunction with <a href="https://fortanix.com/" target="_blank" class="external">Fortanix®</a>.
 
 
 
