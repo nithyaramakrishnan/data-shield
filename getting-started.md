@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-01-26"
+lastupdated: "2021-04-15"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -85,20 +85,12 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 
 To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
-<table>
-  <tr>
-    <th>Type of cluster</th>
-    <th>Available machine types</th>
-  </tr>
-  <tr>
-    <td>{{site.data.keyword.containershort}}</td>
-    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></br>To see the options, you must filter to the <b>Ubuntu 16</b> operating system.</td>
-  </tr>
-  <tr>
-    <td>{{site.data.keyword.openshiftshort}}</td>
-    <td><code>me4c.4x32</code> and <code>me4c.4x32.1.9tb.ssd</code></td>
-  </tr>
-</table>
+
+| Type of cluster | Available machine types |
+|:----------------|:------------------------|
+| {{site.data.keyword.containershort}} | `me4c.4x32` and `me4c.4x32.1.9tb.ssd` |
+| {{site.data.keyword.openshiftshort}} | `me4c.4x32` and `me4c.4x32.1.9tb.ssd` |
+{: caption="Table 1. Cluster and machines types" caption-side="top"}
 
 When you have a running cluster, you can start obtaining the information that you need to install the service. Be sure to save the information that you obtain so that you can use during installation.
 
