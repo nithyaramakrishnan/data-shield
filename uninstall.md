@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: uninstall, delete, helm, configuration, tls certificate, docker config secret, environment variable, regions, cluster, container, app security, memory encryption, data in use
 
@@ -41,8 +41,7 @@ subcollection: data-shield
 
 
 
-
-# Uninstalling {{site.data.keyword.datashield_short}}
+# Uninstalling Data Shield
 {: #uninstall}
 
 If you no longer need to use {{site.data.keyword.datashield_full}}, you can delete the service, certificates, and secrets that were created.
@@ -91,7 +90,7 @@ If you no longer need to use {{site.data.keyword.datashield_full}}, you can dele
 ## Optional: Delete the certificates and supporting software
 {: #delete-components}
 
-When you work with {{site.data.keyword.datashield_short}}, there are certificates, installers, and secrets that must also be deleted to fully remove the service from your cluster.
+When you work with Data Shield, there are certificates, installers, and secrets that must also be deleted to fully remove the service from your cluster.
 
 1. The uninstall process uses Helm "hooks" to run an uninstaller. You can delete the uninstaller after it runs.
 

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: data protection, remote attestation, intel, nodes, remote server, enclaves, sgx language support, runtime encryption, memory, data in use,
 
@@ -40,7 +40,6 @@ subcollection: data-shield
 {:tutorial: data-hd-content-type='tutorial'}
 
 
-
 # Frequently asked questions (FAQ)
 {: #faq}
 
@@ -67,7 +66,7 @@ The service extends SGX language support from C and C++ to Python and Java®. It
 {: #sgx-enabled}
 {: faq}
 
-{{site.data.keyword.datashield_short}} software checks for SGX availability on the worker node during the installation process. If the installation is successful, the node's detailed information as well as SGX attestation report can be viewed on the Enclave Manager UI.
+Data Shield software checks for SGX availability on the worker node during the installation process. If the installation is successful, the node's detailed information as well as SGX attestation report can be viewed on the Enclave Manager UI.
 
 
 ##	How do I know that my application is running in an SGX enclave?
@@ -78,10 +77,10 @@ The service extends SGX language support from C and C++ to Python and Java®. It
 [Log in](/docs/data-shield?topic=data-shield-enclave-manager#em-signin) to your Enclave Manager account and navigate to the **Apps** tab. On the **Apps** tab, you can see information about the Intel® SGX attestation for your applications in the form of a certificate. The applications enclave can be verified at any time by using Intel Remote Attestation Service (IAS) to verify that the application is running in a verified enclave.
 
 
-## What is the performance impact of running the application on {{site.data.keyword.datashield_short}}?
+## What is the performance impact of running the application on Data Shield?
 {: #impact}
 {: faq}
 {: support}
 
 
-The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that {{site.data.keyword.datashield_short}} has on your app is minimal. But, if you have memory or I/O intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine {{site.data.keyword.datashield_short}}'s impact.
+The performance of your application depends on the nature of your workload. If you have a CPU intensive workload, the effect that Data Shield has on your app is minimal. But, if you have memory or I/O intensive applications you might notice an effect due to paging and context switching. The size of the memory footprint of your app in relation to the SGX enclave page cache is generally how you can determine Data Shield's impact.

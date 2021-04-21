@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-04-15"
+lastupdated: "2021-04-21"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -48,23 +48,24 @@ completion-time: 30m
 
 
 
-# Getting started {{site.data.keyword.datashield_short}}
+# Getting started Data Shield
 {: #getting-started}
 {: toc-content-type="tutorial"}
 {: toc-services="containers, registry, openshift"}
 {: toc-completion-time="30m"}
 
-With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort_notm}} or OpenShift while your data is in use.
+With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can protect the data in your container workloads that run on {{site.data.keyword.containershort}} or {{site.data.keyword.openshiftshort}} while your data is in use.
 {: shortdesc}
 
 
-Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [OpenShift](/docs/openshift?topic=openshift-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
+
+Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [{{site.data.keyword.openshiftshort}}](/docs/{{site.data.keyword.openshiftshort}}?topic={{site.data.keyword.openshiftshort}}-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
 {: tip}
 
 
-![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with {{site.data.keyword.datashield_short}}" caption-side="bottom"}
+![Getting started steps.](images/getting-started.png){: caption="Figure 1. Getting started with Data Shield" caption-side="bottom"}
 
-You can be up and running with {{site.data.keyword.datashield_short}} in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed {{site.data.keyword.datashield_short}} on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about {{site.data.keyword.datashield_short}}, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
+You can be up and running with Data Shield in just three steps. To get started with the first step, complete the getting started tutorial. If you've already installed Data Shield on your cluster, and you're ready to convert or deploy, skip to **Next steps**. For more information about Data Shield, and what it means to protect your data in use, see [about the service](/docs/data-shield?topic=data-shield-about).
 
 
 
@@ -74,7 +75,7 @@ You can be up and running with {{site.data.keyword.datashield_short}} in just th
 Before you get started, ensure that you have the following CLIs and plug-ins downloaded.
 
 * [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-install-ibmcloud-cli)
-* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort_notm}} plug-ins](/docs/cli?topic=cli-plug-ins)
+* [{{site.data.keyword.containershort}} and {{site.data.keyword.registryshort}} plug-ins](/docs/cli?topic=cli-plug-ins)
 * [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/){: external}
 * [Docker](https://docs.docker.com/install/){: external}
 
@@ -83,7 +84,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 {: gs-prepare-cluster}
 {: step}
 
-To work with {{site.data.keyword.datashield_short}}, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or OpenShift, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating OpenShift clusters](/docs/openshift?topic=openshift-openshift_tutorial).
+To work with Data Shield, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or {{site.data.keyword.openshiftshort}}, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/{{site.data.keyword.openshiftshort}}?topic={{site.data.keyword.openshiftshort}}-openshift_tutorial).
 
 
 | Type of cluster | Available machine types |
@@ -133,17 +134,17 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
 {: tip}
 
 
-1. Create a service ID and a service ID API key for the {{site.data.keyword.datashield_short}} container converter.
+1. Create a service ID and a service ID API key for the Data Shield container converter.
 
   ```
-  ibmcloud iam service-id-create data-shield-container-converter -d '{{site.data.keyword.datashield_short}} Container Converter'
+  ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
   ```
   {: codeblock}
 
 2. Create an API key for the container converter.
 
   ```
-  ibmcloud iam service-api-key-create '{{site.data.keyword.datashield_short}} Container Converter' data-shield-container-converter
+  ibmcloud iam service-api-key-create 'Data Shield Container Converter' data-shield-container-converter
   ```
   {: codeblock}
 
@@ -166,7 +167,7 @@ Not working with IBM Cloud Container Registry? Learn how to [configure credentia
 {: #gs-helm}
 {: step}
 
-To work with {{site.data.keyword.datashield_short}}, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
+To work with Data Shield, you can use Helm version 2 or 3 to install the service. The following steps explain how to set up Helm if Tiller is not installed with a service account. If you already have Tiller installed, check out the [Kubernetes Service docs](/docs/containers?topic=containers-helm) for more information.
 
 
 ### Installing Helm v3
@@ -226,7 +227,7 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
 ### Installing `cert manager`
 {: #install-cert}
 
-{{site.data.keyword.datashield_short}} uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between {{site.data.keyword.datashield_short}} services. 
+Data Shield uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between Data Shield services. 
 
 1. Create the resource in your cluster.
 
@@ -268,18 +269,18 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
     {: codeblock}
 
 
-## Install {{site.data.keyword.datashield_short}}
+## Install Data Shield
 {: #gs-install}
 {: support}
 {: step}
 
-Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install {{site.data.keyword.datashield_short}} on your SGX-enabled bare metal cluster.
+Now that you've installed the prerequisites and created and configured your secrets, you're ready to install the service. You can use the provided Helm chart to install Data Shield on your SGX-enabled bare metal cluster.
 
 The Helm chart installs the following components:
 
 *	The supporting software for SGX.
-*	The {{site.data.keyword.datashield_short}} Enclave Manager.
-*	The container conversion service, which allows containerized applications to run in the {{site.data.keyword.datashield_short}} environment.
+*	The Data Shield Enclave Manager.
+*	The container conversion service, which allows containerized applications to run in the Data Shield environment.
 
 ### Installing with Helm v3
 {: #gs-install-helm3}
@@ -303,7 +304,7 @@ helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.
   </tr>
   <tr>
     <td><code>--set global.OpenShiftEnabled=true</code></td>
-    <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+    <td>Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command.</td>
   </tr>
       <tr>
     <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
@@ -344,7 +345,7 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
   </tr>
   <tr>
     <td><code>--set global.OpenShiftEnabled=true</code></td>
-    <td>Optional: If you are working with an OpenShift cluster, be sure to append the OpenShift tag to your installation command.</td>
+    <td>Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command.</td>
   </tr>
       <tr>
     <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
@@ -369,7 +370,7 @@ You can verify the installation and monitor the startup of your components by ru
 
 Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications. 
 
-If you don't have your own image to deploy, try deploying one of the prepackaged {{site.data.keyword.datashield_short}} images or sample apps:
+If you don't have your own image to deploy, try deploying one of the prepackaged Data Shield images or sample apps:
 
 * [Sample apps](https://github.com/ibm-cloud-security/data-shield-reference-apps){: external}
 * [Examples GitHub repo](https://github.com/fortanix/data-shield-examples/tree/master/ewallet){: external}

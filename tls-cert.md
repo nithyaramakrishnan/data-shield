@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: tls certificates, data in use, certificate authority, backend services, ingress proxy, issue cert, enclave manager, data shield, private key, data protection, cluster, container, app security, memory,
 
@@ -42,7 +42,6 @@ subcollection: data-shield
 
 
 
-
 # Managing TLS certificates
 {: #tls-certificates}
 
@@ -77,10 +76,10 @@ That's it! You're ready to use your own certificate from your own issuer.
 ## Backend use
 {: #tls-backend}
 
-The {{site.data.keyword.datashield_short}} service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you don't need to do anything with these certificates.
+The Data Shield service also uses TLS for internal communication between backend services. These certificates are also provided by `cert-manager`. In general, you don't need to do anything with these certificates.
 {: shortdesc}
 
-Check out the following table for contextual information about how {{site.data.keyword.datashield_short}} creates the specific `cert-manager` resources.
+Check out the following table for contextual information about how Data Shield creates the specific `cert-manager` resources.
 
 <table>
     <tr>
@@ -89,15 +88,15 @@ Check out the following table for contextual information about how {{site.data.k
     </tr>
     <tr>
         <td><code>&lt;chartname&gt;-ca-issuer</code></td>
-        <td>A self-signed <code>cert-manager</code> issuer that is used to generate the <code>datashield-enclaveos-ca</code> certificate authority that issues TLS certificates for the {{site.data.keyword.datashield_short}} components.</td>
+        <td>A self-signed <code>cert-manager</code> issuer that is used to generate the <code>datashield-enclaveos-ca</code> certificate authority that issues TLS certificates for the Data Shield components.</td>
     </tr>
     <tr>
         <td><code>&lt;chartname&gt;-issuer</code></td>
-        <td>The issuer of TLS certificates that are used in {{site.data.keyword.datashield_short}} components. The certificates are created by using the <code>datashield-enclaveos-ca</code> certificate authority.</td>
+        <td>The issuer of TLS certificates that are used in Data Shield components. The certificates are created by using the <code>datashield-enclaveos-ca</code> certificate authority.</td>
     </tr>
     <tr>
         <td><code>&lt;chartname&gt;-enclaveos-ca</code></td>
-        <td>The <code>cert-manager</code> resource that is both a certificate and a private certificate authority. As a certificate authority, it issues TLS certificates to the {{site.data.keyword.datashield_short}} backend services. The certificate is mounted as a Kubernetes secret in various services, which then trusts clients if they have a certificate that is signed by <code>datashield-enclaveos-ca</code> CA.</td>
+        <td>The <code>cert-manager</code> resource that is both a certificate and a private certificate authority. As a certificate authority, it issues TLS certificates to the Data Shield backend services. The certificate is mounted as a Kubernetes secret in various services, which then trusts clients if they have a certificate that is signed by <code>datashield-enclaveos-ca</code> CA.</td>
     </tr>
     <tr>
         <td><code>&lt;chartname&gt;-enclaveos-converter</code></td>
@@ -112,7 +111,4 @@ Check out the following table for contextual information about how {{site.data.k
         <td>The certificate used by the Enclave Manager backend application.</td>
     </tr>
 </table>
-
-
-
 

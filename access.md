@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
@@ -41,7 +41,6 @@ subcollection: data-shield
 {:tutorial: data-hd-content-type='tutorial'}
 
 
-
 # Assigning access
 {: #access}
 
@@ -76,7 +75,7 @@ There is no need to assign additional access to specific resources.
 {: #enclave-roles}
 {: support}
 
-{{site.data.keyword.datashield_short}} administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
+Data Shield administration takes place in the Enclave Manager. As an administrator, you are automatically assigned the *manager* role, but you can also assign roles to other users.
 {: shortdesc}
 
 Check out the following table to see which roles are supported and some example actions that can be taken by each user:

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: images, public, global registry, applications, containerized app, sample app, data security, encryption, kube security,
 
@@ -43,11 +43,10 @@ subcollection: data-shield
 
 
 
-
 # Curated apps
 {: #curated-apps}
 
-Want to try IBM Cloud Data Shield but don't have a containerized app ready to go? No problem. You can use one of the prepackaged applications that are provided by the service.
+Want to try {{site.data.keyword.datashield_full}} but don't have a containerized app ready to go? No problem. You can use one of the prepackaged applications that are provided by the service.
 {: shortdesc}
 
 
@@ -82,10 +81,10 @@ You can access the public IBM images by using the CLI.
 For more information about working with container images, see the [Registry documentation](/docs/Registry?topic=Registry-getting-started).
 
 
-## IBM Cloud Data Shield image options
+## {{site.data.keyword.datashield_full}} image options
 {: #curated-options}
 
-You can use any of the following public images to quickly get up and running with IBM Cloud Data Shield.
+You can use any of the following public images to quickly get up and running with Data Shield.
 {: shortdesc}
 
 * [Barbican](/docs/Registry?topic=RegistryImages-datashield-barbican_starter#datashield-barbican_starter)

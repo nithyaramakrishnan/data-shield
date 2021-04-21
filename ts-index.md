@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-04-21"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -51,7 +51,7 @@ If you have problems while you're working with {{site.data.keyword.datashield_fu
 
 For help, you can search for information in the documentation or by asking questions through a forum. You can also open a support ticket. When you are using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development team.
 
-If you have technical questions about {{site.data.keyword.datashield_short}}, post your question on <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
+If you have technical questions about Data Shield, post your question on <a href="https://stackoverflow.com" target="_blank">Stack Overflow <img src="../../icons/launch-glyph.svg" alt="External link icon"></a> and tag your question with "ibm-data-shield".
 
 For more information about getting support, see [how do I get the support that I need](/docs/get-support?topic=get-support-using-avatar).
 
@@ -59,7 +59,7 @@ For more information about getting support, see [how do I get the support that I
 ## Obtaining logs
 {: #ts-logs}
 
-When you open a support ticket for {{site.data.keyword.datashield_short}}, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
+When you open a support ticket for Data Shield, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
 
@@ -96,7 +96,7 @@ Sign-in might fail for the following reasons:
 * The token that you're using might be expired.
 
 {: tsResolve}
-To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the correct permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`. If you have multiple IBM Cloud accounts, verify that the account you are logged in to the CLI with the correct account for the Enclave Manager cluster.
+To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the correct permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`. If you have multiple {{site.data.keyword.cloud_notm}} accounts, verify that the account you are logged in to the CLI with the correct account for the Enclave Manager cluster.
 
 
 ## Error: Container converter forbidden
@@ -144,7 +144,7 @@ To resolve the issue, you can follow these steps:
 {: #ts-problem-mounting-device}
 
 {: tsSymptoms}
-You encounter issues when you try to mount {{site.data.keyword.datashield_short}} containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
+You encounter issues when you try to mount Data Shield containers on volumes `/var/run/aesmd/aesm.socket` or `/dev/isgx`.
 
 {: tsCauses}
 Mounting can fail due to issues with the configuration of the host.
@@ -152,7 +152,7 @@ Mounting can fail due to issues with the configuration of the host.
 {: tsResolve}
 To resolve the issue, verify both:
 
-* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the {{site.data.keyword.datashield_short}} software, and perform the installation steps again. 
+* That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the Data Shield software, and perform the installation steps again. 
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
 
 
@@ -175,7 +175,7 @@ To resolve the issue you can use the following steps:
 
 1. Disable OS X keychain on your local system. Go to **System preferences > iCloud** and clear the box for **Keychain**.
 
-2. Delete the secret that you created. Be sure that you're logged in to IBM Cloud and are targeted to your cluster before you run the following command.
+2. Delete the secret that you created. Be sure that you're logged in to {{site.data.keyword.cloud_notm}} and are targeted to your cluster before you run the following command.
 
   ```
   kubectl delete secret converter-docker-config
@@ -285,11 +285,11 @@ To resolve the issue, try uninstalling the library and then reinstalling the dri
 
 3. Reinstall the SGX driver, which runs the `datashield-sgx` and installs the necessary packages.
 
-## Unable to update {{site.data.keyword.datashield_short}}
+## Unable to update Data Shield
 {: #ts-problem-updating-data-shield}
 
 {: tsSymptoms}
-You try to follow the [update process for {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but the `enclaveos-agent` pod or manager pod on the new node is stuck in the `ContainerCreating` state. You encounter the following error when you run `kubectl describe pods <agent | manager-pod>`:
+You try to follow the [update process for Data Shield](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but the `enclaveos-agent` pod or manager pod on the new node is stuck in the `ContainerCreating` state. You encounter the following error when you run `kubectl describe pods <agent | manager-pod>`:
 
 ```
 Normal   Scheduled  47m                    default-scheduler      Successfully assigned default/datashield-enclaveos-manager-1 to 10.94.114.74
@@ -330,7 +330,7 @@ If you have access to the worker node, you can check kernel logs by logging into
 {: #ts-problem-mounting-datashield-admin-volume}
 
 {: tsSymptoms}
-You try to follow the [update process for {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but {{site.data.keyword.datashield_short}} pods are stuck in the `init` state. You encounter the following error when you run `kubectl describe pods <pod-name>`:
+You try to follow the [update process for Data Shield](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but Data Shield pods are stuck in the `init` state. You encounter the following error when you run `kubectl describe pods <pod-name>`:
 
 ```
 Warning  FailedMount  60m (x4 over 76m)   kubelet, 10.176.16.235  Unable to attach or mount volumes: unmounted volumes=[datashield-admin-token-7wzv8], unattached volumes=[host-root enclave-volume cluster-ca datashield-admin-token-7wzv8 sgx-psw-version]: timed out waiting for the condition

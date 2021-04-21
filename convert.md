@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-04-21"
 
 keywords: Enclave manager, environment variables, converter, container, convert containers, configuration file, registry credentials, java, image, security, sgx, data, excryption, conversion,
 
@@ -44,10 +44,10 @@ subcollection: data-shield
 # Converting images
 {: #convert}
 
-You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_short}} Container Converter. After your images are converted, you can deploy them to your SGX capable Kubernetes cluster.
+You can convert your images to run in an EnclaveOS® environment by using the {{site.data.keyword.datashield_full}} Container Converter. After your images are converted, you can deploy them to your SGX capable {{site.data.keyword.containershort}} cluster.
 {: shortdesc}
 
-You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by {{site.data.keyword.datashield_short}}. 
+You can convert your applications without changing your code. By doing the conversion, you're preparing your application to run in an EnclaveOS environment. It's important to note that the conversion process does not encrypt your application. Only data that is generated at run time, after the application is started within an SGX Enclave, is protected by Data Shield. 
 
 The conversion process does not encrypt your application.
 {: important}
@@ -74,10 +74,10 @@ Before you convert your applications, ensure that you fully understand the follo
 ## Configuring registry credentials
 {: #configure-credentials}
 
-You can allow all users of the {{site.data.keyword.datashield_short}} container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you used the Container Registry before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/Registry?topic=Registry-user#existing_users).
+You can allow all users of the Data Shield container converter to obtain input images from and push output images to the configured private registries by configuring it with registry credentials. If you used the {{site.data.keyword.registryshort}} before 4 October 2018, you might want to [enable IAM access policy enforcement for your registry](/docs/Registry?topic=Registry-user#existing_users).
 {: shortdesc}
 
-### Configuring your {{site.data.keyword.cloud_notm}} Container Registry credentials
+### Configuring your {{site.data.keyword.cloud_notm}} {{site.data.keyword.registryshort}} credentials
 {: #configure-ibm-registry}
 
 1. Log in to the {{site.data.keyword.cloud_notm}} CLI. Follow the prompts in the CLI to complete logging in. If you have a federated ID, append the `--sso` option to the end of the command.
@@ -87,7 +87,7 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
   ```
   {: codeblock}
 
-2. Create a service ID and a service ID API key for the {{site.data.keyword.datashield_short}} container converter.
+2. Create a service ID and a service ID API key for the Data Shield container converter.
 
   ```
   ibmcloud iam service-id-create data-shield-container-converter -d 'Data Shield Container Converter'
@@ -101,7 +101,7 @@ You can allow all users of the {{site.data.keyword.datashield_short}} container 
   ```
   {: codeblock}
 
-3. Grant the service ID permission to access your container registry.
+3. Grant the service ID permission to access your {{site.data.keyword.registryshort}}.
 
   ```
   ibmcloud iam service-policy-create data-shield-container-converter --roles Reader,Writer --service-name container-registry
@@ -267,10 +267,10 @@ Check out the following example to see how to configure a request to generate an
         "description": "<app_description>",
         "input_image_name": "<your-registry-server/your-app>",
         "output_image_name": "<your-registry-server/your-app-sgx>",
-        "isvprodid": <isvprodid>,
-        "isvsvn": <isvsvn>,
-        "mem_size": <memory_size>,
-        "threads": <threads>,
+        "isvprodid": "<isvprodid>",
+        "isvsvn": "<isvsvn>",
+        "mem_size": "<memory_size>",
+        "threads": "<threads>",
         "allowed_domains": ["<SGX-Application.domain>"],
         "advanced_settings": {
             "java_runtime": "",
