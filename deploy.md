@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: clusters, deploy apps, pod specification, security policies, containers, encryption, helm, sample apps, volumes, memory, data in use,
 
@@ -41,16 +41,15 @@ subcollection: data-shield
 {:tutorial: data-hd-content-type='tutorial'}
 
 
-
 # Deploying images
 {: #deploying}
 
-After you convert your images, you must deploy your {{site.data.keyword.datashield_short}} containers to your Kubernetes cluster.
+After you convert your images, you must deploy your {{site.data.keyword.datashield_full}} containers to your Kubernetes cluster.
 {: shortdesc}
 
-When you deploy {{site.data.keyword.datashield_short}}, the container specification must include volume mounts that allow the SGX devices and the AESM socket to be available.
+When you deploy Data Shield, the container specification must include volume mounts that allow the SGX devices and the AESM socket to be available.
 
-Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [{{site.data.keyword.datashield_short}} images](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
+Don't have an application to try the service? No problem. We offer several sample apps that you can try, including MariaDB and NGINX. Any of the [Data Shield images](/docs/Registry?topic=RegistryImages-datashield-mariadb_starter) in IBM Container Registry can be used as a sample.
 {: tip}
 
 1. Configure [pull secrets](/docs/containers?topic=containers-registry#other).
@@ -93,15 +92,15 @@ Don't have an application to try the service? No problem. We offer several sampl
 
 
 
-## Deploying images on IBM Cloud OpenShift clusters
+## Deploying images on {{site.data.keyword.openshiftshort}} clusters
 {: #deploy-openshift}
 
-With {{site.data.keyword.datashield_short}} 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters.
+With Data Shield 1.5, you can preview support for {{site.data.keyword.openshiftlong_notm}} clusters.
 
-To deploy on an OpenShift cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-getting-started).
+To deploy on an {{site.data.keyword.openshiftshort}} cluster, specify `--set global.OpenShiftEnabled=true` when you [install the Helm chart](/docs/data-shield?topic=data-shield-getting-started).
 {: tip}
 
-Because {{site.data.keyword.datashield_short}} is being previewed, there are a few limitations that you should be aware of:
+Because Data Shield is being previewed, there are a few limitations that you should be aware of:
 
 * Application containers must run as privileged containers, which allows them to access the host's SGX devices. To make a container privileged, add the following code snippet to your pod specification for each container that needs to access the SGX devices.
 
@@ -111,7 +110,7 @@ Because {{site.data.keyword.datashield_short}} is being previewed, there are a f
   ```
   {: screen}
 
-  OpenShift security policies might restrict the creation of privileged containers. Cluster administrators have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
+  {{site.data.keyword.openshiftshort}} security policies might restrict the creation of privileged containers. Cluster administrators have permission to create them when they create pods. If the pods are created by a Kubernetes controller, such as a replica or daemon set, the controller must be associated with a service account that has permission to create privileged containers.
   {: note}
 
 * SELinux is placed in permissive mode during the installation. 

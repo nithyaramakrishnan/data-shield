@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-09-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: backup, restore, enclave manager, app security, memory encryption, database, container, kube security, nodes, hmac credentials, helm, keys
 
@@ -42,34 +42,33 @@ subcollection: data-shield
 
 
 
-
 # Backing up and restoring
 {: #backup-restore}
 
-You can back up and restore your Enclave Manager instance.
+You can back up and restore your Enclave Manager instance by using {{site.data.keyword.datashield_full}}.
 {: shortdesc}
 
 
 ## Backing up your Enclave Manager instance
 {: #backup}
 
-You can configure {{site.data.keyword.datashield_full}} to periodically back up the Enclave Manager database to {{site.data.keyword.cos_full_notm}}.
+You can configure Data Shield to periodically back up the Enclave Manager database to Cloud Object Storage.
 {: shortdesc}
 
 Consider enrolling hosts in more than one physical location to minimize the risk of data loss. You can restore the Enclave Manager on hardware that was previously enrolled in the Enclave Manager cluster only.
 {: tip}
 
 
-1. Create a [service ID](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the {{site.data.keyword.cos_short}} documentation, and selecting the option to include HMAC credentials. The backup job uses the HMAC credentials to authenticate to {{site.data.keyword.cos_short}}.
+1. Create a [service ID](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the instructions in the Cloud Object Storage documentation, and selecting the option to include HMAC credentials. The backup job uses the HMAC credentials to authenticate to Cloud Object Storage.
 
-2. Create a Kubernetes secret with the credentials to authenticate to {{site.data.keyword.cos_short}}.
+2. Create a Kubernetes secret with the credentials to authenticate to Cloud Object Storage.
 		
 	```
 	kubectl create secret generic enclave-manager-backup-credentials --from-literal=AWS_ACCESS_KEY_ID=<key id> --from-literal=AWS_SECRET_ACCESS_KEY=<secret>
 	```
 	{: codeblock}
 
-3. Add the following options to your `helm install` command when you install Data Shield, or to your `helm upgrade` command when you upgrade an existing {{site.data.keyword.datashield_full}} instance. Modify the following values for your environment.
+3. Add the following options to your `helm install` command when you install Data Shield, or to your `helm upgrade` command when you upgrade an existing Data Shield instance. Modify the following values for your environment.
 		
 	```
 	--set enclaveos-chart.Backup.CronSchedule="<backup schedule>"
@@ -91,7 +90,7 @@ Consider enrolling hosts in more than one physical location to minimize the risk
 		</tr>
 		<tr>
 			<td><code>global.S3.Endpoint</code></td>
-			<td>The location of the {{site.data.keyword.cos_short}} bucket that you created. You can find the endpoint in the <a href="/docs/cloud-object-storage?topic=cloud-object-storage-endpoints">{{site.data.keyword.cos_short}} endpoint documentation</a>.</td>
+			<td>The location of the Cloud Object Storage bucket that you created. You can find the endpoint in the <a href="/docs/cloud-object-storage?topic=cloud-object-storage-endpoints">Cloud Object Storage endpoint documentation</a>.</td>
 		</tr>
 		<tr>
 			<td>Optional: <code>enclaveos-chart.Backup.S3Prefix</code></td>

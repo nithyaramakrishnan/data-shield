@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-10-22"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: converted containers, sign sgx, app security, production apps, images, containers, cluster, debug key, intel signing key, intel, data protection, runtime, memory encryption, 
 
@@ -38,7 +38,6 @@ subcollection: data-shield
 {:video: .video}
 {:step: data-tutorial-type='step'}
 {:tutorial: data-hd-content-type='tutorial'}
-
 
 
 # Signing converted containers
@@ -105,7 +104,7 @@ Before you can sign your converted applications, be sure that you have the follo
 ### Signing your development images
 {: #signing}
 
-Signing your development images is optional. If you choose not to, they are signed in the background by a random debug key that is provided by {{site.data.keyword.datashield_short}}. If you want to use your own key, use the following steps.
+Signing your development images is optional. If you choose not to, they are signed in the background by a random debug key that is provided by Data Shield. If you want to use your own key, use the following steps.
 
 1. Clone the following repository.
 
@@ -148,7 +147,7 @@ Signing your development images is optional. If you choose not to, they are sign
 ### Signing your production images
 {: #signing-images}
 
-You can use the `enclaveos-signer` to sign {{site.data.keyword.datashield_short}} converted images with a production-level signing key.
+You can use the `enclaveos-signer` to sign Data Shield converted images with a production-level signing key.
 
 
 1. Clone the following repository.

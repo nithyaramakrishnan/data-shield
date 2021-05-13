@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-04-21"
 
-keywords: update data shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
+keywords: update Data Shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
 subcollection: data-shield
 ---
@@ -40,10 +40,10 @@ subcollection: data-shield
 {:tutorial: data-hd-content-type='tutorial'}
 
 
-# Updating {{site.data.keyword.datashield_short}}
+# Updating Data Shield
 {: #update}
 
-After {{site.data.keyword.datashield_short}} is installed on your cluster, you can update at any time.
+After {{site.data.keyword.datashield_full}} is installed on your cluster, you can update at any time.
 {: shortdesc}
 
 ## Setting cluster context
@@ -118,17 +118,21 @@ To update to the newest version with the Helm chart, run the following command.
       <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
       <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=<TEST/PROD> --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. Note: By default, IAS requests are made through a proxy service.</td>
     </tr>
+    <tr>
+      <td><code>--set global.ServiceReplicas=&lt;replica-count&gt;</code></td>
+      <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
+    </tr>
   </table>
 
-## Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04
+## Updating Data Shield for Ubuntu 18.04
 {: #upgrade-ubuntu-18.04}
 
-If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run {{site.data.keyword.datashield_short}} to Ubuntu 18.04.
+If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run Data Shield to Ubuntu 18.04.
 
-Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
+Before you upgrade your cluster nodes, be sure to update Data Shield to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
 {: note} 
 
-1. Update {{site.data.keyword.datashield_short}} to version 1.23.965 or higher.
+1. Update Data Shield to version 1.23.965 or higher.
 
 2. Add all Ubuntu 18.04 nodes to your cluster and wait until they are ready. 
 
@@ -139,8 +143,8 @@ Before you upgrade your cluster nodes, be sure to update {{site.data.keyword.dat
    For example, for a 3-node cluster, remove 1 node at a time. For a 10-node cluster, remove 3, 3, and 4 nodes at a time.
 4. [Update to the newest version by using Helm](#update-helm).
 
-    This step ensures that your Ubuntu 18.04 nodes get the required labeling, and it prepares your {{site.data.keyword.datashield_short}} resources to begin to run on them. 
+    This step ensures that your Ubuntu 18.04 nodes get the required labeling, and it prepares your Data Shield resources to begin to run on them. 
 
-5. Verify that all {{site.data.keyword.datashield_short}} pods are up and running and that none of them are in pending state. 
+5. Verify that all Data Shield pods are up and running and that none of them are in pending state. 
 6. Repeat steps 3, 4 and 5 until all the Ubuntu 16.04 nodes are removed from the cluster.
 7. Manually delist the removed nodes from the UI. 

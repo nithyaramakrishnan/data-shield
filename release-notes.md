@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-03-29"
+lastupdated: "2021-05-12"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -48,10 +48,36 @@ subcollection: data-shield
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
 
-## Current version: 1.26.1148
+## Current version: 1.27.1226
+{: #v1.27.1226}
+
+**Released: 5 May 2021**
+
+- Enclave Manager:
+  - Upgraded SGX device plugin source image version to `20210223-c2d2da0` to fix `DLA-2542-1`, `DLA-2509-1`,  and `DLA-2424-1`.
+  - Upgraded the reloader source image version to `v0.0.84` to fix `CVE-2020-28928`, `CVE-2020-1971`, `CVE-2021-23839`, `CVE-2021-23840`, and `CVE-2021-23841`.
+  - Enable `rw dirs` in the Data Shield UI.
+  - Updated the `max sql memory` and `max cache` size of cockroach DB to `1Gib` to match the identified optimum memory settings.
+
+- EnclaveOS
+  - The root tree of a converted application is now read only.
+  - EnclaveOS converter is now built on Ubuntu 20.
+  - Fixed an issue that causes a memory leak when directories were listed.
+  - Fixed a file descriptor leak that happened when opening `/proc/cpuinfo`.
+  - Fixed an issue which caused `EINIT failure` with `SGX_INVALID_ATTRIBUTE`.
+
+
+## 2021 updates
+{: #2021-updates}
+
+The following features and changes to the Data Shield service are available as of 2021.
+
+
+### Version 1.26.1148
 {: #v1.26.1148}
 
-**Released: 15 March 2021**
+#### Released: 15 March 2021
+{: #2020-01-22}
 
 - Enclave Manager:
   - Added support to prevent creation of duplicate builds - multiple builds for the same `mrenclave` value.
@@ -66,10 +92,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Implemented `timer_create`, `timer_settime`, `timer_gettime`, `timer_getoverrun`, `timer_delete`.
   - Fixed problems that can happen when applications terminate with certain signals.
 
-## 2021 updates
-{: #2021-updates}
-
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2021.
 
 ### Version 1.25.1090
 {: #v1.25.1090}
@@ -82,7 +104,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
   - Added support to enable and disable application heartbeats and configure heartbeat interval to resolve performance issues.
   - Added support for installation on version 1.18 Kubernetes Service clusters.
 
-    If you are installing {{site.data.keyword.datashield_short}} on a cluster that was created after 1 December 2020, append the following tag to your installation command: `--set global.UsingCustomIBMIngressImage=false`. For more information, see [Installing {{site.data.keyword.datashield_short}}](/docs/data-shield?topic=data-shield-getting-started#gs-install).
+    If you are installing Data Shield on a cluster that was created after 1 December 2020, append the following tag to your installation command: `--set global.UsingCustomIBMIngressImage=false`. For more information, see [Installing Data Shield](/docs/data-shield?topic=data-shield-getting-started#gs-install).
     {: note}
 
   - Fixed the vulnerability CVE-2020-28362/66/67 by upgrading Go to 1.15.5.
@@ -95,7 +117,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 ## 2020 updates
 {: #2020-updates}
 
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2020.
+The following features and changes to the Data Shield service are available as of 2020.
 
 ### Version 1.24.1010
 {: #v1.24.1010}
@@ -115,7 +137,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
 - Enclave Manager:
 
-  - Added Ubuntu 18.04 support for {{site.data.keyword.datashield_short}}. For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating {{site.data.keyword.datashield_short}} for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04).
+  - Added Ubuntu 18.04 support for Data Shield. For more information about upgrading from Ubuntu 16.04 to Ubuntu 18.04, see [Updating Data Shield for Ubuntu 18.04](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04).
   - Added support for editing `ISVPRODID` for an application.
   - Fixed the vulnerability CVE-2020-8201/8251/8252 by updating Node.js to 14.13.1.
   - Fixed the vulnerability CVE-2020-26160 for `jwt-go`.
@@ -176,7 +198,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
   - Added support for installation on version 1.16 Kubernetes Service clusters.
 
-    If you have {{site.data.keyword.datashield_short}} running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16, this upgrade is not supported. First, update your cluster version and then install {{site.data.keyword.datashield_short}}.
+    If you have Data Shield running in a Kubernetes cluster that is version 1.15 and you attempt to upgrade your cluster to version 1.16, this upgrade is not supported. First, update your cluster version and then install Data Shield.
     {: note}
 
   - Fixed vulnerabilities CVE-2020-8172, CVE-2020-8174, and CVE-2020-11080 by updating Node.js to version 14.6
@@ -319,7 +341,7 @@ If the manager pods fail to come up after upgrading, delete them one-by-one to f
 ## 2019 updates
 {: #2019-updates}
 
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2019.
+The following features and changes to the Data Shield service are available as of 2019.
 
 ### Version 1.10.448
 {: #v1.10.448}
@@ -376,7 +398,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 - Enclave Manager:
 
   - Updated the endpoint names of the Docker images to `icr.io`.
-  - Updated the {{site.data.keyword.datashield_short}} uninstaller to work with OpenShift.
+  - Updated the Data Shield uninstaller to work with OpenShift.
   - Fixed an issue when a different `Ias.Mode(IAS_API_KEY, IAS_CREDENTIALS)` is used for deployment.
   - Upgraded cockroach DB to `v2.1.9` to address vulnerability scan results.
 
@@ -439,7 +461,7 @@ The following features and changes to the {{site.data.keyword.datashield_short}}
 
 - General
 
-  - {{site.data.keyword.datashield_short}} now creates a `datashield-admin` service account upon installation.
+  - Data Shield now creates a `datashield-admin` service account upon installation.
   - Updated Python with September 2019 security fixes to address several CVEs.
 
 
@@ -550,7 +572,7 @@ Releases before 1.2 cannot be upgraded to this release.
 - Enclave Manager:
 
   - Added more locale support: English, German, French, Korean, Spanish, Italian, Japanese, Brazilian Portuguese, and Chinese (simplified and traditional).
-  - Added support for high availability of {{site.data.keyword.datashield_short}} services.
+  - Added support for high availability of Data Shield services.
   - Fixed bugs and improved stability.
 
 - EnclaveOS:
@@ -600,7 +622,7 @@ Releases before 1.2 cannot be upgraded to this release.
 
   - Changed the default enclave size and thread count.
   - Fixed bugs for build page crash.
-  - Improved {{site.data.keyword.datashield_short}} naming.
+  - Improved Data Shield naming.
 
 - Enclave Manager:
 
@@ -635,9 +657,9 @@ Releases before 1.2 cannot be upgraded to this release.
 - Enclave Manager:
 
   - Added domain allow-listing support in the Enclave Manager UI.
-  - Updated packages in Docker images with security fix released by Ubuntu. The vulnerabilities are not exploitable in the {{site.data.keyword.datashield_short}} environment.
+  - Updated packages in Docker images with security fix released by Ubuntu. The vulnerabilities are not exploitable in the Data Shield environment.
   - Updated the converter to send heartbeats to the Enclave Manager by default.
-  - Changed curated Docker images to have the same version as the {{site.data.keyword.datashield_short}} Helm chart and Docker images.
+  - Changed curated Docker images to have the same version as the Data Shield Helm chart and Docker images.
 
 
 
@@ -728,7 +750,7 @@ Releases before 1.2 cannot be upgraded to this release.
 ## 2018 updates
 {: #2018-updates}
 
-The following features and changes to the {{site.data.keyword.datashield_short}} service are available as of 2018.
+The following features and changes to the Data Shield service are available as of 2018.
 
 
 ### Version 0.4.48

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-12-21"
+  years: 2018, 2021
+lastupdated: "2021-04-21"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -53,7 +53,7 @@ You can use the Enclave Manager UI to manage the applications that you protect w
 In the Enclave Manager console, you can view the nodes in your cluster and their attestation status. You can also view tasks and an audit logs of cluster events. To get started, sign in.
 {: shortdesc}
 
-The first time that you sign in to the Enclave Manager, it must be done by using the same email and account ID that were used to install {{site.data.keyword.datashield_short}} on the cluster.
+The first time that you sign in to the Enclave Manager, it must be done by using the same email and account ID that were used to install Data Shield on the cluster.
 {: tip}
 
 1. Be sure that you have the [correct access](/docs/data-shield?topic=data-shield-access).
@@ -109,7 +109,7 @@ The first time that you sign in to the Enclave Manager, it must be done by using
 ## Managing nodes
 {: #em-nodes}
 
-You can use the Enclave Manager UI to monitor the status, deactivate, or download the certificates for nodes that run IBM Cloud Data Shield in your cluster.
+You can use the Enclave Manager UI to monitor the status, deactivate, or download the certificates for nodes that run Data Shield in your cluster.
 {: shortdesc}
 
 
@@ -155,7 +155,7 @@ You can convert, deploy, and allow list your application all at the same time by
 ### Configuring certificates
 {: #em-certificate}
 
-A converted application can request a certificate from {{site.data.keyword.datashield_short}} when the app is started. The certificates are signed by the {{site.data.keyword.datashield_short}} certificate authority, which issues certificates only to enclaves that present valid attestation.
+A converted application can request a certificate from Data Shield when the app is started. The certificates are signed by the Data Shield certificate authority, which issues certificates only to enclaves that present valid attestation.
 
 1. In the certificate configuration field, provide the information as outlined in the following table.
 
@@ -175,7 +175,7 @@ A converted application can request a certificate from {{site.data.keyword.datas
     </tr>
     <tr>
       <td>Optional: CA cert path</td>
-      <td>The path to store the {{site.data.keyword.datashield_short}} CA certificate. For example: <code>/etc/cacert.pem</code>.</td>
+      <td>The path to store the Data Shield CA certificate. For example: <code>/etc/cacert.pem</code>.</td>
     </tr>
     <tr>
       <td>Optional: Chain path</td>
