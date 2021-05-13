@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-04-21"
+lastupdated: "2021-05-13"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -48,7 +48,7 @@ completion-time: 30m
 
 
 
-# Getting started Data Shield
+# Getting started with Data Shield
 {: #getting-started}
 {: toc-content-type="tutorial"}
 {: toc-services="containers, registry, openshift"}
