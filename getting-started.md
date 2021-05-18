@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-13"
+lastupdated: "2021-05-18"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -59,7 +59,7 @@ With {{site.data.keyword.datashield_full}}, powered by Fortanix®, you can prote
 
 
 
-Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [{{site.data.keyword.openshiftshort}}](/docs/{{site.data.keyword.openshiftshort}}?topic={{site.data.keyword.openshiftshort}}-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
+Already have an app that's configured to use Intel SGX? Check out information about using Intel SGX on [Kubernetes](/docs/containers?topic=containers-add_workers#install-sgx), [{{site.data.keyword.openshiftshort}}](/docs/openshift?topic=openshift-add_workers#install-sgx), or directly with [bare metal](/docs/bare-metal?topic=bare-metal-bm-server-provision-sgx).
 {: tip}
 
 
@@ -84,7 +84,7 @@ Before you get started, ensure that you have the following CLIs and plug-ins dow
 {: gs-prepare-cluster}
 {: step}
 
-To work with Data Shield, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or {{site.data.keyword.openshiftshort}}, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/{{site.data.keyword.openshiftshort}}?topic={{site.data.keyword.openshiftshort}}-openshift_tutorial).
+To work with Data Shield, you must have an SGX enabled bare metal cluster. Depending on whether you're working with Kubernetes or {{site.data.keyword.openshiftshort}}, the machine type differs. Be sure that you have the correct machine type by reviewing the following table. For help with configuring your {{site.data.keyword.containershort_notm}} environment, check out [creating Kubernetes clusters](/docs/containers?topic=containers-cs_cluster_tutorial#cs_cluster_tutorial_lesson1) or [creating {{site.data.keyword.openshiftshort}} clusters](/docs/openshift?topic=openshift-openshift_tutorial).
 
 
 | Type of cluster | Available machine types |

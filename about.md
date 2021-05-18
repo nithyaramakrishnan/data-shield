@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-04-21"
+lastupdated: "2021-05-18"
 
 keywords: confidential computing, secure data, encryption, Fortanix, runtime encryption, memory, encrypt, app security, private data, Intel, SGX, convert, protect, data in use, data protection, containerized apps,
 
@@ -105,7 +105,7 @@ Data Shield is built by combining several technologies.
     <dd>With <a href="https://fortanix.com/" target="_blank" class="external">Fortanix Runtime Encryption</a> you can keep your most valuable apps and data protected, even when the infrastructure is compromised. Built on Intel SGX, Fortanix provides a new category of data security. Similar to the way encryption works for data at rest and data during motion, runtime encryption keeps keys, data, and applications protected from external and internal threats.</dd>
   <dt>Container orchestration tools</dt>
     <dd><a href="/docs/containers?topic=containers-getting-started">{{site.data.keyword.containerlong_notm}}</a> delivers powerful tools by combining Docker containers, the Kubernetes technology, an intuitive user experience, and built-in security and isolation to automate working with containerized apps.</dd></br>
-    <dd><a href="/docs/{{site.data.keyword.openshiftshort}}?topic={{site.data.keyword.openshiftshort}}-getting-started">{{site.data.keyword.openshiftlong_notm}}</a> combines the power of {{site.data.keyword.containerlong_notm}} with the best of {{site.data.keyword.cloud_notm}} container orchestration software. You get all of the benefits of managed {{site.data.keyword.containerlong_notm}} and you gain the flexibility to use <a href="https://docs.{{site.data.keyword.openshiftshort}}.com/container-platform/3.11/welcome/index.html">{{site.data.keyword.openshiftshort}} tools</a> such as Red Hat Enterprise Linux® for your app deployments.</dd>
+    <dd><a href="/docs/openshift?topic=openshift-getting-started">{{site.data.keyword.openshiftlong_notm}}</a> combines the power of {{site.data.keyword.containerlong_notm}} with the best of {{site.data.keyword.cloud_notm}} container orchestration software. You get all of the benefits of managed {{site.data.keyword.containerlong_notm}} and you gain the flexibility to use <a href="https://docs.{{site.data.keyword.openshiftshort}}.com/container-platform/3.11/welcome/index.html">{{site.data.keyword.openshiftshort}} tools</a> such as Red Hat Enterprise Linux® for your app deployments.</dd>
   <dt>Access control</dt>
     <dd>With <a href="/docs/account?topic=account-access-getstarted">{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM)</a>, you can securely authenticate users for services and control access to resources consistently across {{site.data.keyword.cloud_notm}}. When a user tries to complete a specific action, the control system uses the attributes that are defined in the policy to determine whether the user has permission to perform that task. You can get {{site.data.keyword.cloud_notm}} API keys through IAM and then use them to authenticate your user identity through the CLI or as part of automation.</dd>
   <dt>Logging</dt>
