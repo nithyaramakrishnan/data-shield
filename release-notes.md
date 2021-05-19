@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-12"
+lastupdated: "2021-05-18"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -54,7 +54,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 **Released: 5 May 2021**
 
 - Enclave Manager:
-  - Upgraded SGX device plugin source image version to `20210223-c2d2da0` to fix `DLA-2542-1`, `DLA-2509-1`,  and `DLA-2424-1`.
+  - Upgraded SGX device plug-in source image version to `20210223-c2d2da0` to fix `DLA-2542-1`, `DLA-2509-1`,  and `DLA-2424-1`.
   - Upgraded the reloader source image version to `v0.0.84` to fix `CVE-2020-28928`, `CVE-2020-1971`, `CVE-2021-23839`, `CVE-2021-23840`, and `CVE-2021-23841`.
   - Enable `rw dirs` in the Data Shield UI.
   - Updated the `max sql memory` and `max cache` size of cockroach DB to `1Gib` to match the identified optimum memory settings.
@@ -77,7 +77,7 @@ The following features and changes to the Data Shield service are available as o
 {: #v1.26.1148}
 
 #### Released: 15 March 2021
-{: #2020-01-22}
+{: #2021-03-15}
 
 - Enclave Manager:
   - Added support to prevent creation of duplicate builds - multiple builds for the same `mrenclave` value.
