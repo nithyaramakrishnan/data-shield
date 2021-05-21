@@ -46,7 +46,7 @@ content-type: troubleshoot
 {: #ts-log-in}
 {: troubleshoot}
 
-You can't log in to the Enclave Manager UI.
+You encounter issues when you try to log in to the Enclave Manager UI.
 {:shortdesc}
 
 You attempt to access the Enclave Manager UI and you're unable to sign in.
