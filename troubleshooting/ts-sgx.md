@@ -6,6 +6,8 @@ lastupdated: "2021-05-21"
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
 subcollection: data-shield
+
+content-type: troubleshoot
 ---
 
 {:codeblock: .codeblock}
@@ -41,12 +43,15 @@ subcollection: data-shield
 
 
 # Why did the SGX driver installation fail?
+{: #data-shield-sgx-install}
+{: troubleshoot}
+
+You attempt to install the SGX driver and you encounter an error.
+{:shortdesc}
 
 ## Error: `datashield-sgx` pod fails
 {: #data-shield-sgx-pod}
 
-
-{: tsSymptoms}
 You encounter the following error when you try to install the SGX driver.
 
 ```
@@ -74,11 +79,11 @@ Errors were encountered while processing:
   100%  E: Sub-process /usr/bin/dpkg returned an error code (1)
 ```
 {: screen}
+{: tsSymptoms}
 
-{: tsCauses}
 You might have a library, such as `libsgx-enclave-common`, that is incorrectly installed.
+{: tsCauses}
 
-{: tsResolve}
 To resolve the issue, try uninstalling the library and then reinstalling the driver.
 
 1. Uninstall the library.
@@ -91,3 +96,4 @@ To resolve the issue, try uninstalling the library and then reinstalling the dri
 2. Access the worker node on your cluster and restart it.
 
 3. Reinstall the SGX driver, which runs the `datashield-sgx` and installs the necessary packages.
+{: tsResolve}
