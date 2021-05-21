@@ -44,7 +44,6 @@ content-type: troubleshoot
 
 # How can I obtain logs?
 {: #ts-logs}
-{: #troubleshoot-obtain-logs}
 {: troubleshoot}
 
 When you open a support ticket for Data Shield, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
