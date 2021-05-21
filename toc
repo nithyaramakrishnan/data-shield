@@ -37,6 +37,14 @@ IBM Cloud Data Shield
 
     {: .navgroup id="help"}
     faq.md
-    ts-index.md
+
+    {: .topicgroup}
+    Troubleshooting
+        troubleshooting/ts-convert.md
+        troubleshooting/ts-em-login.md
+        troubleshooting/ts-logs.md
+        troubleshooting/ts-sgx.md
+        troubleshooting/ts-volumes.md
+    
     release-notes.md
     {: .navgroup-end}
