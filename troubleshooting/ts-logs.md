@@ -68,3 +68,4 @@ When you open a support ticket for Data Shield, providing your logs can help to 
   kubectl logs --all-containers=true --selector release=$(helm list | grep 'data-shield' | awk {'print $1'}) > logs
   ```
   {: codeblock}
+  
