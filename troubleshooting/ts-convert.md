@@ -44,10 +44,9 @@ content-type: troubleshoot
 
 # Why can't I convert my container?
 {: #ts-converter}
-{: #troubleshoot-container-convert}
 {: troubleshoot}
 
-You attempted to convert your container and you encountered a problem.
+You attempt to convert your container and you encounter a problem.
 {:shortdesc}
 
 ## Error: Container converter forbidden

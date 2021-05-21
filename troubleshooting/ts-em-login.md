@@ -6,6 +6,8 @@ lastupdated: "2021-05-21"
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
 subcollection: data-shield
+
+content-type: troubleshoot
 ---
 
 {:codeblock: .codeblock}
@@ -42,15 +44,20 @@ subcollection: data-shield
 
 # Why can't I log in to the Enclave Manager UI?
 {: #ts-log-in}
+{: #troubleshoot-enclave-login}
+{: troubleshoot}
 
-{: tsSymptoms}
+You cannot log in to the Enclave Manager UI.
+{:shortdesc}
+
 You attempt to access the Enclave Manager UI and you're unable to sign in.
+{: tsSymptoms}
 
-{: tsCauses}
 Sign-in might fail for the following reasons:
 
 * You might be using an email ID that is not authorized to access the Enclave Manager cluster.
 * The token that you're using might be expired.
+{: tsCauses}
 
-{: tsResolve}
 To resolve the issue, verify that you are using the correct email ID. If yes, verify that the email has the correct permissions to access the Enclave Manager. If you have the correct permissions, your access token might be expired. Tokens are valid for 60 minutes at a time. To obtain a new token, run `ibmcloud iam oauth-tokens`. If you have multiple {{site.data.keyword.cloud_notm}} accounts, verify that the account you are logged in to the CLI with the correct account for the Enclave Manager cluster.
+{: tsResolve}

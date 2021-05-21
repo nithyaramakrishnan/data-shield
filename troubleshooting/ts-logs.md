@@ -6,6 +6,8 @@ lastupdated: "2021-05-21"
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
 subcollection: data-shield
+
+content-type: troubleshoot
 ---
 
 {:codeblock: .codeblock}
@@ -42,6 +44,8 @@ subcollection: data-shield
 
 # How can I obtain logs?
 {: #ts-logs}
+{: #troubleshoot-obtain-logs}
+{: troubleshoot}
 
 When you open a support ticket for Data Shield, providing your logs can help to speed up the troubleshooting process. You can use the following steps to obtain your logs and then copy and paste them into the issue when you create it.
 
