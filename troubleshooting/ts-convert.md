@@ -59,12 +59,13 @@ You might not be able to access the converter if your IAM or Bearer token is mis
 {: tsCauses}
 
 To resolve the issue, verify that you are using either an IBM IAM OAuth token or an Enclave Manager authentication token in the header of your request. The tokens would take the following form:
+{: tsResolve}
 
 * IAM: `Authentication: Basic <IBM_IAM_Token>`
 * Enclave Manager: `Authentication: Bearer <EM_Token>`
 
 If your token is present, verify that it is still valid and run the request again.
-{: tsResolve}
+
 
 
 ## The container converter is unable to connect to a private Docker registry
