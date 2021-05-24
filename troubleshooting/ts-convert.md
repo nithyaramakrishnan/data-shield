@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-05-24"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -77,6 +77,7 @@ Your private registry credentials might not be configured correctly.
 {: tsCauses}
 
 To resolve the issue, you can follow these steps:
+{: tsResolve}
 
 1. Verify that your private registry credentials were previously configured. If not, configure them now.
 2. Run the following command to dump your Docker registry credentials. If necessary, you can change the secret name.
@@ -87,7 +88,7 @@ To resolve the issue, you can follow these steps:
   {: codeblock}
 
 3. Use a Base64 decoder to decode the secret content of `.dockerconfigjson` and verify that it is correct.
-{: tsResolve}
+
 
 
 ## Unable to mount AESM-socket or SGX devices
@@ -100,7 +101,8 @@ Mounting can fail due to issues with the configuration of the host.
 {: tsCauses}
 
 To resolve the issue, verify both:
+{: tsResolve}
 
 * That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the Data Shield software, and perform the installation steps again. 
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
-{: tsResolve}
+

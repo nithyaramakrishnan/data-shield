@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-05-24"
 
 keywords: enclave manager, container, convert, private registry, credentials, permissions, error, docker, support, cert manager, tokens, sgx, authentication, intel, fortanix, runtime encryption, memory protection, data in use,
 
@@ -59,22 +59,24 @@ Mounting can fail due to issues with the configuration of the host.
 {: tsCauses}
 
 To resolve the issue, verify both:
+{: tsResolve}
 
 * That `/var/run/aesmd/aesm.socket` is not a directory on the host. If it is, delete the file, uninstall the Data Shield software, and perform the installation steps again. 
 * That SGX is enabled in BIOS of the host machines. If it is not enabled, contact IBM support.
-{: tsResolve}
+
 
 
 ## Unable to mount `datashield-admin` volume
 {: #ts-problem-mounting-datashield-admin-volume}
 
 You try to follow the [update process for Data Shield](/docs/data-shield?topic=data-shield-update#upgrade-ubuntu-18.04), but Data Shield pods are stuck in the `init` state. You encounter the following error when you run `kubectl describe pods <pod-name>`:
+{: tsSymptoms}
 
 ```
 Warning  FailedMount  60m (x4 over 76m)   kubelet, 10.176.16.235  Unable to attach or mount volumes: unmounted volumes=[datashield-admin-token-7wzv8], unattached volumes=[host-root enclave-volume cluster-ca datashield-admin-token-7wzv8 sgx-psw-version]: timed out waiting for the condition
 ```
 {: screen}
-{: tsSymptoms}
+
 
 The secret that is associated with the  `datashield-admin` service account is not mounting successfully. You might encounter this problem because a secret does not exist, or a new secret for the service account was created. 
 {: tsCauses}
