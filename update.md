@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-04-21"
+lastupdated: "2021-05-27"
 
 keywords: update Data Shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -92,7 +92,7 @@ To update to the newest version with the Helm chart, run the following command.
 2. Update your chart.
 
   ```
-  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> 
+  helm upgrade <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.AdminEmail=<admin email> --set enclaveos-chart.Manager.AdminName=<admin name> --set enclaveos-chart.Manager.AdminIBMAccountId=<hex account ID> --set global.IngressDomain=<your cluster's ingress domain> --set converter-chart.Converter.DockerConfigSecret=converter-docker-config
   ```
   {: codeblock}
 
@@ -103,8 +103,8 @@ To update to the newest version with the Helm chart, run the following command.
       <th>Description</th>
     </tr>
     <tr>
-      <td><code>--set converter-chart.Converter.DockerConfigSecret=converter-docker-config</code></td>
-      <td>Optional: If you [configured an {{site.data.keyword.cloud_notm}} Container Registry](/docs/data-shield?topic=data-shield-convert) you must append the Docker configuration to the update command.</td>
+      <td><code>--set global.UsingCustomIBMIngressImage=false</code></td>
+      <td>The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to <code>false</code>.</td>
     </tr>
     <tr>
       <td><code>--set global.OpenShiftEnabled=true</code></td>
