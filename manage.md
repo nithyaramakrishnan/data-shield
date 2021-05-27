@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-04-21"
+lastupdated: "2021-05-27"
 
 keywords: enclave manager, convert container, cluster, deploy app, certificates, app security, node attestation, ingress, subdomain, build app, memory allocation, data protection, data in use, encryption, encrypted memory,
 
@@ -100,7 +100,7 @@ The first time that you sign in to the Enclave Manager, it must be done by using
   ```
   {: codeblock}
 
-8. Copy the just the alpha-numeric portion of the token and paste it into the Enclave Manager GUI. You do not need to copy the word `Bearer`.
+8. Copy just the alpha-numeric portion of the token and paste it into the Enclave Manager GUI. You do not need to copy the word `Bearer`.
 
 9. Click **Sign in**.
 
@@ -141,7 +141,7 @@ You can convert, deploy, and allow list your application all at the same time by
 
 6. Enter an **ISVSVN**. It is a numeric security version that you assign to the enclave. When you make a change that affects your application security, be sure to incrementally increase the value.
 
-7. Provide a memory size for your Enclave. If your application uses a large amount of memory, you can use a large enclave. However, the size of your enclave can affect your performance. Be sure that your memory allocation is set to a power of 2. For example: `2048 MB`.
+7. Choose a memory size for your Enclave. If your application uses a large amount of memory, you can use a large enclave. However, the size of your enclave can affect your performance.
 
 8. Enter a number of threads for your enclave that is large enough to accommodate the maximum number of processes that run in your app.
 
@@ -149,7 +149,7 @@ You can convert, deploy, and allow list your application all at the same time by
 
 7. Edit any advanced settings that you might want to change. For more information about the certificate configuration options, see [Configuring certificates](/docs/data-shield?topic=data-shield-enclave-manager#em-certificate).
 
-8. Click **Add**. The application added to your list of available applications. To deploy your app, create a build and then approve the build request in the **tasks** tab.
+8. Click **Add**. The application is added to your list of available applications. To deploy your app, create a build and then approve the build request in the **Tasks** tab.
 
 
 ### Configuring certificates
