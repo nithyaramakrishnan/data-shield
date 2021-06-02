@@ -45,6 +45,7 @@ IBM Cloud Data Shield
         troubleshooting/ts-logs.md
         troubleshooting/ts-sgx.md
         troubleshooting/ts-volumes.md
+        troubleshooting/ts-update.md
     
     release-notes.md
     {: .navgroup-end}
