@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-18"
+lastupdated: "2021-06-01"
 
 keywords: getting started tutorial, getting started, Data Shield, confidential computing, data protection, data in use, helm chart, cluster, container, role binding, bare metal, image, tiller, sample app, runtime encryption, cpu, memory,
 
@@ -292,33 +292,14 @@ helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.
 ```
 {: codeblock}
 
-<table>
-  <caption>Table 1. Installation options</caption>
-  <tr>
-    <th>Command</th>
-    <th>Description</th>
-  </tr>
-    <tr>
-    <td><code>--set global.UsingCustomIBMIngressImage=false</code></td>
-    <td>The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to <code>false</code>.</td>
-  </tr>
-  <tr>
-    <td><code>--set global.OpenShiftEnabled=true</code></td>
-    <td>Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command.</td>
-  </tr>
-      <tr>
-    <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
-    <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
-  </tr>
-  <tr>
-    <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. Note: By default, IAS requests are made through a proxy service.</td>
-  </tr>
-  <tr>
-    <td><code>--set global.ServiceReplicas=&lt;replica-count&gt;</code></td>
-    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
-  </tr>
-</table>
+| Command | Description | 
+|-----|----| 
+| `--set global.UsingCustomIBMIngressImage=false` | The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to `false`. |
+| `--set global.OpenShiftEnabled=true` | Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command. |
+| `--set Manager.FailOnGroupOutOfDate=true` | Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters. |
+| `--set enclaveos-chart.Ias.Mode=IAS_API_KEY` | Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: `kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;`. Note: By default, IAS requests are made through a proxy service. |
+| `--set global.ServiceReplicas=&lt;replica-count&gt;` | Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. **Note**: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster. |
+{: caption="Table 1. Installation options" caption-side="top"}
 
 You can verify the installation and monitor the startup of your components by running `kubectl get pods`.
 {: note}
@@ -333,33 +314,14 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
 ```
 {: codeblock}
 
-<table>
-  <caption>Table 1. Installation options</caption>
-  <tr>
-    <th>Command</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>--set global.UsingCustomIBMIngressImage=false</code></td>
-    <td>The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to <code>false</code>.</td>
-  </tr>
-  <tr>
-    <td><code>--set global.OpenShiftEnabled=true</code></td>
-    <td>Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command.</td>
-  </tr>
-      <tr>
-    <td><code>--set Manager.FailOnGroupOutOfDate=true</code></td>
-    <td>Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters.</td>
-  </tr>
-  <tr>
-    <td><code>--set enclaveos-chart.Ias.Mode=IAS_API_KEY</code></td>
-    <td>Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: <code>kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;</code>. <strong>Note</strong>: By default, IAS requests are made through a proxy service.</td>
-  </tr>
-  <tr>
-    <td><code>--set global.ServiceReplicas=&lt;replica-count&gt;</code></td>
-    <td>Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. <strong>Note</strong>: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.</td>
-  </tr>
-</table>
+| Command | Description | 
+|-----|----| 
+| `--set global.UsingCustomIBMIngressImage=false` | The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to `false`. |
+| `--set global.OpenShiftEnabled=true` | Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command. |
+| `--set Manager.FailOnGroupOutOfDate=true` | Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters. |
+| `--set enclaveos-chart.Ias.Mode=IAS_API_KEY` | Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: `kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;`. **Note**: By default, IAS requests are made through a proxy service. |
+| `--set global.ServiceReplicas=&lt;replica-count&gt;` | Optional: If you're working with multi-node clusters, you can specify the replica count by appending the service replicas tag to your install command. **Note**: Your maximum replica count must be fewer than or equal to the number of nodes that exist in your cluster.
+{: caption="Table 1. Installation options" caption-side="top"}
 
 You can verify the installation and monitor the startup of your components by running `kubectl get pods`.
 {: note}

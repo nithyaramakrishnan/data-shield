@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-27"
+lastupdated: "2021-06-02"
 
 keywords: update Data Shield, install, docker config, helm, cluster, kube, container, app security, runtime encryption, memory, data in use,
 
@@ -129,7 +129,7 @@ To update to the newest version with the Helm chart, run the following command.
 
 If you're using Ubuntu 16.04, you can upgrade the cluster nodes that run Data Shield to Ubuntu 18.04.
 
-Before you upgrade your cluster nodes, be sure to update Data Shield to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-troubleshooting#ts-problem-updating-data-shield) or contact IBM support.
+Before you upgrade your cluster nodes, be sure to update Data Shield to version 1.23.965 or higher. If you encounter any issues during the upgrade, check the [troubleshooting steps](/docs/data-shield?topic=data-shield-ts-update) or contact [IBM support](https://www.ibm.com/cloud/support){: external}.
 {: note} 
 
 1. Update Data Shield to version 1.23.965 or higher.
