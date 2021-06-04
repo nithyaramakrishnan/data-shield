@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-06-01"
+lastupdated: "2021-06-04"
 
 keywords: tls certificates, data in use, certificate authority, backend services, ingress proxy, issue cert, enclave manager, data shield, private key, data protection, cluster, container, app security, memory,
 
@@ -89,4 +89,4 @@ Check out the following table for contextual information about how Data Shield c
 | `&lt;chartname&gt;-enclaveos-converter` | The certificate that is used by the EnclaveOS container converter. |
 | `&lt;chartname&gt;-enclaveos-frontend` | The certificate that is used by the container that serves the Enclave Manager front end to authenticate to the Ingress proxy. Note: This certificate is different than the one that you would switch to use your own. |
 | `&lt;chartname&gt;-enclaveos-manager-main` | The certificate used by the Enclave Manager backend application.
-
+{: caption="Table 1. `cert-manager` resource informtation" caption-side="top"}

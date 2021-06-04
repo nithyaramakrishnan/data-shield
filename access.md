@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-06-01"
+lastupdated: "2021-06-04"
 
 keywords: assigning access, enclave manager, access control, managing users, cluster roles, cluster permissions, kube security, data protection, encryption, 
 
@@ -84,8 +84,9 @@ Check out the following table to see which roles are supported and some example 
 |-----|----| ------ |
 | Viewer | Can perform read-only actions such as viewing nodes, builds, user information, apps, tasks, and audit logs. | Downloading a node attestation certificate. |
 | Editor | Can perform the actions that a Viewer can perform and more; including deactivating and renewing node attestation, adding a build, and approving or denying any action or tasks. | Certifying an application. |
-| Administrator | Can perform the actions that an Editor can perform and more; including updating usernames and roles, adding users to the cluster, updating cluster settings, and any other privileged actions. | Updating a user role. | 
+| Administrator | Can perform the actions that an Editor can perform and more; including updating usernames and roles, adding users to the cluster, updating cluster settings, and any other privileged actions. | Updating a user role. |
 {: caption="Table 1. Example actions" caption-side="top"}
+
 
 ### Adding a user
 {: #set-roles}
