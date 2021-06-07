@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-06-04"
+lastupdated: "2021-06-07"
 
 keywords: tls certificates, data in use, certificate authority, backend services, ingress proxy, issue cert, enclave manager, data shield, private key, data protection, cluster, container, app security, memory,
 
@@ -57,7 +57,7 @@ subcollection: data-shield
 You can choose to use the default or use your own TLS certificate by the way you define the Helm chart.
 {: shortdesc}
 
-For more information about IBM-provided certificates, see the [Kubernetes Service documentation](/docs/containers?topic=containers-ingress#ingress_expose_public).
+For more information about IBM-provided certificates, see the [Kubernetes Service documentation](/docs/containers?topic=containers-ingress-types#alb-comm-create).
 {: note}
 
 
@@ -89,4 +89,4 @@ Check out the following table for contextual information about how Data Shield c
 | `&lt;chartname&gt;-enclaveos-converter` | The certificate that is used by the EnclaveOS container converter. |
 | `&lt;chartname&gt;-enclaveos-frontend` | The certificate that is used by the container that serves the Enclave Manager front end to authenticate to the Ingress proxy. Note: This certificate is different than the one that you would switch to use your own. |
 | `&lt;chartname&gt;-enclaveos-manager-main` | The certificate used by the Enclave Manager backend application.
-{: caption="Table 1. `cert-manager` resource informtation" caption-side="top"}
+{: caption="Table 1. `cert-manager` resource information" caption-side="top"}
