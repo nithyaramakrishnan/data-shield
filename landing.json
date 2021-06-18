@@ -1,11 +1,11 @@
 {
-    "title": "Product docs",
-    "lastupdated": "2021-04-13",
-    "introduction": "This is a description of what the user will be able to access or find content-wise for your product.",
+    "title": "Data Shield docs",
+    "lastupdated": "2021-06-18",
+    "introduction": "With IBM Cloud Data Shield, you can protect the data in your containerized workloads while your data is in use.",
     "section_recommended": [
       {
         "title": "Getting started",
-        "description": "Install Data Shield on your cluster to start protecting your memory while it is in use.",
+        "description": "Install Data Shield on your cluster.",
         "href": "/docs/data-shield?topic=data-shield-getting-started"
       },
       {
