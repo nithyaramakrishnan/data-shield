@@ -1,0 +1,55 @@
+{
+    "title": "Data Shield docs",
+    "lastupdated": "2021-06-21",
+    "introduction": "With IBM Cloud Data Shield, you can protect the data in your containerized workloads while your data is in use.",
+    "section_recommended": [
+      {
+        "title": "Getting started",
+        "description": "Install Data Shield on your cluster to start securing your data.",
+        "href": "/docs/data-shield?topic=data-shield-getting-started"
+      },
+      {
+        "title": "Deploying apps with the Enclave Manager",
+        "description": "Convert and deploy your applications by using the Enclave Manager UI.",
+        "href": "/docs/data-shield?topic=data-shield-enclave-manager"
+      },
+      {
+        "title": "Curated apps",
+        "description": "Use a Data Shield ready application to get familiar with the service.",
+        "href": "/docs/data-shield?topic=data-shield-curated-apps"
+      }
+    ],
+    "section_videos": [
+      {
+        "title": "IBM Cloud Data Shield - Secure Data Runtime / In Use",
+        "href": "/docs/data-shield?topic=data-shield-about", 
+        "thumbnail": "/images/intro-ds-video-thumbnail.png" 
+      }
+    ],
+    "section_learn": {
+      "developer": "https://developer.ibm.com/depmodels/cloud/",
+      "architecture": "https://www.ibm.com/cloud/architecture",
+      "training": "https://www.ibm.com/training/cloud",
+      "community": "https://community.ibm.com/community/user/publiccloud/home"
+    },
+    "section_updates": {
+      "view_more": "/docs/data-shield?topic=data-shield-release-notes",
+      "tiles": [
+        {
+          "date": "5 May 2021",
+          "title": "Version 1.27.1226",
+          "description": "Upgrades and issue fixes for the Enclave Manager and EnclaveOS."
+        },
+        {
+          "date": "15 March 2021",
+          "title": "Version 1.26.1148",
+          "description": "Added support to prevent the creation of duplicate builds and other updates."
+        },
+        {
+          "date": "22 January 2021",
+          "title": "Version 1.25.1090",
+          "description": "Added support for Kubernetes Service clusters v1.18 and fixed vulnerabilities."
+        }
+      ]
+    }
+  }
