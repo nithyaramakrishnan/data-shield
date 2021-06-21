@@ -1,21 +1,21 @@
 {
     "title": "Data Shield docs",
-    "lastupdated": "2021-06-18",
+    "lastupdated": "2021-06-21",
     "introduction": "With IBM Cloud Data Shield, you can protect the data in your containerized workloads while your data is in use.",
     "section_recommended": [
       {
         "title": "Getting started",
-        "description": "Install Data Shield on your cluster.",
+        "description": "Install Data Shield on your cluster to start securing your data.",
         "href": "/docs/data-shield?topic=data-shield-getting-started"
       },
       {
         "title": "Deploying apps with the Enclave Manager",
-        "description": "Manage your app deployment, assign access, and convert your applications by using the Enclave Manager UI.",
+        "description": "Convert and deploy your applications by using the Enclave Manager UI.",
         "href": "/docs/data-shield?topic=data-shield-enclave-manager"
       },
       {
         "title": "Curated apps",
-        "description": "Test Data Shield with a prepackaged application provided by the service.",
+        "description": "Use a Data Shield ready application to get familiar with the service.",
         "href": "/docs/data-shield?topic=data-shield-curated-apps"
       }
     ],
