@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/data-shield?topic=data-shield-getting-started" product-page="https://www.ibm.com/cloud/data-shield" console-page="/catalog/services/data-shield" path="data-shield"}
+{: .toc subcollection="data-shield" audience="service" category="security" href="/docs/data-shield" product-page="https://www.ibm.com/cloud/data-shield" console-page="/catalog/services/data-shield" path="data-shield"}
 IBM Cloud Data Shield
 
     {: .navgroup id="learn"}
