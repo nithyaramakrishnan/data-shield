@@ -51,7 +51,7 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 ## Current version: 1.28.1299
 {: #v1.28.1299}
 
-**Released 2021-06-XX**
+**Released: 23 June 2021**
 
 - Enclave Manager
   - Added support for IKS 1.19 and 1.20
