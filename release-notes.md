@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-06-30"
+lastupdated: "2021-07-01"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -54,8 +54,8 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 **Released: 23 June 2021**
 
 - Enclave Manager
-  - Added support for IKS 1.19 and 1.20
-  - Upgraded cockroachdb to v21.1.2
+  - Added support for IKS 1.19 and 1.20.
+  - Upgraded cockroachdb to v21.1.2.
 
 - EnclaveOS
   - `mmap()`, `munmap()`, `mprotect()`, and `madvise()` operations may be slightly slower. Applications that make frequent use of these operations may have decreased performance.
