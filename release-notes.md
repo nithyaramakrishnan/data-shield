@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-05-18"
+lastupdated: "2021-07-01"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -48,10 +48,37 @@ subcollection: data-shield
 The following features and changes to the {{site.data.keyword.datashield_full}} service are now available.
 
 
-## Current version: 1.27.1226
+## Current version: 1.28.1299
+{: #v1.28.1299}
+
+**Released: 23 June 2021**
+
+- Enclave Manager
+  - Added support for IKS 1.19 and 1.20.
+  - Upgraded cockroachdb to v21.1.2.
+
+- EnclaveOS
+  - `mmap()`, `munmap()`, `mprotect()`, and `madvise()` operations may be slightly slower. Applications that make frequent use of these operations may have decreased performance.
+  - HTTP connections use non-blocking sockets and non-blocking reads/writes.
+  - Added explicit option to EOS signer to make the difference between first signing from re-signing.
+  - All fields except ‘bugs’ are implemented for /proc/cpuinfo file.
+  - Support is added for timeroverrun (with less accuracy) and TIMER_ABSTIME flag for `timer_settime()` call.
+  - Improved speed of thread exits. The improved speed may improve performance for applications that perform `pthread_join()` operations or use large numbers of threads.
+  - Implemented additional /proc/cpuinfo fields. The implementation fixes issues with the OpenMP library detecting the number of CPUs present. OpenMP is used by some Tensorflow models. This may improve the performance of applications using - - OpenMP that were only able to use one CPU previously.
+  - Fixed issues with the `sched_setaffinity` and `sched_getaffinity` system calls. This fixes issues with OpenMP using the available CPUs. This may improve the performance of applications using OpenMP that were only able to use one CPU previously.
+  - Fixed an issue with early logging that prevented some early log messages from being logged. The fix should only affect debugging some early startup problems.
+  - Added logs when `mmap()` fails with not enough memory (ENOMEM).
+  - Added logs for cases when the child process is killed by the Out Of Memory (OOM) killer or running OOM quota before creating an enclave.
+
+## 2021 updates
+{: #2021-updates}
+
+The following features and changes to the Data Shield service are available as of 2021.
+
+### Version 1.27.1226
 {: #v1.27.1226}
 
-**Released: 5 May 2021**
+#### Released: 5 May 2021
 
 - Enclave Manager:
   - Upgraded SGX device plug-in source image version to `20210223-c2d2da0` to fix `DLA-2542-1`, `DLA-2509-1`,  and `DLA-2424-1`.
@@ -65,13 +92,6 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
   - Fixed an issue that causes a memory leak when directories were listed.
   - Fixed a file descriptor leak that happened when opening `/proc/cpuinfo`.
   - Fixed an issue which caused `EINIT failure` with `SGX_INVALID_ATTRIBUTE`.
-
-
-## 2021 updates
-{: #2021-updates}
-
-The following features and changes to the Data Shield service are available as of 2021.
-
 
 ### Version 1.26.1148
 {: #v1.26.1148}
