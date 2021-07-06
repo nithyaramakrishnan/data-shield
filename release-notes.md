@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018, 2021
-lastupdated: "2021-07-01"
+lastupdated: "2021-07-06"
 
 keywords: release notes, data shield version, data shield updates, new in data shield, what's new
 
@@ -53,22 +53,22 @@ The following features and changes to the {{site.data.keyword.datashield_full}} 
 
 **Released: 23 June 2021**
 
-- Enclave Manager
-  - Added support for IKS 1.19 and 1.20.
-  - Upgraded cockroachdb to v21.1.2.
+- Enclave Manager:
+  - Added support for {{site.data.keyword.containershort}} `1.19` and `1.20`.
+  - Upgraded `cockroachdb` to `v21.1.2`.
 
-- EnclaveOS
-  - `mmap()`, `munmap()`, `mprotect()`, and `madvise()` operations may be slightly slower. Applications that make frequent use of these operations may have decreased performance.
-  - HTTP connections use non-blocking sockets and non-blocking reads/writes.
-  - Added explicit option to EOS signer to make the difference between first signing from re-signing.
-  - All fields except ‘bugs’ are implemented for /proc/cpuinfo file.
-  - Support is added for timeroverrun (with less accuracy) and TIMER_ABSTIME flag for `timer_settime()` call.
-  - Improved speed of thread exits. The improved speed may improve performance for applications that perform `pthread_join()` operations or use large numbers of threads.
-  - Implemented additional /proc/cpuinfo fields. The implementation fixes issues with the OpenMP library detecting the number of CPUs present. OpenMP is used by some Tensorflow models. This may improve the performance of applications using - - OpenMP that were only able to use one CPU previously.
-  - Fixed issues with the `sched_setaffinity` and `sched_getaffinity` system calls. This fixes issues with OpenMP using the available CPUs. This may improve the performance of applications using OpenMP that were only able to use one CPU previously.
+- EnclaveOS:
+  - `mmap()`, `munmap()`, `mprotect()`, and `madvise()` operations might be slightly slower. Applications that make frequent use of these operations can have decreased performance.
+  - HTTP connections use non-blocking sockets and non-blocking reads and writes.
+  - Added explicit option to `EOS signer` to make the difference between first signing from re-signing.
+  - All fields except bugs are implemented for `/proc/cpuinfo` file.
+  - Support is added for `timeroverrun` (with less accuracy) and `TIMER_ABSTIME` flag for `timer_settime()` call.
+  - Improved speed of thread exits. The improved speed might improve performance for applications that perform `pthread_join()` operations or use large numbers of threads.
+  - Implemented additional `/proc/cpuinfo` fields. The implementation fixes issues with the `OpenMP` library detecting the number of CPUs present. `OpenMP` is used by some `Tensorflow` models. This might improve the performance of applications using `OpenMP` that were only able to use one CPU previously.
+  - Fixed issues with the `sched_setaffinity` and `sched_getaffinity` system calls. This fixes issues with `OpenMP` using the available CPUs. This might improve the performance of applications using `OpenMP` that were only able to use one CPU previously.
   - Fixed an issue with early logging that prevented some early log messages from being logged. The fix should only affect debugging some early startup problems.
-  - Added logs when `mmap()` fails with not enough memory (ENOMEM).
-  - Added logs for cases when the child process is killed by the Out Of Memory (OOM) killer or running OOM quota before creating an enclave.
+  - Added logs when `mmap()` fails with not enough memory (`ENOMEM`).
+  - Added logs for cases when the child process is killed by the Out Of Memory (`OOM`) killer or by running `OOM` quota before creating an enclave.
 
 ## 2021 updates
 {: #2021-updates}
@@ -78,7 +78,7 @@ The following features and changes to the Data Shield service are available as o
 ### Version 1.27.1226
 {: #v1.27.1226}
 
-#### Released: 5 May 2021
+#### Released: 5 might 2021
 
 - Enclave Manager:
   - Upgraded SGX device plug-in source image version to `20210223-c2d2da0` to fix `DLA-2542-1`, `DLA-2509-1`,  and `DLA-2424-1`.
@@ -86,7 +86,7 @@ The following features and changes to the Data Shield service are available as o
   - Enable `rw dirs` in the Data Shield UI.
   - Updated the `max sql memory` and `max cache` size of cockroach DB to `1Gib` to match the identified optimum memory settings.
 
-- EnclaveOS
+- EnclaveOS:
   - The root tree of a converted application is now read only.
   - EnclaveOS converter is now built on Ubuntu 20.
   - Fixed an issue that causes a memory leak when directories were listed.
@@ -104,7 +104,7 @@ The following features and changes to the Data Shield service are available as o
   - Upgraded Golang to version `1.16` to fix `CVE-2021-3114/CVE-2021-3115`.
   - Updated Docker to version `20.10.3` to fix `CVE-2021-21284/CVE-2021-21285/CVE-2020-27534`.
 
-- EnclaveOS
+- EnclaveOS:
   - Updated `glibc` to version `2.33`.
   - Implemented several additional nodes in the `/sys filesystem`.
   - Fixed an issue with incorrect return value from `access() system` call for some files.
@@ -607,7 +607,7 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.181
 {: #v0.5.181}
 
-#### Released: 14 May 2019
+#### Released: 14 might 2019
 {: #2019-05-14}
 
 - Installer:
@@ -618,7 +618,7 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.180
 {: #v0.5.180}
 
-#### Released: 13 May 2019
+#### Released: 13 might 2019
 {: #2019-05-13}
 
 - Enclave Manager:
@@ -634,7 +634,7 @@ Releases before 1.2 cannot be upgraded to this release.
 ### Version 0.5.174
 {: #v0.5.174}
 
-#### Released: 03 May 2019
+#### Released: 03 might 2019
 {: #2019-05-03}
 
 
