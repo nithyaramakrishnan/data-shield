@@ -227,7 +227,7 @@ If you're using version 2, you might want to configure Helm to use `--tls` mode.
 ### Installing `cert manager`
 {: #install-cert}
 
-Data Shield uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between Data Shield services. 
+Data Shield uses open source [`cert manager`](https://docs.cert-manager.io/en/latest/){: external} to set up TLS certificates for internal communication between Data Shield services.
 
 1. Create the resource in your cluster.
 
@@ -292,9 +292,9 @@ helm install <chart-name> iks-charts/ibmcloud-data-shield --set enclaveos-chart.
 ```
 {: codeblock}
 
-| Command | Description | 
-|-----|----| 
-| `--set global.UsingCustomIBMIngressImage=false` | The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to `false`. |
+| Command | Description |
+|-----|----|
+| `--set global.UsingCustomIBMIngressImage=true` | Optional: If you are installing Data Shield on a cluster that was created before the 1st of December 2020, you must set this flag to `true`. Default value set is `false`. |
 | `--set global.OpenShiftEnabled=true` | Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command. |
 | `--set Manager.FailOnGroupOutOfDate=true` | Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters. |
 | `--set enclaveos-chart.Ias.Mode=IAS_API_KEY` | Optional: You can use your own IAS API key. To do so, you must first obtain a linkable subscription for the Intel SGX Attestation Service. Then, generate a secret in your cluster by running the following command: `kubectl create secret generic ias-api-key --from-literal=env=&lt;TEST/PROD&gt; --from-literal=spid=&lt;spid&gt; --from-literal=api-key=&lt;apikey&gt;`. Note: By default, IAS requests are made through a proxy service. |
@@ -314,8 +314,8 @@ helm install iks-charts/ibmcloud-data-shield --set enclaveos-chart.Manager.Admin
 ```
 {: codeblock}
 
-| Command | Description | 
-|-----|----| 
+| Command | Description |
+|-----|----|
 | `--set global.UsingCustomIBMIngressImage=false` | The Kubernetes Service custom Ingress image is deprecated for clusters that were created after 01 December, 2020. If you are installing Data Shield on a cluster that was created after the 1st, you must set this flag to `false`. |
 | `--set global.OpenShiftEnabled=true` | Optional: If you are working with an {{site.data.keyword.openshiftshort}} cluster, be sure to append the {{site.data.keyword.openshiftshort}} tag to your installation command. |
 | `--set Manager.FailOnGroupOutOfDate=true` | Optional: By default, node enrollment and the issuing of application certificates succeed. If you want the operations to fail if your platform microcode is out of date, append the flag to your install command. You are alerted in your dashboard when your service code is out of date. Note: It is not possible to change this option on existing clusters. |
@@ -330,7 +330,7 @@ You can verify the installation and monitor the startup of your components by ru
 ## Next steps
 {: #gs-next}
 
-Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications. 
+Now that the service is installed on your cluster, you can start protecting your data! You can choose to work with the [Enclave Manager UI](/docs/data-shield?topic=data-shield-enclave-manager), or you can choose to use the APIs to [convert](/docs/data-shield?topic=data-shield-convert#converting-images) and [deploy](/docs/data-shield?topic=data-shield-deploying) your applications.
 
 If you don't have your own image to deploy, try deploying one of the prepackaged Data Shield images or sample apps:
 
